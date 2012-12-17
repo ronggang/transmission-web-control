@@ -2,4 +2,4 @@
  # Download the compressed package
  # Backup Transmission Web Interface directory
  # To unpack content to the Transmission Web Interface directory (Example:/usr/local/transmission/share/transmission/web,OR /usr/share/transmission/web)
- # Re-visit Transmission Web Interface
+ # Re-visit Transmission Web Interface (Example: http://192.168.1.1:9091/transmission/web/)
