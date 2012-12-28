@@ -1,7 +1,7 @@
 #labels Featured
 ===How to Install===
  # Download the compressed package
- # Backup Transmission Web Interface directory
+ # Backup Transmission Web Interface directory and remove all files
  # To unpack content to the Transmission Web Interface directory (Example:/usr/local/transmission/share/transmission/web,OR /usr/share/transmission/web)
  # Re-visit Transmission Web Interface (Example: http://192.168.1.1:9091/transmission/web/)
  # ~~If you want to use English, you can be added later in the address "?lang=en" (Example: http://192.168.1.1:9091/transmission/web/?lang=en)~~
