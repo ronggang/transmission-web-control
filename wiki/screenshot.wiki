@@ -1,7 +1,7 @@
 ====主界面：====
-https://lh5.googleusercontent.com/-LpStG_ohhmU/UM6J0CnnJxI/AAAAAAAAAH0/rD0VeDgtqWM/s1165/0.1+beta+20121217+zh-CN.PNG
-====主界面（英文）：====
-https://lh6.googleusercontent.com/-tsbMmmMu-pc/UM6J0Dh92SI/AAAAAAAAAHw/fzev_xijXJ8/s1166/0.1+beta+20121217+EN.PNG
+https://lh5.googleusercontent.com/-QFoFRSfxO0w/UNxwZxSgS8I/AAAAAAAAAIM/hP3kL21O1Qw/s1277/chrome.PNG
+====Interface:====
+https://lh3.googleusercontent.com/-PppUcYXZiQA/UNxy5qlxGCI/AAAAAAAAAIg/1l46YjmVQYc/s1277/en.PNG
 ====添加种子：====
 https://lh5.googleusercontent.com/-YD-ESu1KLx0/ULnA5ml_qcI/AAAAAAAAAGk/Zrf2FIXtnwM/s626/%E6%B7%BB%E5%8A%A0%E7%A7%8D%E5%AD%90.PNG
 ====参数设置：====
