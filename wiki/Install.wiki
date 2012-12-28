@@ -4,4 +4,5 @@
  # Backup Transmission Web Interface directory
  # To unpack content to the Transmission Web Interface directory (Example:/usr/local/transmission/share/transmission/web,OR /usr/share/transmission/web)
  # Re-visit Transmission Web Interface (Example: http://192.168.1.1:9091/transmission/web/)
- # If you want to use English, you can be added later in the address "?lang=en" (Example: http://192.168.1.1:9091/transmission/web/?lang=en)
+ # ~~If you want to use English, you can be added later in the address "?lang=en" (Example: http://192.168.1.1:9091/transmission/web/?lang=en)~~
+ # The new version will automatically switch languages, according to the language settings of the browser in addition to Chinese, will automatically switch to English.
