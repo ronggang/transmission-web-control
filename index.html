@@ -1,217 +1,89 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
+<!DOCTYPE HTML>
 <html>
 <head>
-	<meta content="text/html; charset=UTF-8" http-equiv="content-type">
-	<title>Transmission 种子增加</title>
-	<script type="text/javascript" src="script/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="script/json2.min.js"></script>
-	<script type="text/javascript" src="script/Base64.js"></script>
-	<script type="text/javascript" src="script/transmission.js?v=20121112"></script>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<title>Transmission Control</title>
+	<!-- 样式表 -->
+	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130108" />
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130108"/>  
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130108"/>
+	<!-- 基础类库 -->
+	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
+	<script type="text/javascript" src="script/jquery/Base64.js"></script>
+	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130108"></script>
+	<!-- -->
+	<!-- 系统类库 -->
+	<script type="text/javascript" src="script/min/transmission.js?v=20130108"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130108"></script>
+	<script type="text/javascript" src="script/min/system.js?v=20130108"></script>
 </head>
-<style>
-body{
-	font-size:12px;
-	font-family:微软雅黑,宋体;
-}
-div.torrent input,div.torrent select,div.torrent textarea{
-	width:100%;
-}
-div.torrent table{
-	width:100%;
-}
-td.title{
-	text-align:right;
-}
-</style>
 <body>
-<div id="divserver">
-	服务器：<input type="text" id="host" value="http://"/>
-	端口：<input type="text" id="port" value="9091"/>
-	用户名：<input type="text" id="username"/>
-	密码：<input type="password" id="password"/>
-	<button onclick="javascript:link();">连接服务器</button>
-	<button onclick="javascript:link(true);">本地服务器</button>
-	<br/>
-	<button onclick="javascript:startall();" style="display:none;">开始所有</button>
-	<button onclick='javascript:torrentget();' style="display:none;">torrent-get</button>
-</div>
-<div id="divstatus">
-	<table style="width:100%;">
-		<tr>
-			<td width="10%" class="title">版本：</td>
-			<td width="90%"><span id="version"></span></td>
-		</tr>
-		<tr>
-			<td class="title">种子数量：</td>
-			<td><span id="activeTorrentCount"></span></td>
-		</tr>
-	</table>
-</div>
-<hr/>
-<div id="divtorrent" class="torrent" style="display:none;">
-	<table>
-		<tr>
-			<td width="10%" class="title">保存目录：</td>
-			<td width="90%"><input id="download_path" value=""/></td>
-		</tr>
-		<tr>
-			<td class="title">种子地址：</td>
-			<td>
-				<span>提示：复制正确的种子链接到列表中，然后点击“增加种子”；多个种子用“回车”分隔。</span>
-				<textarea id="torrent_url" rows="10" style="height:150;"></textarea>
-				<select id="sellog" multiple="true" style="height:150;display:none;"></select>
-			</td>
-		</tr>
-		<tr>
-			<td class="title">自动开始：</td>
-			<td>
-				<input type="checkbox" id="chkautostart" style="width:20px;"/><label for="chkautostart">选中时，新添加的种子将自动开始下载（如不选择，则为暂停状态）</label>
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><button onclick='javascript:addTorrents();' id="btnAdd">增加种子</button><span id="spnState" style="display:none;"></span></td>
-		</tr>
-	</table>
-</div>
-
+	<div id="main" class="easyui-layout">
+		<div id="m_top" data-options="region:'north'">
+			<div class="easyui-layout" data-options="fit:true">
+				<div id="m_title_layout" data-options="region:'center'" border="0">
+					<img src="logo.png"/><span id="m_title" style="padding:10px;"></span>
+					<div style="float:right;">Language：<select id="lang" value="" style="width:200px;"></select></div>
+				</div>
+				<div id="m_toolbar" data-options="region:'south',border:0">
+					<a id="toolbar_add_torrents" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<a id="toolbar_reload" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true"></a>
+					<a id="toolbar_alt_speed" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-alt-speed-false',plain:true"></a>
+					<a id="toolbar_config" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-system-config',plain:true"></a>
+					<span class="button-split">|</span>
+					<a id="toolbar_start_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-all',plain:true,disabled:true"></a>
+					<a id="toolbar_pause_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-all',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<a id="toolbar_start" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-one',plain:true,disabled:true"></a>
+					<a id="toolbar_pause" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-one',plain:true,disabled:true"></a>
+					<a id="toolbar_remove" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-remove-torrent',plain:true,disabled:true"></a>
+					<a id="toolbar_recheck" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-recheck-torrent',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<label id="toolbar_label_reload_time"></label>
+					<input id="toolbar_reload_time" style="width:50px;text-align:center;" class="easyui-numberspinner"/>
+					<label id="toolbar_label_reload_time_unit"></label>
+					<a id="toolbar_autoreload" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true"></a>
+					<span id="toolbar_right_area" style="float:right;">
+						<input id="toolbar_search" type="text" class="easyui-searchbox" style="width:150px;"/>
+						<span class="button-split">|</span>
+						<a id="toolbar_about" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true"></a>
+					</span>
+				</div>
+			</div>
+		</div>
+	   <div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
+			<div id="layout_left" class="easyui-layout" data-options="fit:true">
+				<div id="m_left" data-options="region:'center',border:0"></div>
+				<div id="m_status" title="status" data-options="region:'south',split:true,border:0,collapsed:true">
+					<span id="status_text"></span>
+				</div>
+			</div>
+		</div>
+	   <div id="m_body" title="." data-options="region:'center',border:0" >
+	   	<div class="easyui-layout" data-options="fit:true">
+				<div id="m_list" data-options="region:'center',border:0"></div>
+				<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'template/torrent-attribute.html',cache:true"></div>
+			</div>
+	   </div>
+		<div id="m_statusbar" data-options="region:'south'">
+			<span id="status_alt_speed" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span id="status_title_downloadspeed" class="iconlabel icon-down"></span><span id="status_downloadspeed"></span>
+			<span class="button-split">|</span>
+			<span id="status_title_uploadspeed" class="iconlabel icon-up"></span><span id="status_uploadspeed"></span>
+			<span class="button-split">|</span>
+			<span id="status_freespace"></span>
+			<span id="status_version" style="float:right;"></span>
+		</div>
+		<div id="dropArea" class="dropArea" style="display:none;">
+			<span id="text-drop-title" style="position:absolute;top:150px;left:150px;font-size:40px;font-weight: bold;" disabled="disabled"></span>
+		</div>
+	</div>
 </body>
-<script type="text/javascript">
-	
-
-	// 连接服务器并获取信息
-	function link(islocal)
-	{
-		// 初始化连接
-		transmission.init(
-			{
-				host:jQuery("#host").val()
-				,port:jQuery("#port").val()
-				,username:jQuery("#username").val()
-				,password:jQuery("#password").val()
-				,islocal:islocal
-			}
-			,function (){
-				transmission.exec(
-				{
-						method:"session-get"
-					}
-					,function(data){
-						if (data.result=="success")
-						{
-							jQuery("#download_path").val(data.arguments["download-dir"]);
-							jQuery("#version").html(data.arguments["version"]);
-							jQuery("#divtorrent").show();
-							jQuery("#divserver").hide();
-						}
-					}
-				);
-				transmission.getStatus(function(data){
-					jQuery("#activeTorrentCount").html(data["activeTorrentCount"]);
-				});
-			}
-		);
-	}
-
-	function startall()
-	{
-		transmission.exec("torrent-start",function(data){
-			if (data.result=="success")
-			{
-				// 
-				alert(data.arguments.version);
-			}
-		});
-	}
-
-	function torrentget()
-	{
-		transmission.exec(
-			{
-				method:"torrent-get"
-				,arguments:{
-					fields:("id,name,totalSize,status,hashString").split(",")
-				}
-			}
-		);
-	}
-
-	function addTorrents()
-	{
-		var urls = (jQuery("#torrent_url").val()).split("\n");
-		var autostart = jQuery("#chkautostart").prop("checked");
-		jQuery("#sellog").empty().show();
-		jQuery.each(urls,function(i,item)
-		{
-			jQuery("<option/>").attr("id","opt"+i).text((i+1)+"."+item).appendTo(jQuery("#sellog"));
-		});
-		jQuery("#torrent_url").val("").hide();
-		
-		torrentAdd(urls,urls.length,autostart,jQuery("#download_path").val());
-		urls = null;
-	}
-
-	//
-	function showsate(msg,outtime)
-	{
-		$("#spnState").show();
-		$("#spnState").text(msg);
-		if (outtime==0)
-		{
-			return;
-		}
-		if (outtime==undefined)
-		{
-			outtime=3000;
-		}
-		$("#spnState").fadeOut(outtime);
-	}
-
-	// 添加种子
-	function torrentAdd(urls,count,autostart,savepath)
-	{
-		var index = count-urls.length;
-		var url = urls.shift();
-		if (!url)
-		{
-			jQuery("#torrent_url").show();
-			jQuery("#sellog").hide();
-			showsate("本次队列完成。");
-			return;
-		}
-		jQuery("#btnAdd").prop("disabled", true);
-		var option = jQuery("#opt"+index);
-		var text = option.text();
-
-		showsate("队列："+(index+1)+"/"+(count),0);
-		option.text(text+"|正在增加...");
-
-		transmission.exec(
-			{
-				method:"torrent-add"
-				,arguments:{
-					filename:url
-					,"download-dir":savepath
-					,paused:(!autostart)
-				}
-			}
-			,function(data){
-				if (data.result=="success")
-				{
-					var name = "[已增加] " + data.arguments["torrent-added"].name;
-					option.text(text+"|"+name);
-					jQuery("#btnAdd").prop("disabled", false);
-					torrentAdd(urls,count,autostart,savepath);
-				}
-			}
-		);
-	}
-
-	(function init()
-	{
-		link(true);
-	})();
-
-</script>
 </html>

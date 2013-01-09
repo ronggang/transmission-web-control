@@ -1,0 +1,228 @@
+html, body {
+	overflow: hidden;
+	background-attachment: fixed;
+	height:100%;
+	width:100%;
+	padding:0px;
+	margin:0px;
+}
+*{
+	font-size:12px;
+	font-family:微软雅黑,宋体,Arial,Verdana,Tahoma;
+}
+#main{
+	width:100%;height:100%;text-align:left;
+}
+#m_top{
+	height:84px;
+}
+#m_title_layout{
+	 height:47px;line-height:47px;overflow:hidden;   
+}
+#m_toolbar{
+	height:28px;padding:1px;
+}
+#m_left_layout{
+	width:288px;
+}
+#m_body{
+	-width:82%;
+}
+#m_statusbar{
+	height:20px;padding:2px;
+}
+#m_attribute{
+	height:260px;
+}
+#m_status{
+	height:180px;
+}
+#status_alt_speed{
+	background:url('images/alt-speed.ico') no-repeat;width:16px;height:16px;
+}
+
+.dropArea{
+	background-color: #ccffff;
+    border: 2px dashed #000000;
+	position:absolute;
+	width:99%;
+	height:99%;
+	z-index:100;
+	top:0px;
+	left:0px;
+	filter:alpha(opacity=40);
+	opacity:0.40;
+	margin:4px;
+}
+
+.dialog input,.dialog select,.dialog textarea{
+	width:100%;
+}
+.dialog td.title{
+	text-align:right;vertical-align:top;
+}
+
+.button-split{
+	-background:url('images/button-split.gif') no-repeat;
+	width:3px;height:24px;color:#808080;
+}
+.icon-pause-all{
+	background:url('images/pause-all.png') no-repeat;
+}
+.icon-pause-one{
+	background:url('images/pause.png') no-repeat;
+}
+.icon-start-all{
+	background:url('images/start-all.png') no-repeat;
+}
+.icon-start-one{
+	background:url('images/start.png') no-repeat;
+}
+.icon-alt-speed-true{
+	background:url('images/alt-speed-true.png') no-repeat;
+}
+.icon-alt-speed-false{
+	background:url('images/alt-speed-false.png') no-repeat;
+}
+.icon-system-config{
+	background:url('images/system-config.png') no-repeat;
+}
+.icon-test-port{
+	background:url('images/test-port.png') no-repeat;
+}
+.icon-loading{
+	background:url('images/loading.gif') no-repeat;
+}
+.icon-about{
+	background:url('images/about.png') no-repeat;
+}
+.icon-close{
+	background:url('images/close.png') no-repeat;
+}
+.icon-enabled{
+	background:url('images/enabled.png') no-repeat;
+}
+.icon-disabled{
+	background:url('images/disabled.png') no-repeat;
+}
+.icon-remove-torrent{
+	background:url('images/remove.png') no-repeat;
+}
+.icon-recheck-torrent{
+	background:url('images/checking.png') no-repeat;
+}
+
+.torrent-list{
+	height:100%;width:100%;
+}
+.torrent-progress{
+	margin-top:1px;
+	height:13px;
+	width:100%; 
+	border:1px #c0c0c0 solid;
+	text-align:center; 
+	position:relative;
+	font-size:9px;font-family:Arial,Verdana,Tahoma;-webkit-text-size-adjust:none;
+}
+.torrent-progress-text{
+	height:100%;
+	position:absolute;
+	left:0; 
+	top:0; 
+	width:100%; 
+	line-height:13px;
+	z-index:1;
+}
+.torrent-progress-bar{
+	height:100%;
+	width:0;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:0;
+}
+.torrent-progress-download{
+	background-color: #acffac;
+}
+.torrent-progress-error{
+	background-color: red;
+}
+.torrent-progress-seed{
+	background-color: #77bbff;
+}
+.torrent-progress-stop{
+	background-color: #808080;
+}
+.torrent-progress-check{
+	background-color: #808040;
+}
+
+.nav-total-size{
+	color:#757575;float:right;padding-right:2px;font-family:arial,sans-serif;
+}
+
+.nav-torrents-number{
+	color:#757575;font-family:arial,sans-serif;padding-top:2px;
+}
+
+.text-status-error{
+	color:red;
+}
+
+.text-status-warning{
+	color:#cc9900;
+}
+
+.iconlabel{
+	display:inline-block;
+	width:auto;height:16px;padding-left:19px;
+}
+
+.icon-up{
+	background:url('images/up.png') no-repeat;
+}
+
+.icon-down{
+	background:url('images/down.png') no-repeat;
+}
+
+.icon-exclamation{
+	background:url('images/error.png') no-repeat;
+}
+
+.icon-warning-type1{
+	background:url('images/warning.png') no-repeat;
+}
+
+.icon-pause-small{
+	background:url('images/pause-small.png') no-repeat;
+}
+
+.icon-checking{
+	background:url('images/checking.png') no-repeat;
+}
+
+.icon-deny{
+	background:url('images/deny.png') no-repeat;
+}
+
+.icon-allow{
+	background:url('images/allow.png') no-repeat;
+}
+
+.icon-flag-0{
+	background:url('images/flag-0.png') no-repeat;
+}
+.icon-flag-1{
+	background:url('images/flag-1.png') no-repeat;
+}
+.icon-flag--1{
+	background:url('images/flag--1.png') no-repeat;
+}
+.icon-flag-edit{
+	background:url('images/flag-edit.png') no-repeat;
+}
+
+.icon-folder-change{
+	background:url('images/folder-change.png') no-repeat;
+}
