@@ -1,0 +1,18 @@
+{
+	"fields":[
+		{"field":"ck","checkbox":"true"}
+		,{"field":"name","width":"300","sortable":"true"}
+		,{"field":"totalSize","width":"80","align":"right","sortable":"true","formatter":"size"}
+		,{"field":"percentDone","width":"70","align":"center"}
+		,{"field":"uploadRatio","width":"60","align":"right","sortable":"true"}
+		,{"field":"status","width":"60","align":"center","sortable":"true"}
+		,{"field":"seederCount","width":"60","align":"left"}
+		,{"field":"leecherCount","width":"60","align":"left"}
+		,{"field":"rateDownload","width":"80","align":"right","sortable":"true","formatter":"speed"}
+		,{"field":"rateUpload","width":"80","align":"right","sortable":"true","formatter":"speed"}
+		,{"field":"completeSize","width":"80","align":"right","sortable":"true","formatter":"size"}
+		,{"field":"uploadedEver","width":"80","align":"right","sortable":"true","formatter":"size"}
+		,{"field":"addedDate","width":"130","align":"center","sortable":"true","hidden":"true"}
+		,{"field":"id","width":"30","align":"center","sortable":"true"}
+	]
+}

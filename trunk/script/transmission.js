@@ -1,4 +1,5 @@
 // transmission RPC 操作类
+// 栽培者
 var transmission = {
 	SessionId:""
 	,isInitialized:false
@@ -6,22 +7,41 @@ var transmission = {
 	,port:"9091"
 	,path:"/transmission/rpc"
 	,fullpath:""
+	,on:{
+		torrentCountChange:null
+		,postError:null
+	}
 	,username:""
 	,password:""
+	// 种子状态
+	,_status:{
+		stopped:0
+		,checkwait:1
+		,check:2
+		,downloadwait:3
+		,download:4
+		,seedwait:5
+		,seed:6
+		// 自定义状态
+		,actively:101
+	}
 	,headers:{}
+	,trackers:{}
 	,islocal:false
+	// 当前已存在的目录列表
+	,downloadDirs:new Array()
 	,getSessionId:function(me,callback)
 	{
 		var settings = {
 			type: "POST"
 			,url:this.fullpath
-			,crossDomain:true
 			,error: function(request,event,settings) 
 			{
 				var SessionId = "";
 				if (request.status === 409 && (SessionId = request.getResponseHeader('X-Transmission-Session-Id')))
 				{
 					me.isInitialized = true;
+					me.SessionId = SessionId;
 					me.headers["X-Transmission-Session-Id"] = SessionId;
 					if (callback)
 					{
@@ -37,7 +57,7 @@ var transmission = {
 	,init:function(config,callback)
 	{
 		jQuery.extend(this, config);
-		if (this.islocal)
+		if (this.islocal==true)
 		{
 			this.fullpath = this.path;
 		}
@@ -73,7 +93,6 @@ var transmission = {
 			,url:this.fullpath
 			,dataType: 'json'
 			,data:JSON.stringify(data)
-			,crossDomain:true
 			,success:function(resultData,textStatus)
 			{
 				if (callback)
@@ -81,9 +100,22 @@ var transmission = {
 					callback(resultData);
 				}
 			}
-			,error:function(request,event,settings) 
+			,error:function(request,event,page) 
 			{
-				alert("数据提交错误，错误状态："+request.status);
+				var SessionId = "";
+				if (request.status === 409 && (SessionId = request.getResponseHeader('X-Transmission-Session-Id')))
+				{
+					transmission.SessionId = SessionId;
+					transmission.headers["X-Transmission-Session-Id"] = SessionId;
+					jQuery.ajax(settings);
+				}
+				else
+				{
+					if (transmission.on.postError)
+					{
+						transmission.on.postError(request);
+					}
+				}
 			}
 			,headers:this.headers
 		};
@@ -103,8 +135,115 @@ var transmission = {
 					{
 						callback(data.arguments);
 					}
+					
+					if (transmission.torrents.count!=data.arguments.torrentCount
+						||transmission.torrents.activeTorrentCount!=data.arguments.activeTorrentCount
+						||transmission.torrents.pausedTorrentCount!=data.arguments.pausedTorrentCount)
+					{
+						// 当前种子总数
+						transmission.torrents.count = data.arguments.torrentCount;
+						transmission.torrents.activeTorrentCount = data.arguments.activeTorrentCount;
+						transmission.torrents.pausedTorrentCount = data.arguments.pausedTorrentCount;
+						transmission._onTorrentCountChange();
+					}
 				}
 			}
 		);
 	}
-}
+	,getSession:function(callback)
+	{
+		this.exec(
+			{
+				method:"session-get"
+			}
+			,function(data)
+			{
+				if (data.result=="success")
+				{
+					if (callback)
+					{
+						callback(data.arguments);
+					}
+				}
+			}
+		);
+	}
+	// 添加种子
+	,addTorrentFromUrl:function(url,savepath,autostart,callback)
+	{
+		this.exec(
+			{
+				method:"torrent-add"
+				,arguments:{
+					filename:url
+					,"download-dir":savepath
+					,paused:(!autostart)
+				}
+			}
+			,function(data){
+				switch (data.result)
+				{
+					// 添加成功
+					case "success":
+						if (callback)
+						{
+							callback(data.arguments["torrent-added"]);
+						}
+						break;
+					// 重复的种子
+					case "duplicate torrent":
+						if (callback)
+						{
+							callback("duplicate");
+						}
+						break;
+				
+				}
+			}
+		);
+	}
+	,_onTorrentCountChange:function()
+	{
+		this.torrents.loadSimpleInfo = false;
+		if (this.on.torrentCountChange)
+		{
+			this.on.torrentCountChange();
+		}
+	}
+	// 删除种子
+	,removeTorrent:function(ids,removeData,callback)
+	{
+		transmission.exec({
+				method:"torrent-remove"
+				,arguments:{
+					ids:ids
+					,"delete-local-data":removeData
+				}
+			}
+			,function(data){
+				if (callback)
+					callback(data.result);
+			}
+		);
+	}
+};
+
+(function($){
+	var items = $("script");
+	var index = -1;
+	for (var i=0;i<items.length ;i++ )
+	{
+		var src = items[i].src.toLowerCase();
+		index = src.indexOf("min/transmission.js");
+		if (index!=-1)
+		{
+			// 种子相关信息
+			$.getScript("script/min/transmission.torrents.js");
+			break;
+		}
+	}
+	if (index==-1)
+	{
+		$.getScript("script/transmission.torrents.js");
+	}
+})(jQuery);
