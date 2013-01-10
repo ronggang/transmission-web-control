@@ -1,7 +1,9 @@
 ====主界面：====
-https://lh4.googleusercontent.com/-_uhQrJiBJ2Y/UOk2Cs0kGUI/AAAAAAAAAI0/LVnqhXPQBIY/s1147/Transmission+WEB+%E6%8E%A7%E5%88%B6%E5%99%A8+0.1.png
+https://lh6.googleusercontent.com/-LOHXWKkxtyo/UO7RE_TQH-I/AAAAAAAAAJc/K-R_k-X-rLQ/s1160/0.11_beta_20130110.PNG
+
 ====Interface:====
-https://lh4.googleusercontent.com/-XnKvxaMSIPA/UOk2vbjsgKI/AAAAAAAAAJI/3aY6ft84TW4/s1147/Transmission+WEB+Control+0.1.png
+https://lh6.googleusercontent.com/-ywFKK2u7TLA/UO7SMe6EDkI/AAAAAAAAAJo/mMpveSIQkCU/s1193/0.11_beta_20130110_en.PNG
+
 ====添加种子：====
 https://lh5.googleusercontent.com/-YD-ESu1KLx0/ULnA5ml_qcI/AAAAAAAAAGk/Zrf2FIXtnwM/s626/%E6%B7%BB%E5%8A%A0%E7%A7%8D%E5%AD%90.PNG
 ====参数设置：====
