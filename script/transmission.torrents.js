@@ -16,7 +16,7 @@ transmission.torrents = {
 	,pausedTorrentCount:0
 	,fields:{
 		base:"id,name,status,hashString,totalSize,percentDone,addedDate,trackerStats,leftUntilDone,rateDownload,rateUpload"
-				+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,downloadDir,error"
+				+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,downloadDir,error,errorString"
 		,status:"id,status,percentDone,trackerStats,leftUntilDone,rateDownload,rateUpload"
 					+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,error,errorString"
 		,config:"downloadLimit,downloadLimited,peer-limit,seedIdleLimit,seedIdleMode,seedRatioLimit,seedRatioMode,uploadLimit,uploadLimited"
@@ -107,6 +107,7 @@ transmission.torrents = {
 		transmission.trackers = {};
 		this.totalSize=0;
 		this.folders = {};
+		this.count = 0;
 
 		var B64 = new Base64();
 
@@ -123,19 +124,27 @@ transmission.torrents = {
 		for (var index in this.removed)
 		{
 			var item = this.removed[index];
-			removed.push(item.id);
+			removed.push(item);
 		}
 
 		// 将种子进行分类
 		for (var index in this.datas)
 		{
 			var item = this.datas[index];
-			if ($.inArray(item.id,removed)&&removed.length>0)
+			if (!item)
+			{
+				return;
+			}
+			if ($.inArray(item.id,removed)!=-1&&removed.length>0)
 			{
 				if (this.all[item.id])
 				{
 					this.all[item.id] = null;
+					delete this.all[item.id];
 				}
+				this.datas[index] = null;
+				delete this.datas[index];
+				
 				continue;
 			}
 			// 如果当前是获取正有变化的种子，并且没有在之前种子列表内，即新增的种子，需要重新加载基本的信息
@@ -191,26 +200,31 @@ transmission.torrents = {
 				transmission.downloadDirs.push(item.downloadDir);
 			}
 
-			var folder = item.downloadDir.split("/");
-			var folderkey = "folders-";
-			for (var i in folder)
+			if (transmission.options.getFolders)
 			{
-				var text = folder[i]; 
-				if (text=="")
+				var folder = item.downloadDir.split("/");
+				var folderkey = "folders-";
+				for (var i in folder)
 				{
-					continue;
+					var text = folder[i]; 
+					if (text=="")
+					{
+						continue;
+					}
+					folderkey += B64.encode(text);
+					var node = this.folders[folderkey];
+					if (!node)
+					{
+						node = {count:0,torrents:new Array(),size:0,nodeid:folderkey};
+					}
+					node.torrents.push(item);
+					node.count++;
+					node.size+=item.totalSize;
+					this.folders[folderkey] = node;
 				}
-				folderkey += B64.encode(text);
-				var node = this.folders[folderkey];
-				if (!node)
-				{
-					node = {count:0,torrents:new Array(),size:0};
-				}
-				node.torrents.push(item);
-				node.count++;
-				node.size+=item.totalSize;
-				this.folders[folderkey] = node;
 			}
+			
+			this.count++;
 
 		}
 		transmission.downloadDirs = transmission.downloadDirs.sort();
@@ -272,6 +286,12 @@ transmission.torrents = {
 			}
 			if (haveWarning)
 			{
+				// 设置下次更新时间
+				if (!item["nextAnnounceTime"])
+					item["nextAnnounceTime"] = trackerInfo.nextAnnounceTime;
+				else if (item["nextAnnounceTime"] > trackerInfo.nextAnnounceTime)
+					item["nextAnnounceTime"] = trackerInfo.nextAnnounceTime;
+					
 				this.warning.push(item);
 			}
 			
@@ -380,16 +400,28 @@ transmission.torrents = {
 		this.getMoreInfos(this.fields.config,id,callback);
 	}
 	// 获取错误/警告的ID列表
-	,getErrorIds:function(ignore)
+	,getErrorIds:function(ignore,needUpdateOnly)
 	{
 		var result = new Array();
-		
+		var now = new Date();
+		if (needUpdateOnly==true)
+		{
+			now = now.getTime() / 1000;
+		}
 		for (var index in this.error)
 		{
 			var item = this.error[index];
 			if ($.inArray(item.id,ignore)!=-1&&ignore.length>0)
 			{
 				continue;
+			}
+			if (needUpdateOnly==true)
+			{
+				// 当前时间没有超过“下次更新时间”时，不需要更新
+				if (now<item.nextAnnounceTime)
+				{
+					continue;
+				}
 			}
 			result.push(item.id);
 		}
@@ -401,9 +433,86 @@ transmission.torrents = {
 			{
 				continue;
 			}
+			
+			if (needUpdateOnly==true)
+			{
+				// 当前时间没有超过“下次更新时间”时，不需要更新
+				if (now<item.nextAnnounceTime)
+				{
+					continue;
+				}
+			}
 			result.push(item.id);
 		}
 
 		return result;
+	}
+	// 查找并替換 Tracker
+	,searchAndReplaceTrackers:function(oldTracker,newTracker,callback)
+	{
+		if (!oldTracker||!newTracker)
+		{
+			return;
+		}
+		var result = {};
+		var count = 0;
+		for (var index in this.all)
+		{
+			var item = this.all[index];
+			if (!item)
+			{
+				return;
+			}
+			var trackerStats = item.trackerStats;
+			for (var n in trackerStats)
+			{
+				var tracker = trackerStats[n];
+				if (tracker.announce==oldTracker)
+				{
+					if (!result[n])
+					{
+						result[n] = {ids:new Array(),tracker:newTracker};
+					}
+					result[n].ids.push(item.id);
+					count++;
+				}
+			}
+		}
+
+		if (count==0)
+		{
+			if (callback)
+			{
+				callback(null,0);
+			}
+		}
+		for (var index in result)
+		{
+			transmission.exec({
+					method:"torrent-set"
+					,arguments:{
+						ids:result[index].ids
+						,trackerReplace:[parseInt(index),result[index].tracker]
+					}
+				}
+				,function(data,tags){
+					if (data.result=="success")
+					{
+						if (callback)
+						{
+							callback(tags,count);
+						}
+					}
+					else
+					{
+						if (callback)
+						{
+							callback(null);
+						}
+					}
+				}
+				,result[index].ids
+			);
+		}
 	}
 };

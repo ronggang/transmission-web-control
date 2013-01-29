@@ -6,56 +6,12 @@ String.prototype.getQueryString = function(name,split)
 	if (r=this.match(reg)) return unescape(r[2]); return null;
 };
 
-function getLocalTime(time)
+
+String.prototype.right = function(len)
 {
-    return new Date(parseInt(time) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
-}
-function formatLongTime(time,formatString){
-	var now = new Date(parseInt(time)*1000);
-	return formatDate(now);
+	return (this.substr(-len));
 }
 
-function formatDate(formatDate, formatString) {
-	if (!formatString)
-	{
-		formatString = "yyyy-mm-dd hh:nn:ss";
-	}
-    if(formatDate instanceof Date) {  
-        var months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");  
-        var yyyy = formatDate.getFullYear();  
-        var yy = yyyy.toString().substring(2);  
-        var m = formatDate.getMonth()+1;  
-        var mm = m < 10 ? "0" + m : m;  
-        var mmm = months[m];  
-        var d = formatDate.getDate();  
-        var dd = d < 10 ? "0" + d : d;  
-   
-        var h = formatDate.getHours();  
-        var hh = h < 10 ? "0" + h : h;  
-        var n = formatDate.getMinutes();  
-        var nn = n < 10 ? "0" + n : n;  
-        var s = formatDate.getSeconds();  
-        var ss = s < 10 ? "0" + s : s;  
-   
-        formatString = formatString.replace(/yyyy/i, yyyy);  
-        formatString = formatString.replace(/yy/i, yy);  
-        formatString = formatString.replace(/mmm/i, mmm);  
-        formatString = formatString.replace(/mm/i, mm);  
-        formatString = formatString.replace(/m/i, m);  
-        formatString = formatString.replace(/dd/i, dd);  
-        formatString = formatString.replace(/d/i, d);  
-        formatString = formatString.replace(/hh/i, hh);  
-        formatString = formatString.replace(/h/i, h);  
-        formatString = formatString.replace(/nn/i, nn);  
-        formatString = formatString.replace(/n/i, n);  
-        formatString = formatString.replace(/ss/i, ss);  
-        formatString = formatString.replace(/s/i, s);  
-   
-        return formatString;  
-    } else {  
-        return "";  
-    } 
-} 
 
 //公用函数定义
 //格式化数字
@@ -130,6 +86,59 @@ Number.prototype.formatNumber = function(f)
 	return f.length > 1 ? this.fStr(n[0], f[0]) + "." + this.fStr(n[1], f[1], 1) : this.fStr(n[0], f[0]);
 };
 
+
+function getLocalTime(time)
+{
+    return new Date(parseInt(time) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+}
+
+function formatLongTime(time,formatString){
+	var now = new Date(parseInt(time)*1000);
+	return formatDate(now);
+}
+
+function formatDate(formatDate, formatString) {
+	if (!formatString)
+	{
+		formatString = "yyyy-mm-dd hh:nn:ss";
+	}
+    if(formatDate instanceof Date) {  
+        var months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");  
+        var yyyy = formatDate.getFullYear();  
+        var yy = yyyy.toString().substring(2);  
+        var m = formatDate.getMonth()+1;  
+        var mm = m < 10 ? "0" + m : m;  
+        var mmm = months[m];  
+        var d = formatDate.getDate();  
+        var dd = d < 10 ? "0" + d : d;  
+   
+        var h = formatDate.getHours();  
+        var hh = h < 10 ? "0" + h : h;  
+        var n = formatDate.getMinutes();  
+        var nn = n < 10 ? "0" + n : n;  
+        var s = formatDate.getSeconds();  
+        var ss = s < 10 ? "0" + s : s;  
+   
+        formatString = formatString.replace(/yyyy/i, yyyy);  
+        formatString = formatString.replace(/yy/i, yy);  
+        formatString = formatString.replace(/mmm/i, mmm);  
+        formatString = formatString.replace(/mm/i, mm);  
+        formatString = formatString.replace(/m/i, m);  
+        formatString = formatString.replace(/dd/i, dd);  
+        formatString = formatString.replace(/d/i, d);  
+        formatString = formatString.replace(/hh/i, hh);  
+        formatString = formatString.replace(/h/i, h);  
+        formatString = formatString.replace(/nn/i, nn);  
+        formatString = formatString.replace(/n/i, n);  
+        formatString = formatString.replace(/ss/i, ss);  
+        formatString = formatString.replace(/s/i, s);  
+   
+        return formatString;  
+    } else {  
+        return "";  
+    } 
+} 
+
 function formatSize(bytes,zeroToEmpty,type)
 {
 	if (bytes==0)
@@ -184,11 +193,6 @@ function formatSize(bytes,zeroToEmpty,type)
 	return (r.formatNumber("###,###,###,###.00 ")+u);
 }
 
-String.prototype.right = function(len)
-{
-	return (this.substr(-len));
-}
-
 // 根据分钟获取小时
 function getHoursFromMinutes(minutes)
 {
@@ -232,6 +236,61 @@ function getTotalTime(time,format)
 	result = result.replace("%m",minutes);
 	result = result.replace("%s",seconds);
 	return result;
+}
+
+// 数组对象排序扩展
+function arrayObjectSort(field,sortOrder)
+{
+	return function(object1, object2)
+	{
+		var value1 = object1[field];
+		var value2 = object2[field];
+		if (value1 < value2)
+		{
+			if (sortOrder=="desc")
+			{
+				return 1;
+			}
+			else
+				return -1;
+			
+		}
+		else if (value1 > value2)
+		{
+			if (sortOrder=="desc")
+			{
+				return -1;
+			}
+			else
+				return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+}
+
+// 通用分时处理函数
+function timedChunk(items, process, context, delay,callback) 
+{
+	var todo = items.concat();
+	if (delay==undefined) delay = 25;
+
+	setTimeout(function() 
+	{
+		var start = +new Date();
+
+		do {
+			process.call(context, todo.shift());
+		} while(todo.length > 0 && (+new Date() - start < 100));
+
+		if(todo.length > 0) {
+			setTimeout(arguments.callee, delay);
+		} else if(callback) {
+			callback(items);
+		}
+	}, delay);
 }
 
 // jQuery 扩展

@@ -31,6 +31,17 @@
 						<td width="65%"><span id="system-config-cache-size-mb"></span></td>
 						<td width="35%"><input id="cache-size-mb" value="" type="text" class="easyui-numberspinner"/> MB</td>
 					</tr>
+					<tr>
+						<td colspan="2"><hr/></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<span id="system-config-config-dir"></span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><input id="config-dir" value="" type="text" readonly="readonly" disabled="disabled"/></td>
+					</tr>
 				</table>
 			</div>
 			<div title="网络" style="padding:5px;padding-right:10px;" class="dialog">
@@ -217,7 +228,7 @@
 		</div>
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
-		<a id="system-config-button-reload" href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" style="float:left;"></a>
+		<a id="system-config-button-reload" href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" style="float:left;display:none;"></a>
 		<span id="system-config-nochange" style="display:none;"></span>
 		<a id="system-config-button-save" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="system-config-button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" href="javascript:void(0);">Cancel</a>
@@ -259,7 +270,7 @@
 			}
 		});
 
-		title = ("download-dir,incomplete-dir-enabled,cache-size-mb,rename-partial-files,download-dir-free-space,start-added-torrents"
+		title = ("config-dir,download-dir,incomplete-dir-enabled,cache-size-mb,rename-partial-files,download-dir-free-space,start-added-torrents"
 					+",download-queue-enabled,seed-queue-enabled,encryption,peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled"
 					+",alt-speed-enabled,alt-speed-down,alt-speed-up,test-port,port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled"
 					+",peer-limit-global,peer-limit-per-torrent,blocklist-enabled,seedRatioLimited,queue-stalled-enabled,idle-seeding-limit-enabled"
@@ -295,6 +306,7 @@
 		}
 		thisDialog.find("#download-dir").combobox();
 		
+		thisDialog.find("#config-dir").val(system.serverConfig["config-dir"]);
 		thisDialog.find("#incomplete-dir").val(system.serverConfig["incomplete-dir"]);
 		thisDialog.find("#incomplete-dir").prop("disabled",!system.serverConfig["incomplete-dir-enabled"]);
 		thisDialog.find("#cache-size-mb").val(system.serverConfig["cache-size-mb"]);
