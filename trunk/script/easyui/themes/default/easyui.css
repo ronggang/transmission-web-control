@@ -1128,7 +1128,7 @@ a.m-btn-plain-active{
 	padding:0;
 	border-width:1px;
 	border-style:solid;
-	overflow:hidden;
+	_overflow:hidden;
 }
 .searchbox .searchbox-text{
 	font-size:12px;

@@ -230,7 +230,7 @@
 				system.setFieldFormat(fields[key]);
 			}
 
-			config.pageSize = system.pageSize;
+			config.pageSize = system.config.pageSize;
 			config.columns = [fields];
 			config.fit = true;
 			filelist.datagrid(config);
@@ -278,7 +278,7 @@
 			});
 
 			filelist.data("buttons",buttons);
-			system.debug("pager",pager);
+			//system.debug("pager",pager);
 			pager.pagination({  
 				buttons:buttons
 			});
@@ -394,12 +394,116 @@
 				fields[key].title = title;
 				system.setFieldFormat(fields[key]);
 			}
-			config.pageSize = system.pageSize;
+			config.pageSize = system.config.pageSize;
 			config.columns = [fields];
 			config.fit = true;
 			serverlist.datagrid(config);
+
+			var pager = serverlist.datagrid("getPager");
+			var buttons = [{
+					id:"pager-button-trackerAdd",
+					iconCls:'icon-tracker-add',
+					handler:function(){
+						var URL = prompt("Tracker:","");
+						var button = $(this);
+						if (URL!="")
+						{
+							var icon = button.linkbutton("options").iconCls;
+							button.linkbutton({disabled:true,iconCls:"icon-loading"});
+							transmission.exec({
+									method:"torrent-set"
+									,arguments:{
+										ids:system.currentTorrentId
+										,trackerAdd:[URL]
+									}
+								}
+								,function(data){
+									if (data.result=="success")
+									{
+										system.getTorrentInfos(system.currentTorrentId);
+									}
+									button.linkbutton({iconCls:icon,disabled:false});
+								}
+							);
+						}
+					}
+				},'-',{
+					id:"pager-button-trackerReplace",
+					iconCls:'icon-tracker-edit',
+					handler:function(){
+						changeSelectedTracker($(this));
+					}
+				},'-',{
+					id:"pager-button-trackerRemove",
+					iconCls:'icon-tracker-remove',
+					handler:function(){
+						var tracker = serverlist.datagrid("getSelected");
+						if (tracker)
+						{
+							if (confirm(system.lang.torrent.attribute["other"]["tracker-remove-confim"])==false)
+							{
+								return;
+							}
+							var button = $(this);
+							var icon = button.linkbutton("options").iconCls;
+							button.linkbutton({disabled:true,iconCls:"icon-loading"});
+							transmission.exec({
+									method:"torrent-set"
+									,arguments:{
+										ids:system.currentTorrentId
+										,trackerRemove:[tracker.id]
+									}
+								}
+								,function(data){
+									if (data.result=="success")
+									{
+										system.getTorrentInfos(system.currentTorrentId);
+									}
+									button.linkbutton({iconCls:icon,disabled:false});
+								}
+							);
+						}
+					}
+				}];
+
+			serverlist.data("buttons",buttons);
+			//system.debug("pager",pager);
+			pager.pagination({  
+				buttons:buttons
+			});
 		},"json");
 		
+		// 替换已选中的服务器地址
+		function changeSelectedTracker(button)
+		{
+			var tracker = serverlist.datagrid("getSelected");
+
+			if (tracker)
+			{
+				var URL = prompt("Tracker:",tracker.announce);
+				if (URL!=""&&URL!=tracker.announce)
+				{
+					var icon = button.linkbutton("options").iconCls;
+					button.linkbutton({disabled:true,iconCls:"icon-loading"});
+					transmission.exec({
+							method:"torrent-set"
+							,arguments:{
+								ids:system.currentTorrentId
+								,trackerReplace:[tracker.id,URL]
+							}
+						}
+						,function(data){
+							if (data.result=="success")
+							{
+								system.getTorrentInfos(system.currentTorrentId);
+							}
+							button.linkbutton({iconCls:icon,disabled:false});
+						}
+					);
+				}
+			}
+		}
+
 		// 用户列表
 		var peerslist = $("<table/>").attr("class","torrent-list").attr("id","torrent-peers-table").appendTo(thisLayout.find("#torrent-attribute-peers"));
 		$.get("template/torrent-attribute-users-fields.json?time="+(new Date()),function(data){
@@ -414,7 +518,7 @@
 				fields[key].title = title;
 				system.setFieldFormat(fields[key]);
 			}
-			config.pageSize = system.pageSize;
+			config.pageSize = system.config.pageSize;
 			config.columns = [fields];
 			config.fit = true;
 			peerslist.datagrid(config);

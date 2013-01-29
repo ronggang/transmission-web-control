@@ -66,29 +66,29 @@
 			var olddir = system.downloadDir;
 			var isnewdir = system.serverConfig["download-dir"]!=dir;
 			var autostart = thisDialog.find("#chkautostart").prop("checked");
+
+			if (dir=="")
+			{
+				return;
+			}
+
+			$(this).linkbutton({disabled:true});
 			
 			if (thisDialog.find("#set-default-download-dir").prop("checked")&&isnewdir)
 			{
 				updateDownloadDir(dir,function(){
-					if (isupload)
-					{
-						uploadFile(!autostart);
-						thisDialog.dialog("close");
-					}
+					uploadFile(!autostart);
 				});
+				return;
 			}
 
 			// 新目录，但没有钩选要保存时，先保存目录
 			if (isnewdir)
 			{
 				updateDownloadDir(dir,function(){
-					if (isupload)
-					{
-						uploadFile(!autostart,function(){
-							updateDownloadDir(olddir);
-						});
-						//thisDialog.dialog("close");
-					}
+					uploadFile(!autostart,function(){
+						updateDownloadDir(olddir);
+					});
 				});
 			}
 			else
@@ -135,8 +135,10 @@
 			xhr.onload = function() {
 				if (callback)
 					callback();
+
+				thisDialog.find("#torrent-button-ok").linkbutton({disabled:false});
 				thisDialog.dialog("close");
-				system.getServerStatus();
+				system.reloadData();
 			};
 
 			xhr.onerror = function() {

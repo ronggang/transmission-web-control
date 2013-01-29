@@ -21,6 +21,7 @@ system.lang = {
 	,"toolbar":{
 		"start":"开始"
 		,"pause":"暂停"
+		,"recheck":"校验"
 		,"start-all":"全部开始"
 		,"pause-all":"全部暂停"
 		,"remove":"删除"
@@ -37,6 +38,7 @@ system.lang = {
 		,"autoreload-disabled":"已禁用"
 		,"autoreload-enabled":"已启用"
 		,"search-prompt":"搜索本地种子"
+		,"tracker-replace":"替换 Tracker"
 		,"tip":{
 			"start":"重新开始已经选中的种子"
 			,"pause":"暂停已经选中的种子"
@@ -55,10 +57,11 @@ system.lang = {
 			,"about":"关于本程序"
 			,"autoreload-disabled":"禁用自动刷新"
 			,"autoreload-enabled":"启用自动刷新"
+			,"tracker-replace":"替换 Tracker"
 		}
 	}
 	,"title":{
-		"left":"分类目录"
+		"left":"导航"
 		,"list":"种子列表"
 		,"attribute":"当前种子属性"
 		,"status":"状态"
@@ -88,8 +91,13 @@ system.lang = {
 			,"sessionCount":"会话次数：" 
 			,"secondsActive":"活动时间："
 		}
-		,"server":"服务器分布"
-		,"folders":"目录分布"
+		,"servers":"服务器分布"
+		,"folders":"数据目录"
+		,"toolbar":{
+			"nav":{
+				"folders":"数据目录"
+			}
+		}
 	}
 	,"statusbar":{
 		"downloadspeed":"下载速度："
@@ -116,6 +124,7 @@ system.lang = {
 				,"limit":"带宽限制"
 				,"alt-speed":"时段限制"
 			}
+			,"config-dir":"Transmission 配置文件目录（只读）："
 			,"download-dir":"默认保存目录："
 			,"download-dir-free-space":"可用空间："
 			,"incomplete-dir-enabled":"启用临时目录"
@@ -189,6 +198,13 @@ system.lang = {
 			,"move-data":"同时移动数据（如果不钩选，则从新目录下查找文件）"
 			,"set-error":"设置目录失败！"
 		}
+		,"system-replaceTracker":{
+			"title":"替换 Tracker 地址"
+			,"old-tracker":"原 Tracker："
+			,"new-tracker":"新 Tracker："
+			,"tip":"此功能将查找<b>所有种子</b>的 Tracker，如果找到相等的，则替换。"
+			,"not-found":"未找到符合条件的 Tracker。"
+		}
 	}
 	,"torrent":{
 		"fields":{
@@ -199,7 +215,7 @@ system.lang = {
 			,"totalSize":"总大小"
 			,"status":"状态"
 			,"percentDone":"进度"
-			,"addedDate":"创建时间"
+			,"addedDate":"添加时间"
 			,"completeSize":"已完成"
 			,"rateDownload":"下载速度"
 			,"rateUpload":"上传速度"
@@ -241,6 +257,7 @@ system.lang = {
 				,"lastAnnounceTime":"更新时间"
 				,"lastAnnounceTimedOut":"超时"
 				,"downloadCount":"总下载数"
+				,"nextAnnounceTime":"下次更新时间"
 			}
 			,"peers-fields":{
 				"address":"IP地址"
@@ -282,12 +299,15 @@ system.lang = {
 				,"uploadLimited":"启用最大上传速度限制："
 				,"peer-limit":"最大链接数："
 				,"seedRatioMode":"当种子的分享率达到这个数时，自动停止做种："
-				,"seedIdleMode":"当种子超过这个时间没有流量时，自动停止做种："
+				,"seedIdleMode":"当种子超过这个时间没有流量时，自动停止做种："				
 			}
 			,"tip":{
 				"button-allow":"下载已选择的文件"
 				,"button-deny":"忽略已选择的文件"
 				,"button-priority":"设置优先级别"
+			}
+			,"other":{
+				"tracker-remove-confim":"确认要删除这个 Tracker 吗？"
 			}
 		}
 	}
@@ -297,5 +317,6 @@ system.lang = {
 		,"text-nochange":"参数未改变"
 		,"text-saved":"已保存"
 		,"text-info":"信息"
+		,"text-confirm":"确认要这样做吗？"
 	}
 };

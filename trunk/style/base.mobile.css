@@ -1,75 +1,7 @@
-html, body {
-	overflow: hidden;
-	background-attachment: fixed;
-	height:100%;
-	width:100%;
-	padding:0px;
-	margin:0px;
-}
-*{
-	font-size:12px;
-	font-family:微软雅黑,宋体,Arial,Verdana,Tahoma;
-}
-#main{
-	width:100%;height:100%;text-align:left;
-}
-#m_top{
-	height:84px;
-}
-#m_title_layout{
-	 height:47px;line-height:47px;overflow:hidden;   
-}
-#m_toolbar{
-	height:28px;padding:1px;
-}
-#m_left_layout{
-	width:288px;
-}
-#m_body{
-	-width:82%;
-}
-#m_statusbar{
-	height:20px;padding:2px;
-}
-#m_attribute{
-	height:260px;
-}
-#m_status{
-	height:180px;
-}
-#status_alt_speed{
-	background:url('images/alt-speed.ico') no-repeat;width:16px;height:16px;
-}
-
-.dropArea{
-	background-color: #ccffff;
-    border: 2px dashed #000000;
-	position:absolute;
-	width:99%;
-	height:99%;
-	z-index:100;
-	top:0px;
-	left:0px;
-	filter:alpha(opacity=40);
-	opacity:0.40;
-	margin:4px;
-}
-
-.dialog input,.dialog select,.dialog textarea{
-	width:100%;
-}
-.dialog td.title{
-	text-align:right;vertical-align:top;
-}
-
-.button-split{
-	-background:url('images/button-split.gif') no-repeat;
-	width:3px;height:24px;color:#808080;
-}
 .icon-pause-all{
 	background:url('images/pause-all.png') no-repeat;
 }
-.icon-pause-one{
+.ui-icon-pause-one{
 	background:url('images/pause.png') no-repeat;
 }
 .icon-start-all{
@@ -116,7 +48,7 @@ html, body {
 	height:100%;width:100%;
 }
 .torrent-progress{
-	margin-top:1px;
+	margin:1px 0px 3px 0px;
 	height:13px;
 	width:100%; 
 	border:1px #c0c0c0 solid;
@@ -179,7 +111,14 @@ html, body {
 
 .iconlabel{
 	display:inline-block;
-	width:auto;height:16px;padding-left:19px;
+	width:auto;
+	height:16px;
+	padding-left:19px;
+	margin-top:2px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	outline: 0 !important;
 }
 
 .icon-up{
@@ -188,6 +127,10 @@ html, body {
 
 .icon-down{
 	background:url('images/down.png') no-repeat;
+}
+
+.icon-drive{
+	background:url('images/drive.png') no-repeat;
 }
 
 .icon-exclamation{
@@ -255,10 +198,26 @@ html, body {
 	color:#555555;
 }
 
-.icon-mobile{
-	background:url('images/mobile.png') no-repeat;
+#icon-computer .ui-icon{
+	background:url('images/computer.png') 50% 50% no-repeat;
 }
 
-.icon-transmission{
-	background:url('images/transmission.png') no-repeat;
+.icon-arrow-left{
+	background:url('images/arrow-left.png') no-repeat;
+}
+
+.icon-arrow-right{
+	background:url('images/arrow-right.png') no-repeat;
+}
+
+.page-bar{
+	float:right;padding:0px;position:absolute;width:100%;z-index:10;top:46px;text-align:right;
+}
+
+.page-bar .page-number{
+	font-size:12px;vertical-align: text-top;
+}
+
+.torrent-list-infos{
+	font-size:12px;font-family:arial,sans-serif;
 }

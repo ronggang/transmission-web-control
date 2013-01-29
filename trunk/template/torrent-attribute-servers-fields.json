@@ -4,6 +4,7 @@
 		,"rownumbers":"true"
 		,"pagination":"true"
 		,"striped":"true"
+		,"singleSelect":"true"
 	}
 	,"fields":[
 		{"field":"announce","width":"300"}
@@ -13,6 +14,7 @@
 		,{"field":"lastAnnounceSucceeded","width":"60","align":"center"}
 		,{"field":"lastAnnounceTime","width":"120","align":"center"}
 		,{"field":"lastAnnounceTimedOut","width":"60","align":"center"}
+		,{"field":"nextAnnounceTime","width":"120","align":"center"}
 		,{"field":"id","width":"50","hidden":"true"}
 	]
 }

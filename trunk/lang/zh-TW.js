@@ -21,6 +21,7 @@ system.lang = {
 	,"toolbar":{
 		"start":"開始"
 		,"pause":"暫停"
+		,"recheck":"校驗"
 		,"start-all":"全部開始"
 		,"pause-all":"全部暫停"
 		,"remove":"刪除"
@@ -37,6 +38,7 @@ system.lang = {
 		,"autoreload-disabled":"已禁用"
 		,"autoreload-enabled":"已啟用"
 		,"search-prompt":"搜索本地種子"
+		,"tracker-replace":"替換 Tracker"
 		,"tip":{
 			"start":"重新開始已經選中的種子"
 			,"pause":"暫停已經選中的種子"
@@ -55,6 +57,7 @@ system.lang = {
 			,"about":"關於本程式"
 			,"autoreload-disabled":"禁用自動刷新"
 			,"autoreload-enabled":"啟用自動刷新"
+			,"tracker-replace":"替換 Tracker"
 		}
 	}
 	,"title":{
@@ -88,8 +91,13 @@ system.lang = {
 			,"sessionCount":"會話次數：" 
 			,"secondsActive":"活動時間："
 		}
-		,"server":"伺服器分佈"
-		,"folders":"目錄分佈"
+		,"servers":"伺服器分佈"
+		,"folders":"資料目錄"
+		,"toolbar":{
+			"nav":{
+				"folders":"資料目錄"
+			}
+		}
 	}
 	,"statusbar":{
 		"downloadspeed":"下載速度："
@@ -116,6 +124,7 @@ system.lang = {
 				,"limit":"頻寬限制"
 				,"alt-speed":"時段限制"
 			}
+			,"config-dir":"Transmission 配置文件目錄（只讀）："
 			,"download-dir":"預設保存目錄："
 			,"download-dir-free-space":"可用空間："
 			,"incomplete-dir-enabled":"啟用臨時目錄"
@@ -189,6 +198,13 @@ system.lang = {
 			,"move-data":"同時移動數據（如不鉤選，則從新目錄下查找資料）"
 			,"set-error":"设置目录失败！"
 		}
+		,"system-replaceTracker":{
+			"title":"替換 Tracker 地址"
+			,"old-tracker":"原 Tracker："
+			,"new-tracker":"新 Tracker："
+			,"tip":"此功能將查找<b>所有種子</b>的 Tracker，如果找到相等的，則替換。"
+			,"not-found":"未找到符合條件的 Tracker。"
+		}
 	}
 	,"torrent":{
 		"fields":{
@@ -199,7 +215,7 @@ system.lang = {
 			,"totalSize":"總大小"
 			,"status":"狀態"
 			,"percentDone":"進度"
-			,"addedDate":"創建時間"
+			,"addedDate":"添加時間"
 			,"completeSize":"已完成"
 			,"rateDownload":"下載速度"
 			,"rateUpload":"上傳速度"
@@ -241,6 +257,7 @@ system.lang = {
 				,"lastAnnounceTime":"更新時間"
 				,"lastAnnounceTimedOut":"超時"
 				,"downloadCount":"總下載數"
+				,"nextAnnounceTime":"下次更新時間"
 			}
 			,"peers-fields":{
 				"address":"IP地址"
@@ -289,6 +306,9 @@ system.lang = {
 				,"button-deny":"忽略已選擇的檔"
 				,"button-priority":"設置優先順序別"
 			}
+			,"other":{
+				"tracker-remove-confim":"確認要刪除這個 Tracker 嗎？"
+			}
 		}
 	}
 	,"public":{
@@ -297,5 +317,6 @@ system.lang = {
 		,"text-nochange":"參數未改變"
 		,"text-saved":"已保存"
 		,"text-info":"信息"
+		,"text-confirm":"確認要這樣做嗎？"
 	}
 };

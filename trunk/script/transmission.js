@@ -25,6 +25,10 @@ var transmission = {
 		// 自定义状态
 		,actively:101
 	}
+	,options:{
+		getFolders:true
+		,getTarckers:true
+	}
 	,headers:{}
 	,trackers:{}
 	,islocal:false
@@ -74,7 +78,7 @@ var transmission = {
 		}
 		this.getSessionId(this,callback);
 	}
-	,exec:function(config,callback)
+	,exec:function(config,callback,tags)
 	{
 		if (!this.isInitialized)
 		{
@@ -97,7 +101,7 @@ var transmission = {
 			{
 				if (callback)
 				{
-					callback(resultData);
+					callback(resultData,tags);
 				}
 			}
 			,error:function(request,event,page) 
@@ -171,6 +175,10 @@ var transmission = {
 	// 添加种子
 	,addTorrentFromUrl:function(url,savepath,autostart,callback)
 	{
+		// 磁性连接（代码来自原版WEBUI）
+		if (url.match(/^[0-9a-f]{40}$/i)) {
+			url = 'magnet:?xt=urn:btih:'+url;
+		}
 		this.exec(
 			{
 				method:"torrent-add"
@@ -228,6 +236,7 @@ var transmission = {
 	}
 };
 
+/*
 (function($){
 	var items = $("script");
 	var index = -1;
@@ -247,3 +256,4 @@ var transmission = {
 		$.getScript("script/transmission.torrents.js");
 	}
 })(jQuery);
+*/
