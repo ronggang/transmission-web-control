@@ -5,4 +5,5 @@ system.languages = {
 	,"en":"English"
 	,"ru":"Русский(Russian)"
 	,"es":"Español(Spanish)"
+	,"pl":"Polski(Polish)"
 };
