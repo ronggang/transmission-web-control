@@ -115,7 +115,7 @@ system.lang = {
 			,"set-default-download-dir":"Set as default dir"
 			,"upload-file":"Torrent file(s):"
 			,"nosource":"No torrent file or URL."
-			,"tip-title":"Upload file priority in the URL"
+			,"tip-title":"Upload the torrent file takes precedence over the torrent URL"
 		}
 		,"system-config":{
 			"title":"Server Config"
