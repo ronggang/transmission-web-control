@@ -110,12 +110,12 @@ system.lang = {
 			"download-dir":"Carpeta descarga:"
 			,"torrent-url":"URL(s):"
 			,"tip-torrent-url":"Consejo：Puedes introducir más de un archivo usando varias líneas"
-			,"autostart":"Inicio automático:"
+			,"autostart":"Iniciar descarga:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Establecer como carpeta predeterminada"
 			,"upload-file":"Archivos(s) torrent:"
 			,"nosource":"Sin torrent o URL."
-			,"tip-title":"Subir prioridad de descarga en la URL"
+			,"tip-title":"Los archivos subidos tienen prioridad sobre las URL's"
 		}
 		,"system-config":{
 			"title":"Configuración del servidor"
