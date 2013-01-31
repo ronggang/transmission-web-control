@@ -532,6 +532,7 @@
 			if (dialog.length)
 			{
 				dialog.dialog("open");
+				dialog.data("ids",system.currentTorrentId);
 				dialog.dialog({content:system.templates["dialog-torrent-changeDownloadDir.html"]});
 				return;
 			}
@@ -548,6 +549,7 @@
 			
 			$.get("template/dialog-torrent-changeDownloadDir.html?time="+(new Date()),function(data){
 				system.templates["dialog-torrent-changeDownloadDir.html"] = data;
+				$("#dialog-torrent-changeDownloadDir").data("ids",system.currentTorrentId);
 				$("#dialog-torrent-changeDownloadDir").dialog({content:data});
 			});
 		});

@@ -7,6 +7,4 @@ system.config = {
 	,pageSize: 30
 	// 初始界面默认选中的节点，名称可参考语言包中的 tree 
 	,defaultSelectNode: "actively"
-	// 超过这个宽度时，切换到系统设备模板
-	,mobileDeviceWidth: 480
 };

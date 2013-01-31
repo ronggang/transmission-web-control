@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
 	version:"0.2 Beta"
-	,codeupdate:"20130128"
+	,codeupdate:"20130131"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -64,11 +64,15 @@ var system = {
 	,init:function(lang,islocal,devicetype)
 	{
 		this.readConfig();
+		/*
+		 alert(screen.width+","+this.config.mobileDeviceWidth);
+		//return;
 		if (screen.width<=this.config.mobileDeviceWidth&&devicetype!="computer")
 		{
 			location.href = "index.mobile.html";
 			return;
 		}
+		*/
 		this.islocal = (islocal==1?true:false);
 		this.panel = {
 			main:$("#main")
@@ -532,6 +536,7 @@ var system = {
 			this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:rowData});
+			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:rowData});
 			return;
 		}
 		var rows = this.control.torrentlist.datagrid("getChecked");
@@ -541,10 +546,12 @@ var system = {
 			this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
+			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
 			return;
 		}
 
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:false});
 		
 		var torrent = transmission.torrents.all[rowData.id];
 		switch (torrent.status)
@@ -776,8 +783,41 @@ var system = {
 		
 		// 删除选定的内容
 		this.panel.toolbar.find("#toolbar_remove")
+			.linkbutton({disabled:true})
+			.attr("title",this.lang.toolbar.tip["remove"])
+			.click(function()
+			{
+				var rows = system.control.torrentlist.datagrid("getChecked");
+				var ids = new Array();
+				for (var i in rows)
+				{
+					ids.push(rows[i].id);
+				}
+				if (ids.length==0) return;
+					
+				var dialog = $("#dialog-torrent-remove-confirm");
+				if (dialog.length)
+				{
+					dialog.dialog("open");
+					dialog.dialog("refresh");
+					dialog.data("ids",ids);
+					return;
+				}
+				$("<div/>").attr("id","dialog-torrent-remove-confirm").data("ids",ids).appendTo(document.body).dialog({  
+					title: system.lang.dialog["torrent-remove"].title,  
+					width: 350,  
+					height: 150,
+					resizable: false,
+					cache: true,
+					href: 'template/dialog-torrent-remove-confirm.html',  
+					modal: true
+				}); 
+			});
+
+		// 修改选定的种子数据保存目录
+		this.panel.toolbar.find("#toolbar_changeDownloadDir")
 		.linkbutton({disabled:true})
-		.attr("title",this.lang.toolbar.tip["remove"])
+		.attr("title",this.lang.toolbar.tip["change-download-dir"])
 		.click(function()
 		{
 			var rows = system.control.torrentlist.datagrid("getChecked");
@@ -788,23 +828,32 @@ var system = {
 			}
 			if (ids.length==0) return;
 				
-			var dialog = $("#dialog-torrent-remove-confirm");
+			
+			var dialog = $("#dialog-torrent-changeDownloadDir");
 			if (dialog.length)
 			{
 				dialog.dialog("open");
-				dialog.dialog("refresh");
 				dialog.data("ids",ids);
+				dialog.dialog({content:system.templates["dialog-torrent-changeDownloadDir.html"]});
+				
 				return;
 			}
-			$("<div/>").attr("id","dialog-torrent-remove-confirm").data("ids",ids).appendTo(document.body).dialog({  
-				title: system.lang.dialog["torrent-remove"].title,  
-				width: 350,  
-				height: 150,
+			
+			$("<div/>").attr("id","dialog-torrent-changeDownloadDir").appendTo(document.body).dialog({  
+				title: system.lang.dialog["torrent-changeDownloadDir"].title,  
+				width: 520,
+				height: 180,
 				resizable: false,
 				cache: true,
-				href: 'template/dialog-torrent-remove-confirm.html',  
+				content:"loading...",  
 				modal: true
-			}); 
+			});
+			
+			$.get("template/dialog-torrent-changeDownloadDir.html?time="+(new Date()),function(data){
+				system.templates["dialog-torrent-changeDownloadDir.html"] = data;
+				$("#dialog-torrent-changeDownloadDir").data("ids",ids);
+				$("#dialog-torrent-changeDownloadDir").dialog({content:data});
+			});
 		});
 		
 		// 限速
@@ -1462,6 +1511,7 @@ var system = {
 		this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
 		var _options = this.control.torrentlist.datagrid("options");
 		if (_options.sortName)
 		{
@@ -1561,7 +1611,11 @@ var system = {
 		}
 		if (typeof(torrent)=="object")
 		{
-			if (torrent.error!=0||torrent.warning)
+			if (torrent.warning)
+			{
+				className = "torrent-progress-warning";
+			}
+			if (torrent.error!=0)
 			{
 				className = "torrent-progress-error";
 			}
@@ -1615,6 +1669,7 @@ var system = {
 						system.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
 					}
 					button.linkbutton({iconCls:icon});
+					system.control.torrentlist.datagrid("uncheckAll");
 					system.reloadTorrentBaseInfos();
 				}
 			);
@@ -2019,7 +2074,7 @@ var system = {
 $(document).ready(function(){
 	// 加载可用的语言列表
 	$.getScript("lang/_languages.js",function(){
-		system.init(location.search.getQueryString("lang"),location.search.getQueryString("local"),location.search.getQueryString("devicetype"));
+		system.init(location.search.getQueryString("lang"),location.search.getQueryString("local"));
 	});
 });
 

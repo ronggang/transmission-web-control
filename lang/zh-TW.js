@@ -58,6 +58,7 @@ system.lang = {
 			,"autoreload-disabled":"禁用自動刷新"
 			,"autoreload-enabled":"啟用自動刷新"
 			,"tracker-replace":"替換 Tracker"
+			,"change-download-dir":"變更數據保存目錄"
 		}
 	}
 	,"title":{

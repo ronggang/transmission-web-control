@@ -569,7 +569,11 @@ var system = {
 			className = "torrent-progress-seed";
 			break;
 		}
-		if (torrent.error!=0||torrent.warning)
+		if (torrent.warning)
+		{
+			className = "torrent-progress-warning";
+		}
+		if (torrent.error!=0)
 		{
 			className = "torrent-progress-error";
 		}
