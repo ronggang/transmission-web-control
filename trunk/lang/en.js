@@ -58,6 +58,7 @@ system.lang = {
 			,"autoreload-disabled":"Disabled auto reload"
 			,"autoreload-enabled":"Enabled auto reload"
 			,"tracker-replace":"Replace trackers"
+			,"change-download-dir":"Set location"
 		}
 	}
 	,"title":{

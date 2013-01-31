@@ -142,13 +142,16 @@ html, body {
 	z-index:0;
 }
 .torrent-progress-download{
-	background-color: #acffac;
+	background-color: #77bbff;
 }
 .torrent-progress-error{
 	background-color: #bf4040;
 }
+.torrent-progress-warning{
+	background-color: #cc9900;
+}
 .torrent-progress-seed{
-	background-color: #77bbff;
+	background-color: #acffac;
 }
 .torrent-progress-stop{
 	background-color: #808080;

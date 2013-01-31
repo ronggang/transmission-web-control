@@ -28,6 +28,7 @@
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<span id="text-nochange" style="display:none;"></span>
+		<span id="text-count" style=""></span>
 		<a id="torrent-button-ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="torrent-button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" href="javascript:void(0);">Cancel</a>  
 	</div>
@@ -35,13 +36,31 @@
 <script type="text/javascript">
 	(function(thisDialog){
 		var title = "old-download-dir,new-download-dir,move-data".split(",");
-		var torrent = transmission.torrents.all[system.currentTorrentId];
+		var ids = thisDialog.data("ids");
+		var issimple = false;
+		var torrent = null;
+		if (typeof(ids)=="object")
+		{
+			torrent = transmission.torrents.all[ids[0]];
+		}
+		else
+		{
+			torrent = transmission.torrents.all[ids];
+			issimple = true;
+		}
+
+		if (!torrent)
+		{
+			thisDialog.dialog("close");
+			return;
+		}
 		
 		$.each(title, function(i, item){
 			thisDialog.find("#dialog-torrent-changeDownloadDir-"+item).html(system.lang.dialog["torrent-changeDownloadDir"][item]);
 		});
 		
 		thisDialog.find(".title").css({background:"#e6e6e6"});
+		thisDialog.find("#text-count").text("");
 		
 		title = "button-ok,button-cancel".split(",");
 		$.each(title, function(i, item){
@@ -77,26 +96,38 @@
 			if (isnewdir)
 			{
 				button.linkbutton({disabled:true,iconCls:"icon-loading"});
-				// 开始设置参数
-				transmission.exec(
-					{
-						method:"torrent-set-location"
-						,arguments:{
-							ids:torrent.id
-							,location:dir
-							,move:movedata
-						}
-					}
-					,function(data){
-						button.linkbutton({iconCls:icon,disabled:false});
-						if (data.result=="success")
+				
+				if (issimple)
+				{
+					// 开始设置参数
+					transmission.exec(
 						{
-							system.getTorrentInfos(torrent.id);
-							torrent.downloadDir = dir;
-							thisDialog.dialog("close");
+							method:"torrent-set-location"
+							,arguments:{
+								ids:torrent.id
+								,location:dir
+								,move:movedata
+							}
 						}
-					}
-				);
+						,function(data){
+							button.linkbutton({iconCls:icon,disabled:false});
+							if (data.result=="success")
+							{
+								system.getTorrentInfos(torrent.id);
+								torrent.downloadDir = dir;
+								thisDialog.dialog("close");
+							}
+							else
+							{
+								$.messager.alert("",system.lang.error["data-post-error"]+": "+data.result,'error'); 
+							}
+						}
+					);
+				}
+				else
+				{
+					doSetFolder(ids,ids.length,button,icon,dir,movedata);
+				}
 			}
 			else
 			{
@@ -104,6 +135,53 @@
 			}
 			
 		});
+
+		function doSetFolder(ids,count,button,icon,dir,movedata)
+		{
+			var id = ids;
+			var index = count-ids.length;
+			var id = ids.shift();
+			if (!id)
+			{
+				button.linkbutton({iconCls:icon,disabled:false});
+				system.control.torrentlist.datagrid("uncheckAll");
+				thisDialog.dialog("close");
+				return;
+			}
+
+			var torrent = transmission.torrents.all[id];
+
+			thisDialog.find("#text-count").text("-> "+torrent.name + " [" + (index+1)+"/"+count + "] ");
+
+			if (torrent.downloadDir==dir)
+			{
+				doSetFolder(ids,count,button,icon,dir,movedata);
+				return;
+			}
+			// 开始设置参数
+			transmission.exec(
+				{
+					method:"torrent-set-location"
+					,arguments:{
+						ids:id
+						,location:dir
+						,move:movedata
+					}
+				}
+				,function(data){
+					if (data.result=="success")
+					{
+						doSetFolder(ids,count,button,icon,dir,movedata);
+						torrent.downloadDir = dir;
+					}
+					else
+					{
+						button.linkbutton({iconCls:icon,disabled:false});
+						$.messager.alert("",system.lang.error["data-post-error"]+": "+data.result,'error'); 
+					}
+				}
+			);
+		}
 
 		thisDialog.find("#torrent-button-cancel").click(function()
 		{

@@ -58,6 +58,7 @@ system.lang = {
 			,"autoreload-disabled":"Desactivar actualización automática"
 			,"autoreload-enabled":"Activar actualización automática"
 			,"tracker-replace":"Reemplazar trackers"
+			,"change-download-dir":"Establecer ubicación"
 		}
 	}
 	,"title":{
