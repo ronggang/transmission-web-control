@@ -1,4 +1,4 @@
-// lang file
+﻿// lang file
 system.lang = {
 	"name":"pl"
 	,"system":{
@@ -21,7 +21,6 @@ system.lang = {
 	,"toolbar":{
 		"start":"Start"
 		,"pause":"Wstrzymaj"
-		,"recheck":"Sprawdź ponownie"
 		,"start-all":"Pobieraj wszystkie"
 		,"pause-all":"Wstrzymaj wszystkie"
 		,"remove":"Usuń"
@@ -38,7 +37,6 @@ system.lang = {
 		,"autoreload-disabled":"Wyłączone"
 		,"autoreload-enabled":"Włączone"
 		,"search-prompt":"Szukaj w dodanych torrentach"
-		,"tracker-replace":"Wymień trackerów"
 		,"tip":{
 			"start":"Pobieraj sprawdzone torrenty"
 			,"pause":"Wstrzymaj sprawdzone torrenty"
@@ -57,8 +55,6 @@ system.lang = {
 			,"about":"O tej aplikacji"
 			,"autoreload-disabled":"Wyłącz auto-odświeżanie"
 			,"autoreload-enabled":"Włącz auto-odświeżanie"
-			,"tracker-replace":"Wymień trackerów"
-			,"change-download-dir":"Ustaw lokalizację"
 		}
 	}
 	,"title":{
@@ -92,8 +88,8 @@ system.lang = {
 			,"filesAdded":"Dodane pliki: "   
 			,"sessionCount":"Licznik sesji: " 
 			,"secondsActive":"Czas aktywności: "
-		}
-		,"servers":"Trackery"
+}
+		,"server":"Trackery"
 		,"folders":"Katalogi"
 		,"toolbar":{
 			"nav":{
@@ -200,13 +196,6 @@ system.lang = {
 			,"move-data":"Jeżeli sprawdzono,przenieś dane ze starej lokalizacji do nowej.Teraz  pobieranych torrentów szukaj w nowej lokalizacji"
 			,"set-error":"Błąd!"
 		}
-		,"system-replaceTracker":{
-			"title":"Wymień trackerów"
-			,"old-tracker":"Old tracker: "
-			,"new-tracker":"Nowy tracker: "
-			,"tip":"Ta funkcja będzie znaleźć wszystkie Tracker torrentów."
-			,"not-found":"Tracker nie znaleziono."
-		}
 	}
 	,"torrent":{
 		"fields":{
@@ -259,7 +248,6 @@ system.lang = {
 				,"lastAnnounceTime":"Godzina połączenia"
 				,"lastAnnounceTimedOut":"Timeout"
 				,"downloadCount":"Licznik pobrań"
-				,"nextAnnounceTime":"Next announce"
 			}
 			,"peers-fields":{
 				"address":"Adres IP"
@@ -308,9 +296,6 @@ system.lang = {
 				,"button-deny":"Pomiń sprawdzone pliki"
 				,"button-priority":"Ustaw priorytet"
 			}
-			,"other":{
-				"tracker-remove-confim":"Czy na pewno chcesz usunąć ten Tracker?"
-			}
 		}
 	}
 	,"public":{
@@ -319,6 +304,5 @@ system.lang = {
 		,"text-saved":"Zapisano"
 		,"text-nochange":"Nie dokonano zmian"
 		,"text-info":"Informacje"
-		,"text-confirm":"Czy na pewno?"
 	}
 };

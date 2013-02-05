@@ -6,4 +6,5 @@ system.languages = {
 	,"ru":"Русский(Russian)"
 	,"es":"Español(Spanish)"
 	,"pl":"Polski(Polish)"
+	,"hu":"Magyarország(Hungarian)"
 };
