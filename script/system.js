@@ -55,9 +55,17 @@ var system = {
 
 		$.getScript("lang/"+lang+".js",function(){
 			// 设置 easyui 语言
-			$.getScript("script/easyui/locale/easyui-lang-"+lang.replace("-","_")+".js",function(){
-				if (callback)
-					callback();
+			$.getScript("script/easyui/locale/easyui-lang-"+lang.replace("-","_")+".js")
+				.done(function(script, textStatus){
+					if (callback)
+						callback();
+				// 如果加载失败，则加载英文语言
+				})
+				.fail(function(jqxhr, settings, exception) {
+					$.getScript("script/easyui/locale/easyui-lang-en.js",function(){
+						if (callback)
+							callback();
+				});
 			});
 		});
 	}
@@ -679,7 +687,8 @@ var system = {
 		
 		// 开始所有
 		this.panel.toolbar.find("#toolbar_start_all")
-			.linkbutton({text:this.lang.toolbar["start-all"],disabled:false})
+			//.linkbutton({text:this.lang.toolbar["start-all"],disabled:false})
+			.linkbutton({disabled:false})
 			.attr("title",this.lang.toolbar.tip["start-all"])
 			.click(function(){
 				$(this).linkbutton({iconCls:"icon-loading"});
@@ -696,7 +705,8 @@ var system = {
 		
 		// 暂停所有
 		this.panel.toolbar.find("#toolbar_pause_all")
-			.linkbutton({text:this.lang.toolbar["pause-all"],disabled:false})
+			//.linkbutton({text:this.lang.toolbar["pause-all"],disabled:false})
+			.linkbutton({disabled:false})
 			.attr("title",this.lang.toolbar.tip["pause-all"])
 			.click(function(){
 				transmission.exec({method:"torrent-stop"},function(data){
