@@ -210,6 +210,55 @@ var transmission = {
 			}
 		);
 	}
+	// 从文件内容增加种子
+	,addTorrentFromFile:function(file,savePath,paused,callback)
+	{
+		var fileReader = new FileReader();
+
+		fileReader.onload = function(e) {
+			var contents = e.target.result;
+			var key = "base64,";
+			var index = contents.indexOf(key);
+			if (index==-1)
+			{
+				return;
+			}
+			var metainfo = contents.substring (index + key.length);
+
+			transmission.exec(
+				{
+					method:"torrent-add"
+					,arguments:{
+						metainfo:metainfo
+						,"download-dir":savePath
+						,paused:paused
+					}
+				}
+				,function(data){
+					switch (data.result)
+					{
+						// 添加成功
+						case "success":
+							if (callback)
+							{
+								callback(data.arguments["torrent-added"]);
+							}
+							break;
+						// 重复的种子
+						case "duplicate torrent":
+							if (callback)
+							{
+								callback("duplicate");
+							}
+							break;
+					
+					}
+				}
+			);
+		}
+		fileReader.readAsDataURL (file);
+		
+	}
 	,_onTorrentCountChange:function()
 	{
 		this.torrents.loadSimpleInfo = false;
@@ -221,11 +270,25 @@ var transmission = {
 	// 删除种子
 	,removeTorrent:function(ids,removeData,callback)
 	{
-		transmission.exec({
+		this.exec({
 				method:"torrent-remove"
 				,arguments:{
 					ids:ids
 					,"delete-local-data":removeData
+				}
+			}
+			,function(data){
+				if (callback)
+					callback(data.result);
+			}
+		);
+	}
+	,getFreeSpace:function(path,callback)
+	{
+		this.exec({
+				method:"free-space"
+				,arguments:{
+					"path":path
 				}
 			}
 			,function(data){

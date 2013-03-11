@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
-	version:"0.2 Beta"
-	,codeupdate:"20130131"
+	version:"0.3 Beta"
+	,codeupdate:"20130311"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -54,6 +54,7 @@ var system = {
 		}
 
 		$.getScript("lang/"+lang+".js",function(){
+			system.resetLangText();
 			// 设置 easyui 语言
 			$.getScript("script/easyui/locale/easyui-lang-"+lang.replace("-","_")+".js")
 				.done(function(script, textStatus){
@@ -107,6 +108,23 @@ var system = {
 		else
 			this.initdata();
 			
+	}
+	// 设置语言信息
+	,resetLangText:function()
+	{
+		var items = $("*[system-lang]");
+
+		$.each(items, function(key, item){
+			var name = $(item).attr("system-lang");
+			$(item).html(eval("system.lang."+name));
+		});
+
+		items = $("*[system-tip-lang]");
+
+		$.each(items, function(key, item){
+			var name = $(item).attr("system-tip-lang");
+			$(item).attr("title",eval("system.lang."+name));
+		});
 	}
 	,initdata:function()
 	{
@@ -459,19 +477,7 @@ var system = {
 			for (var key in fields)
 			{
 				fields[key].title = system.lang.torrent.fields[fields[key].field];
-				if (fields[key].formatter)
-				{
-					switch (fields[key].formatter)
-					{
-					case "size":
-						fields[key].formatter =  function(value,row,index){return formatSize(value);};
-						break;
-					case "speed":
-						fields[key].formatter =  function(value,row,index){return formatSize(value,true,"speed");};
-						break;
-					}
-					
-				}
+				system.setFieldFormat(fields[key]);
 			}
 			system.control.torrentlist.datagrid({
 				autoRowHeight:false
@@ -523,13 +529,7 @@ var system = {
 				// 表头排序
 				,onSortColumn:function(field, order)
 				{
-					system.debug("sort:",field+","+order);
-					var orderField = field;
-					if (field=="percentDone")
-					{
-						orderField = "percentDoneNumber";
-					}
-					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(orderField,order));
+					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(field,order));
 					system.control.torrentlist.datagrid("loadData",datas);
 				}
 			});
@@ -545,6 +545,7 @@ var system = {
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:rowData});
+			this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:rowData});
 			return;
 		}
 		var rows = this.control.torrentlist.datagrid("getChecked");
@@ -555,6 +556,7 @@ var system = {
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
+			this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 			return;
 		}
 
@@ -568,6 +570,7 @@ var system = {
 				this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:false});
 				this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
 				this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:false});
+				this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 				break;
 
 			case transmission._status.check:
@@ -575,12 +578,14 @@ var system = {
 				this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
 				this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
 				this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
+				this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 				break;
 
 			default:
 				this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
 				this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:false});
 				this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
+				this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:false});
 				break;
 		}
 	}
@@ -789,6 +794,13 @@ var system = {
 						system.changeSelectedTorrentStatus("verify",$(this)); 
 					}
 				}
+			});
+
+		// 獲取更多的peer
+		this.panel.toolbar.find("#toolbar_morepeers")
+			.linkbutton({disabled:true})
+			.click(function(){
+				system.changeSelectedTorrentStatus("reannounce",$(this));
 			});
 		
 		// 删除选定的内容
@@ -1001,22 +1013,37 @@ var system = {
 			
 			system.downloadDir = result["download-dir"];
 
-			var tmp = system.serverConfig["download-dir-free-space"];
-			if (tmp==-1)
+			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
+			if (system.serverConfig["rpc-version"]>=15)
 			{
-				tmp = system.lang["public"]["text-unknown"];
+				transmission.getFreeSpace(system.downloadDir,function(result){
+					system.serverConfig["download-dir-free-space"] = result["size-bytes"];
+					system.showFreeSpace(result["size-bytes"]);
+				});
 			}
 			else
 			{
-				tmp = formatSize(tmp);
+				system.showFreeSpace(system.serverConfig["download-dir-free-space"]);
 			}
-			$("#status_freespace").text(system.lang.dialog["system-config"]["download-dir-free-space"]+" "+tmp);
 
 			if (isinit)
 			{
 				system.showStatus(system.lang.system.status.connected);
 			}
 		});
+	}
+	,showFreeSpace:function(size)
+	{
+		var tmp = size;
+		if (tmp==-1)
+		{
+			tmp = system.lang["public"]["text-unknown"];
+		}
+		else
+		{
+			tmp = formatSize(tmp);
+		}
+		$("#status_freespace").text(system.lang.dialog["system-config"]["download-dir-free-space"]+" "+tmp);
 	}
 	// 重新获取种子信息
 	,reloadTorrentBaseInfos:function(ids)
@@ -1489,8 +1516,14 @@ var system = {
 			{
 				return;
 			}
-			var percentDone = parseFloat(torrents[index].percentDone*100).toFixed(2);
 			var status = this.lang.torrent["status-text"][torrents[index].status];
+			var percentDone = parseFloat(torrents[index].percentDone*100).toFixed(2);
+			// 校验时，使用校验进度
+			if (status==transmission._status.check)
+			{
+				percentDone = parseFloat(torrents[index].recheckProgress*100).toFixed(2);
+			}
+			
 			if (torrents[index].error!=0)
 			{
 				status = "<span class='text-status-error'>"+status+"</span>";
@@ -1501,12 +1534,13 @@ var system = {
 			}
 			datas.push({
 				id:torrents[index].id
-				,name:this.getTorrentNameBar(torrents[index])
+				,name:torrents[index].name
 				,totalSize:torrents[index].totalSize
-				,percentDone:this.getTorrentProgressBar(percentDone,torrents[index])
-				,percentDoneNumber:percentDone
+				,percentDone:torrents[index].percentDone
+				,remainingTime:torrents[index].remainingTime
 				,status:status
-				,addedDate:formatLongTime(torrents[index].addedDate)
+				,statusCode:torrents[index].status
+				,addedDate:torrents[index].addedDate
 				,completeSize:(torrents[index].totalSize-torrents[index].leftUntilDone)
 				,rateDownload:torrents[index].rateDownload
 				,rateUpload:torrents[index].rateUpload
@@ -1522,20 +1556,18 @@ var system = {
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 		var _options = this.control.torrentlist.datagrid("options");
+		var orderField = null;
 		if (_options.sortName)
 		{
-			var orderField = _options.sortName;
-			if (orderField=="percentDone")
-			{
-				orderField = "percentDoneNumber";
-			}
+			orderField = _options.sortName;
 			datas = datas.sort(arrayObjectSort(orderField,_options.sortOrder));
 		}
 		this.control.torrentlist.datagrid({
 			loadFilter:pagerFilter
 			,pageNumber:_options.pageNumber
-			,sortName:_options.sortName
+			,sortName:orderField
 			,sortOrder:_options.sortOrder
 		}).datagrid("loadData",datas);
 	}
@@ -1969,6 +2001,29 @@ var system = {
 			case "speed":
 				field.formatter =  function(value,row,index){return formatSize(value,true,"speed");};
 				break;
+
+			case "longtime":
+				field.formatter =  function(value,row,index){return formatLongTime(value);};
+				break;
+
+			case "progress":
+				field.formatter =  function(value,row,index){
+					var percentDone = parseFloat(value*100).toFixed(2);
+					return system.getTorrentProgressBar(percentDone,row["statusCode"]);
+				};
+				break;
+
+			case "_usename_":
+				switch (field.field)
+				{
+				case "name":
+					field.formatter =  function(value,row,index){
+						return system.getTorrentNameBar(transmission.torrents.all[row["id"]]);
+					};
+					break;
+				}
+				break;
+				
 			}
 		}
 	}
@@ -2070,6 +2125,24 @@ var system = {
 	{
 		cookies.set("transmission-web-control",this.config,100);
 	}
+	// 上传种子文件
+	,uploadTorrentFile: function(fileInputId,savePath,paused,callback)
+	{
+		// 判断是否支持 FileReader 接口
+		if (window.FileReader)
+		{
+			var files = $("input[id='"+fileInputId+"']")[0].files;
+			$.each(files,function(index,file){
+				transmission.addTorrentFromFile(file,savePath,paused,callback);
+			});
+		}
+		else
+		{
+			alert(system.lang["publit"]["text-browsers-not-support-features"]);
+		}
+	}
+
+	// 调试信息
 	,debug:function(label,text){
 		if (window.console)
 		{

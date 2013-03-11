@@ -59,6 +59,9 @@ system.lang = {
 			,"autoreload-enabled":"啟用自動刷新"
 			,"tracker-replace":"替換 Tracker"
 			,"change-download-dir":"變更數據保存目錄"
+			,"ui-mobile":"切换到移动设备界面"
+			,"ui-original":"切换到原版界面"
+			,"more-peers":"獲取更多Peer"
 		}
 	}
 	,"title":{
@@ -216,6 +219,7 @@ system.lang = {
 			,"totalSize":"總大小"
 			,"status":"狀態"
 			,"percentDone":"進度"
+			,"remainingTime":"剩余時間"
 			,"addedDate":"添加時間"
 			,"completeSize":"已完成"
 			,"rateDownload":"下載速度"
@@ -319,5 +323,6 @@ system.lang = {
 		,"text-saved":"已保存"
 		,"text-info":"信息"
 		,"text-confirm":"確認要這樣做嗎？"
+		,"text-browsers-not-support-features":"當前流覽器不支援該功能！"
 	}
 };

@@ -89,6 +89,14 @@
 			// 有文件上传时
 			if (isupload)
 			{
+				// rpc-version 版本为 15 起，停止使用原来的 ../upload 接口
+				if (system.serverConfig["rpc-version"]>=15)
+				{
+					system.uploadTorrentFile("torrent_upload_file",dir,!autostart,function(){
+						system.reloadData();
+					});
+					return;
+				}
 				// 新目录，但没有钩选要保存时，先保存目录
 				if (isnewdir)
 				{

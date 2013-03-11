@@ -76,27 +76,17 @@
 			
 			if (thisDialog.find("#set-default-download-dir").prop("checked")&&isnewdir)
 			{
-				updateDownloadDir(dir,function(){
-					uploadFile(!autostart);
-				});
-				return;
+				updateDownloadDir(dir);
 			}
 
-			// 新目录，但没有钩选要保存时，先保存目录
-			if (isnewdir)
-			{
-				updateDownloadDir(dir,function(){
-					uploadFile(!autostart,function(){
-						updateDownloadDir(olddir);
-					});
+			var files = thisDialog.data("files");
+			$.each(files,function(i,item){
+				transmission.addTorrentFromFile(item,dir,!autostart,function(){
+					system.reloadData();
 				});
-			}
-			else
-			{
-				uploadFile(!autostart);
-				//thisDialog.dialog("close");
-			}
-			
+			});
+			$(this).linkbutton({disabled:false});
+			thisDialog.dialog("close");
 		});
 
 		thisDialog.find("#torrent-button-cancel").click(function()
@@ -127,6 +117,7 @@
 		}
 		
 		// 上传文件
+		// 2013/3/11 起失效
 		function uploadFile(paused,callback){
 			var xhr = new XMLHttpRequest();
 			var files = thisDialog.data("files");

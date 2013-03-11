@@ -206,6 +206,7 @@ system.lang = {
 			,"totalSize":"Całkowity rozmiar"
 			,"status":"Status"
 			,"percentDone":"% ukończenia"
+			,"remainingTime":"Remaining time"
 			,"addedDate":"Data dodania"
 			,"completeSize":"Pobrano"
 			,"rateDownload":"Prędkość pobierania"

@@ -59,6 +59,9 @@ system.lang = {
 			,"autoreload-enabled":"Enabled auto reload"
 			,"tracker-replace":"Replace trackers"
 			,"change-download-dir":"Set location"
+			,"ui-mobile":"Mobile UI"
+			,"ui-original":"Original UI"
+			,"more-peers":"Ask tracker for more peers"
 		}
 	}
 	,"title":{
@@ -217,6 +220,7 @@ system.lang = {
 			,"totalSize":"Total size"
 			,"status":"Status"
 			,"percentDone":"Percent done"
+			,"remainingTime":"Remaining time"
 			,"addedDate":"Added date"
 			,"completeSize":"Complete size"
 			,"rateDownload":"Rate download"
@@ -320,5 +324,6 @@ system.lang = {
 		,"text-nochange":"No change"
 		,"text-info":"Infos"
 		,"text-confirm":"Are you sure?"
+		,"text-browsers-not-support-features":"The current browser does not support this feature!"
 	}
 };
