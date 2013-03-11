@@ -231,10 +231,33 @@ function getTotalTime(time,format)
 	var seconds=Math.round(leave3/1000);
 
 	var result = format;
-	result = result.replace("%d",days);
-	result = result.replace("%h",hours);
-	result = result.replace("%m",minutes);
-	result = result.replace("%s",seconds);
+	if (days==0)
+	{
+		result = result.replace(/(%d+\s)/,"");
+	}
+	else
+		result = result.replace("%d",days);
+	
+	if (hours==0)
+	{
+		result = result.replace(/(%h+\s)/,"");
+	}
+	else
+		result = result.replace("%h",hours);
+
+	if (minutes==0)
+	{
+		result = result.replace(/(%m+\s)/,"");
+	}
+	else
+		result = result.replace("%m",minutes);
+	
+	if (seconds==0)
+	{
+		result = result.replace(/(%s+\s)/,"");
+	}
+	else
+		result = result.replace("%s",seconds);
 	return result;
 }
 

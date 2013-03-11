@@ -2,8 +2,8 @@
 	移动版
 */
 var system = {
-	version:"0.2 Beta"
-	,codeupdate:"20130128"
+	version:"0.3 Beta"
+	,codeupdate:"20130311"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -150,17 +150,32 @@ var system = {
 			
 			system.downloadDir = result["download-dir"];
 
-			var tmp = system.serverConfig["download-dir-free-space"];
-			if (tmp==-1)
+			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
+			if (system.serverConfig["rpc-version"]>=15)
 			{
-				tmp = system.lang["public"]["text-unknown"];
+				transmission.getFreeSpace(system.downloadDir,function(result){
+					system.serverConfig["download-dir-free-space"] = result["size-bytes"];
+					system.showFreeSpace(result["size-bytes"]);
+				});
 			}
 			else
 			{
-				tmp = formatSize(tmp);
+				system.showFreeSpace(system.serverConfig["download-dir-free-space"]);
 			}
-			$("#status_freespace").text(tmp);
 		});
+	}
+	,showFreeSpace:function(size)
+	{
+		var tmp = size;
+		if (tmp==-1)
+		{
+			tmp = system.lang["public"]["text-unknown"];
+		}
+		else
+		{
+			tmp = formatSize(tmp);
+		}
+		$("#status_freespace").text(tmp);
 	}
 	// 获取服务器当前状态
 	,getServerStatus:function()

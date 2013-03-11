@@ -216,6 +216,7 @@ system.lang = {
 			,"totalSize":"Объем"
 			,"status":"Статус"
 			,"percentDone":"%"
+			,"remainingTime":"Remaining time"
 			,"addedDate":"Добавлено"
 			,"completeSize":"Загружено"
 			,"rateDownload":"Прием"

@@ -15,7 +15,7 @@ transmission.torrents = {
 	,activeTorrentCount:0
 	,pausedTorrentCount:0
 	,fields:{
-		base:"id,name,status,hashString,totalSize,percentDone,addedDate,trackerStats,leftUntilDone,rateDownload,rateUpload"
+		base:"id,name,status,hashString,totalSize,percentDone,addedDate,trackerStats,leftUntilDone,rateDownload,rateUpload,recheckProgress"
 				+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,downloadDir,error,errorString"
 		,status:"id,status,percentDone,trackerStats,leftUntilDone,rateDownload,rateUpload"
 					+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,error,errorString"
@@ -166,6 +166,19 @@ transmission.torrents = {
 				type = this.status[item.status];
 			}
 			
+			// 剩余时间
+			if (item.rateDownload>0&&item.leftUntilDone>0)
+			{
+				item["remainingTime"] = getTotalTime(item.leftUntilDone/item.rateDownload*1000);
+			}
+			else if (item.rateDownload==0&&item.leftUntilDone==0)
+			{
+				item["remainingTime"] = 0;
+			}
+			else
+				item["remainingTime"] = "∞";
+			
+
 			type.push(item);
 			// 发生错误的种子
 			if (item.error!=0)

@@ -265,3 +265,7 @@ html, body {
 .icon-transmission{
 	background:url('images/transmission.png') no-repeat;
 }
+
+.icon-more-peers{
+	background:url('images/more-peers.png') no-repeat;
+}

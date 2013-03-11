@@ -8,24 +8,24 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130131" />
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130131"/>  
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130131"/>
+	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130311" />
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130311"/>  
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130311"/>
 	<!-- 基础类库 -->
 	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130131"></script>
+	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130311"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130131"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130131"></script>
-	<script type="text/javascript" src="script/min/clientDevice.js?v=20130131"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130131"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130131"></script>	
-	<script type="text/javascript" src="script/min/system.js?v=20130131"></script>
-	<script type="text/javascript" src="config.js?v=20130131"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130311"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130311"></script>
+	<script type="text/javascript" src="script/min/clientDevice.js?v=20130311"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130311"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130311"></script>	
+	<script type="text/javascript" src="script/min/system.js?v=20130311"></script>
+	<script type="text/javascript" src="config.js?v=20130311"></script>
 </head>
 <body>
 	<div id="main" class="easyui-layout">
@@ -43,17 +43,18 @@
 					<a id="toolbar_config" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-system-config',plain:true"></a>
 					<span class="button-split">|</span>
 					<a id="toolbar_tracker_replace" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-tracker-replace',plain:true"></a>
-					<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true"></a>
-					<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true"></a>
-					<span class="button-split">|</span>
-					<a id="toolbar_start_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-all',plain:true,disabled:true"></a>
-					<a id="toolbar_pause_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-all',plain:true,disabled:true"></a>
+					<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"></a>
+					<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"></a>
 					<span class="button-split">|</span>
 					<a id="toolbar_start" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-one',plain:true,disabled:true"></a>
 					<a id="toolbar_pause" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-one',plain:true,disabled:true"></a>
 					<a id="toolbar_remove" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-remove-torrent',plain:true,disabled:true"></a>
 					<a id="toolbar_recheck" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-recheck-torrent',plain:true,disabled:true"></a>
+					<a id="toolbar_morepeers" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-more-peers',plain:true,disabled:true" system-tip-lang="toolbar.tip['more-peers']"></a>
 					<a id="toolbar_changeDownloadDir" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-folder-change',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<a id="toolbar_start_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-all',plain:true,disabled:true"></a>
+					<a id="toolbar_pause_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-all',plain:true,disabled:true"></a>
 					<span class="button-split">|</span>
 					<label id="toolbar_label_reload_time"></label>
 					<input id="toolbar_reload_time" style="width:50px;text-align:center;" class="easyui-numberspinner"/>

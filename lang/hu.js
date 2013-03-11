@@ -216,6 +216,7 @@ system.lang = {
 			,"totalSize":"Méret"
 			,"status":"Állapot"
 			,"percentDone":"Elkészült"
+			,"remainingTime":"Remaining time"
 			,"addedDate":"Hozzáadva"
 			,"completeSize":"Letöltve"
 			,"rateDownload":"Letöltési arány"

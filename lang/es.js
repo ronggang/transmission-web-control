@@ -217,6 +217,7 @@ system.lang = {
 			,"totalSize":"Tamaño"
 			,"status":"Estado"
 			,"percentDone":"Progreso"
+			,"remainingTime":"Remaining time"
 			,"addedDate":"Añadido"
 			,"completeSize":"Descargado"
 			,"rateDownload":"Veloc. desc."
