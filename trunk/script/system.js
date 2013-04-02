@@ -1,12 +1,14 @@
 // 当前系统全局对象
 var system = {
 	version:"0.3 Beta"
-	,codeupdate:"20130311"
+	,codeupdate:"20130402"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
 		,pageSize: 30
 		,defaultSelectNode: null
+	}
+	,contextMenus:{
 	}
 	,panel:null
 	,lang:null
@@ -532,8 +534,75 @@ var system = {
 					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(field,order));
 					system.control.torrentlist.datagrid("loadData",datas);
 				}
+				,onRowContextMenu: function(e, rowIndex, rowData)
+				{
+					e.preventDefault();
+					system.showContextMenu("torrent-list",e); 
+				}
 			});
 		},"json");
+		this.panel.list.bind('contextmenu',function(e){
+			 e.preventDefault();
+			 system.showContextMenu("torrent-list",e); 
+		});
+	}
+	// 显示右键菜单
+	,showContextMenu: function(type,e)
+	{
+		var parent = this.contextMenus[type];
+		if (!parent)
+		{
+			parent = $("<div/>").attr("class","easyui-menu").css({"width":"180px"}).appendTo(this.panel.main);
+			this.contextMenus[type] = parent;
+			parent.menu();
+		}
+		else
+		{
+			parent.empty();
+		}
+		var menus = null;
+		
+		switch (type)
+		{
+			case "torrent-list":
+				menus = new Array("start","pause","-","remove","recheck","-","morepeers","changeDownloadDir");
+				var toolbar = this.panel.toolbar;
+				for (var item in menus)
+				{
+					var key = menus[item];
+					if (key=="-")
+					{
+						//
+						var id = ("line-"+Math.random()).replace(".","");
+						parent.menu("appendItem",{
+							text: ""
+							,id: id
+						});
+						parent.find("#"+id).attr("class","menu-sep").attr("disabled",true).html("&nbsp;").unbind('.menu');
+					}
+					else
+					{
+						var menu = toolbar.find("#toolbar_"+key);
+						if (menu)
+						{
+							parent.menu("appendItem",{
+								text: menu.attr("title")
+								,id: key
+								,iconCls: menu.linkbutton("options").iconCls
+								,disabled: menu.linkbutton("options").disabled
+								,onclick: function(){
+									system.panel.toolbar.find("#toolbar_"+$(this).attr("id")).click();
+								}
+							});
+						}
+						menu = null;
+					}
+				}
+				break;
+		}
+		parent.menu("show",{left: e.pageX, top: e.pageY});
+		parent = null;
+		menus = null;
 	}
 	,checkTorrentRow:function(rowIndex, rowData)
 	{
@@ -1014,11 +1083,11 @@ var system = {
 			system.downloadDir = result["download-dir"];
 
 			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
-			if (system.serverConfig["rpc-version"]>=15)
+			if (parseInt(system.serverConfig["rpc-version"])>=15)
 			{
-				transmission.getFreeSpace(system.downloadDir,function(result){
-					system.serverConfig["download-dir-free-space"] = result["size-bytes"];
-					system.showFreeSpace(result["size-bytes"]);
+				transmission.getFreeSpace(system.downloadDir,function(datas){
+					system.serverConfig["download-dir-free-space"] = datas.arguments["size-bytes"];
+					system.showFreeSpace(datas.arguments["size-bytes"]);
 				});
 			}
 			else
