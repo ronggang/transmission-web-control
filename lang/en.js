@@ -141,8 +141,8 @@ system.lang = {
 			,"peer-port-random-on-start":"Use random port on start"
 			,"port-forwarding-enabled":"Enabled forwarding"
 			,"test-port":"Test the port"
-			,"port-is-open-true":"The port is close"
-			,"port-is-open-false":"The port is open"
+			,"port-is-open-true":"The port is open"
+			,"port-is-open-false":"The port is closed"
 			,"testing":"Testing..."
 			,"encryption":"Encryption:"
 			,"encryption-type":{
