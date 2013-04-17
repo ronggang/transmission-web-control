@@ -59,6 +59,9 @@ system.lang = {
 			,"autoreload-enabled":"Activar actualización automática"
 			,"tracker-replace":"Reemplazar trackers"
 			,"change-download-dir":"Establecer ubicación"
+			,"ui-mobile":"UI Móviles"
+			,"ui-original":"Original UI"
+			,"more-peers":"Solicitar más peers al trackers "
 		}
 	}
 	,"title":{
@@ -321,5 +324,6 @@ system.lang = {
 		,"text-nochange":"No guardado"
 		,"text-info":"Información"
 		,"text-confirm":"¿Está seguro?"
+		,"text-browsers-not-support-features":"El navegador actual no soporta esta función!"
 	}
 };
