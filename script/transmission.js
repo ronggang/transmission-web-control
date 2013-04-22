@@ -198,11 +198,13 @@ var transmission = {
 							callback(data.arguments["torrent-added"]);
 						}
 						break;
+
 					// 重复的种子
 					case "duplicate torrent":
+					default:
 						if (callback)
 						{
-							callback("duplicate");
+							callback(data.result);
 						}
 						break;
 				

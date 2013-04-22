@@ -316,6 +316,11 @@ system.lang = {
 			}
 		}
 	}
+	,"torrent-head":{
+		"buttons":{
+			"autoExpandAttribute":"自動顯示種子屬性"
+		}
+	}
 	,"public":{
 		"text-unknown":"未知"
 		,"text-drop-title":"將檔拖放在該區域內即可添加到 Transmission。"
@@ -324,5 +329,7 @@ system.lang = {
 		,"text-info":"信息"
 		,"text-confirm":"確認要這樣做嗎？"
 		,"text-browsers-not-support-features":"當前流覽器不支援該功能！"
+		,"text-download-update":"下載這個更新"
+		,"text-have-update":"有可用的更新"
 	}
 };

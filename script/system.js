@@ -1,13 +1,15 @@
 // 当前系统全局对象
 var system = {
-	version:"0.3 Beta"
-	,codeupdate:"20130402"
+	version:"0.4 Beta"
+	,codeupdate:"20130422"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
 		,pageSize: 30
 		,defaultSelectNode: null
+		,autoExpandAttribute: false
 	}
+	,checkUpdateScript:"https://transmission-control.googlecode.com/svn/resouces/checkupdate.js"
 	,contextMenus:{
 	}
 	,panel:null
@@ -56,6 +58,7 @@ var system = {
 		}
 
 		$.getScript("lang/"+lang+".js",function(){
+			system.lang = $.extend(system.defaultLang, system.lang);
 			system.resetLangText();
 			// 设置 easyui 语言
 			$.getScript("script/easyui/locale/easyui-lang-"+lang.replace("-","_")+".js")
@@ -132,6 +135,8 @@ var system = {
 	{
 		this.panel.title.text(this.lang.system.title+" "+this.version+" ("+this.codeupdate+")");
 		$(document).attr("title",this.lang.system.title+" "+this.version);
+
+		// 初始导航栏
 		var buttons = new Array();
 		var title = "<span>" + this.lang.title.left+"</span>";
 		buttons.push("<span class='tree-title-toolbar'>");
@@ -155,7 +160,47 @@ var system = {
 			this.panel.left_layout.panel("setTitle",title);
 		}
 		
-		this.panel.body.panel("setTitle",this.lang.title.list);
+		// 初始化种子列表栏目标题
+		title = "<span>" + this.lang.title.list+"</span>";
+		buttons.length = 0;
+		buttons.push("<span class='tree-title-toolbar'>");
+		for (var key in this.lang["torrent-head"].buttons)
+		{
+			var value = this.lang["torrent-head"].buttons[key];
+			buttons.push('<a href="javascript:void(0);" id="torrent-head-buttons-'+key+'" class="easyui-linkbutton" data-options="plain:true,iconCls:\'icon-disabled\'" onclick="javascript:system.navToolbarClick(this);">'+value+"</a>");
+		}
+		buttons.push("</span>");
+		if (buttons.length>1)
+		{
+			title+=buttons.join("");
+			this.panel.body.panel("setTitle",title);
+			for (var key in this.lang["torrent-head"].buttons)
+			{
+				$("#torrent-head-buttons-"+key).linkbutton();
+				switch (key)
+				{
+					case "autoExpandAttribute":
+						if (system.config.autoExpandAttribute)
+						{
+							$("#torrent-head-buttons-"+key).linkbutton({iconCls:"icon-enabled"}).data("status",1);
+						}
+						else
+						{
+							$("#torrent-head-buttons-"+key).linkbutton({iconCls:"icon-disabled"}).data("status",0);
+						}
+						break;
+
+					default:
+						break;
+				}
+				
+			}
+		}
+		else
+		{
+			this.panel.body.panel("setTitle",title);
+		}
+
 		this.panel.status.panel("setTitle",this.lang.title.status);
 		this.panel.attribute.panel({
 			title:this.lang.title.attribute
@@ -200,6 +245,8 @@ var system = {
 		this.initTorrentTable();
 		this.connect();
 		this.initEvent();
+		// 检查更新
+		this.checkUpdate();
 	}
 	//
 	,initEvent:function()
@@ -257,6 +304,18 @@ var system = {
 			case "tree-toolbar-nav-statistics":
 				treenode = this.panel.left.tree("find","statistics");
 				break;
+
+			case "torrent-head-buttons-autoExpandAttribute":
+				treenode = {};
+				treenode.target = null;
+				if (status==1){
+					this.config.autoExpandAttribute = false;
+				}
+				else
+				{
+					this.config.autoExpandAttribute = true;
+				}
+				break;
 		
 		}
 
@@ -279,6 +338,7 @@ var system = {
 		}
 		
 		$(source).data("status",status);
+		this.saveConfig();
 	}
 	// 检查拖放的文件
 	,checkDropFiles:function(sources)
@@ -511,16 +571,24 @@ var system = {
 				,onSelect:function(rowIndex, rowData)
 				{
 					$(this).datagrid("clearSelections");
-					// 如果没有展开时，将其展开
-					if (system.panel.attribute.panel("options").collapsed)
-						system.panel.layout_body.layout("expand","south");
+
+					if (system.config.autoExpandAttribute)
+					{
+						// 如果没有展开时，将其展开
+						if (system.panel.attribute.panel("options").collapsed)
+							system.panel.layout_body.layout("expand","south");
+					}
 					system.getTorrentInfos(rowData.id);
 				}
 				,onUnselect:function(rowIndex, rowData)
 				{
-					// 如果展开时，将其合拢
-					if (!system.panel.attribute.panel("options").collapsed)
-						system.panel.layout_body.layout("collapse","south");
+					if (system.config.autoExpandAttribute)
+					{
+						// 如果展开时，将其合拢
+						if (!system.panel.attribute.panel("options").collapsed)
+							system.panel.layout_body.layout("collapse","south");
+
+					}
 					system.currentTorrentId = 0;
 				}
 				// 加载数据之前
@@ -536,8 +604,9 @@ var system = {
 				}
 				,onRowContextMenu: function(e, rowIndex, rowData)
 				{
+					system.control.torrentlist.datagrid("checkRow",rowIndex);
 					e.preventDefault();
-					system.showContextMenu("torrent-list",e); 
+					system.showContextMenu("torrent-list",e);
 				}
 			});
 		},"json");
@@ -2078,7 +2147,7 @@ var system = {
 			case "progress":
 				field.formatter =  function(value,row,index){
 					var percentDone = parseFloat(value*100).toFixed(2);
-					return system.getTorrentProgressBar(percentDone,row["statusCode"]);
+					return system.getTorrentProgressBar(percentDone,transmission.torrents.all[row["id"]]);
 				};
 				break;
 
@@ -2210,7 +2279,18 @@ var system = {
 			alert(system.lang["publit"]["text-browsers-not-support-features"]);
 		}
 	}
-
+	,checkUpdate: function()
+	{
+		$.getScript(this.checkUpdateScript,function(){
+			if (system.codeupdate<system.lastUpdateInfos.update)
+			{
+				$("#area-update-infos").show();
+				$("#msg-updateInfos").html(system.lastUpdateInfos.update+" -> "+system.lastUpdateInfos.infos);
+			}
+			else
+				$("#area-update-infos").hide();
+		});
+	}
 	// 调试信息
 	,debug:function(label,text){
 		if (window.console)
@@ -2224,6 +2304,8 @@ var system = {
 };
 
 $(document).ready(function(){
+	// 加载默认语言内容
+	$.getScript("lang/default.js");
 	// 加载可用的语言列表
 	$.getScript("lang/_languages.js",function(){
 		system.init(location.search.getQueryString("lang"),location.search.getQueryString("local"));
