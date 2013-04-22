@@ -7,4 +7,6 @@ system.config = {
 	,pageSize: 30
 	// 初始界面默认选中的节点，名称可参考语言包中的 tree 
 	,defaultSelectNode: "actively"
+	// 是否自动展开种子详细信息
+	,autoExpandAttribute: false
 };

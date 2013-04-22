@@ -316,6 +316,11 @@ system.lang = {
 			}
 		}
 	}
+	,"torrent-head":{
+		"buttons":{
+			"autoExpandAttribute":"自动显示种子属性"
+		}
+	}
 	,"public":{
 		"text-unknown":"未知"
 		,"text-drop-title":"将文件拖放在该区域内即可添加到 Transmission。"
@@ -324,5 +329,7 @@ system.lang = {
 		,"text-info":"信息"
 		,"text-confirm":"确认要这样做吗？"
 		,"text-browsers-not-support-features":"当前浏览器不支持该功能！"
+		,"text-download-update":"下载这个更新"
+		,"text-have-update":"有可用的更新"
 	}
 };

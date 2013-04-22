@@ -269,3 +269,7 @@ html, body {
 .icon-more-peers{
 	background:url('images/more-peers.png') no-repeat;
 }
+
+.icon-download-update{
+	background:url('images/drive-download.png') no-repeat;
+}

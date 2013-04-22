@@ -1,5 +1,5 @@
 // lang file
-system.lang = {
+system.defaultLang = {
 	"name":"en"
 	,"system":{
 		"title":"Transmission WEB Control"
