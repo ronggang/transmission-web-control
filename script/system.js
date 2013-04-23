@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
 	version:"0.4 Beta"
-	,codeupdate:"20130422"
+	,codeupdate:"20130423"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -1643,9 +1643,12 @@ var system = {
 			break;
 		}
 
-		this.config.defaultSelectNode = config.node.id;
-		this.saveConfig();
-
+		if (this.config.defaultSelectNode!=config.node.id)
+		{
+			this.control.torrentlist.datagrid("loadData",[]);
+			this.config.defaultSelectNode = config.node.id;
+			this.saveConfig();
+		};
 
 		var datas = new Array();
 		for (var index in torrents)
@@ -1695,19 +1698,112 @@ var system = {
 		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
+
+		this.updateCurrentPageDatas(datas);
+	}
+	// 更新种子列表当前页数据
+	,updateCurrentPageDatas: function(currentTypeDatas)
+	{
+		// 获取当前页数据
+		var rows = this.control.torrentlist.datagrid("getRows");
+
 		var _options = this.control.torrentlist.datagrid("options");
 		var orderField = null;
 		if (_options.sortName)
 		{
 			orderField = _options.sortName;
-			datas = datas.sort(arrayObjectSort(orderField,_options.sortOrder));
+			currentTypeDatas = currentTypeDatas.sort(arrayObjectSort(orderField,_options.sortOrder));
 		}
-		this.control.torrentlist.datagrid({
-			loadFilter:pagerFilter
-			,pageNumber:_options.pageNumber
-			,sortName:orderField
-			,sortOrder:_options.sortOrder
-		}).datagrid("loadData",datas);
+		
+
+		if (rows.length==0||(currentTypeDatas.length!=this.control.torrentlist.datagrid("getData").total)&&currentTypeDatas.length>_options.pageSize)
+		{
+			this.control.torrentlist.datagrid({
+				loadFilter:pagerFilter
+				,pageNumber:_options.pageNumber
+				,sortName:orderField
+				,sortOrder:_options.sortOrder
+			}).datagrid("loadData",currentTypeDatas);
+			return;
+		}
+
+		// 设置数据
+		this.control.torrentlist.datagrid("getData").originalRows = currentTypeDatas;
+		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);  
+		var end = start + parseInt(_options.pageSize);  
+		currentTypeDatas = (currentTypeDatas.slice(start, end));
+
+		//this.debug("currentTypeDatas:",currentTypeDatas);
+
+		// 当前更新的种子列表
+		var recently = {};
+		//
+		var datas = {};
+
+		// 初始化最近更新的数据
+		for (var index in transmission.torrents.recently)
+		{
+			var item = transmission.torrents.recently[index];
+			recently[item.id] = true;
+			item = null;
+		}
+
+		// 初始化当前类型下的数据
+		for (var index in currentTypeDatas)
+		{
+			var item = currentTypeDatas[index];
+			datas[item.id] = item;
+			item = null;
+		}
+
+		//this.debug("datas:",datas);
+		//this.debug("recently:",recently);
+		//this.debug("rows:",rows);
+
+		var addedDatas = {};
+		// 更新有变化的数据
+		for (var index=rows.length-1;index>=0;index--)
+		{
+			var item = rows[index];
+			if (recently[item.id])
+			{
+				var data = datas[item.id];
+
+				if (data)
+				{
+					this.control.torrentlist.datagrid("updateRow",{
+						index: index
+						,row:data
+					});
+					addedDatas[item.id] = item;
+				}
+				else
+				{
+					this.control.torrentlist.datagrid("deleteRow",index);
+				}
+				data = null;
+			}
+			else
+			{
+				addedDatas[item.id] = item;
+			}
+			item = null;
+		}
+
+		
+		// 追加当前不存在的行
+		for (var index in currentTypeDatas)
+		{
+			var item = currentTypeDatas[index];
+			if (!addedDatas[item.id])
+			{
+				this.control.torrentlist.datagrid("appendRow",item);
+			}
+		}
+		
+		rows = null;
+		recently = null;
+		datas = null;
 	}
 	// 获取种子名称显示区域的内容
 	,getTorrentNameBar:function(torrent)
