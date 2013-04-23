@@ -2,7 +2,7 @@
 == 2013-04-23 ==
  * 优化种子列表数据加载方式，仅更新当前有变化的数据，以减少对页面的操作。
 
- * Optimize torrent list loading mode
+ * Optimize torrent list loading mode (see issue 28)
 
 == 2013-04-22 ==
 === 增加 Added ===
