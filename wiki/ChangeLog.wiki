@@ -14,7 +14,7 @@
  * 修复种子状态显示方式，未开始下载的种子，不在显示到警告状态中
  * 更新种子状态进度条颜色，修改为和当前状态文本颜色相同
 
- * Right-click to checked current row
+ * Right-click to checked current row (see issue 25 & issue 27)
  * Fix progress bar color display error
 
 == 2013-04-02 ==
