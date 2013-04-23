@@ -1,4 +1,9 @@
 #labels Featured
+== 2013-04-23 ==
+ * 优化种子列表数据加载方式，仅更新当前有变化的数据，以减少对页面的操作。
+
+ * Optimize torrent list loading mode
+
 == 2013-04-22 ==
 === 增加 Added ===
  * 增加自动检查是否可用的新版本程序
