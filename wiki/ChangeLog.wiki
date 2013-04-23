@@ -1,4 +1,22 @@
 #labels Featured
+== 2013-04-22 ==
+=== 增加 Added ===
+ * 增加自动检查是否可用的新版本程序
+ * 增加是否自动展开种子属性的选项，以便更好的操作
+ * 增加语言默认配置，用于其他语言未更新时，程序不会执行错误
+
+ * Automatically check for new program
+ * Add "Auto expand attribute" option
+ * Add default language configuration
+
+=== 修复/更新 Fix/Updated ===
+ * 更新种子右键菜单的操作方式，允许在当前行上右击时，直接选中当前行操作
+ * 修复种子状态显示方式，未开始下载的种子，不在显示到警告状态中
+ * 更新种子状态进度条颜色，修改为和当前状态文本颜色相同
+
+ * Right-click to checked current row
+ * Fix progress bar color display error
+
 == 2013-04-02 ==
 === 增加 Added ===
  * 在种子列表添加右键菜单
