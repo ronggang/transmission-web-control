@@ -21,11 +21,11 @@
 === 增加 Added ===
  * 在种子列表添加右键菜单
 
- * Add ContextMenu to torrent list
+ * Add ContextMenu to torrent list (see issue 22)
 
 === 修复 Fix ===
  * 修复端口测试时，开放和关闭的错误文字描述
  * 修复RPC 15 获取可用空间大小错误的BUG
 
- * Fix spelling mistake for "Test Port"
- * Fix free space size display error for RPC 15
+ * Fix spelling mistake for "Test Port" (see issue 23)
+ * Fix free space size display error for RPC 15 (see issue 24)
