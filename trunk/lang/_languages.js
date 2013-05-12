@@ -7,4 +7,5 @@ system.languages = {
 	,"es":"Español(Spanish)"
 	,"pl":"Polski(Polish)"
 	,"hu":"Magyarország(Hungarian)"
+  ,"ro":"Română (Romanian)"
 };
