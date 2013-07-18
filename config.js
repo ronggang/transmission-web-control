@@ -9,4 +9,6 @@ system.config = {
 	,defaultSelectNode: "actively"
 	// 是否自动展开种子详细信息
 	,autoExpandAttribute: false
+	// 默认语言
+	,defaultLang: ""
 };

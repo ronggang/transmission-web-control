@@ -172,6 +172,7 @@ system.lang = {
 				,"0":"星期天"
 			}
 			,"blocklist-enabled":"启用黑名单列表："
+			,"blocklist-size":"可用规则数量：%n"
 			,"seedRatioLimited":"当种子的分享率达到这个数时，自动停止做种："
 			,"queue-stalled-enabled":"当未完成的种子超过这个时间没有收到数据时，自动停止下载："
 			,"idle-seeding-limit-enabled":"当种子超过这个时间没有流量时，自动停止做种："
@@ -185,6 +186,7 @@ system.lang = {
 			,"button-reload":"刷新"
 			,"button-save":"保存"
 			,"button-close":"关闭"
+			,"button-update":"更新"
 		}
 		,"about":{
 			"infos":"程序设计、制作：栽培者<br/>声明：本程序使用的大部分图标来自网络，如有侵犯您的权益，请与本人联系删除。<br/>如您有什么意见建议，也欢迎与我联系。"

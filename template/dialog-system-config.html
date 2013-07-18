@@ -42,6 +42,14 @@
 					<tr>
 						<td colspan="2"><input id="config-dir" value="" type="text" readonly="readonly" disabled="disabled"/></td>
 					</tr>
+					<tr>
+						<td colspan="2"><hr/></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="right">
+							<span>Language：</span><select id="system-config-lang" value="" style="width:200px;"></select>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div title="网络" style="padding:5px;padding-right:10px;" class="dialog">
@@ -117,6 +125,12 @@
 							<input id="blocklist-url" type="text" enabledof="blocklist-enabled"/>
 						</td>
 					</tr>
+					<tr>
+						<td colspan="2">
+							<span id="system-config-blocklist-size" system-lang="dialog['system-config']['blocklist-size']"></span>
+							<button id="system-conifg-button-update-blocklist" system-lang="dialog['public']['button-update']" enabledof="blocklist-enabled"></button>
+						</td>
+					</tr>
 				</table>
 			</div>
 			<div title="带宽" style="padding:5px;padding-right:10px;" class="dialog">
@@ -181,21 +195,18 @@
 			</div>
 			<div title="时段" style="padding:5px;" class="dialog">
 				<fieldset>
-					<legend id="system-config-alt-speed">
-						<input id="alt-speed-enabled" type="checkbox" style="width:16px;"/><label id="system-config-alt-speed-enabled" for="alt-speed-enabled"></label>
-					</legend>
 					<table style="width:100%;">
 						<tr>
 							<td width="65%">
 								<span id="system-config-alt-speed-down"></span>
 							</td>
-							<td width="35%"><input id="alt-speed-down" value="" type="text" class="easyui-numberspinner" enabledof="alt-speed-enabled"/> KB/s</td>
+							<td width="35%"><input id="alt-speed-down" value="" type="text" class="easyui-numberspinner" _enabledof="alt-speed-enabled"/> KB/s</td>
 						</tr>
 						<tr>
 							<td>
 								<label id="system-config-alt-speed-up"></label>
 							</td>
-							<td><input id="alt-speed-up" value="" type="text" class="easyui-numberspinner" enabledof="alt-speed-enabled"/> KB/s</td>
+							<td><input id="alt-speed-up" value="" type="text" class="easyui-numberspinner" _enabledof="alt-speed-enabled"/> KB/s</td>
 						</tr>
 					</table>
 				</fieldset>
@@ -224,6 +235,7 @@
 						</tr>
 					</table>
 				</fieldset>
+				<input id="alt-speed-enabled" type="checkbox" style="width:16px;"/><label id="system-config-alt-speed-enabled" for="alt-speed-enabled"></label>
 			</div>
 		</div>
 	</div>  
@@ -240,6 +252,9 @@
 		$.each(title, function(i, item){
 			thisDialog.find("#system-config-"+item).html(system.lang.dialog.public[item]);
 		});
+
+		system.resetLangText(thisDialog);
+		thisDialog.find("#system-config-blocklist-size").html(system.lang.dialog['system-config']['blocklist-size'].replace("%n",system.serverConfig["blocklist-size"]));
 
 		var tabs = thisDialog.find("#system-config-tabs");
 		tabs.tabs();
@@ -270,6 +285,11 @@
 			}
 		});
 
+		// 设置语言
+		$.each(system.languages, function(key, value){
+			$("<option/>").text(value).val(key).attr("selected",(key==system.lang.name?true:false)).appendTo(thisDialog.find("#system-config-lang"));
+		});
+
 		title = ("config-dir,download-dir,incomplete-dir-enabled,cache-size-mb,rename-partial-files,download-dir-free-space,start-added-torrents"
 					+",download-queue-enabled,seed-queue-enabled,encryption,peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled"
 					+",alt-speed-enabled,alt-speed-down,alt-speed-up,test-port,port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled"
@@ -285,13 +305,13 @@
 		// 置换系统参数
 		title = ("incomplete-dir-enabled,rename-partial-files,start-added-torrents,download-queue-enabled,seed-queue-enabled"
 					+",peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled,alt-speed-enabled,idle-seeding-limit-enabled"
-					+",port-forwarding-enabled,utp-enabled,dht-enabled,utp-enabled,pex-enabled,blocklist-enabled,seedRatioLimited,queue-stalled-enabled"
+					+",port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled,blocklist-enabled,seedRatioLimited,queue-stalled-enabled"
 					+",alt-speed-time-enabled"
 					).split(",");
 		$.each(title, function(i, item){
 			thisDialog.find("#"+item).prop("checked",system.serverConfig[item])
 			.click(function(){
-				thisDialog.find("input[enabledof='"+this.id+"']").prop("disabled",!this.checked);
+				thisDialog.find("*[enabledof='"+this.id+"']").prop("disabled",!this.checked);
 			});
 		});
 		
@@ -317,8 +337,8 @@
 		thisDialog.find("#speed-limit-down").val(system.serverConfig["speed-limit-down"]).prop("disabled",!system.serverConfig["speed-limit-down-enabled"]);
 		thisDialog.find("#speed-limit-up").val(system.serverConfig["speed-limit-up"]).prop("disabled",!system.serverConfig["speed-limit-up-enabled"]);
 
-		thisDialog.find("#alt-speed-down").val(system.serverConfig["alt-speed-down"]).prop("disabled",!system.serverConfig["alt-speed-enabled"]);
-		thisDialog.find("#alt-speed-up").val(system.serverConfig["alt-speed-up"]).prop("disabled",!system.serverConfig["alt-speed-enabled"]);
+		thisDialog.find("#alt-speed-down").val(system.serverConfig["alt-speed-down"]);
+		thisDialog.find("#alt-speed-up").val(system.serverConfig["alt-speed-up"]);
 		
 		thisDialog.find("#alt-speed-time-begin").val(getHoursFromMinutes(system.serverConfig["alt-speed-time-begin"])).prop("disabled",!system.serverConfig["alt-speed-time-enabled"]);
 		thisDialog.find("#alt-speed-time-end").val(getHoursFromMinutes(system.serverConfig["alt-speed-time-end"])).prop("disabled",!system.serverConfig["alt-speed-time-enabled"]);
@@ -336,6 +356,8 @@
 		thisDialog.find("#peer-limit-per-torrent").val(system.serverConfig["peer-limit-per-torrent"]);
 		
 		thisDialog.find("#blocklist-url").val(system.serverConfig["blocklist-url"]).prop("disabled",!system.serverConfig["blocklist-enabled"]);
+		thisDialog.find("#system-conifg-button-update-blocklist").prop("disabled",!system.serverConfig["blocklist-enabled"]);
+
 		thisDialog.find("#seedRatioLimit").val(system.serverConfig["seedRatioLimit"]).prop("disabled",!system.serverConfig["seedRatioLimited"]);
 		thisDialog.find("#queue-stalled-minutes").val(system.serverConfig["queue-stalled-minutes"]).prop("disabled",!system.serverConfig["queue-stalled-enabled"]);
 		thisDialog.find("#idle-seeding-limit").val(system.serverConfig["idle-seeding-limit"]).prop("disabled",!system.serverConfig["idle-seeding-limit-enabled"]);
@@ -364,7 +386,7 @@
 		{
 			thisDialog.dialog("close");
 		});
-/**/	
+		/**/	
 		// 测试端口
 		thisDialog.find("#system-config-test-port").click(function()
 		{
@@ -503,6 +525,8 @@
 			{
 				config["download-dir"]=value;
 			}
+
+			var cuslang = thisDialog.find("#system-config-lang").val();
 			
 			// 如果参数有改变则保存
 			if (!$.isEmptyObject(config))
@@ -540,6 +564,10 @@
 										
 										system.downloadDir = data.arguments["download-dir"];
 										thisDialog.dialog("close");
+										if (cuslang!=system.lang.name)
+										{
+											system.changeLanguages(cuslang);
+										}
 									}
 								}
 							);
@@ -547,12 +575,30 @@
 					}
 				);
 			}
+			// 如果語言改變時，重新加載頁面
+			else if (cuslang!=system.lang.name)
+			{
+				system.changeLanguages(cuslang);
+			}
 			else
 			{
 				thisDialog.find("#system-config-nochange").fadeInAndOut();
 			}
 
 			//console.log("config:",config);
+		});
+
+		// 更新黑名單
+		thisDialog.find("#system-conifg-button-update-blocklist").click(function(){
+			var button = $(this);
+			button.prop("disabled",true);
+			transmission.updateBlocklist(function(data){
+				if (data.result=="success")
+				{
+					thisDialog.find("#system-config-blocklist-size").html(system.lang.dialog['system-config']['blocklist-size'].replace("%n",data.arguments["blocklist-size"]));
+				};
+				button.prop("disabled",false);
+			});
 		});
 	})($("#dialog-system-config"));
 </script>
