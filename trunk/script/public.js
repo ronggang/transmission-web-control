@@ -196,13 +196,13 @@ function formatSize(bytes,zeroToEmpty,type)
 // 根据分钟获取小时
 function getHoursFromMinutes(minutes)
 {
-	return (("00"+parseInt(minutes/60)).right(2)+":"+("00"+(minutes % 60)).right(2));
+	return (("00"+parseInt(minutes/60,10)).right(2)+":"+("00"+(minutes % 60)).right(2));
 }
 
 // 根据小时获取分钟
 function getMinutesFromHours(hours)
 {
-	return (parseInt(hours.split(":")[0])*60+parseInt(hours.split(":")[1]));
+	return (parseInt(hours.split(":")[0],10)*60+parseInt(hours.split(":")[1],10));
 }
 
 // 获取累计时间

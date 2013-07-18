@@ -172,6 +172,7 @@ system.lang = {
 				,"0":"星期天"
 			}
 			,"blocklist-enabled":"啟用黑名單列表："
+			,"blocklist-size":"可用規則數量：%n"
 			,"seedRatioLimited":"當種子的分享率達到這個數時，自動停止做種："
 			,"queue-stalled-enabled":"當未完成的種子超過這個時間沒有收到資料時，自動停止下載："
 			,"idle-seeding-limit-enabled":"當種子超過這個時間沒有流量時，自動停止做種："
@@ -185,6 +186,7 @@ system.lang = {
 			,"button-reload":"刷新"
 			,"button-save":"保存"
 			,"button-close":"關閉"
+			,"button-update":"更新"
 		}
 		,"about":{
 			"infos":"程式設計、製作：栽培者<br/>聲明：本程式使用的大部分圖示來自網路，如有侵犯您的權益，請與本人聯繫刪除。<br/>如您有什麼意見建議，也歡迎與我聯繫。"

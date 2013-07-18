@@ -436,6 +436,13 @@ transmission.torrents = {
 					continue;
 				}
 			}
+
+			// 已停止的種子不計算在內
+			if (item.status==transmission._status.stopped)
+			{
+				continue;
+			}
+
 			result.push(item.id);
 		}
 

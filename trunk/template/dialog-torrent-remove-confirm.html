@@ -27,7 +27,11 @@
 				thisDialog.dialog("close");
 				return;
 			}
+			var button = $(this);
+			var icon = button.linkbutton("options").iconCls;
+			button.linkbutton({disabled:true,iconCls:"icon-loading"});
 			transmission.removeTorrent(thisDialog.data("ids"),thisDialog.find("#remove-data")[0].checked,function(status){
+				button.linkbutton({iconCls:icon,disabled:false});
 				if (status=="success")
 				{
 					thisDialog.dialog("close");

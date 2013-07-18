@@ -285,6 +285,7 @@ var transmission = {
 			}
 		);
 	}
+	// 獲取指定目錄的大小
 	,getFreeSpace:function(path,callback)
 	{
 		this.exec({
@@ -292,6 +293,18 @@ var transmission = {
 				,arguments:{
 					"path":path
 				}
+			}
+			,function(data){
+				if (callback)
+					callback(data.result);
+			}
+		);
+	}
+	// 更新黑名單
+	,updateBlocklist:function(callback)
+	{
+		this.exec({
+				method:"blocklist-update"
 			}
 			,function(data){
 				if (callback)

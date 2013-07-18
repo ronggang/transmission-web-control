@@ -173,6 +173,7 @@ system.defaultLang = {
 				,"0":"Sunday"
 			}
 			,"blocklist-enabled":"Use blocklist"
+			,"blocklist-size":"Blocklist has %n rules."
 			,"seedRatioLimited":"The default seed ratio for torrents to use:"
 			,"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:"
 			,"idle-seeding-limit-enabled":"Torrents we're seeding will be stopped if they're idle for this long:"
@@ -186,6 +187,7 @@ system.defaultLang = {
 			,"button-reload":"Reload"
 			,"button-save":"Save"
 			,"button-close":"Close"
+			,"button-update":"Update"
 		}
 		,"about":{
 			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete."

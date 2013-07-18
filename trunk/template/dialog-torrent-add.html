@@ -74,13 +74,19 @@
 			var isnewdir = system.serverConfig["download-dir"]!=dir;
 			var isupload = thisDialog.find("#torrent_upload_file")[0].value!="";
 			var autostart = thisDialog.find("#chkautostart").prop("checked");
+
+			var button = $(this);
+			var icon = button.linkbutton("options").iconCls;
+			button.linkbutton({disabled:true,iconCls:"icon-loading"});
 			
 			if (thisDialog.find("#set-default-download-dir").prop("checked")&&isnewdir)
 			{
 				updateDownloadDir(dir,function(){
 					if (isupload)
 					{
-						uploadFile(!autostart);
+						uploadFile(!autostart,function(){
+							button.linkbutton({iconCls:icon,disabled:false});
+						});
 						thisDialog.dialog("close");
 					}
 				});
@@ -93,6 +99,7 @@
 				if (system.serverConfig["rpc-version"]>=15)
 				{
 					system.uploadTorrentFile("torrent_upload_file",dir,!autostart,function(){
+						button.linkbutton({iconCls:icon,disabled:false});
 						system.reloadData();
 					});
 					return;
@@ -104,6 +111,7 @@
 						if (isupload)
 						{
 							uploadFile(!autostart,function(){
+								button.linkbutton({iconCls:icon,disabled:false});
 								updateDownloadDir(olddir);
 							});
 							//thisDialog.dialog("close");

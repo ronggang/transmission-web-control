@@ -8,36 +8,36 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130423" />
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130423"/>  
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130423"/>
+	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130627" />
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130627"/>  
+   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130627"/>
 	<!-- 基础类库 -->
 	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130423"></script>
+	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130627"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130423"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130423"></script>
-	<script type="text/javascript" src="script/min/clientDevice.js?v=20130423"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130423"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130423"></script>	
-	<script type="text/javascript" src="script/min/system.js?v=20130423"></script>
-	<script type="text/javascript" src="config.js?v=20130423"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130627"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130627"></script>
+	<script type="text/javascript" src="script/min/clientDevice.js?v=20130627"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130627"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130627"></script>	
+	<script type="text/javascript" src="script/min/system.js?v=20130627"></script>
+	<script type="text/javascript" src="config.js?v=20130627"></script>
 </head>
 <body>
 	<div id="main" class="easyui-layout">
 		<div id="m_top" data-options="region:'north'">
 			<div class="easyui-layout" data-options="fit:true">
 				<div id="m_title_layout" data-options="region:'center'" border="0">
-					<img src="logo.png"/><span id="m_title" style="padding:10px;"></span>
+					<img src="logo.png"/><span id="m_title" style="padding:10px;display:none;"></span>
 					<span id="area-update-infos" style="display:none;">
 						<span id="msg-updateInfos" style="color:red;"></span>
 						<a id="button-download-update" href="https://code.google.com/p/transmission-control/wiki/ChangeLog" system-lang="public['text-have-update']" target="_blank"></a>
 					</span>
-					<div style="float:right;">Language：<select id="lang" value="" style="width:200px;"></select></div>
+					<div style="float:right;display:none;">Language：<select id="lang" value="" style="width:200px;"></select></div>
 				</div>
 				<div id="m_toolbar" data-options="region:'south',border:0">
 					<a id="toolbar_add_torrents" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true"></a>
