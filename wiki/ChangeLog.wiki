@@ -1,4 +1,17 @@
 #labels Featured
+== 2013-07-18 ==
+ * 参数设置增加“blocklist”更新功能；
+ * 添加默认语言本地保存参数配置；
+ * 种子上传时，添加按钮等待状态图标；
+ * 调整配置窗口的时段限速的设置；
+ * 更新种子详情加载方式，文件列表、服务器列表、用户列表不重新清空刷新，而改为更新的方式；
+ * 将语言设置移到“参数设置”里；
+ * 将版本号调整到“状态栏”显示；
+
+ * Add update "blocklist" button
+ * "Language Settings" has been adjusted to the "Config Dialog"
+ * Fix some bug
+
 == 2013-04-23 ==
  * 优化种子列表数据加载方式，仅更新当前有变化的数据，以减少对页面的操作。
 
