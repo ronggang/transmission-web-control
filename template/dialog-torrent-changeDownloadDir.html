@@ -21,6 +21,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td class="title"></td>
+					<td>
+						<input type="checkbox" id="recheck-data" style="width:20px;"/><label for="recheck-data" id="dialog-torrent-changeDownloadDir-recheck-data"></label>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2"><hr/></td>
 				</tr>
 			</table>
@@ -35,10 +41,12 @@
 </div>
 <script type="text/javascript">
 	(function(thisDialog){
-		var title = "old-download-dir,new-download-dir,move-data".split(",");
+		var title = "old-download-dir,new-download-dir,move-data,recheck-data".split(",");
 		var ids = thisDialog.data("ids");
+		var allIds = new Array();
 		var issimple = false;
 		var torrent = null;
+		var recheck = false;
 		if (typeof(ids)=="object")
 		{
 			torrent = transmission.torrents.all[ids[0]];
@@ -91,6 +99,8 @@
 			var movedata = thisDialog.find("#move-data").prop("checked");
 			var button = $(this);
 			var icon = button.linkbutton("options").iconCls;
+
+			recheck = thisDialog.find("#recheck-data").prop("checked");
 			
 			// 新目录
 			if (isnewdir)
@@ -115,6 +125,20 @@
 							{
 								system.getTorrentInfos(torrent.id);
 								torrent.downloadDir = dir;
+								if (recheck)
+								{
+									transmission.exec({
+											method:"torrent-verify"
+											,arguments:{
+												ids:torrent.id
+											}
+										}
+										,function(data){
+											system.control.torrentlist.datagrid("uncheckAll");
+											system.reloadTorrentBaseInfos();
+										}
+									);
+								}
 								thisDialog.dialog("close");
 							}
 							else
@@ -138,17 +162,33 @@
 
 		function doSetFolder(ids,count,button,icon,dir,movedata)
 		{
-			var id = ids;
+			//var id = ids;
 			var index = count-ids.length;
 			var id = ids.shift();
 			if (!id)
 			{
 				button.linkbutton({iconCls:icon,disabled:false});
 				system.control.torrentlist.datagrid("uncheckAll");
+
+				if (recheck)
+				{
+					transmission.exec({
+							method:"torrent-verify"
+							,arguments:{
+								ids:allIds
+							}
+						}
+						,function(data){
+							system.control.torrentlist.datagrid("uncheckAll");
+							system.reloadTorrentBaseInfos();
+						}
+					);
+				}
+
 				thisDialog.dialog("close");
 				return;
 			}
-
+			allIds.push(id);
 			var torrent = transmission.torrents.all[id];
 
 			thisDialog.find("#text-count").text("-> "+torrent.name + " [" + (index+1)+"/"+count + "] ");

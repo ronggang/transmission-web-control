@@ -39,6 +39,7 @@ system.lang = {
 		,"autoreload-enabled":"已启用"
 		,"search-prompt":"搜索本地种子"
 		,"tracker-replace":"替换 Tracker"
+		,"queue":"队列"
 		,"tip":{
 			"start":"重新开始已经选中的种子"
 			,"pause":"暂停已经选中的种子"
@@ -62,6 +63,14 @@ system.lang = {
 			,"ui-mobile":"切换到移动设备界面"
 			,"ui-original":"切换到原版界面"
 			,"more-peers":"获取更多Peer"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"队列排到最前"
+			,"move-up":"队列向上移动"
+			,"move-down":"队列向下移动"
+			,"move-bottom":"队列排到最后"
 		}
 	}
 	,"title":{
@@ -203,6 +212,7 @@ system.lang = {
 			,"new-download-dir":"新目录："
 			,"move-data":"同时移动数据（如果不钩选，则从新目录下查找文件）"
 			,"set-error":"设置目录失败！"
+			,"recheck-data":"设置完成后重新校验。"
 		}
 		,"system-replaceTracker":{
 			"title":"替换 Tracker 地址"

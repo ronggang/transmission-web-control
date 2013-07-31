@@ -37,7 +37,7 @@ system.lang = {
 		,"reload-time-unit":"s/time"
 		,"autoreload-disabled":"Disabled"
 		,"autoreload-enabled":"Enabled"
-		,"search-prompt":"Search Loacl Torrents"
+		,"search-prompt":"Search Local Torrents"
 		,"tracker-replace":"Replace trackers"
 		,"tip":{
 			"start":"Start the checked torrents"

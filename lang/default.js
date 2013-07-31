@@ -37,8 +37,9 @@ system.defaultLang = {
 		,"reload-time-unit":"s/time"
 		,"autoreload-disabled":"Disabled"
 		,"autoreload-enabled":"Enabled"
-		,"search-prompt":"Search Loacl Torrents"
+		,"search-prompt":"Search Local Torrents"
 		,"tracker-replace":"Replace trackers"
+		,"queue":"Queue"
 		,"tip":{
 			"start":"Start the checked torrents"
 			,"pause":"Pause the checked torrents"
@@ -62,6 +63,14 @@ system.defaultLang = {
 			,"ui-mobile":"Mobile UI"
 			,"ui-original":"Original UI"
 			,"more-peers":"Ask tracker for more peers"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"Move to top"
+			,"move-up":"Move up"
+			,"move-down":"Move down"
+			,"move-bottom":"Move to bottom"
 		}
 	}
 	,"title":{
@@ -204,6 +213,7 @@ system.defaultLang = {
 			,"new-download-dir":"New dir:"
 			,"move-data":"If checked, move from previous location. otherwise, search 'New dir' for files."
 			,"set-error":"set error!"
+			,"recheck-data":"Recheck data."
 		}
 		,"system-replaceTracker":{
 			"title":"Replace Trackers"
