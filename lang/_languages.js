@@ -9,4 +9,5 @@ system.languages = {
 	,"hu":"Magyarország(Hungarian)"
 	,"ro":"Română(Romanian)"
 	,"it":"Italiano(Italian)"
+	,"pt-BR":"Brazilian Portuguese"
 };

@@ -1,5 +1,5 @@
 // lang file
-system.lang = {
+system.defaultLang = {
 	"name":"en"
 	,"system":{
 		"title":"Transmission WEB Control"
@@ -39,6 +39,7 @@ system.lang = {
 		,"autoreload-enabled":"Enabled"
 		,"search-prompt":"Search Local Torrents"
 		,"tracker-replace":"Replace trackers"
+		,"queue":"Queue"
 		,"tip":{
 			"start":"Start the checked torrents"
 			,"pause":"Pause the checked torrents"
@@ -62,6 +63,14 @@ system.lang = {
 			,"ui-mobile":"Mobile UI"
 			,"ui-original":"Original UI"
 			,"more-peers":"Ask tracker for more peers"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"Move to top"
+			,"move-up":"Move up"
+			,"move-down":"Move down"
+			,"move-bottom":"Move to bottom"
 		}
 	}
 	,"title":{
@@ -173,6 +182,7 @@ system.lang = {
 				,"0":"Sunday"
 			}
 			,"blocklist-enabled":"Use blocklist"
+			,"blocklist-size":"Blocklist has %n rules."
 			,"seedRatioLimited":"The default seed ratio for torrents to use:"
 			,"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:"
 			,"idle-seeding-limit-enabled":"Torrents we're seeding will be stopped if they're idle for this long:"
@@ -186,6 +196,7 @@ system.lang = {
 			,"button-reload":"Reload"
 			,"button-save":"Save"
 			,"button-close":"Close"
+			,"button-update":"Update"
 		}
 		,"about":{
 			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete."
@@ -202,6 +213,7 @@ system.lang = {
 			,"new-download-dir":"New dir:"
 			,"move-data":"If checked, move from previous location. otherwise, search 'New dir' for files."
 			,"set-error":"set error!"
+			,"recheck-data":"Recheck data."
 		}
 		,"system-replaceTracker":{
 			"title":"Replace Trackers"
