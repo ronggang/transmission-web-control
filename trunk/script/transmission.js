@@ -294,9 +294,9 @@ var transmission = {
 					"path":path
 				}
 			}
-			,function(data){
+			,function(result){
 				if (callback)
-					callback(data.result);
+					callback(result);
 			}
 		);
 	}

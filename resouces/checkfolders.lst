@@ -1,4 +1,5 @@
 /usr/local/transmission/share/transmission/
+/usr/local/share/transmission/
 /usr/share/transmission/
 /opt/share/transmission/
 /ffp/share/transmission/

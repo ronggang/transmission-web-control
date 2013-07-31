@@ -273,3 +273,23 @@ html, body {
 .icon-download-update{
 	background:url('images/drive-download.png') no-repeat;
 }
+
+.icon-queue-move{
+	background:url('images/queue-move.png') no-repeat;
+}
+
+.icon-queue-move-top{
+	background:url('images/queue-move-top.png') no-repeat;
+}
+
+.icon-queue-move-up{
+	background:url('images/queue-move-up.png') no-repeat;
+}
+
+.icon-queue-move-down{
+	background:url('images/queue-move-down.png') no-repeat;
+}
+
+.icon-queue-move-bottom{
+	background:url('images/queue-move-bottom.png') no-repeat;
+}

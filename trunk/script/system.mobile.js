@@ -2,8 +2,8 @@
 	移动版
 */
 var system = {
-	version:"0.3 Beta"
-	,codeupdate:"20130311"
+	version:"0.5 Beta"
+	,codeupdate:"20130731"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -151,11 +151,11 @@ var system = {
 			system.downloadDir = result["download-dir"];
 
 			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
-			if (system.serverConfig["rpc-version"]>=15)
+			if (parseInt(system.serverConfig["rpc-version"])>=15)
 			{
 				transmission.getFreeSpace(system.downloadDir,function(result){
-					system.serverConfig["download-dir-free-space"] = result["size-bytes"];
-					system.showFreeSpace(result["size-bytes"]);
+					system.serverConfig["download-dir-free-space"] = result.arguments["size-bytes"];
+					system.showFreeSpace(result.arguments["size-bytes"]);
 				});
 			}
 			else

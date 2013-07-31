@@ -215,25 +215,28 @@ transmission.torrents = {
 
 			if (transmission.options.getFolders)
 			{
-				var folder = item.downloadDir.split("/");
-				var folderkey = "folders-";
-				for (var i in folder)
+				if (item.downloadDir)
 				{
-					var text = folder[i]; 
-					if (text=="")
+					var folder = item.downloadDir.split("/");
+					var folderkey = "folders-";
+					for (var i in folder)
 					{
-						continue;
+						var text = folder[i]; 
+						if (text=="")
+						{
+							continue;
+						}
+						folderkey += B64.encode(text);
+						var node = this.folders[folderkey];
+						if (!node)
+						{
+							node = {count:0,torrents:new Array(),size:0,nodeid:folderkey};
+						}
+						node.torrents.push(item);
+						node.count++;
+						node.size+=item.totalSize;
+						this.folders[folderkey] = node;
 					}
-					folderkey += B64.encode(text);
-					var node = this.folders[folderkey];
-					if (!node)
-					{
-						node = {count:0,torrents:new Array(),size:0,nodeid:folderkey};
-					}
-					node.torrents.push(item);
-					node.count++;
-					node.size+=item.totalSize;
-					this.folders[folderkey] = node;
 				}
 			}
 			

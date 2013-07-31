@@ -39,6 +39,7 @@ system.lang = {
 		,"autoreload-enabled":"已啟用"
 		,"search-prompt":"搜索本地種子"
 		,"tracker-replace":"替換 Tracker"
+		,"queue":"隊列"
 		,"tip":{
 			"start":"重新開始已經選中的種子"
 			,"pause":"暫停已經選中的種子"
@@ -62,6 +63,14 @@ system.lang = {
 			,"ui-mobile":"切换到移动设备界面"
 			,"ui-original":"切换到原版界面"
 			,"more-peers":"獲取更多Peer"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"隊列排到最前"
+			,"move-up":"隊列向上移動"
+			,"move-down":"隊列向下移動"
+			,"move-bottom":"隊列排到最後"
 		}
 	}
 	,"title":{
@@ -203,6 +212,7 @@ system.lang = {
 			,"new-download-dir":"新目錄："
 			,"move-data":"同時移動數據（如不鉤選，則從新目錄下查找資料）"
 			,"set-error":"设置目录失败！"
+			,"recheck-data":"設置完成後重新校驗。"
 		}
 		,"system-replaceTracker":{
 			"title":"替換 Tracker 地址"
