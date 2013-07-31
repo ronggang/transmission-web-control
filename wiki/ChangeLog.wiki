@@ -1,4 +1,15 @@
 #labels Featured
+== 2013-07-31 ==
+* 添加队列功能；
+* 在种子变更目录功能中添加“完成后重新校验”选项；
+* 修复删除种子时，列表无法刷新的BUG；
+* 修复RPC版本在15以上，无法显示空间大小的BUG；
+* 修复多次删除、添加种子时，导致显示不正常的BUG；
+
+* Add Queue
+* Fix RPC version 15(or higher) can not display free space bug
+* Fix some bug
+
 == 2013-07-18 ==
  * 参数设置增加“blocklist”更新功能；
  * 添加默认语言本地保存参数配置；
