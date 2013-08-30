@@ -10,4 +10,5 @@ system.languages = {
 	,"ro":"Română(Romanian)"
 	,"it":"Italiano(Italian)"
 	,"pt-BR":"Brazilian Portuguese"
+	,"nl":"Dutch"
 };

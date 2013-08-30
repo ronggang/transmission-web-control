@@ -6,6 +6,7 @@ var transmission = {
 	,host:""
 	,port:"9091"
 	,path:"/transmission/rpc"
+	,rpcpath:"../rpc"
 	,fullpath:""
 	,on:{
 		torrentCountChange:null
@@ -61,21 +62,18 @@ var transmission = {
 	,init:function(config,callback)
 	{
 		jQuery.extend(this, config);
-		if (this.islocal==true)
+
+		/*
+		if (this.fullpath=="")
 		{
-			this.fullpath = this.path;
-		}
-		else
+			this.fullpath = this.host + (this.port?":"+this.port:"") + this.path;
+		}*/
+		if (this.username&&this.password)
 		{
-			if (this.fullpath=="")
-			{
-				this.fullpath = this.host + (this.port?":"+this.port:"") + this.path;
-			}
-			if (this.username&&this.password)
-			{
-				this.headers["Authorization"] = "Basic "+(new Base64()).encode(this.username+":"+this.password);
-			}
+			this.headers["Authorization"] = "Basic "+(new Base64()).encode(this.username+":"+this.password);
 		}
+
+		this.fullpath = this.rpcpath;
 		this.getSessionId(this,callback);
 	}
 	,exec:function(config,callback,tags)
@@ -213,7 +211,7 @@ var transmission = {
 		);
 	}
 	// 从文件内容增加种子
-	,addTorrentFromFile:function(file,savePath,paused,callback)
+	,addTorrentFromFile:function(file,savePath,paused,callback,filecount)
 	{
 		var fileReader = new FileReader();
 
@@ -243,7 +241,7 @@ var transmission = {
 						case "success":
 							if (callback)
 							{
-								callback(data.arguments["torrent-added"]);
+								callback(data.arguments["torrent-added"],filecount);
 							}
 							break;
 						// 重复的种子

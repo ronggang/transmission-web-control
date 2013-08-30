@@ -30,6 +30,7 @@
 		</div>
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
+		<span id="dialog-torrent-add-queue" style="display:none;"></span>
 		<a id="torrent-button-ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="torrent-button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" href="javascript:void(0);">Cancel</a>  
 	</div>
@@ -66,13 +67,14 @@
 			var olddir = system.downloadDir;
 			var isnewdir = system.serverConfig["download-dir"]!=dir;
 			var autostart = thisDialog.find("#chkautostart").prop("checked");
+			var button = $(this);
 
 			if (dir=="")
 			{
 				return;
 			}
 
-			$(this).linkbutton({disabled:true});
+			button.linkbutton({disabled:true});
 			
 			if (thisDialog.find("#set-default-download-dir").prop("checked")&&isnewdir)
 			{
@@ -80,13 +82,22 @@
 			}
 
 			var files = thisDialog.data("files");
+			var uploaded = 0;
 			$.each(files,function(i,item){
 				transmission.addTorrentFromFile(item,dir,!autostart,function(){
+					uploaded++;
+					thisDialog.find("#dialog-torrent-add-queue").html(uploaded+"/"+files.length).show();
+					if (uploaded==files.length)
+					{
+						thisDialog.find("#dialog-torrent-add-queue").html("").hide();
+						button.linkbutton({disabled:false});
+						thisDialog.dialog("close");
+					}
 					system.reloadData();
 				});
 			});
-			$(this).linkbutton({disabled:false});
-			thisDialog.dialog("close");
+			
+			//thisDialog.dialog("close");
 		});
 
 		thisDialog.find("#torrent-button-cancel").click(function()

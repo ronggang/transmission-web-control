@@ -41,6 +41,7 @@
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<span id="dialog-torrent-add-nosource" style="display:none;"></span>
+		<span id="dialog-torrent-add-queue" style="display:none;"></span>
 		<a id="torrent-button-ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="torrent-button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" href="javascript:void(0);">Cancel</a>  
 	</div>
@@ -98,8 +99,17 @@
 				// rpc-version 版本为 15 起，停止使用原来的 ../upload 接口
 				if (system.serverConfig["rpc-version"]>=15)
 				{
-					system.uploadTorrentFile("torrent_upload_file",dir,!autostart,function(){
+					var uploaded = 0;
+					system.uploadTorrentFile("torrent_upload_file",dir,!autostart,function(data,count){
 						button.linkbutton({iconCls:icon,disabled:false});
+						uploaded++;
+						thisDialog.find("#dialog-torrent-add-queue").html(uploaded+"/"+count).show();
+						if (uploaded==count)
+						{
+							thisDialog.find("#dialog-torrent-add-queue").html("").hide();
+							thisDialog.dialog("close");
+						}
+						
 						system.reloadData();
 					});
 					return;
