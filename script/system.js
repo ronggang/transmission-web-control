@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
 	version:"0.5 Beta"
-	,codeupdate:"20130731"
+	,codeupdate:"20130830"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -977,24 +977,30 @@ var system = {
 					ids.push(rows[i].id);
 				}
 				if (ids.length==0) return;
-					
-				var dialog = $("#dialog-torrent-remove-confirm");
+								
+				var dialogId = "dialog-torrent-remove-confirm";
+				var dialog = $("#"+dialogId);
 				if (dialog.length)
 				{
 					dialog.dialog("open");
-					dialog.dialog("refresh");
+					dialog.dialog({content:system.templates[dialogId+".html"]});
 					dialog.data("ids",ids);
 					return;
 				}
-				$("<div/>").attr("id","dialog-torrent-remove-confirm").data("ids",ids).appendTo(document.body).dialog({  
+				$("<div/>").attr("id",dialogId).data("ids",ids).appendTo(document.body).dialog({  
 					title: system.lang.dialog["torrent-remove"].title,  
 					width: 350,  
 					height: 150,
 					resizable: false,
-					cache: true,
-					href: 'template/dialog-torrent-remove-confirm.html',  
+					cache: false,
+					content: "loading...",
 					modal: true
 				}); 
+
+				$.get("template/"+dialogId+".html?time="+(new Date()),function(data){
+					system.templates[dialogId+".html"] = data;
+					$("#"+dialogId).dialog({content:data});
+				});
 			});
 
 		// 修改选定的种子数据保存目录
@@ -1796,34 +1802,37 @@ var system = {
 		for (var index=rows.length-1;index>=0;index--)
 		{
 			var item = rows[index];
-			if (recently[item.id])
+			var data = datas[item.id];
+			if (!data)
 			{
-				var data = datas[item.id];
-
-				if (data)
-				{
-					this.control.torrentlist.datagrid("updateRow",{
-						index: index
-						,row:data
-					});
-					addedDatas[item.id] = item;
-				}
-				else
+				this.control.torrentlist.datagrid("deleteRow",index);
+			}
+			else if (recently[item.id])
+			{
+				this.control.torrentlist.datagrid("updateRow",{
+					index: index
+					,row:data
+				});
+				addedDatas[item.id] = item;
+			}
+			// 移除当前删除的种子
+			else if (transmission.torrents.removed)
+			{
+				if (transmission.torrents.removed.length>0&&$.inArray(item.id,transmission.torrents.removed)!=-1)
 				{
 					this.control.torrentlist.datagrid("deleteRow",index);
 				}
-				data = null;
-			}
-			// 移除当前删除的种子
-			else if (transmission.torrents.removed.length>0&&$.inArray(item.id,transmission.torrents.removed)!=-1)
-			{
-				this.control.torrentlist.datagrid("deleteRow",index);
+				else
+				{
+					addedDatas[item.id] = item;
+				}
 			}
 			else
 			{
 				addedDatas[item.id] = item;
 			}
 			item = null;
+			data = null;
 		}
 
 		
@@ -2481,7 +2490,7 @@ var system = {
 		{
 			var files = $("input[id='"+fileInputId+"']")[0].files;
 			$.each(files,function(index,file){
-				transmission.addTorrentFromFile(file,savePath,paused,callback);
+				transmission.addTorrentFromFile(file,savePath,paused,callback,files.length);
 			});
 		}
 		else
