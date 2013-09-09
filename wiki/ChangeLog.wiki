@@ -1,4 +1,33 @@
 #labels Featured
+== 2013-09-09 ==
+ * 修复 en.js 中 lang 对象写成 defaultLang 的BUG
+
+=== 桌面UI ===
+ * 添加扩展功能按钮；
+ * 添加“数据目录自动匹配”功能，可以简单的进行目录匹配
+ * 优化系统调用对话框方式，将原来每个创建对话框的代码统一为调用通用函数来创建对话框；
+ * 修复参数设置时，无法修改“加密方式”的BUG；
+ * 修复检测移动设备时脚本拼写错误； 
+ * 修改页面布局，将其他UI按钮移动到右上方； 
+
+=== 移动UI ===
+ * 修改页面框架结构，添加右边导航条；
+ * 添加“种子增加”功能；
+ * 添加是否自动刷新功能控制；
+ * 修改种子列表操作方式，当选中时，不刷新列表；
+ * 增加“原版UI”切换连接；
+ * jQuery 移动基础库升级为 1.9.1，移动框架升级为 1.3.2；
+
+=== Desktop UI ===
+ * Add "Automatically matches data directory"
+ * Fix some bug
+
+=== Mobile UI ===
+ * Add "Navigation"
+ * Add "Add torrent" feature
+ * Add "Auto reload" switch
+ * Fix some bug
+
 == 2013-08-30 ==
  * 修复上传种子文件完成时，没有自动关闭窗口的BUG (issue 49)；
  * 修改原来设置RPC路径的方式；
