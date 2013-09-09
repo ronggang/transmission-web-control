@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
-	version:"0.5 Beta"
-	,codeupdate:"20130830"
+	version:"0.6 Beta"
+	,codeupdate:"20130909"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -9,6 +9,15 @@ var system = {
 		,defaultSelectNode: null
 		,autoExpandAttribute: false
 		,defaultLang: ""
+	}
+	,storageKeys: {
+		dictionary: {
+			folders:"dictionary.folders"
+		}
+	}
+	// 本地数据存储
+	,dictionary:{
+		folders:null
 	}
 	,checkUpdateScript:"https://transmission-control.googlecode.com/svn/resouces/checkupdate.js"
 	,contextMenus:{
@@ -28,13 +37,8 @@ var system = {
 	}
 	,serverConfig:null
 	,serverSessionStats:null
-	,templates:{
-		"dialog-about.html":""
-		,"dialog-system-config.html":""
-		,"dialog-torrent-add.html":""
-		,"dialog-torrent-addfile.html":""
-		,"dialog-torrent-remove-confirm.html":""
-	}
+	// 对话框模板暂存列表
+	,templates:{}
 	,setlang:function(lang,callback)
 	{
 		// 如果未指定语言，则获取当前浏览器默认语言
@@ -359,27 +363,17 @@ var system = {
 		
 		if (files.length>0)
 		{
-			var dialog = $("#dialog-torrent-addfile");
-			if (dialog.length)
-			{
-				dialog.data("files",files);
-				dialog.dialog("open");
-				dialog.dialog({content:system.templates["dialog-torrent-addfile.html"]});
-				return;
-			}
-			$("<div/>").attr("id","dialog-torrent-addfile").data("files",files).appendTo(document.body).dialog({  
-				title: system.lang.toolbar["add-torrent"],
-				width: 620,
-				height: 300,
-				resizable: true,
-				cache: false,
-				content: "loading...",
-				modal: true
-			});
-
-			$.get("template/dialog-torrent-addfile.html",function(data){
-				system.templates["dialog-torrent-addfile.html"] = data;
-				$("#dialog-torrent-addfile").dialog({content:data});
+			system.openDialogFromTemplate({
+				id: "dialog-torrent-addfile",
+				options: {
+					title: system.lang.toolbar["add-torrent"],  
+					width: 620,
+					height: 300,
+					resizable: true
+				},
+				datas: {
+					"files": files
+				}
 			});
 		}
 	}
@@ -698,7 +692,6 @@ var system = {
 	}
 	,checkTorrentRow:function(rowIndex, rowData)
 	{
-		
 		if (rowIndex=="all")
 		{
 			this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:rowData});
@@ -755,34 +748,6 @@ var system = {
 	// 初始化系统工具栏
 	,initToolbar:function()
 	{
-		// 关于
-		this.panel.toolbar.find("#toolbar_about")
-			.linkbutton({text:this.lang.toolbar["about"]})
-			.attr("title",this.lang.toolbar.tip["about"])
-			.click(function(){
-				var dialog = $("#dialog-about");
-				if (dialog.length)
-				{
-					dialog.dialog("open");
-					dialog.dialog({content:system.templates["dialog-about.html"]});
-					return;
-				}
-
-				$("<div/>").attr("id","dialog-about").appendTo(document.body).dialog({
-					title: system.lang.toolbar["about"],
-					width: 340,
-					height: 210,
-					resizable: true,
-					cache: false,
-					content: "loading...",
-					modal: true
-				});
-				$.get("template/dialog-about.html?time="+(new Date()),function(data){
-					system.templates["dialog-about.html"] = data;
-					$("#dialog-about").dialog({content:data});
-				});
-			});
-		
 		// 刷新时间
 		this.panel.toolbar.find("#toolbar_label_reload_time").html(this.lang.toolbar["reload-time"]);
 		this.panel.toolbar.find("#toolbar_label_reload_time_unit").html(this.lang.toolbar["reload-time-unit"]);
@@ -830,26 +795,14 @@ var system = {
 			.linkbutton({text:this.lang.toolbar["add-torrent"],disabled:false})
 			.attr("title",this.lang.toolbar.tip["add-torrent"])
 			.click(function(){
-				var dialog = $("#dialog-torrent-add");
-				if (dialog.length)
-				{
-					dialog.dialog("open");
-					dialog.dialog({content:system.templates["dialog-torrent-add.html"]});
-					return;
-				}
-
-				$("<div/>").attr("id","dialog-torrent-add").appendTo(document.body).dialog({
-					title: system.lang.toolbar["add-torrent"],
-					width: 620,
-					height: 400,
-					resizable: true,
-					cache: false,
-					content: "loading...",
-					modal: true
-				});
-				$.get("template/dialog-torrent-add.html?time="+(new Date()),function(data){
-					system.templates["dialog-torrent-add.html"] = data;
-					$("#dialog-torrent-add").dialog({content:data});
+				system.openDialogFromTemplate({
+					id: "dialog-torrent-add",
+					options: {
+						title: system.lang.toolbar["add-torrent"],  
+						width: 620,
+						height: 400,
+						resizable: true
+					}
 				});
 			});
 		
@@ -880,34 +833,6 @@ var system = {
 				transmission.exec({method:"torrent-stop"},function(data){
 					button.linkbutton({iconCls:icon,disabled:false});
 					button = null;
-				});
-			});
-
-		// 替換 Tracker
-		this.panel.toolbar.find("#toolbar_tracker_replace")
-			.attr("title",this.lang.toolbar.tip["tracker-replace"])
-			.click(function()
-			{
-				var dialog = $("#dialog-system-replaceTracker");
-				if (dialog.length)
-				{
-					dialog.dialog("open");
-					dialog.dialog({content:system.templates["dialog-system-replaceTracker.html"]});
-					return;
-				}
-
-				$("<div/>").attr("id","dialog-system-replaceTracker").appendTo(document.body).dialog({
-					title: system.lang.dialog["system-replaceTracker"].title,
-					width: 600,
-					height: 220,
-					resizable: true,
-					cache: false,
-					content: "loading...",
-					modal: true
-				});
-				$.get("template/dialog-system-replaceTracker.html?time="+(new Date()),function(data){
-					system.templates["dialog-system-replaceTracker.html"] = data;
-					$("#dialog-system-replaceTracker").dialog({content:data});
 				});
 			});
 
@@ -977,29 +902,17 @@ var system = {
 					ids.push(rows[i].id);
 				}
 				if (ids.length==0) return;
-								
-				var dialogId = "dialog-torrent-remove-confirm";
-				var dialog = $("#"+dialogId);
-				if (dialog.length)
-				{
-					dialog.dialog("open");
-					dialog.dialog({content:system.templates[dialogId+".html"]});
-					dialog.data("ids",ids);
-					return;
-				}
-				$("<div/>").attr("id",dialogId).data("ids",ids).appendTo(document.body).dialog({  
-					title: system.lang.dialog["torrent-remove"].title,  
-					width: 350,  
-					height: 150,
-					resizable: false,
-					cache: false,
-					content: "loading...",
-					modal: true
-				}); 
-
-				$.get("template/"+dialogId+".html?time="+(new Date()),function(data){
-					system.templates[dialogId+".html"] = data;
-					$("#"+dialogId).dialog({content:data});
+				
+				system.openDialogFromTemplate({
+					id: "dialog-torrent-remove-confirm",
+					options: {
+						title: system.lang.dialog["torrent-remove"].title,  
+						width: 350,
+						height: 150
+					},
+					datas: {
+						"ids": ids
+					}
 				});
 			});
 
@@ -1016,32 +929,17 @@ var system = {
 				ids.push(rows[i].id);
 			}
 			if (ids.length==0) return;
-				
 			
-			var dialog = $("#dialog-torrent-changeDownloadDir");
-			if (dialog.length)
-			{
-				dialog.dialog("open");
-				dialog.data("ids",ids);
-				dialog.dialog({content:system.templates["dialog-torrent-changeDownloadDir.html"]});
-				
-				return;
-			}
-			
-			$("<div/>").attr("id","dialog-torrent-changeDownloadDir").appendTo(document.body).dialog({  
-				title: system.lang.dialog["torrent-changeDownloadDir"].title,  
-				width: 520,
-				height: 200,
-				resizable: false,
-				cache: true,
-				content:"loading...",  
-				modal: true
-			});
-			
-			$.get("template/dialog-torrent-changeDownloadDir.html?time="+(new Date()),function(data){
-				system.templates["dialog-torrent-changeDownloadDir.html"] = data;
-				$("#dialog-torrent-changeDownloadDir").data("ids",ids);
-				$("#dialog-torrent-changeDownloadDir").dialog({content:data});
+			system.openDialogFromTemplate({
+				id: "dialog-torrent-changeDownloadDir",
+				options: {
+					title: system.lang.dialog["torrent-changeDownloadDir"].title,  
+					width: 520,
+					height: 200
+				},
+				datas: {
+					"ids": ids
+				}
 			});
 		});
 		
@@ -1087,26 +985,14 @@ var system = {
 			.linkbutton()
 			.attr("title",this.lang.toolbar.tip["system-config"])
 			.click(function(){
-				var dialog = $("#dialog-system-config");
-				if (dialog.length)
-				{
-					dialog.dialog("open");
-					dialog.dialog({content:system.templates["dialog-system-config.html"]});
-					return;
-				}
-
-				$("<div/>").attr("id","dialog-system-config").appendTo(document.body).dialog({
-					title: system.lang.toolbar["system-config"],
-					width: 620,
-					height: 440,
-					resizable: true,
-					cache: false,
-					content: "loading...",
-					modal: true
-				});
-				$.get("template/dialog-system-config.html?time="+(new Date()),function(data){
-					system.templates["dialog-system-config.html"] = data;
-					$("#dialog-system-config").dialog({content:data});
+				system.openDialogFromTemplate({
+					id: "dialog-system-config",
+					options: {
+						title: system.lang.toolbar["system-config"],  
+						width: 620,
+						height: 440,
+						resizable: true
+					}
 				});
 			});
 		
@@ -1880,6 +1766,8 @@ var system = {
 			break;
 		}
 
+		tip+="\n"+torrent.downloadDir;
+
 		if (torrent.warning)
 		{
 			className = "iconlabel icon-warning-type1";
@@ -2476,11 +2364,20 @@ var system = {
 		{
 			this.config = $.extend(this.config, config);;
 		}
+
+		for (var key in this.storageKeys.dictionary)
+		{
+			this.dictionary[key] = this.getStorageData(this.storageKeys.dictionary[key]);
+		}
 	}
 	// 在 cookies 里保存参数
 	,saveConfig:function()
 	{
 		cookies.set("transmission-web-control",this.config,100);
+		for (var key in this.storageKeys.dictionary)
+		{
+			this.setStorageData(this.storageKeys.dictionary[key],this.dictionary[key]);
+		}
 	}
 	// 上传种子文件
 	,uploadTorrentFile: function(fileInputId,savePath,paused,callback)
@@ -2518,6 +2415,71 @@ var system = {
 		this.config.defaultLang = lang;
 		this.saveConfig();
 		location.href = "?lang="+lang;
+	}
+	,getStorageData: function(key,defaultValue)
+	{
+		return (window.localStorage[key]==null?defaultValue:window.localStorage[key]);
+	}
+	,setStorageData: function(key,value)
+	{
+		window.localStorage[key] = value;
+	}
+	// 打开指定的模板窗口
+	,openDialogFromTemplate: function(config)
+	{
+		var defaultConfig = {
+			id: null,  
+			options: null,
+			datas: null
+		};
+		config = $.extend(true,defaultConfig, config);
+
+		if (config.id==null) return;
+
+		var dialogId = config.id;
+		var options = config.options;
+		var datas = config.datas;
+
+		var dialog = $("#"+dialogId);
+		if (dialog.length)
+		{
+			dialog.dialog("open");
+			if (datas)
+			{
+				$.each(datas,function(key,value){
+					dialog.data(key,value);
+				});
+			}
+			
+			
+			dialog.dialog({content:system.templates[dialogId]});
+			
+			return;
+		}
+		var defaultOptions = {
+			title: "",  
+			width: 100,
+			height: 100,
+			resizable: false,
+			cache: true,
+			content:"loading...",  
+			modal: true
+		};
+		options = $.extend(true,defaultOptions, options);
+
+		$("<div/>").attr("id",dialogId).appendTo(document.body).dialog(options);
+		
+		$.get("template/"+dialogId+".html?time="+(new Date()),function(data){
+			system.templates[dialogId] = data;
+			if (datas)
+			{
+				$.each(datas,function(key,value){
+					$("#"+dialogId).data(key,value);
+				});
+			}
+			
+			$("#"+dialogId).dialog({content:data});
+		});
 	}
 	// 调试信息
 	,debug:function(label,text){

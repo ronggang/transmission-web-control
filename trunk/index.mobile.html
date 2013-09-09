@@ -9,29 +9,29 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control Mobile</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.mobile.css?v=20130731" />
-   <link rel="stylesheet" type="text/css" href="script/jquery/mobile/themes/default/jquery.mobile-1.3.0-beta.1.min.css?v=20130731"/>  
+	<link rel="stylesheet" type="text/css" href="style/base.mobile.css?v=20130909" />
+   <link rel="stylesheet" type="text/css" href="script/jquery/mobile/jquery.mobile-1.3.2.min.css?v=20130909"/>  
 	<!-- 基础类库 -->
-	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="script/jquery/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/jquery/mobile/jquery.mobile-1.3.0-beta.1.min.js?v=20130731"></script>
+	<script type="text/javascript" src="script/jquery/mobile/jquery.mobile-1.3.2.min.js?v=20130909"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130731"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130731"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130731"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130731"></script>
-	<script type="text/javascript" src="script/min/system.mobile.js?v=20130731"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130909"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130909"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130909"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130909"></script>
+	<script type="text/javascript" src="script/min/system.mobile.js?v=20130909"></script>
 </head>
 <body>
 	<!-- Home -->
 	<div data-role="page" id="main-page">
 		<div data-role="header" data-theme="b" data-position="fixed" data-tap-toggle="false">
 			<h1 id="page-title">Transmission Web Control Mobile</h1>
-			<a href="#" onclick="system.showContent('home');" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
-			<a href="#" onclick="location.href = 'index.html?devicetype=computer';" data-icon="custom" id="icon-computer" data-iconpos="notext">Computer</a>
+			<a href="#" data-icon="home" data-iconpos="notext" data-direction="reverse" onclick="system.showContent('home');"></a>
+			<a href="#navPanel" data-icon="bars" data-iconpos="notext" data-direction="reverse"></a>
 		</div>
 		<div data-role="header"  data-theme="z" data-position="fixed" data-tap-toggle="false" data-fullscreen="true">
 			<div id="torrent-page-bar" class="page-bar" style="display:none;">
@@ -40,7 +40,44 @@
 				<a id="page-next" href="javascript:void(0);" class="iconlabel icon-arrow-right"></a>
 			</div>
 		</div>
+		<!-- 导航栏 -->
+		<div data-role="panel" id="navPanel" data-display="overlay" data-position="right">
+			<ul data-role="listview" data-divider-theme="a" data-theme="c">
+				<li data-role='list-divider'><span system-lang="title.left"></span></li>
+				<li data-icon="plus"><a href="#" onclick="showAddTorrent();"><span system-lang="toolbar['add-torrent']"></span></a></li>
+				<li data-icon="gear" style="display:none;"><a href="#"><span system-lang="toolbar['system-config']"></span></a></li>
+			</ul>
+			<ul data-role="listview" data-divider-theme="e" data-theme="e" data-icon="false" style="margin-top:15px;">
+				<li data-role='list-divider' style="padding:0px 10px;">
+					<table style="width:100%;">
+						<tr>
+							<td style="width:70%;"><span system-lang="toolbar['reload-time']"></span></td>
+							<td style="width:30%;">
+								<select name="autoreload" id="autoreload" data-role="slider" data-mini="true">
+									<option value="false" system-lang="toolbar['autoreload-disabled']">Off</option>
+									<option value="true" system-lang="toolbar['autoreload-enabled']">On</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><input type="range" name="auto-reload-time" id="auto-reload-time" value="1" min="1" max="100"/></td>
+							<td><label for="auto-reload-time" system-lang="toolbar['reload-time-unit']"></label></td>
+						</tr>
+					</table>
+				</li>
+			</ul>
+			<ul data-role="listview" data-divider-theme="a" data-theme="c" data-icon="false" style="margin-top:15px;">
+				<li data-role='list-divider'>UI</li>
+				<li><a href="#" onclick="location.href = 'index.html?devicetype=computer';"><img src="style/images/computer.png" class="ui-li-icon"/><span system-lang="toolbar['ui-computer']"></span></a></li>
+				<li><a href="#" onclick="location.href = 'index.original.html';"><img src="style/images/transmission.png" class="ui-li-icon"/><span system-lang="toolbar['ui-original']"></span></a></li>
+			</ul>
+			<ul data-role="listview" data-divider-theme="a" data-theme="c" data-icon="false" style="margin-top:15px;">
+				<li data-role='list-divider'><span system-lang="title.status"></span></li>
+				<li id="status" style="display:none;"><span id="status-msg"></span><span id="status-count" class="ui-li-count">0</span></li>
+			</ul>
+		</div>
 		<div data-role="content" style="padding:0px;">
+			<!-- 种子分类列表 -->
 			<div id="content-home" style="padding:15px;">
 				<ul data-role="listview" data-count-theme="e">
 					<li><a href="#" onclick="system.showContent({page:'torrent-list',type:'torrent-list',data:'all'});"><span system-lang="tree.all"></span><span id="count-all" class="ui-li-count" style="display:none;">0</span></a></li>
@@ -53,9 +90,27 @@
 					<li><a href="" onclick="system.showContent({page:'torrent-list',type:'torrent-list',data:'warning'});"><span system-lang="tree.warning"></span><span id="count-warning" class="ui-li-count" style="display:none;">0</span></a></li>
 				</ul>
 			</div>
+			<!-- 种子明细列表 -->
 			<div id="content-torrent-list" style="padding:0px;">
 				<div data-role="controlgroup"  style="margin:0px;width:100%;overflow: hidden;" id="torrent-list" >
 				</div>
+			</div>
+			<!-- 添加种子 -->
+			<div id="content-add-torrent" style="padding:15px;display:none;">
+				<label for="torrent-url" system-lang="dialog['torrent-add']['torrent-url']"></label>
+				<textarea id="torrent-url" style="height:130px;"></textarea>
+				<label for="download-dir" system-lang="dialog['torrent-add']['download-dir']"></label>
+				<input id="download-dir"/>
+				<div data-role="fieldcontain">
+					<label for="autostart" system-lang="dialog['torrent-add']['autostart']"></label>
+					<select name="autostart" id="autostart" data-role="slider">
+						<option value="false"></option>
+						<option value="true"></option>
+					</select>
+				</div>
+				<span system-lang="dialog['torrent-add']['tip-torrent-url']"></span><br/>
+				<button onclick="addUrl();"><label system-lang="dialog['public']['button-ok']"></label></button>
+				<button onclick="system.showContent('home');"><label system-lang="dialog['public']['button-cancel']"></label></button>
 			</div>
 		</div>
 		<div data-theme="c" data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -74,4 +129,76 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	function showAddTorrent()
+	{
+		var autostart = system.serverConfig['start-added-torrents'];
+		$("#autostart").val(autostart.toString()).slider('refresh');
+		$('#download-dir').val(system.downloadDir);
+		system.showContent('add-torrent');
+		$("#navPanel").panel("close");
+	}
+	function addUrl()
+	{
+		var urls = $("#torrent-url").val();
+		if (urls=="")
+		{
+			$("#torrent-url").fadeOut("fast").fadeIn("fast").fadeOut("fast").fadeIn("fast").select();
+			return;
+		}
+		urls = urls.split("\n");
+		var autostart = ($("#autostart").val()=="true"?true:false);
+		system.addTorrentsToServer(urls,urls.length,autostart,$("#download-dir").val(),function(){
+			$("#status").hide();
+			$("#navPanel").panel("close");
+		});
+		$("#torrent-url").val("");
+		system.showContent('home');
+		$("#navPanel").panel("open");
+	}
+
+	(function(){
+		$("#navPanel").on("panelbeforeopen", function(event, ui) {
+			$("#autoreload").val(system.config.autoReload.toString()).slider('refresh');
+			$("#auto-reload-time").val(system.config.reloadStep/1000);
+			if (system.config.autoReload)
+			{
+				$("#auto-reload-time").slider("enable");
+			}
+			else
+			{
+				$("#auto-reload-time").slider("disable");
+			}
+		});
+
+		$("#autoreload").change(function(){
+			saveConfig();
+		});
+
+		$("#auto-reload-time").on("slidestop", function(event, ui) {
+			saveConfig();
+		});
+
+		function saveConfig()
+		{
+			system.config.autoReload = ($("#autoreload").val()=="true"?true:false);
+			var value = $("#auto-reload-time").val();
+			if ($.isNumeric(value))
+			{
+				system.config.reloadStep = value * 1000;
+			}
+			if (system.config.autoReload)
+			{
+				system.reloadData();
+				$("#auto-reload-time").slider("enable");
+			}
+			else
+			{
+				clearTimeout(system.autoReloadTimer);
+				$("#auto-reload-time").slider("disable");
+			}
+			system.saveConfig();
+		};
+	})();
+</script>
 </html>

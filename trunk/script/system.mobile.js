@@ -3,7 +3,7 @@
 */
 var system = {
 	version:"0.5 Beta"
-	,codeupdate:"20130731"
+	,codeupdate:"20130909"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -26,6 +26,8 @@ var system = {
 	}
 	,serverConfig:null
 	,serverSessionStats:null
+	// 种子列表已选中
+	,torrentListChecked:false
 	,debug:function(label,text){
 		if (window.console)
 		{
@@ -40,7 +42,10 @@ var system = {
 		// 如果未指定语言，则获取当前浏览器默认语言
 		if (!lang)
 		{
-			lang = navigator.language||navigator.browserLanguage;
+			if (this.config.defaultLang)
+				lang = this.config.defaultLang;
+			else
+				lang = navigator.language||navigator.browserLanguage;
 			//this.debug("lang",lang);
 		}
 		if (!lang) lang="zh-CN";
@@ -59,6 +64,7 @@ var system = {
 		}
 
 		$.getScript("lang/"+lang+".js",function(){
+			system.lang = $.extend(true,system.defaultLang, system.lang);
 			system.resetLangText();
 			if (callback)
 				callback();
@@ -321,6 +327,7 @@ var system = {
 		this.reloading=false;
 		this.reloadTorrentBaseInfos();
 	}
+	// 显示指定的内容
 	,showContent:function(target)
 	{
 		var _default = {
@@ -329,6 +336,7 @@ var system = {
 			,data:""
 			,title:this.lang.system.title
 			,reload:false
+			,callback:null
 		};
 		var config = null;
 		if (typeof(target)=="string")
@@ -348,7 +356,8 @@ var system = {
 			$("#content-"+this.currentContentPage).hide();
 		}
 		$("#torrent-page-bar").hide();
-		$("#torrent-toolbar").hide();
+		if (!this.torrentListChecked)
+			$("#torrent-toolbar").hide();
 		this.currentContentPage = config.page;
 		switch (config.type)
 		{
@@ -360,6 +369,8 @@ var system = {
 		$("#page-title").text(config.title);
 		config.reload = false;
 		this.currentContentConfig = config;
+		if (config.callback)
+			config.callback();
 	}
 	,getTorrentFromType:function(type)
 	{
@@ -420,6 +431,8 @@ var system = {
 	// 加载种子列表
 	,loadTorrentToList:function(config)
 	{
+		// 如果有种子选中，则不重新加载列表
+		if (this.torrentListChecked) return;
 		if (!transmission.torrents.all)
 		{
 			return;
@@ -601,10 +614,12 @@ var system = {
 		
 		if (checked.length>0)
 		{
+			this.torrentListChecked = true;
 			$("#torrent-toolbar").show();
 		}
 		else
 		{
+			this.torrentListChecked = false;
 			$("#torrent-toolbar").hide();
 		}
 		this.currentTorrentId = item.id;
@@ -778,6 +793,40 @@ var system = {
 				}
 			);
 		}
+	}
+	// 增加种子
+	,addTorrentsToServer:function(urls,count,autostart,savepath,callback)
+	{
+		//this.config.autoReload = false;
+		var index = count-urls.length;
+		var url = urls.shift();
+		if (!url)
+		{
+			this.showStatus(this.lang.system.status.queuefinish);
+			//this.config.autoReload = true;
+			this.getServerStatus();
+			if (callback)
+				callback();
+			return;
+		}
+		this.showStatus(this.lang.system.status.queue,(count-index+1));
+		transmission.addTorrentFromUrl(url,savepath,autostart,function(data){
+			system.addTorrentsToServer(urls,count,autostart,savepath,callback);
+		});
+	}
+	,showStatus:function(msg,count)
+	{
+		if (!msg)
+		{
+			$("#status").hide();
+			return;
+		}
+		$("#status").show();
+		$("#status-msg").html(msg);
+		if ($.isNumeric(count))
+			$("#status-count").html(count).show();
+		else
+			$("#status-count").hide();
 	}
 };
 

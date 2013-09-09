@@ -17,7 +17,7 @@ html, body {
 	height:84px;
 }
 #m_title_layout{
-	 height:47px;line-height:47px;overflow:hidden;   
+	 height:47px;overflow:hidden;/*line-height:47px;*/
 }
 #m_toolbar{
 	height:28px;padding:1px;
@@ -292,4 +292,16 @@ html, body {
 
 .icon-queue-move-bottom{
 	background:url('images/queue-move-bottom.png') no-repeat;
+}
+
+.icon-plugin{
+	background:url('images/plugin.png') no-repeat;
+}
+
+.icon-target{
+	background:url('images/target.png') no-repeat;
+}
+
+.icon-ignore{
+	background:url('images/ignore.png') no-repeat;
 }
