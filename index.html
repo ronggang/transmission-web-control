@@ -8,24 +8,25 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130830" />
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130830"/>  
-   <link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130830"/>
+	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130906.4" />
+	<link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130906.4"/>  
+	<link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130906.4"/>
 	<!-- 基础类库 -->
 	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130830"></script>
+	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130906.4"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130830"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130830"></script>
-	<script type="text/javascript" src="script/min/clientDevice.js?v=20130830"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130830"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130830"></script>	
-	<script type="text/javascript" src="script/min/system.js?v=20130830"></script>
-	<script type="text/javascript" src="config.js?v=20130830"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/min/clientDevice.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130906.4"></script>	
+	<script type="text/javascript" src="script/min/system.js?v=20130906.4"></script>
+	<script type="text/javascript" src="config.js?v=20130906.4"></script>
+	<script type="text/javascript" src="plugin.js?v=20130906.4"></script>
 </head>
 <body>
 	<div id="main" class="easyui-layout">
@@ -37,6 +38,16 @@
 						<span id="msg-updateInfos" style="color:red;"></span>
 						<a id="button-download-update" href="https://code.google.com/p/transmission-control/wiki/ChangeLog" system-lang="public['text-have-update']" target="_blank"></a>
 					</span>
+					<div style="float:right;padding:13px;">
+						<!-- 切换到移动版 -->
+						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"><label system-lang="toolbar['ui-mobile']"></label></a>
+						<span class="button-split">|</span>
+						<!-- 切换到原版 -->
+						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><label system-lang="toolbar['ui-original']"></label></a>
+						<span class="button-split">|</span>
+						<!-- 关于 -->
+						<a id="toolbar_about" href="javascript:void(0);" onclick="javascript:system.openDialogFromTemplate({id: 'dialog-about',options: {title: system.lang.toolbar['about'],width: 340,height: 220}});" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true" system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>
+					</div>
 					<div style="float:right;display:none;">Language：<select id="lang" value="" style="width:200px;"></select></div>
 				</div>
 				<!-- 工具栏 -->
@@ -51,12 +62,8 @@
 					<!-- 设置 -->
 					<a id="toolbar_config" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-system-config',plain:true"></a>
 					<span class="button-split">|</span>
-					<!-- 批量替换 Tracker -->
-					<a id="toolbar_tracker_replace" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-tracker-replace',plain:true"></a>
-					<!-- 切换到移动版 -->
-					<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"></a>
-					<!-- 切换到原版 -->
-					<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"></a>
+					<!-- 扩展功能/插件 -->
+					<a id="toolbar_plugin" href="#" class="easyui-menubutton" data-options="menu:'#menu-plugin',iconCls:'icon-plugin',disabled:false" system-tip-lang="toolbar.plugin"></a>
 					<span class="button-split">|</span>
 					<!-- 开始 -->
 					<a id="toolbar_start" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-one',plain:true,disabled:true"></a>
@@ -83,15 +90,14 @@
 					<input id="toolbar_reload_time" style="width:50px;text-align:center;" class="easyui-numberspinner"/>
 					<label id="toolbar_label_reload_time_unit"></label>
 					<a id="toolbar_autoreload" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true"></a>
-					<span id="toolbar_right_area" style="float:right;">
-						<input id="toolbar_search" type="text" class="easyui-searchbox" style="width:150px;"/>
-						<span class="button-split">|</span>
-						<a id="toolbar_about" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true"></a>
+					<span id="toolbar_right_area" style="float:right;padding:2px;">
+						<!-- 搜索 -->
+						<input id="toolbar_search" type="text" class="easyui-searchbox" style="width:200px;"/>
 					</span>
 				</div>
 			</div>
 		</div>
-	   <div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
+		<div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
 			<div id="layout_left" class="easyui-layout" data-options="fit:true">
 				<div id="m_left" data-options="region:'center',border:0"></div>
 				<div id="m_status" title="status" data-options="region:'south',split:true,border:0,collapsed:true">
@@ -99,12 +105,12 @@
 				</div>
 			</div>
 		</div>
-	   	<div id="m_body" title="." data-options="region:'center',border:0" >
-		   	<div id="layout_body"  class="easyui-layout" data-options="fit:true">
+			<div id="m_body" title="." data-options="region:'center',border:0" >
+				<div id="layout_body"  class="easyui-layout" data-options="fit:true">
 					<div id="m_list" data-options="region:'center',border:0"></div>
 					<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'template/torrent-attribute.html',cache:true"></div>
 			</div>
-	   	</div>
+			</div>
 		<div id="m_statusbar" data-options="region:'south'">
 			<span id="status_alt_speed" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<span id="status_title_downloadspeed" class="iconlabel icon-down"></span>&nbsp;<span id="status_downloadspeed"></span>
@@ -117,11 +123,17 @@
 			<span id="text-drop-title" style="position:absolute;top:150px;left:150px;font-size:40px;font-weight: bold;" disabled="disabled"></span>
 		</div>
 	</div>
+	<!-- 队列子菜单 -->
 	<div id="menu-queue" style="width:150px;">
-        <div id="menu-queue-move-top" data-options="iconCls:'icon-queue-move-top'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-top');" system-tip-lang="menus.queue['move-top']"><span system-lang="menus.queue['move-top']"></span></div>
-        <div id="menu-queue-move-up" data-options="iconCls:'icon-queue-move-up'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-up');" system-tip-lang="menus.queue['move-up']"><span system-lang="menus.queue['move-up']"></span></div>
-        <div id="menu-queue-move-down" data-options="iconCls:'icon-queue-move-down'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-down');" system-tip-lang="menus.queue['move-down']"><span system-lang="menus.queue['move-down']"></span></div>
-        <div id="menu-queue-move-bottom" data-options="iconCls:'icon-queue-move-bottom'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-bottom');" system-tip-lang="menus.queue['move-bottom']"><span system-lang="menus.queue['move-bottom']"></span></div>
-    </div>
+		<div id="menu-queue-move-top" data-options="iconCls:'icon-queue-move-top'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-top');" system-tip-lang="menus.queue['move-top']"><span system-lang="menus.queue['move-top']"></span></div>
+		<div id="menu-queue-move-up" data-options="iconCls:'icon-queue-move-up'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-up');" system-tip-lang="menus.queue['move-up']"><span system-lang="menus.queue['move-up']"></span></div>
+		<div id="menu-queue-move-down" data-options="iconCls:'icon-queue-move-down'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-down');" system-tip-lang="menus.queue['move-down']"><span system-lang="menus.queue['move-down']"></span></div>
+		<div id="menu-queue-move-bottom" data-options="iconCls:'icon-queue-move-bottom'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-bottom');" system-tip-lang="menus.queue['move-bottom']"><span system-lang="menus.queue['move-bottom']"></span></div>
+	</div>
+	<!-- 扩展功能/插件 -->
+	<div id="menu-plugin" style="width:180px;">
+		<div id="menu-plugin-tracker-replace" data-options="iconCls:'icon-tracker-replace'" system-tip-lang="toolbar.tip['tracker-replace']" onclick="system.plugin.exec('replace-tracker');"><span system-lang="toolbar['tracker-replace']"></span></div>
+		<div id="menu-plugin-auto-match-data-folder" data-options="iconCls:'icon-target'" system-tip-lang="menus.plugin['auto-match-data-folder']" onclick="system.plugin.exec('auto-match-data-folder');"><span system-lang="menus.plugin['auto-match-data-folder']"></span></div>
+	</div>
 </body>
 </html>

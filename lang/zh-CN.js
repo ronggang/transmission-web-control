@@ -40,6 +40,10 @@ system.lang = {
 		,"search-prompt":"搜索本地种子"
 		,"tracker-replace":"替换 Tracker"
 		,"queue":"队列"
+		,"ui-mobile":"移动UI"
+		,"ui-original":"原版UI"
+		,"ui-computer":"桌面UI"
+		,"plugin":"扩展功能/插件"
 		,"tip":{
 			"start":"重新开始已经选中的种子"
 			,"pause":"暂停已经选中的种子"
@@ -71,6 +75,9 @@ system.lang = {
 			,"move-up":"队列向上移动"
 			,"move-down":"队列向下移动"
 			,"move-bottom":"队列排到最后"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "自动匹配数据目录"
 		}
 	}
 	,"title":{
@@ -121,7 +128,7 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"保存目录："
 			,"torrent-url":"种子地址："
-			,"tip-torrent-url":"注：复制种子链接到列表中，然后点击“增加种子”；多个种子用“回车”分隔。"
+			,"tip-torrent-url":"注：复制种子链接到列表中，多个种子用“回车”分隔。"
 			,"autostart":"自动开始："
 			,"tip-autostart":"选中时，新添加的种子将自动开始下载（如不选择，则为暂停状态）"
 			,"set-default-download-dir":"设为默认保存目录"
@@ -136,6 +143,7 @@ system.lang = {
 				,"network":"网络传输"
 				,"limit":"带宽限制"
 				,"alt-speed":"时段限制"
+				,"dictionary-folders":"目录字典"
 			}
 			,"config-dir":"Transmission 配置文件目录（只读）："
 			,"download-dir":"默认保存目录："
@@ -196,9 +204,11 @@ system.lang = {
 			,"button-save":"保存"
 			,"button-close":"关闭"
 			,"button-update":"更新"
+			,"button-config":"设置"
 		}
 		,"about":{
 			"infos":"程序设计、制作：栽培者<br/>声明：本程序使用的大部分图标来自网络，如有侵犯您的权益，请与本人联系删除。<br/>如您有什么意见建议，也欢迎与我联系。"
+			,"check-update":"检查更新"
 		}
 		,"torrent-remove":{
 			"title":"删除种子确认"
@@ -220,6 +230,23 @@ system.lang = {
 			,"new-tracker":"新 Tracker："
 			,"tip":"此功能将查找<b>所有种子</b>的 Tracker，如果找到相等的，则替换。"
 			,"not-found":"未找到符合条件的 Tracker。"
+		}
+		,"auto-match-data-folder":{
+			"title":"自动匹配数据目录"
+			,"torrent-count":"将被操作的种子数量："
+			,"folder-count":"目录字典数量："
+			,"dictionary":"目录字典"
+			,"time-begin":"开始时间："
+			,"time-now":"当前时间："
+			,"status":"状态："
+			,"ignore":"忽略这个"
+			,"working-close-confirm":"系统正在进行目录匹配，确定要终止并关闭吗？"
+			,"time-interval":"时间间隔（秒）："
+			,"work-mode-title":"处理方式："
+			,"work-mode":{
+				"1":"按种子逐个匹配目录"
+				,"2":"按目录逐个匹配种子"
+			}
 		}
 	}
 	,"torrent":{

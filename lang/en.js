@@ -1,5 +1,5 @@
 // lang file
-system.defaultLang = {
+system.lang = {
 	"name":"en"
 	,"system":{
 		"title":"Transmission WEB Control"
@@ -40,6 +40,10 @@ system.defaultLang = {
 		,"search-prompt":"Search Local Torrents"
 		,"tracker-replace":"Replace trackers"
 		,"queue":"Queue"
+		,"ui-mobile":"Mobile UI"
+		,"ui-original":"Original UI"
+		,"ui-computer":"Desktop UI"
+		,"plugin":"Extensions/plugins"
 		,"tip":{
 			"start":"Start the checked torrents"
 			,"pause":"Pause the checked torrents"
@@ -71,6 +75,9 @@ system.defaultLang = {
 			,"move-up":"Move up"
 			,"move-down":"Move down"
 			,"move-bottom":"Move to bottom"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "Automatically matches data directory"
 		}
 	}
 	,"title":{
@@ -137,6 +144,7 @@ system.defaultLang = {
 				,"network":"Network"
 				,"limit":"Limit"
 				,"alt-speed":"Scheduled"
+				,"dictionary-folders":"Folders Dictionary"
 			}
 			,"config-dir":"Location of transmission's configuration directory:"
 			,"download-dir":"Default path to download torrents:"
@@ -197,9 +205,11 @@ system.defaultLang = {
 			,"button-save":"Save"
 			,"button-close":"Close"
 			,"button-update":"Update"
+			,"button-config":"Config"
 		}
 		,"about":{
 			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete."
+			,"check-update":"Check Update"
 		}
 		,"torrent-remove":{
 			"title":"Remove confirm"
@@ -217,10 +227,27 @@ system.defaultLang = {
 		}
 		,"system-replaceTracker":{
 			"title":"Replace Trackers"
-			,"old-tracker":"Old tracker："
-			,"new-tracker":"New tracker："
+			,"old-tracker":"Old tracker:"
+			,"new-tracker":"New tracker:"
 			,"tip":"This function will find <b>all torrents</b> Tracker."
 			,"not-found":"Tracker is not found."
+		}
+		,"auto-match-data-folder":{
+			"title":"Automatically matches data directory"
+			,"torrent-count":"Torrent count:"
+			,"folder-count":"Folder count:"
+			,"dictionary":"Folders Dictionary"
+			,"time-begin":"Begin time:"
+			,"time-now":"Now:"
+			,"status":"Status:"
+			,"ignore":"Ignore"
+			,"working-close-confirm":"Is working, make sure to close it?"
+			,"time-interval":"Time interval (seconds):"
+			,"work-mode-title":"Mode:"
+			,"work-mode":{
+				"1":"Individually matched by torrent"
+				,"2":"Individually matched by folder"
+			}
 		}
 	}
 	,"torrent":{

@@ -40,6 +40,10 @@ system.lang = {
 		,"search-prompt":"搜索本地種子"
 		,"tracker-replace":"替換 Tracker"
 		,"queue":"隊列"
+		,"ui-mobile":"移动UI"
+		,"ui-original":"原版UI"
+		,"ui-computer":"桌面UI"
+		,"plugin":"擴展功能/插件"
 		,"tip":{
 			"start":"重新開始已經選中的種子"
 			,"pause":"暫停已經選中的種子"
@@ -71,6 +75,9 @@ system.lang = {
 			,"move-up":"隊列向上移動"
 			,"move-down":"隊列向下移動"
 			,"move-bottom":"隊列排到最後"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "自動匹配數據目錄"
 		}
 	}
 	,"title":{
@@ -121,7 +128,7 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"保存目錄："
 			,"torrent-url":"種子地址："
-			,"tip-torrent-url":"注：複製種子連結到清單中，然後點擊“增加種子”；多個種子用“回車”分隔。"
+			,"tip-torrent-url":"注：複製種子連結到清單中，多個種子用“回車”分隔。"
 			,"autostart":"自動開始："
 			,"tip-autostart":"選中時，新添加的種子將自動開始下載（如不選擇，則為暫停狀態）"
 			,"set-default-download-dir":"設為預設保存目錄"
@@ -136,6 +143,7 @@ system.lang = {
 				,"network":"網路傳輸"
 				,"limit":"頻寬限制"
 				,"alt-speed":"時段限制"
+				,"dictionary-folders":"目錄字典"
 			}
 			,"config-dir":"Transmission 配置文件目錄（只讀）："
 			,"download-dir":"預設保存目錄："
@@ -196,9 +204,11 @@ system.lang = {
 			,"button-save":"保存"
 			,"button-close":"關閉"
 			,"button-update":"更新"
+			,"button-config":"设置"
 		}
 		,"about":{
 			"infos":"程式設計、製作：栽培者<br/>聲明：本程式使用的大部分圖示來自網路，如有侵犯您的權益，請與本人聯繫刪除。<br/>如您有什麼意見建議，也歡迎與我聯繫。"
+			,"check-update":"检查更新"
 		}
 		,"torrent-remove":{
 			"title":"刪除種子確認"
@@ -220,6 +230,23 @@ system.lang = {
 			,"new-tracker":"新 Tracker："
 			,"tip":"此功能將查找<b>所有種子</b>的 Tracker，如果找到相等的，則替換。"
 			,"not-found":"未找到符合條件的 Tracker。"
+		}
+		,"auto-match-data-folder":{
+			"title":"自动匹配数据目录"
+			,"torrent-count":"将被操作的种子数量："
+			,"folder-count":"目录字典数量："
+			,"dictionary":"目录字典"
+			,"time-begin":"开始时间："
+			,"time-now":"当前时间："
+			,"status":"状态："
+			,"ignore":"忽略这个"
+			,"working-close-confirm":"系统正在进行目录匹配，确定要终止并关闭吗？"
+			,"time-interval":"时间间隔（秒）："
+			,"work-mode-title":"处理方式："
+			,"work-mode":{
+				"1":"按种子逐个匹配目录"
+				,"2":"按目录逐个匹配种子"
+			}
 		}
 	}
 	,"torrent":{

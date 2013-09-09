@@ -82,7 +82,7 @@ var clientDevice = function() {
 		// 确定是不是Firefox
 		if (/Firefox\/(\S+)/.test(ua)) {
 			browser.ver = RegExp["$1"];
-			browser.firefox = pareseFloat(browser.ver);
+			browser.firefox = parseFloat(browser.ver);
 		}
 	} else if (/MSIE([^;]+)/.test(ua)) {
 		browser.ver = RegExp["$1"];
