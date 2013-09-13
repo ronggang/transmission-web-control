@@ -8,25 +8,25 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130906.4" />
-	<link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130906.4"/>  
-	<link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130906.4"/>
+	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130913" />
+	<link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130913"/>  
+	<link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130913"/>
 	<!-- 基础类库 -->
 	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130913"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130906.4"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130906.4"></script>
-	<script type="text/javascript" src="script/min/clientDevice.js?v=20130906.4"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130906.4"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130906.4"></script>	
-	<script type="text/javascript" src="script/min/system.js?v=20130906.4"></script>
-	<script type="text/javascript" src="config.js?v=20130906.4"></script>
-	<script type="text/javascript" src="plugin.js?v=20130906.4"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/clientDevice.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130913"></script>	
+	<script type="text/javascript" src="script/min/system.js?v=20130913"></script>
+	<script type="text/javascript" src="config.js?v=20130913"></script>
+	<script type="text/javascript" src="plugin.js?v=20130913"></script>
 </head>
 <body>
 	<div id="main" class="easyui-layout">
@@ -131,7 +131,7 @@
 		<div id="menu-queue-move-bottom" data-options="iconCls:'icon-queue-move-bottom'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-bottom');" system-tip-lang="menus.queue['move-bottom']"><span system-lang="menus.queue['move-bottom']"></span></div>
 	</div>
 	<!-- 扩展功能/插件 -->
-	<div id="menu-plugin" style="width:180px;">
+	<div id="menu-plugin" style="width:260px;">
 		<div id="menu-plugin-tracker-replace" data-options="iconCls:'icon-tracker-replace'" system-tip-lang="toolbar.tip['tracker-replace']" onclick="system.plugin.exec('replace-tracker');"><span system-lang="toolbar['tracker-replace']"></span></div>
 		<div id="menu-plugin-auto-match-data-folder" data-options="iconCls:'icon-target'" system-tip-lang="menus.plugin['auto-match-data-folder']" onclick="system.plugin.exec('auto-match-data-folder');"><span system-lang="menus.plugin['auto-match-data-folder']"></span></div>
 	</div>

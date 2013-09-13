@@ -2,8 +2,8 @@
 	移动版
 */
 var system = {
-	version:"0.5 Beta"
-	,codeupdate:"20130909"
+	version:"0.6 Beta"
+	,codeupdate:"20130913"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -350,14 +350,17 @@ var system = {
 		{
 			return;
 		}
+		
 		$("#content-"+config.page).show();
 		if (config.page!=this.currentContentPage)
 		{
 			$("#content-"+this.currentContentPage).hide();
+			this.control.torrentlist.find("input:checked").prop("checked",false).checkboxradio("refresh");
+			this.torrentListChecked = false;
 		}
 		$("#torrent-page-bar").hide();
-		if (!this.torrentListChecked)
-			$("#torrent-toolbar").hide();
+		$("#torrent-toolbar").hide();
+		
 		this.currentContentPage = config.page;
 		switch (config.type)
 		{
@@ -611,7 +614,7 @@ var system = {
 	,changeTorrentToolbar:function(source,item)
 	{
 		var checked = this.control.torrentlist.find("input:checked");
-		
+		$("#torrent-checked-count").html(checked.length);
 		if (checked.length>0)
 		{
 			this.torrentListChecked = true;
@@ -622,7 +625,8 @@ var system = {
 			this.torrentListChecked = false;
 			$("#torrent-toolbar").hide();
 		}
-		this.currentTorrentId = item.id;
+		if (item)
+			this.currentTorrentId = item.id;
 	}
 	// 种子列表分页处理
 	,torrentPager:{
@@ -740,7 +744,7 @@ var system = {
 		}
 	}
 	// 开始/暂停已选择的种子
-	,changeSelectedTorrentStatus:function(status,button)
+	,changeSelectedTorrentStatus:function(status,button,options)
 	{
 		var items = this.control.torrentlist.find("input:checked");
 		var ids = new Array();
@@ -755,15 +759,18 @@ var system = {
 
 		if (ids.length>0)
 		{
+			var arguments = {
+				ids:ids
+			};
 			switch (status)
 			{
 			case "remove":
-				return;
+				arguments["delete-local-data"] = options.removeData;
 				break;
 			case "verify":
-				if (rows.length==1)
+				if (ids.length==1)
 				{
-					var torrent = transmission.torrents.all[ids[0].id];
+					var torrent = transmission.torrents.all[ids[0]];
 					if (torrent.percentDone>0)
 					{
 						if (confirm(system.lang.toolbar.tip["recheck-confirm"])==false)
@@ -783,15 +790,15 @@ var system = {
 			button.attr("disabled",true);
 			transmission.exec({
 					method:"torrent-"+status
-					,arguments:{
-						ids:ids
-					}
+					,arguments:arguments
 				}
 				,function(data){
 					button.attr("disabled",false);
 					system.reloadTorrentBaseInfos();
 				}
 			);
+			// 操作完成后，取消所有已选择的项
+			this.torrentListChecked = false;
 		}
 	}
 	// 增加种子
@@ -831,6 +838,8 @@ var system = {
 };
 
 $(document).ready(function(){
+	// 加载默认语言内容
+	$.getScript("lang/default.js");
 	// 加载可用的语言列表
 	$.getScript("lang/_languages.js",function(){
 		system.init(location.search.getQueryString("lang"));

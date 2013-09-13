@@ -11,4 +11,5 @@ system.languages = {
 	,"it":"Italiano(Italian)"
 	,"pt-BR":"Brazilian Portuguese"
 	,"nl":"Dutch"
+	,"fr":"French"
 };
