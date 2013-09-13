@@ -1,7 +1,7 @@
 // 当前系统全局对象
 var system = {
 	version:"0.6 Beta"
-	,codeupdate:"20130909"
+	,codeupdate:"20130913"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000

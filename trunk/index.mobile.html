@@ -9,21 +9,21 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control Mobile</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.mobile.css?v=20130909" />
-   <link rel="stylesheet" type="text/css" href="script/jquery/mobile/jquery.mobile-1.3.2.min.css?v=20130909"/>  
+	<link rel="stylesheet" type="text/css" href="style/base.mobile.css?v=20130913" />
+   <link rel="stylesheet" type="text/css" href="script/jquery/mobile/jquery.mobile-1.3.2.min.css?v=20130913"/>  
 	<!-- 基础类库 -->
 	<script type="text/javascript" src="script/jquery/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/jquery/mobile/jquery.mobile-1.3.2.min.js?v=20130909"></script>
+	<script type="text/javascript" src="script/jquery/mobile/jquery.mobile-1.3.2.min.js?v=20130913"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130909"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130909"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130909"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130909"></script>
-	<script type="text/javascript" src="script/min/system.mobile.js?v=20130909"></script>
+	<script type="text/javascript" src="script/min/public.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/cookies.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/transmission.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130913"></script>
+	<script type="text/javascript" src="script/min/system.mobile.js?v=20130913"></script>
 </head>
 <body>
 	<!-- Home -->
@@ -114,11 +114,25 @@
 			</div>
 		</div>
 		<div data-theme="c" data-role="footer" data-position="fixed" data-tap-toggle="false">
-			<div id="torrent-toolbar"  data-role="footer" class="ui-bar" style="display:none;">
-				<a id="toolbar_start" href="javascript:void(0);" onclick="system.changeSelectedTorrentStatus('start',this);" system-lang="toolbar.start"></a>
-				<a id="toolbar_pause" href="javascript:void(0);" onclick="system.changeSelectedTorrentStatus('stop',this);" system-lang="toolbar.pause"></a>
-				<!-- <a id="toolbar_remove" href="javascript:void(0);" onclick="system.changeSelectedTorrentStatus('remove',this);" system-lang="toolbar.remove"></a> -->
-				<a id="toolbar_recheck" href="javascript:void(0);" onclick="system.changeSelectedTorrentStatus('verify',this);" system-lang="toolbar.recheck"></a>
+			<!-- 种子操作工具栏 -->
+			<div id="torrent-toolbar"  data-role="content" style="display:none;padding:0px 10px;" data-theme="a">
+				<div data-role="controlgroup" data-type="horizontal">
+					<a id="torrent-check-all" data-role="button" data-inline="true" href="#" data-icon="check" data-theme="b">
+						<span id="torrent-checked-count"></span>
+					</a>
+					<a data-role="button" data-inline="true" id="toolbar_start" href="#" onclick="system.changeSelectedTorrentStatus('start',this);">
+						<span system-lang="toolbar.start"></span>
+					</a>
+					<a data-role="button" data-inline="true" id="toolbar_pause" href="#" onclick="system.changeSelectedTorrentStatus('stop',this);">
+						<span system-lang="toolbar.pause"></span>
+					</a>
+					<a data-role="button" data-inline="true" id="toolbar_recheck" href="#" onclick="system.changeSelectedTorrentStatus('verify',this);">
+						<span system-lang="toolbar.recheck"></span>
+					</a>
+					<a data-role="button" data-inline="true" id="toolbar_remove" href="#dialog-torrent-remove-confirm" data-icon="delete" data-iconpos="right">
+						<span system-lang="toolbar.remove"></span>
+					</a>
+				</div>
 			</div>
 			<div id="m_statusbar">
 				<span id="status_alt_speed" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -126,6 +140,24 @@
 				<span id="status_uploadspeed" class="iconlabel icon-up"></span>
 				<span id="status_freespace" class="iconlabel icon-drive"></span>
 			</div>
+		</div>
+	</div>
+	<!-- 删除种子确认 -->
+	<div data-role="popup" id="dialog-torrent-remove-confirm" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" data-theme="a" class="ui-corner-top">
+			<h1 system-lang="dialog['torrent-remove']['title']"></h1>
+		</div>
+		<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+			<h3 class="ui-title" system-lang="dialog['torrent-remove']['confirm-text']"></h3>
+			<div data-role="fieldcontain">
+				<label for="remove-data" system-lang="dialog['torrent-remove']['remove-data']"></label>
+				<select name="remove-data" id="remove-data" data-role="slider" data-mini="true">
+					<option value="false"></option>
+					<option value="true"></option>
+				</select>
+			</div>
+			<a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c" system-lang="dialog.public['button-cancel']"></a>
+			<a href="#" onclick="system.changeSelectedTorrentStatus('remove',this,{removeData:$('#remove-data').val()});" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b" system-lang="dialog.public['button-ok']"></a>
 		</div>
 	</div>
 </body>
@@ -177,6 +209,21 @@
 
 		$("#auto-reload-time").on("slidestop", function(event, ui) {
 			saveConfig();
+		});
+
+		$("#torrent-check-all").click(function(){
+			var checked = $(this).data("checked");
+			if (checked==true)
+			{
+				checked = false;
+			}
+			else
+			{
+				checked = true;
+			}
+			$(this).data("checked",checked);
+			system.control.torrentlist.find("input[type='checkbox']").prop("checked",checked).checkboxradio("refresh");
+			system.changeTorrentToolbar();
 		});
 
 		function saveConfig()
