@@ -1,4 +1,19 @@
 #labels Featured
+== 2013-09-13 ==
+ * 添加“法语”语言包，感谢Amaury Aubry
+ * Add "French" language pack
+
+=== 移动UI ===
+ * 修复种子列表操作完成时，不能取消选择的BUG；
+ * 修复当前语言包中未翻译的内容不能显示的BUG；
+ * 添加种子列表删除功能；
+ * 添加显示种子列表已选中的种子数量；
+
+=== Mobile UI ===
+ * Add "Remove torrent" feature
+ * Add shows the number of torrent has been selected
+ * Fix some bug
+
 == 2013-09-09 ==
  * 修复 en.js 中 lang 对象写成 defaultLang 的BUG
 
