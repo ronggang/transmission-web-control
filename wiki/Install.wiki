@@ -21,7 +21,7 @@ sh tr-control-easy-install.sh
 https://lh4.googleusercontent.com/-rZuClBaqFvo/UjfBYMJH3YI/AAAAAAAAAOo/OdPtYxX3DFA/w529-h561-no/%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D.jpg
  * 如果没有意外，安装至此已经完成，重新刷新 Web 页面就可以看到新内容
 
------------------------------------------------------------ 
+--------------------------------------------------------------------------------
 == 1. Automatic Installation (Linux) ==
  * Login to Transmission server; 
  * Execute the following command:
