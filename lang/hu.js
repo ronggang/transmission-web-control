@@ -39,6 +39,11 @@ system.lang = {
 		,"autoreload-enabled":"Engedélyezve"
 		,"search-prompt":"Helyi torrentek keresése"
 		,"tracker-replace":"Tracker cseréje"
+		,"queue":"Sor"
+		,"ui-mobile":"Mobil UI"
+		,"ui-original":"Eredeti UI"
+		,"ui-computer":"Asztali UI"
+		,"plugin":"Bővítmények/pluginok"
 		,"tip":{
 			"start":"Kijelölt torrentek indítása"
 			,"pause":"Kijelölt torrentek szüneteltetése"
@@ -58,6 +63,21 @@ system.lang = {
 			,"autoreload-disabled":"Automatikus frissítés tiltva"
 			,"autoreload-enabled":"Automatikus frissítés bekapcsolva"
 			,"tracker-replace":"Tracker cseréje"
+			,"change-download-dir":"Elérés beállítása"
+			,"ui-mobile":"Mobil UI"
+			,"ui-original":"Eredeti UI"
+			,"more-peers":"Több peer kérése a trackertől"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"Mozgatás legfelülre"
+			,"move-up":"Mozgatás feljebb"
+			,"move-down":"Mozgatás lejjebb"
+			,"move-bottom":"Mozgatás legalulra"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "Könyvtárak automatikus felismerése"
 		}
 	}
 	,"title":{
@@ -71,7 +91,7 @@ system.lang = {
 		,"active":"Aktív"
 		,"paused":"Szünetel"
 		,"downloading":"Letöltés"
-		,"sending":"Küldés"
+		,"sending":"Feltöltés"
 		,"error":"Hiba"
 		,"warning":"Figyelmeztetés"
 		,"actively":"Aktív"
@@ -85,7 +105,7 @@ system.lang = {
 		,"statistics":{
 			"title":"Statisztika"
 			,"cumulative":"Összes"
-			,"current":"Jelenlegi"
+			,"current":"Aktuális"
 			,"uploadedBytes":"Feltöltött: "
 			,"downloadedBytes":"Letöltött: "
 			,"filesAdded":"Hozzáadott fájlok: "   
@@ -124,6 +144,7 @@ system.lang = {
 				,"network":"Hálózat"
 				,"limit":"Korlátozás"
 				,"alt-speed":"Ütemezés"
+				,"dictionary-folders":"Könyvtárak"
 			}
 			,"config-dir":"Transmission konfigurációs fájl helye:"
 			,"download-dir":"Letöltött torrentek alapértelmezett helye:"
@@ -169,6 +190,7 @@ system.lang = {
 				,"0":"Vasárnap"
 			}
 			,"blocklist-enabled":"Feketelista használata"
+			,"blocklist-size":"A feketelista %n szabályt tartalmaz."
 			,"seedRatioLimited":"Seed a következő arány eléréséig:"
 			,"queue-stalled-enabled":"Inaktív torrentek leállítása:"
 			,"idle-seeding-limit-enabled":"Inaktív torrentek leállítása ennyi tétlenség után:"
@@ -179,17 +201,20 @@ system.lang = {
 		,"public":{
 			"button-ok":"OK"
 			,"button-cancel":"Mégsem"
-			,"button-reload":"Frissítés"
+			,"button-reload":"Újratölt"
 			,"button-save":"Mentés"
 			,"button-close":"Bezárás"
+			,"button-update":"Frissítés"
+			,"button-config":"Beállítás"
 		}
 		,"about":{
-			"infos":"Szerző：culturist<br/>Nyilatkozat：A progrmban használt ikonok nagy része az internetről származik. Ha bármelyik sérti a jogaidat, kérlek vedd fel a kapcsolatot velem a törlése végett."
+			"infos":"Szerző：culturist<br/>Nyilatkozat：A programban használt ikonok nagy része az internetről származik. Ha bármelyik sérti a jogaidat, kérlek vedd fel a kapcsolatot velem."
+			,"check-update":"Frissítés keresése"
 		}
 		,"torrent-remove":{
 			"title":"Törlés megerősítése"
 			,"confirm-text":"Tényleg törölni szeretnéd a kijelölt torrent(ek)et?"
-			,"remove-data":"Fájlok törlése"
+			,"remove-data":"Helyi fájlok törlése"
 			,"remove-error":"Törlés sikertelen!"
 		}
 		,"torrent-changeDownloadDir":{
@@ -198,13 +223,31 @@ system.lang = {
 			,"new-download-dir":"Új elérés:"
 			,"move-data":"Fájlok áthelyezése az új helyre."
 			,"set-error":"Hiba!"
+			,"recheck-data":"Fájlok ellenőrzése."
 		}
 		,"system-replaceTracker":{
-			"title":"Tracker kicserélése"
+			"title":"Tracker cseréje"
 			,"old-tracker":"Régi tracker："
 			,"new-tracker":"Új tracker："
 			,"tip":"Ez a funkció az <b>összes torrent</b> trackerében keres."
 			,"not-found":"Tracker nem található."
+		}
+		,"auto-match-data-folder":{
+			"title":"Adat könyvtárak automatikus felismerése"
+			,"torrent-count":"Torrent számláló:"
+			,"folder-count":"Könyvtár számláló:"
+			,"dictionary":"Könyvtárak"
+			,"time-begin":"Kezdési idő:"
+			,"time-now":"Most:"
+			,"status":"Állapot:"
+			,"ignore":"Kihagyás"
+			,"working-close-confirm":"Felismerés folyamatban, megszakítod?"
+			,"time-interval":"Idő intervallum (mp):"
+			,"work-mode-title":"Mód:"
+			,"work-mode":{
+				"1":"Egyénileg torrent alapján"
+				,"2":"Egyénileg könyvtár alapján"
+			}
 		}
 	}
 	,"torrent":{
@@ -216,7 +259,7 @@ system.lang = {
 			,"totalSize":"Méret"
 			,"status":"Állapot"
 			,"percentDone":"Elkészült"
-			,"remainingTime":"Remaining time"
+			,"remainingTime":"Hátralévő idő"
 			,"addedDate":"Hozzáadva"
 			,"completeSize":"Letöltve"
 			,"rateDownload":"Letöltési arány"
@@ -259,7 +302,7 @@ system.lang = {
 				,"lastAnnounceTime":"Bejelentés ideje"
 				,"lastAnnounceTimedOut":"Idő túllépés"
 				,"downloadCount":"Letöltési számláló"
-				,"nextAnnounceTime":"Következő bejelenltés"
+				,"nextAnnounceTime":"Következő bejelentés"
 			}
 			,"peers-fields":{
 				"address":"IP cím"
@@ -287,8 +330,8 @@ system.lang = {
 				,"hashString":"HASH:"
 				,"downloadDir":"Elérési útvonal:"
 				,"status":"Állapot:"
-				,"rateDownload":"Letöltési arány:"
-				,"rateUpload":"Feltöltési arány:"
+				,"rateDownload":"Letöltési sebesség:"
+				,"rateUpload":"Feltöltési sebesség:"
 				,"leecherCount":"Leecher:"
 				,"seederCount":"Seeder:"
 				,"uploadedEver":"Feltöltve:"
@@ -313,6 +356,11 @@ system.lang = {
 			}
 		}
 	}
+	,"torrent-head":{
+		"buttons":{
+			"autoExpandAttribute":"Tulajdonságok automatikus megnyitása"
+		}
+	}
 	,"public":{
 		"text-unknown":"Ismeretlen"
 		,"text-drop-title":"Húzd ide torrentet a hozzáadáshoz."
@@ -320,5 +368,8 @@ system.lang = {
 		,"text-nochange":"Nincs változás"
 		,"text-info":"Információ"
 		,"text-confirm":"Biztos vagy benne?"
+		,"text-browsers-not-support-features":"Ezt a funkciót a jelenlegi böngésző nem támogatja!"
+		,"text-download-update":"Frissítés letöltése"
+		,"text-have-update":"Frissítés elérhető"
 	}
 };
