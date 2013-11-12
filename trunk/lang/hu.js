@@ -158,8 +158,8 @@ system.lang = {
 			,"peer-port-random-on-start":"Véletlenszerű port indításnál"
 			,"port-forwarding-enabled":"Port átirányítás engedélyezése"
 			,"test-port":"Port tesztelése"
-			,"port-is-open-true":"Port zárva"
-			,"port-is-open-false":"Port nyitva"
+			,"port-is-open-true":"Port nyitva"
+			,"port-is-open-false":"Port zárva"
 			,"testing":"Tesztelés..."
 			,"encryption":"Titkosítás:"
 			,"encryption-type":{
