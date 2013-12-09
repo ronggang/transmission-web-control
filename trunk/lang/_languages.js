@@ -1,4 +1,4 @@
-// 设置当前可用的语言
+﻿// 设置当前可用的语言
 system.languages = {
 	"zh-CN":"简体中文|Chinese(Simplified)"
 	,"zh-TW":"繁體中文|Chinese(Traditional)"
@@ -12,4 +12,5 @@ system.languages = {
 	,"pt-BR":"Brazilian Portuguese"
 	,"nl":"Dutch"
 	,"fr":"French"
+	,"ko":"한국어(Korean)"
 };
