@@ -1,4 +1,4 @@
-// lang file
+﻿// lang file
 system.lang = {
 	"name":"ko"
 	,"system":{
@@ -34,7 +34,7 @@ system.lang = {
 		,"system-reload":"새로고침"
 		,"about":"정보"
 		,"reload-time":"자동 새로고침:"
-		,"reload-time-unit":"s/time"
+		,"reload-time-unit":"초 간격"
 		,"autoreload-disabled":"비활성화"
 		,"autoreload-enabled":"활성화"
 		,"search-prompt":"로컬 토렌트 검색"
@@ -45,9 +45,9 @@ system.lang = {
 		,"ui-computer":"데스크탑 UI"
 		,"plugin":"확장/플러그인"
 		,"tip":{
-			"start":"토렌트 확인 시작"
-			,"pause":"토렌트 확인 정지"
-			,"recheck":"확인한 토렌트 재확인"
+			"start":"선택한 토렌트 시작"
+			,"pause":"선택한 토렌트 정지"
+			,"recheck":"선택한 토렌트 재확인"
 			,"recheck-confirm":"선택한 토렌트를 다시 확인 하시겠습니까? 이것은 약간의 시간이 걸릴 수 있습니다!"
 			,"start-all":"모두 시작"
 			,"pause-all":"모두 정지"
@@ -106,8 +106,8 @@ system.lang = {
 			"title":"통계"
 			,"cumulative":"누적"
 			,"current":"현제"
-			,"uploadedBytes":"업로드 한 바이트: "
-			,"downloadedBytes":"다운로드 한 바이트: "
+			,"uploadedBytes":"업로드 한 크기: "
+			,"downloadedBytes":"다운로드 한 크기: "
 			,"filesAdded":"파일 추가: "   
 			,"sessionCount":"세션 수: " 
 			,"secondsActive":"활성화된 시간: "
@@ -129,13 +129,13 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"다운로드 폴더:"
 			,"torrent-url":"토렌트 URL:"
-			,"tip-torrent-url":"Tip：Please multiple content with 'Enter' to separate"
-			,"autostart":"자동 재시작:"
+			,"tip-torrent-url":"Tip：여러개 입력시 줄로 구분하세요"
+			,"autostart":"자동 시작:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"기본 폴더 지정"
 			,"upload-file":"토렌트 파일:"
 			,"nosource":"토렌트 파일이나 URL이 없음."
-			,"tip-title":"업로드 토런트 파일은 토런트 URL에 우선합니다"
+			,"tip-title":"업로드는 토렌트 URL에 우선합니다"
 		}
 		,"system-config":{
 			"title":"서버 설정"
@@ -149,7 +149,7 @@ system.lang = {
 			,"config-dir":"트랜스미션 구성 디텍토리:"
 			,"download-dir":"토렌트 다운로드 기본 경로:"
 			,"download-dir-free-space":"남은 공간:"
-			,"incomplete-dir-enabled":"인컴플리트 폴더 사용"
+			,"incomplete-dir-enabled":"미완료 폴더 사용"
 			,"cache-size-mb":"디스크 캐쉬 크기:"
 			,"rename-partial-files":"다운로드 중인 파일에'.part'사용"
 			,"start-added-torrents":"토렌트 추가시 자동 시작"
@@ -208,7 +208,7 @@ system.lang = {
 			,"button-config":"설정"
 		}
 		,"about":{
-			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete."
+			"infos":"제작자：culturist<br/>서명：이 프로그램에 사용되는 아이콘들은 대부분은 네트워크에서 응용된다 만약 이것이 당신의 권리를 침해하는 어떤것이라도 발생시킨다면 나에게 그걸 삭제해달라고 말해라."
 			,"check-update":"업데이트 확인"
 		}
 		,"torrent-remove":{
@@ -221,7 +221,7 @@ system.lang = {
 			"title":"새 폴더 설정"
 			,"old-download-dir":"현재 폴더:"
 			,"new-download-dir":"새 폴더:"
-			,"move-data":"선택하면, 이전 위치에서 이동합니다. 그렇지 않으면, 파일을 '새 디렉토리를'검색합니다."
+			,"move-data":"선택하면, 이전 위치에서 이동합니다. 그렇지 않으면, '새 디렉토리'를 검색합니다."
 			,"set-error":"지정 오류!"
 			,"recheck-data":"데이터 재확인."
 		}
@@ -243,9 +243,9 @@ system.lang = {
 			,"ignore":"무시"
 			,"working-close-confirm":"작업중입니다. 종료하시겠습니까?"
 			,"time-interval":"시간 간격 (초단위):"
-			,"work-mode-title":"모드:"
+			,"work-mode-title":"방식:"
 			,"work-mode":{
-				"1":"개별 토런트 일치"
+				"1":"개별 토렌트 일치"
 				,"2":"개별 폴더 일치"
 			}
 		}
@@ -258,7 +258,7 @@ system.lang = {
 			,"downloadDir":"다운로드 폴더"
 			,"totalSize":"총 크기"
 			,"status":"상태"
-			,"percentDone":"퍼센트 완료"
+			,"percentDone":"진행된 다운로드"
 			,"remainingTime":"남은 시간"
 			,"addedDate":"추가된 시간"
 			,"completeSize":"완료 크기"
@@ -289,20 +289,20 @@ system.lang = {
 			,"files-fields":{
 				"name":"이름"
 				,"length":"크기"
-				,"percentDone":"퍼센트 완료"
+				,"percentDone":"진행된 다운로드"
 				,"bytesCompleted":"다운로드한 크기"
 				,"wanted":"Wanted"
 				,"priority":"우선도"
 			}
 			,"servers-fields":{
-				"announce":"발표"
+				"announce":"트래커"
 				,"announceState":"상태"
 				,"lastAnnounceResult":"정보"
 				,"lastAnnounceSucceeded":"성공"
-				,"lastAnnounceTime":"알린 시간"
+				,"lastAnnounceTime":"연결된 시각"
 				,"lastAnnounceTimedOut":"시간 초과"
 				,"downloadCount":"다운로드 수"
-				,"nextAnnounceTime":"다음 발표"
+				,"nextAnnounceTime":"다음 연결 시각"
 			}
 			,"peers-fields":{
 				"address":"IP 주소"
@@ -317,9 +317,9 @@ system.lang = {
 				,"false":"False"
 			}
 			,"priority":{
-				"0":"Normal"
-				,"1":"High"
-				,"-1":"Low"
+				"0":"보통"
+				,"1":"높음"
+				,"-1":"낮음"
 			}
 			,"label":{
 				"name":"이름:"
@@ -336,7 +336,7 @@ system.lang = {
 				,"seederCount":"시더:"
 				,"uploadedEver":"지금까지 한 업로드:"
 				,"uploadRatio":"업로드 비율:"
-				,"creator":"제작자:"
+				,"creator":"생성 클라이언트:"
 				,"dateCreated":"제작일:"
 				,"comment":"코멘트:"
 				,"errorString":"스트링 오류:"
