@@ -1,10 +1,10 @@
 // lang file
 system.lang = {
-	"name":"pt-BR"
+	"name":"pt-PT"
 	,"system":{
 		"title":"Transmission WEB Control"
 		,"status":{
-			"connect":"Conectando..."
+			"connect":"A conectar..."
 			,"connected":"Conectado"
 			,"queue":"Fila:"
 			,"queuefinish":"Fila(s) encerrada(s)"
@@ -26,7 +26,7 @@ system.lang = {
 		,"pause-all":"Pausar todos"
 		,"remove":"Remover"
 		,"remove-all":"Remover todos"
-		,"remove-data":"Remover arquivos"
+		,"remove-data":"Remover ficheiros"
 		,"add-torrent":"Adicionar Torrent"
 		,"attribute":"Atributos"
 		,"alt-speed":"Velocidade alternativa"
@@ -45,10 +45,10 @@ system.lang = {
 		,"ui-computer":"IU Escritório"
 		,"plugin":"Extensions/plugins"
 		,"tip":{
-			"start":"Iniciar Torrents marcados"
-			,"pause":"Pausar Torrents marcados"
-			,"recheck":"Verificar Torrents marcados"
-			,"recheck-confirm":"Tem certeza de comprovar estes torrents? Isso pode levar algum tempo!"
+			"start":"Iniciar os Torrents marcados"
+			,"pause":"Pausar os Torrents marcados"
+			,"recheck":"Verificar os Torrents marcados"
+			,"recheck-confirm":"Tens certeza de comprovar estes torrents? Isso pode levar algum tempo!"
 			,"start-all":"Iniciar todos"
 			,"pause-all":"Pausar todos"
 			,"remove":"Remover"
@@ -77,7 +77,7 @@ system.lang = {
 			,"move-bottom":"Mover para o final"
 		}
 		,"plugin": {
-			"auto-match-data-folder": "Combinar automaticamente diretório de dados"
+			"auto-match-data-folder": "Combinar automaticamente o diretório de dados"
 		}
 	}
 	,"title":{
@@ -99,7 +99,7 @@ system.lang = {
 		,"wait":"Espera"
 		,"search-result":"Resultados da busca"
 		,"status":{
-			"loading":"Carregando..."
+			"loading":"A carregar..."
 		}
 		,"statistics":"Estatísticas"
 		,"statistics":{
@@ -108,7 +108,7 @@ system.lang = {
 			,"current":"Atual"
 			,"uploadedBytes":"Enviados: "
 			,"downloadedBytes":"Baixados: "
-			,"filesAdded":"Arquivos adicinados: "   
+			,"filesAdded":"Ficheiros adicinados: "   
 			,"sessionCount":"Contagem de sessões: " 
 			,"secondsActive":"Tempo ativo: "
 		}
@@ -129,13 +129,13 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"Diretório de descarga:"
 			,"torrent-url":"URL do Torrent:"
-			,"tip-torrent-url":"Dica: separe por linhas (Enter) múltiplos links para adicioná-los de uma só vez"
+			,"tip-torrent-url":"Dica: separa por linhas (Enter) múltiplas ligações para adicioná-las de uma só vez"
 			,"autostart":"Auto iniciar:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Diretório padrão"
-			,"upload-file":"Arquivos Torrent:"
+			,"upload-file":"Ficheiros Torrent:"
 			,"nosource":"Nenhum ficheiro ou url Torrent."
-			,"tip-title":"Arquivos Torrent têm preferência sobre URLs"
+			,"tip-title":"Os ficheiros Torrent têm preferência sobre URLs"
 		}
 		,"system-config":{
 			"title":"Configuração do servidor"
@@ -156,11 +156,11 @@ system.lang = {
 			,"download-queue-enabled":"Numero máximo de descargas na fila:"
 			,"seed-queue-enabled":"Número máximo de seeds na fila:"
 			,"peer-port-random-on-start":"Usar porta aleatória ao iniciar"
-			,"port-forwarding-enabled":"Habilitar redirecionamento de portas"
-			,"test-port":"Verificar porta"
+			,"port-forwarding-enabled":"Habilitar o redirecionamento de portas"
+			,"test-port":"Verificar a porta"
 			,"port-is-open-true":"A porta está aberta"
 			,"port-is-open-false":"A porta está fechada"
-			,"testing":"Verificando..."
+			,"testing":"A verificar..."
 			,"encryption":"Encriptação:"
 			,"encryption-type":{
 				"required":"Somente encriptada"
@@ -190,13 +190,13 @@ system.lang = {
 				,"0":"Domingo"
 			}
 			,"blocklist-enabled":"Usar lista de bloqueio"
-			,"blocklist-size":"Lista de bloqueio tem %n regra(s)."
+			,"blocklist-size":"A lista de bloqueio tem %n regra(s)."
 			,"seedRatioLimited":"Taxa máxima de Seeds:"
-			,"queue-stalled-enabled":"Considerar Torrents inativos como parados:"
-			,"idle-seeding-limit-enabled":"Semeamento de Torrents parará se ficam inativos por:"
+			,"queue-stalled-enabled":"Considerar os Torrents inativos como parados:"
+			,"idle-seeding-limit-enabled":"O semeamento dos Torrents parará se ficam inativos por:"
 			,"minuets":"Minutos"
 			,"nochange":"Sem mudanças"
-			,"saveing":"Salvando..."
+			,"saveing":"A salvar..."
 		}
 		,"public":{
 			"button-ok":"Aceptar"
@@ -208,22 +208,22 @@ system.lang = {
 			,"button-config":"Configurações"
 		}
 		,"about":{
-			"infos":"Autor: culturist<br/>Aviso: A maioria dos icones usados foram encontrados pela net. Para retirar algum conteúdo, por favor contate o autor."
+			"infos":"Autor: culturist<br/>Aviso: A maioria dos icones usados foram encontrados pela net. Para retirar algum conteúdo, por favor contata o autor."
 			,"check-update":"Comprovar atualizações"		
 		}
 		,"torrent-remove":{
 			"title":"Confimar a eliminação"
-			,"confirm-text":"Tem certeza de querer eliminar os torrents selecionados?"
+			,"confirm-text":"Tens certeza de querer eliminar os torrents selecionados?"
 			,"remove-data":"Eliminar os dados baixados"
 			,"remove-error":"Erro ao eliminar!"
 		}
 		,"torrent-changeDownloadDir":{
-			"title":"Escolha um novo diretório"
+			"title":"Escolhe um novo diretório"
 			,"old-download-dir":"Antigo diretório:"
 			,"new-download-dir":"Novo diretório:"
 			,"move-data":"Se marcado, mover da localização anterior. Caso contrário, procura 'Novo diretório' para os ficheiros."
 			,"set-error":"Erro!"
-			,"recheck-data":"Verificar dados novamente."
+			,"recheck-data":"Verificar novamente os dados."
 		}
 		,"system-replaceTracker":{
 			"title":"Substituir trackers"
@@ -241,7 +241,7 @@ system.lang = {
 			,"time-now":"Agora:"
 			,"status":"Estado:"
 			,"ignore":"Ignorar"
-			,"working-close-confirm":"Está trabalhando, tem certeza de fechar?"
+			,"working-close-confirm":"Está trabalhando, tens certeza de fechá-lo?"
 			,"time-interval":"Intervalo de tempo (segundos):"
 			,"work-mode-title":"Modo:"
 			,"work-mode":{
@@ -344,32 +344,32 @@ system.lang = {
 				,"uploadLimited":"Velocidade máxima de envio:"
 				,"peer-limit":"Número máximo de peers por torrent:"
 				,"seedRatioMode":"Proporção de envio:"
-				,"seedIdleMode":"Semeamento será interrompido se inativos por:"
+				,"seedIdleMode":"O semeamento será interrompido se inativos por:"
 			}
 			,"tip":{
-				"button-allow":"Baixar arquivos selecionados"
-				,"button-deny":"Ignorar arquivos selecionados"
+				"button-allow":"Baixar os ficheiros selecionados"
+				,"button-deny":"Ignorar os ficheiros selecionados"
 				,"button-priority":"Definir prioridade"
 			}
 			,"other":{
-				"tracker-remove-confim":"Tem certeza que deseja eliminar este tracker?"
+				"tracker-remove-confim":"Tens certeza que desejas eliminar este tracker?"
 			}
 		}
 	}
 	,"torrent-head":{
 		"buttons":{
-			"autoExpandAttribute":"Expandir atributos automaticamente"
+			"autoExpandAttribute":"Expandir os atributos automaticamente"
 		}
 	}
 	,"public":{
 		"text-unknown":"Desconhecido"
-		,"text-drop-title":"Arrasta o ficheiro Torrent para esta área para adicionar ele ao transmission."
+		,"text-drop-title":"Arrasta o ficheiro Torrent para esta área para adicioná-lo ao transmission."
 		,"text-saved":"Salvo"
 		,"text-nochange":"Sem alterações"
 		,"text-info":"Info"
-		,"text-confirm":"Tem certeza?"
+		,"text-confirm":"Tens certeza?"
 		,"text-browsers-not-support-features":"O navegador atual não suporta esta função!"
-		,"text-download-update":"Baixe esta atualização"
+		,"text-download-update":"Baixa esta atualização"
 		,"text-have-update":"Há uma atualização disponível"
 	}
 };

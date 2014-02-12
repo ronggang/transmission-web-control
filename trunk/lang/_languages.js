@@ -13,4 +13,5 @@ system.languages = {
 	,"nl":"Dutch"
 	,"fr":"French"
 	,"ko":"한국어(Korean)"
+	,"pt-PT":"European Portuguese"
 };
