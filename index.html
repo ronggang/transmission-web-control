@@ -8,32 +8,38 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.css?v=20130913" />
-	<link rel="stylesheet" type="text/css" href="script/easyui/themes/default/easyui.css?v=20130913"/>  
-	<link rel="stylesheet" type="text/css" href="script/easyui/themes/icon.css?v=20130913"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20131031" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20131031"/>  
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20131031"/>
 	<!-- 基础类库 -->
-	<script type="text/javascript" src="script/jquery/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
-	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
-	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/easyui/jquery.easyui.min.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/json2.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/Base64.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/plugins/jquery.datagrid.drophead.js"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/clientDevice.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130913"></script>	
-	<script type="text/javascript" src="script/min/system.js?v=20130913"></script>
-	<script type="text/javascript" src="config.js?v=20130913"></script>
-	<script type="text/javascript" src="plugin.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/public.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/cookies.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/clientDevice.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.js?v=20131031"></script>	
+	<script type="text/javascript" src="tr-web-control/script/min/system.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/config.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/plugin.js?v=20131031"></script>
 </head>
+<style type="text/css">
+	.tree-title {
+		display: inline;
+	}
+</style>
 <body>
 	<div id="main" class="easyui-layout">
 		<div id="m_top" data-options="region:'north'">
 			<div class="easyui-layout" data-options="fit:true">
 				<div id="m_title_layout" data-options="region:'center'" border="0">
-					<img src="logo.png"/><span id="m_title" style="padding:10px;display:none;"></span>
+					<img src="tr-web-control/logo.png"/><span id="m_title" style="padding:10px;display:none;"></span>
 					<span id="area-update-infos" style="display:none;">
 						<span id="msg-updateInfos" style="color:red;"></span>
 						<a id="button-download-update" href="https://code.google.com/p/transmission-control/wiki/ChangeLog" system-lang="public['text-have-update']" target="_blank"></a>
@@ -105,12 +111,12 @@
 				</div>
 			</div>
 		</div>
-			<div id="m_body" title="." data-options="region:'center',border:0" >
-				<div id="layout_body"  class="easyui-layout" data-options="fit:true">
-					<div id="m_list" data-options="region:'center',border:0"></div>
-					<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'template/torrent-attribute.html',cache:true"></div>
+		<div id="m_body" title="." data-options="region:'center',border:0" >
+			<div id="layout_body"  class="easyui-layout" data-options="fit:true">
+				<div id="m_list" data-options="region:'center',border:0"></div>
+				<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'template/torrent-attribute.html',cache:true"></div>
 			</div>
-			</div>
+		</div>
 		<div id="m_statusbar" data-options="region:'south'">
 			<span id="status_alt_speed" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<span id="status_title_downloadspeed" class="iconlabel icon-down"></span>&nbsp;<span id="status_downloadspeed"></span>

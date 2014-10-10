@@ -9,21 +9,21 @@
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<title>Transmission Web Control Mobile</title>
 	<!-- 样式表 -->
-	<link rel="stylesheet" type="text/css" href="style/base.mobile.css?v=20130913" />
-   <link rel="stylesheet" type="text/css" href="script/jquery/mobile/jquery.mobile-1.3.2.min.css?v=20130913"/>  
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.mobile.css?v=20130913" />
+   <link rel="stylesheet" type="text/css" href="tr-web-control/script/jquery/mobile/jquery.mobile-1.3.2.min.css?v=20130913"/>  
 	<!-- 基础类库 -->
-	<script type="text/javascript" src="script/jquery/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="script/jquery/jquery.form.js"></script>
-	<script type="text/javascript" src="script/jquery/json2.min.js"></script>
-	<script type="text/javascript" src="script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="script/jquery/mobile/jquery.mobile-1.3.2.min.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/json2.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/Base64.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/mobile/jquery.mobile-1.3.2.min.js?v=20130913"></script>
 	<!-- -->
 	<!-- 系统类库 -->
-	<script type="text/javascript" src="script/min/public.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/cookies.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/transmission.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/transmission.torrents.js?v=20130913"></script>
-	<script type="text/javascript" src="script/min/system.mobile.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/public.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/cookies.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.js?v=20130913"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/system.mobile.js?v=20130913"></script>
 </head>
 <body>
 	<!-- Home -->
@@ -68,8 +68,8 @@
 			</ul>
 			<ul data-role="listview" data-divider-theme="a" data-theme="c" data-icon="false" style="margin-top:15px;">
 				<li data-role='list-divider'>UI</li>
-				<li><a href="#" onclick="location.href = 'index.html?devicetype=computer';"><img src="style/images/computer.png" class="ui-li-icon"/><span system-lang="toolbar['ui-computer']"></span></a></li>
-				<li><a href="#" onclick="location.href = 'index.original.html';"><img src="style/images/transmission.png" class="ui-li-icon"/><span system-lang="toolbar['ui-original']"></span></a></li>
+				<li><a href="#" onclick="location.href = 'index.html?devicetype=computer';"><img src="tr-web-control/style/images/computer.png" class="ui-li-icon"/><span system-lang="toolbar['ui-computer']"></span></a></li>
+				<li><a href="#" onclick="location.href = 'index.original.html';"><img src="tr-web-control/style/images/transmission.png" class="ui-li-icon"/><span system-lang="toolbar['ui-original']"></span></a></li>
 			</ul>
 			<ul data-role="listview" data-divider-theme="a" data-theme="c" data-icon="false" style="margin-top:15px;">
 				<li data-role='list-divider'><span system-lang="title.status"></span></li>
@@ -91,9 +91,12 @@
 				</ul>
 			</div>
 			<!-- 种子明细列表 -->
-			<div id="content-torrent-list" style="padding:0px;">
-				<div data-role="controlgroup"  style="margin:0px;width:100%;overflow: hidden;" id="torrent-list" >
-				</div>
+			<div id="content-torrent-list" _style="padding:0px;overflow: hidden;" data-role="content">
+				<ul data-role="listview"
+					data-theme="c" data-dividertheme="d"
+					data-split-icon="gear" data-split-theme="d"
+					id="torrent-list"
+				/>
 			</div>
 			<!-- 添加种子 -->
 			<div id="content-add-torrent" style="padding:15px;display:none;">
