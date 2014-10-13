@@ -1,6 +1,6 @@
 关于
 -----
-本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在Goolge Code托管，现迁移至GitHub。
+本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Goolge Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
 本项目设计之初仅针对PT站，因此增加了 Tracker 服务器分组及状态，但这不并适用于普通BT种子。
 
 #### [English Introduction](#Introduction)
@@ -56,7 +56,7 @@
 
 Introduction
 -------------------
-Transmission Web Control is a custom web UI. The project began in Google Code. 
+Transmission Web Control is a custom web UI. The project began in [Goolge Code](https://code.google.com/p/transmission-control/). 
 
 ### Support Transmission Version
  - Transmission 2.40 and above (RPC version: 14 and above)
