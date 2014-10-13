@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<title>Transmission Web Control</title>
+	<!-- 样式表 -->
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20131031" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20131031"/>  
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20131031"/>
+	<!-- 基础类库 -->
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/json2.min.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/jquery/Base64.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/plugins/jquery.datagrid.drophead.js"></script>
+	<!-- -->
+	<!-- 系统类库 -->
+	<script type="text/javascript" src="tr-web-control/script/min/public.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/cookies.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/clientDevice.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.js?v=20131031"></script>	
+	<script type="text/javascript" src="tr-web-control/script/min/system.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/config.js?v=20131031"></script>
+	<script type="text/javascript" src="tr-web-control/plugin.js?v=20131031"></script>
+</head>
+<style type="text/css">
+	.tree-title {
+		display: inline;
+	}
+</style>
+<body>
+	<div id="main" class="easyui-layout">
+		<div id="m_top" data-options="region:'north'">
+			<div class="easyui-layout" data-options="fit:true">
+				<div id="m_title_layout" data-options="region:'center'" border="0">
+					<img src="tr-web-control/logo.png"/><span id="m_title" style="padding:10px;display:none;"></span>
+					<span id="area-update-infos" style="display:none;">
+						<span id="msg-updateInfos" style="color:red;"></span>
+						<a id="button-download-update" href="https://code.google.com/p/transmission-control/wiki/ChangeLog" system-lang="public['text-have-update']" target="_blank"></a>
+					</span>
+					<div style="float:right;padding:13px;">
+						<!-- 切换到移动版 -->
+						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"><label system-lang="toolbar['ui-mobile']"></label></a>
+						<span class="button-split">|</span>
+						<!-- 切换到原版 -->
+						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><label system-lang="toolbar['ui-original']"></label></a>
+						<span class="button-split">|</span>
+						<!-- 关于 -->
+						<a id="toolbar_about" href="javascript:void(0);" onclick="javascript:system.openDialogFromTemplate({id: 'dialog-about',options: {title: system.lang.toolbar['about'],width: 340,height: 220}});" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true" system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>
+					</div>
+					<div style="float:right;display:none;">Language：<select id="lang" value="" style="width:200px;"></select></div>
+				</div>
+				<!-- 工具栏 -->
+				<div id="m_toolbar" data-options="region:'south',border:0">
+					<!-- 增加种子 -->
+					<a id="toolbar_add_torrents" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<!-- 刷新 -->
+					<a id="toolbar_reload" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true"></a>
+					<!-- 限速 -->
+					<a id="toolbar_alt_speed" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-alt-speed-false',plain:true"></a>
+					<!-- 设置 -->
+					<a id="toolbar_config" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-system-config',plain:true"></a>
+					<span class="button-split">|</span>
+					<!-- 扩展功能/插件 -->
+					<a id="toolbar_plugin" href="#" class="easyui-menubutton" data-options="menu:'#menu-plugin',iconCls:'icon-plugin',disabled:false" system-tip-lang="toolbar.plugin"></a>
+					<span class="button-split">|</span>
+					<!-- 开始 -->
+					<a id="toolbar_start" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-one',plain:true,disabled:true"></a>
+					<!-- 暂停 -->
+					<a id="toolbar_pause" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-one',plain:true,disabled:true"></a>
+					<!-- 删除 -->
+					<a id="toolbar_remove" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-remove-torrent',plain:true,disabled:true"></a>
+					<!-- 重新校验 -->
+					<a id="toolbar_recheck" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-recheck-torrent',plain:true,disabled:true"></a>
+					<!-- 获取更多Peers -->
+					<a id="toolbar_morepeers" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-more-peers',plain:true,disabled:true" system-tip-lang="toolbar.tip['more-peers']"></a>
+					<!-- 设置下载目录 -->
+					<a id="toolbar_changeDownloadDir" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-folder-change',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<!-- 队列 -->
+					<a id="toolbar_queue" href="#" class="easyui-menubutton" data-options="menu:'#menu-queue',iconCls:'icon-queue-move',disabled:true" system-tip-lang="toolbar.queue"></a>
+					<span class="button-split">|</span>
+					<!-- 开始所有 -->
+					<a id="toolbar_start_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-start-all',plain:true,disabled:true"></a>
+					<!-- 暂停所有 -->
+					<a id="toolbar_pause_all" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pause-all',plain:true,disabled:true"></a>
+					<span class="button-split">|</span>
+					<label id="toolbar_label_reload_time"></label>
+					<input id="toolbar_reload_time" style="width:50px;text-align:center;" class="easyui-numberspinner"/>
+					<label id="toolbar_label_reload_time_unit"></label>
+					<a id="toolbar_autoreload" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true"></a>
+					<span id="toolbar_right_area" style="float:right;padding:2px;">
+						<!-- 搜索 -->
+						<input id="toolbar_search" type="text" class="easyui-searchbox" style="width:200px;"/>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
+			<div id="layout_left" class="easyui-layout" data-options="fit:true">
+				<div id="m_left" data-options="region:'center',border:0"></div>
+				<div id="m_status" title="status" data-options="region:'south',split:true,border:0,collapsed:true">
+					<span id="status_text"></span>
+				</div>
+			</div>
+		</div>
+		<div id="m_body" title="." data-options="region:'center',border:0" >
+			<div id="layout_body"  class="easyui-layout" data-options="fit:true">
+				<div id="m_list" data-options="region:'center',border:0"></div>
+				<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'tr-web-control/template/torrent-attribute.html',cache:true"></div>
+			</div>
+		</div>
+		<div id="m_statusbar" data-options="region:'south'">
+			<span id="status_alt_speed" style="display:none;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span id="status_title_downloadspeed" class="iconlabel icon-down"></span>&nbsp;<span id="status_downloadspeed"></span>
+			<span class="button-split">|</span>
+			<span id="status_title_uploadspeed" class="iconlabel icon-up"></span>&nbsp;<span id="status_uploadspeed"></span>
+			<span class="button-split">|</span>
+			<span id="status_freespace"></span><span id="status_version" style="float:right;"></span>
+		</div>
+		<div id="dropArea" class="dropArea" style="display:none;">
+			<span id="text-drop-title" style="position:absolute;top:150px;left:150px;font-size:40px;font-weight: bold;" disabled="disabled"></span>
+		</div>
+	</div>
+	<!-- 队列子菜单 -->
+	<div id="menu-queue" style="width:150px;">
+		<div id="menu-queue-move-top" data-options="iconCls:'icon-queue-move-top'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-top');" system-tip-lang="menus.queue['move-top']"><span system-lang="menus.queue['move-top']"></span></div>
+		<div id="menu-queue-move-up" data-options="iconCls:'icon-queue-move-up'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-up');" system-tip-lang="menus.queue['move-up']"><span system-lang="menus.queue['move-up']"></span></div>
+		<div id="menu-queue-move-down" data-options="iconCls:'icon-queue-move-down'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-down');" system-tip-lang="menus.queue['move-down']"><span system-lang="menus.queue['move-down']"></span></div>
+		<div id="menu-queue-move-bottom" data-options="iconCls:'icon-queue-move-bottom'" onclick="system.changeSelectedTorrentStatus('',null,'queue-move-bottom');" system-tip-lang="menus.queue['move-bottom']"><span system-lang="menus.queue['move-bottom']"></span></div>
+	</div>
+	<!-- 扩展功能/插件 -->
+	<div id="menu-plugin" style="width:260px;">
+		<div id="menu-plugin-tracker-replace" data-options="iconCls:'icon-tracker-replace'" system-tip-lang="toolbar.tip['tracker-replace']" onclick="system.plugin.exec('replace-tracker');"><span system-lang="toolbar['tracker-replace']"></span></div>
+		<div id="menu-plugin-auto-match-data-folder" data-options="iconCls:'icon-target'" system-tip-lang="menus.plugin['auto-match-data-folder']" onclick="system.plugin.exec('auto-match-data-folder');"><span system-lang="menus.plugin['auto-match-data-folder']"></span></div>
+	</div>
+</body>
+</html>
