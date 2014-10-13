@@ -15,6 +15,8 @@ cd "$tmpFolder"
 # 找出web ui 目录
 folderIsExist=0
 echo "Searching Transmission Web Folder..."
+
+# 感谢 yumin9822 提供的代码
 rootFolder=`find / -name 'web' -type d | grep 'transmission/web' | head -n 1 | sed 's/web.*$//g'`
 
 echo "Folder: ""$rootFolder""..."

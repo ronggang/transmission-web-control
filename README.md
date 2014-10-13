@@ -28,8 +28,8 @@
 ### 下载列表
  - 可通过以下地址获取最新版的程序：
  - https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
- - 或到下载列表中下载安装脚本，此脚本只需要下载一次，以后只需要执行即可
- - http://code.google.com/p/transmission-control/downloads/list
+ - 或到下载安装脚本，此脚本只需要下载一次，以后只需要执行即可
+ - https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
 
 ### 安装方法
  - https://code.google.com/p/transmission-control/wiki/Install
@@ -105,9 +105,9 @@ Transmission Web Control is a custom web UI. The project began in Google Code.
 
 ### Download
  - You can get the latest version of the program for this address:
- - https://transmission-control.googlecode.com/svn/resouces/transmission-control-full.tar.gz
+ - https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
  - Or download easy install script:
- - http://code.google.com/p/transmission-control/downloads/list
+ - https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
 
 
 ###### 创建于(Create): 2012.12.18；更新于(Update): 2014.10.13 By 栽培者(ronggang) ######
