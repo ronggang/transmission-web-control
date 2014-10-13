@@ -220,7 +220,7 @@
 		
 		// 初始化文件显示列表
 		var filelist = $("<table/>").attr("class","torrent-list").attr("id","torrent-files-table").appendTo(thisLayout.find("#torrent-attribute-files"));
-		$.get("template/torrent-attribute-files-fields.json?time="+(new Date()),function(data){
+		$.get(system.rootPath+"template/torrent-attribute-files-fields.json?time="+(new Date()),function(data){
 			var fields = data.fields;
 			var config = data.config;
 
@@ -382,7 +382,7 @@
 		
 		// 服务器列表
 		var serverlist = $("<table/>").attr("class","torrent-list").attr("id","torrent-servers-table").appendTo(thisLayout.find("#torrent-attribute-servers"));
-		$.get("template/torrent-attribute-servers-fields.json?time="+(new Date()),function(data){
+		$.get(system.rootPath+"template/torrent-attribute-servers-fields.json?time="+(new Date()),function(data){
 			var fields = data.fields;
 			var config = data.config;
 			
@@ -506,7 +506,7 @@
 
 		// 用户列表
 		var peerslist = $("<table/>").attr("class","torrent-list").attr("id","torrent-peers-table").appendTo(thisLayout.find("#torrent-attribute-peers"));
-		$.get("template/torrent-attribute-users-fields.json?time="+(new Date()),function(data){
+		$.get(system.rootPath+"template/torrent-attribute-users-fields.json?time="+(new Date()),function(data){
 			var fields = data.fields;
 			var config = data.config;
 			
@@ -547,7 +547,7 @@
 				modal: true
 			});
 			
-			$.get("template/dialog-torrent-changeDownloadDir.html?time="+(new Date()),function(data){
+			$.get(system.rootPath+"template/dialog-torrent-changeDownloadDir.html?time="+(new Date()),function(data){
 				system.templates["dialog-torrent-changeDownloadDir.html"] = data;
 				$("#dialog-torrent-changeDownloadDir").data("ids",system.currentTorrentId);
 				$("#dialog-torrent-changeDownloadDir").dialog({content:data});
