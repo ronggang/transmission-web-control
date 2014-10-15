@@ -31,14 +31,22 @@ transmission.torrents = {
 	,isRecentlyActive:false
 	// 新增的种子
 	,newIds:new Array()
-	,getallids:function(callback,ids)
+	,getallids:function(callback,ids, moreFields)
 	{
-		var fields = this.fields.base;
+		var tmp = this.fields.base;
 		if (this.loadSimpleInfo&&this.all)
-			fields = this.fields.status;
+			tmp = this.fields.status;
+
+		var fields = tmp.split(",");
+		if ($.isArray(moreFields))
+		{
+			$.unique($.merge(fields, moreFields));
+		}
 		var arguments = {
-			fields:fields.split(",")
+			fields: fields
 		};
+
+
 		this.isRecentlyActive = false;
 		// 如果已经获取过
 		if (this.all&&ids==undefined)

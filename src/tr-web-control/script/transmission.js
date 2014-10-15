@@ -331,16 +331,20 @@ var transmission = {
 	// oldpath 			原文件路径或目录，如：opencd/info.txt 或 opencd/cd1
 	// newname			新的文件或目录名，如：into1.txt 或 disc1
 	,renameTorrent: function(torrentId,oldpath,newname,callback) {
+		var torrent = this.torrents.all[torrentId];
+		if (!torrent)
+			return false;
+
 		this.exec({
 			method: "torrent-rename-path",
 			arguments: {
 				ids: [torrentId],
-				path: oldpath,
+				path: oldpath||torrent.name,
 				name: newname
 			}
 		}, function(data) {
 			if (callback)
-				callback(data.result);
+				callback(data);
 		});
 	}
 	// 关闭连接？

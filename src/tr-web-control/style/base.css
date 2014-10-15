@@ -305,6 +305,9 @@ html, body {
 .icon-ignore{
 	background:url('images/ignore.png') no-repeat;
 }
+.icon-rename{
+	background:url('images/rename.png') no-repeat;
+}
 
 .drop-over-before{
     border-left: 1px #ff0000 solid;

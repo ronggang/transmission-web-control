@@ -140,14 +140,29 @@ var system = {
 
 		$.each(items, function(key, item){
 			var name = $(item).attr("system-lang");
-			$(item).html(eval("system.lang."+name));
+			if (name.substr(0,1)=="[")
+			{
+				$(item).html(eval("system.lang"+name));
+			}
+			else
+			{
+				$(item).html(eval("system.lang."+name));
+			}
 		});
 
 		items = parent.find("*[system-tip-lang]");
 
 		$.each(items, function(key, item){
 			var name = $(item).attr("system-tip-lang");
-			$(item).attr("title",eval("system.lang."+name));
+			if (name.substr(0,1)=="[")
+			{
+				$(item).attr("title",eval("system.lang"+name));
+			}
+			else
+			{
+				$(item).attr("title",eval("system.lang."+name));
+			}
+			
 		});
 	}
 	,initdata:function()
@@ -748,8 +763,9 @@ var system = {
 		switch (type)
 		{
 			case "torrent-list":
-				menus = new Array("start","pause","-","remove","recheck","-","morepeers","changeDownloadDir"
-									,"-","menu-queue-move-top","menu-queue-move-up","menu-queue-move-down","menu-queue-move-bottom");
+				menus = new Array("start","pause","-","rename","remove","recheck","-","morepeers","changeDownloadDir"
+									,"-","menu-queue-move-top","menu-queue-move-up","menu-queue-move-down"
+									,"menu-queue-move-bottom");
 				var toolbar = this.panel.toolbar;
 				for (var item in menus)
 				{
@@ -804,6 +820,7 @@ var system = {
 		{
 			this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:rowData});
+			this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:rowData});
 			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:rowData});
@@ -815,6 +832,7 @@ var system = {
 		{
 			this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
+			this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
 			this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
@@ -824,6 +842,7 @@ var system = {
 		}
 
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
 		
@@ -1024,6 +1043,28 @@ var system = {
 				});
 			});
 
+		// 改名选定的内容
+		this.panel.toolbar.find("#toolbar_rename")
+			.linkbutton({disabled:true})
+			.click(function()
+			{
+				var rows = system.control.torrentlist.datagrid("getChecked");
+				if (rows.length==0) return;
+				
+				system.openDialogFromTemplate({
+					id: "dialog-torrent-rename",
+					options: {
+						title: system.lang.dialog["torrent-rename"].title,  
+						width: 450,
+						height: 150,
+						resizable: true
+					},
+					datas: {
+						id: rows[0].id
+					}
+				});
+			});
+
 		// 修改选定的种子数据保存目录
 		this.panel.toolbar.find("#toolbar_changeDownloadDir")
 		.linkbutton({disabled:true})
@@ -1208,7 +1249,7 @@ var system = {
 		$("#status_freespace").text(system.lang.dialog["system-config"]["download-dir-free-space"]+" "+tmp);
 	}
 	// 重新获取种子信息
-	,reloadTorrentBaseInfos:function(ids)
+	,reloadTorrentBaseInfos:function(ids, moreFields)
 	{
 		if (this.reloading) return;
 		clearTimeout(this.autoReloadTimer);
@@ -1241,7 +1282,7 @@ var system = {
 			{
 				system.resetTorrentInfos(oldInfos);
 			}
-		},ids);
+		},ids, moreFields);
 	}
 	//
 	,resetTorrentInfos:function(oldInfos)

@@ -14,6 +14,7 @@ system.lang = {
 	,"error":{
 		"data-error":"数据错误"
 		,"data-post-error":"数据提交错误"
+		,"rename-error":"修改名称失败！"
 	}
 	,"config":{
 		"save-path":"保存目录"
@@ -44,6 +45,7 @@ system.lang = {
 		,"ui-original":"原版UI"
 		,"ui-computer":"桌面UI"
 		,"plugin":"扩展功能/插件"
+		,"rename":"改名"
 		,"tip":{
 			"start":"重新开始已经选中的种子"
 			,"pause":"暂停已经选中的种子"
@@ -67,6 +69,7 @@ system.lang = {
 			,"ui-mobile":"切换到移动设备界面"
 			,"ui-original":"切换到原版界面"
 			,"more-peers":"获取更多Peer"
+			,"rename":"修改种子文件或目录名称"
 		}
 	}
 	,"menus":{
@@ -247,6 +250,11 @@ system.lang = {
 				"1":"按种子逐个匹配目录"
 				,"2":"按目录逐个匹配种子"
 			}
+		}
+		,"torrent-rename": {
+			"title":"修改种子文件或目录名称",
+			"oldname": "原名称",
+			"newname": "新名称"
 		}
 	}
 	,"torrent":{

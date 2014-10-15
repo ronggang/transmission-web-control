@@ -14,6 +14,7 @@ system.defaultLang = {
 	,"error":{
 		"data-error":"Data error."
 		,"data-post-error":"Data post error."
+		,"rename-error":"Rename error"
 	}
 	,"config":{
 		"save-path":"Download dir"
@@ -44,6 +45,7 @@ system.defaultLang = {
 		,"ui-original":"Original UI"
 		,"ui-computer":"Desktop UI"
 		,"plugin":"Extensions/plugins"
+		,"rename":"Rename"
 		,"tip":{
 			"start":"Start the checked torrents"
 			,"pause":"Pause the checked torrents"
@@ -67,6 +69,7 @@ system.defaultLang = {
 			,"ui-mobile":"Mobile UI"
 			,"ui-original":"Original UI"
 			,"more-peers":"Ask tracker for more peers"
+			,"rename":"Renaming a Torrent's Path"
 		}
 	}
 	,"menus":{
@@ -248,6 +251,11 @@ system.defaultLang = {
 				"1":"Individually matched by torrent"
 				,"2":"Individually matched by folder"
 			}
+		}
+		,"torrent-rename": {
+			"title":"Renaming a Torrent's Path",
+			"oldname": "Old",
+			"newname": "New"
 		}
 	}
 	,"torrent":{
