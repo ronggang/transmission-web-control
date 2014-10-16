@@ -8,12 +8,12 @@ system.lang = {
 			,"connected":"Connecté"
 			,"queue":"File d'attente:"
 			,"queuefinish":"La file d'attente est terminée."
-			,"notfinal":"Not final"
+			,"notfinal":"Non terminée"
 		}
 	}
 	,"error":{
 		"data-error":"Erreur de données."
-		,"data-post-error":"Erreur de données Post."
+		,"data-post-error":"Erreur lors de l'envoi de données."
 	}
 	,"config":{
 		"save-path":"Dossier de téléchargement"
@@ -21,18 +21,18 @@ system.lang = {
 	,"toolbar":{
 		"start":"Démarrer"
 		,"pause":"Pause"
-		,"recheck":"Recheck"
-		,"start-all":"Start all"
-		,"pause-all":"Pause all"
+		,"recheck":"Revérification"
+		,"start-all":"Tout démarrer"
+		,"pause-all":"Tout en pause"
 		,"remove":"Supprimer"
-		,"remove-all":"Supprimer tout"
+		,"remove-all":"Tout supprimer"
 		,"remove-data":"Supprimer les données"
 		,"add-torrent":"Ajouter Torrent"
 		,"attribute":"Attributs"
 		,"alt-speed":"Vitesse alternative"
 		,"system-config":"Configuration"
 		,"system-reload":"Recharger"
-		,"about":"à propos"
+		,"about":"A propos"
 		,"reload-time":"Rafraîchissement auto:"
 		,"reload-time-unit":"/s"
 		,"autoreload-disabled":"Désactivé"
