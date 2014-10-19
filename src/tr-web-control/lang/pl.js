@@ -1,19 +1,20 @@
-﻿// lang file
+// lang file
 system.lang = {
 	"name":"pl"
 	,"system":{
 		"title":"Transmission WEB Control"
 		,"status":{
 			"connect":"Łączenie..."
-			,"connected":"Połączony"
+			,"connected":"Połączono"
 			,"queue":"Kolejka:"
-			,"queuefinish":"Kolejkę zakończono."
+			,"queuefinish":"Zakończono kolejkę."
 			,"notfinal":"Nie ukończone"
 		}
 	}
 	,"error":{
 		"data-error":"Błąd danych."
 		,"data-post-error":"Błąd danych."
+		,"rename-error":"Błąd zmiany nazwy"
 	}
 	,"config":{
 		"save-path":"Katalog pobierania"
@@ -21,6 +22,7 @@ system.lang = {
 	,"toolbar":{
 		"start":"Start"
 		,"pause":"Wstrzymaj"
+		,"recheck":"Sprawdź"
 		,"start-all":"Pobieraj wszystkie"
 		,"pause-all":"Wstrzymaj wszystkie"
 		,"remove":"Usuń"
@@ -28,7 +30,7 @@ system.lang = {
 		,"remove-data":"Usuń dane"
 		,"add-torrent":"Dodaj torrenta"
 		,"attribute":"Szczegóły"
-		,"alt-speed":"Alt-Speed"
+		,"alt-speed":"Alternatywna prędkość"
 		,"system-config":"Panel konfiguracyjny Transmission"
 		,"system-reload":"Odśwież"
 		,"about":"O webgui"
@@ -36,12 +38,19 @@ system.lang = {
 		,"reload-time-unit":"sekund"
 		,"autoreload-disabled":"Wyłączone"
 		,"autoreload-enabled":"Włączone"
-		,"search-prompt":"Szukaj w dodanych torrentach"
+		,"search-prompt":"Szukaj torrentach"
+		,"tracker-replace":"Zamień trackery"
+		,"queue":"Kolejka"
+		,"ui-mobile":"Mobile UI"
+		,"ui-original":"Original UI"
+		,"ui-computer":"Desktop UI"
+		,"plugin":"Rozszerzenia/wtyczki"
+		,"rename":"Zmień nazwę"
 		,"tip":{
-			"start":"Pobieraj sprawdzone torrenty"
-			,"pause":"Wstrzymaj sprawdzone torrenty"
-			,"recheck":"Sprawdź ponownie sprawdzone torrenty"
-			,"recheck-confirm":"Czy jesteś pewien,że na pewno chcesz ponownie sprawdzić wybrane torrenty? To może zająć trochę czasu!"
+			"start":"Pobieraj wybrane torrenty"
+			,"pause":"Wstrzymaj wybrane torrenty"
+			,"recheck":"Sprawdź ponownie wybrane torrenty"
+			,"recheck-confirm":"Jesteś pewny, że chcesz ponownie sprawdzić wybrane torrenty? To może zająć trochę czasu!"
 			,"start-all":"Pobieraj wszystkie"
 			,"pause-all":"Wstrzymaj wszystkie"
 			,"remove":"Usuń"
@@ -52,9 +61,26 @@ system.lang = {
 			,"alt-speed":"Limituj prędkość pobierania i wysyłania"
 			,"system-config":"Panel konfiguracyjny Transmission"
 			,"system-reload":"Odśwież"
-			,"about":"O tej aplikacji"
+			,"about":"O aplikacji"
 			,"autoreload-disabled":"Wyłącz auto-odświeżanie"
 			,"autoreload-enabled":"Włącz auto-odświeżanie"
+			,"tracker-replace":"Zamień trackery"
+			,"change-download-dir":"Zmień katalog pobierania"
+			,"ui-mobile":"Mobilne UI"
+			,"ui-original":"Oryginalne UI"
+			,"more-peers":"Zapytaj tracker o więcej peerów"
+			,"rename":"Zmiana nazwy katalogu"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"Przesuń na górę"
+			,"move-up":"Przesuń wyżej"
+			,"move-down":"Przesuń niżej"
+			,"move-bottom":"Przesuń na dół"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "Automatyczne dopasowanie katalogu"
 		}
 	}
 	,"title":{
@@ -81,15 +107,15 @@ system.lang = {
 		,"statistics":"Statystyki"
 		,"statistics":{
 			"title":"Statystyki"
-			,"cumulative":"Łączne"
+			,"cumulative":"Ogólne"
 			,"current":"Bieżące"
-			,"uploadedBytes":"Wysłane dane: "
-			,"downloadedBytes":"Pobrane dane: "
+			,"uploadedBytes":"Wysłano: "
+			,"downloadedBytes":"Pobrano: "
 			,"filesAdded":"Dodane pliki: "   
-			,"sessionCount":"Licznik sesji: " 
+			,"sessionCount":"Ilość sesji: " 
 			,"secondsActive":"Czas aktywności: "
-}
-		,"server":"Trackery"
+		}
+		,"servers":"Trackery"
 		,"folders":"Katalogi"
 		,"toolbar":{
 			"nav":{
@@ -106,8 +132,8 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"Katalog pobierania:"
 			,"torrent-url":"Link do torrenta:"
-			,"tip-torrent-url":"Wskazówka: jeżeli chcesz dodać wiele linków na raz,dodawaj je po oddzieleniu klawiszem ENTER,który ma wystąpić po każdym dodanym linku"
-			,"autostart":"Automatyczny start pobierania:"
+			,"tip-torrent-url":"Wskazówka: każdy w nowej linii (oddziel klawiszem ENTER)"
+			,"autostart":"Uruchom pobieranie:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Zapisz jako katalog domyślny"
 			,"upload-file":"Pliki torrent:"
@@ -123,7 +149,7 @@ system.lang = {
 				,"alt-speed":"Harmonogram"
 			}
 			,"config-dir":"Lokalizacja katalogu z konfiguracją Transmission:"
-			,"download-dir":"Domyślna lokalizacja do pobierania torrentów:"
+			,"download-dir":"Domyślny katalog pobierania torrentów:"
 			,"download-dir-free-space":"Wolne miejsce na dysku: "
 			,"incomplete-dir-enabled":"Użyj katalogu dla niedokończonych pobrań"
 			,"cache-size-mb":"Wielkość cache'u dysku:"
@@ -166,9 +192,10 @@ system.lang = {
 				,"0":"Niedziela"
 			}
 			,"blocklist-enabled":"Używaj blocklist'y(czarna lista z adresami IP organizacji antypirackich)"
+			,"blocklist-size":"%n regół na czarnej liście."
 			,"seedRatioLimited":"Domyślne ratio dla torrentów:"
 			,"queue-stalled-enabled":"Bezczynne torrenty będą blokowane po czasie :"
-			,"idle-seeding-limit-enabled":"Torrenty ze statusem 'wysyłane' zostaną całkowicie zatrzymane,jeżeli nikt nie będzie ich pobierał w czasie:"
+			,"idle-seeding-limit-enabled":"Wysyłanie pobranych torrentów zostanie zatrzymane,jeżeli nikt nie będzie ich pobierał przez:"
 			,"minuets":"Minut"
 			,"nochange":"Nie dokonano zmian"
 			,"saveing":"Zapisywanie..."
@@ -179,9 +206,12 @@ system.lang = {
 			,"button-reload":"Odśwież"
 			,"button-save":"Zapisz"
 			,"button-close":"Zamknij"
+			,"button-update":"Aktualizuj"
+			,"button-config":"Konfiguracja"
 		}
 		,"about":{
-			"infos":"Autor：culturist , MODed by Simplydan [PL] openrouter.info forum user.<br/>Zmiany: spolszczenie oraz modyfikacja interfejsu."
+			"infos":"Autor：culturist, Tłumaczenie: Simplydan<br/>Poprawki + nowe tłumaczenia: vipKoza<br/>Oświadczenie: Jeżeli któraś ikona narusza twoje prawa, skontaktuj się z autorem."
+			,"check-update":"Sprawdź aktualizację"
 		}
 		,"torrent-remove":{
 			"title":"Potwierdź"
@@ -193,36 +223,67 @@ system.lang = {
 			"title":"Ustaw nowy katalog pobierania dla tego torrenta"
 			,"old-download-dir":"Stary katalog:"
 			,"new-download-dir":"Nowy katalog:"
-			,"move-data":"Jeżeli sprawdzono,przenieś dane ze starej lokalizacji do nowej.Teraz  pobieranych torrentów szukaj w nowej lokalizacji"
+			,"move-data":"Przenieś pobrane pliki do nowej lokalizacji"
 			,"set-error":"Błąd!"
+			,"recheck-data":"Ponownie sprawdź pobrane dane"
+		}
+		,"system-replaceTracker":{
+			"title":"Zmiana trackerów"
+			,"old-tracker":"Stary tracker:"
+			,"new-tracker":"Nowy tracker:"
+			,"tip":"Ta funkcja znajdzie i zamieni trackery we <b>wszystkich torrentach!</b>"
+			,"not-found":"Tracker nie został znaleziony."
+		}
+		,"auto-match-data-folder":{
+			"title":"Automatyczne dopasowanie katalogu z danymi"
+			,"torrent-count":"Liczba torrentów:"
+			,"folder-count":"Liczba folderów:"
+			,"dictionary":"Plik sławnika katalogów"
+			,"time-begin":"Czas rozpoczęcia:"
+			,"time-now":"Teraz:"
+			,"status":"Stan:"
+			,"ignore":"Ignoruj"
+			,"working-close-confirm":"Operacja w trakcie, czy na pewno chcesz zamknąć?"
+			,"time-interval":"Odstęp czasu (sekundy):"
+			,"work-mode-title":"Tryb:"
+			,"work-mode":{
+				"1":"Dopasowanie według torrenta"
+				,"2":"Dopasowanie według folderu"
+			}
+		}
+		,"torrent-rename": {
+			"title":"Zmiana nazwy katalogu",
+			"oldname": "Stary",
+			"newname": "Nowy"
 		}
 	}
 	,"torrent":{
 		"fields":{
-			"id":"ID"
+			"id":"#"
 			,"name":"Nazwa"
 			,"hashString":"HASH"
 			,"downloadDir":"Katalog pobierania"
-			,"totalSize":"Całkowity rozmiar"
+			,"totalSize":"Rozmiar"
 			,"status":"Status"
-			,"percentDone":"% ukończenia"
-			,"remainingTime":"Remaining time"
+			,"percentDone":"Ukończono"
+			,"remainingTime":"Pozostały czas"
 			,"addedDate":"Data dodania"
 			,"completeSize":"Pobrano"
 			,"rateDownload":"Prędkość pobierania"
 			,"rateUpload":"Prędkość wysyłania"
-			,"leecherCount":"Pobierających"
-			,"seederCount":"Wysyłających"
-			,"uploadedEver":"Wysłano łącznie"
+			,"leecherCount":"Peerów"
+			,"seederCount":"Seedów"
+			,"uploadedEver":"Wysłano"
 			,"uploadRatio":"Ratio"
+			,"queuePosition":"Kolejka"
 		}
 		,"status-text":{
 			"0":"Wstrzymano"
-			,"1":"Sprawdzanie"
+			,"1":"Oczekiwanie na sprawdzenie"
 			,"2":"Sprawdzanie"
-			,"3":"Oczekiwanie"
+			,"3":"Oczekiwanie na pobieranie"
 			,"4":"Pobieranie"
-			,"5":"Oczekiwanie"
+			,"5":"Oczekiwanie na seeda"
 			,"6":"Wysyłanie"
 		}
 		,"attribute":{
@@ -236,25 +297,26 @@ system.lang = {
 			,"files-fields":{
 				"name":"Nazwa"
 				,"length":"Rozmiar"
-				,"percentDone":"% ukończenia"
+				,"percentDone":"Ukończono"
 				,"bytesCompleted":"Pobrano"
 				,"wanted":"Status"
 				,"priority":"Priorytet"
 			}
 			,"servers-fields":{
-				"announce":"Dane trackera"
+				"announce":"Tracker"
 				,"announceState":"Status"
 				,"lastAnnounceResult":"Status połączenia z trackerem"
 				,"lastAnnounceSucceeded":"Udane połączenie"
 				,"lastAnnounceTime":"Godzina połączenia"
 				,"lastAnnounceTimedOut":"Timeout"
-				,"downloadCount":"Licznik pobrań"
+				,"downloadCount":"ilość pobrań"
+				,"nextAnnounceTime":"Następne połączenie"
 			}
 			,"peers-fields":{
 				"address":"Adres IP"
-				,"clientName":"Klienci"
+				,"clientName":"Klient"
 				,"flagStr":"Flaga"
-				,"progress":"Postęp"
+				,"progress":"%"
 				,"rateToClient":"Prędkość pobierania"
 				,"rateToPeer":"Prędkość wysyłania"
 			}
@@ -265,7 +327,7 @@ system.lang = {
 			,"priority":{
 				"0":"Normalny"
 				,"1":"Wysoki"
-				,"-1":"średni"
+				,"-1":"Niski"
 			}
 			,"label":{
 				"name":"Nazwa:"
@@ -278,10 +340,10 @@ system.lang = {
 				,"status":"Status:"
 				,"rateDownload":"Prędkość pobierania :"
 				,"rateUpload":"Prędkość wysyłania :"
-				,"leecherCount":"Ilość pobierających:"
-				,"seederCount":"Ilość wysyłających:"
-				,"uploadedEver":"Wysłano ogólnie:"
-				,"uploadRatio":"Ratio wysyłania:"
+				,"leecherCount":"Ilość peerów:"
+				,"seederCount":"Ilość seedów:"
+				,"uploadedEver":"Wysłano:"
+				,"uploadRatio":"Ratio:"
 				,"creator":"Autor:"
 				,"dateCreated":"Data utworzenia:"
 				,"comment":"Komentarz:"
@@ -290,13 +352,21 @@ system.lang = {
 				,"uploadLimited":"Maksymalna prędkość wysyłania："
 				,"peer-limit":"Maksymalna ilość peerów na torrent："
 				,"seedRatioMode":"Ratio do wyseedowania dla tego torrenta："
-				,"seedIdleMode":"Torrent ze statusem 'wysyłany' zostanie całkowicie zatrzymany,jeżeli nikt nie będzie go pobierał w czasie(minuty):"
+				,"seedIdleMode":"Wysyłanie zatrzymanego torrenta, będzie zatrzymane, jeżeli nie będzie wysyłany przez (minut): "
 			}
 			,"tip":{
 				"button-allow":"Pobierz sprawdzone pliki"
 				,"button-deny":"Pomiń sprawdzone pliki"
 				,"button-priority":"Ustaw priorytet"
 			}
+			,"other":{
+				"tracker-remove-confim":"Czy na pewno chcesz usunąć ten tracker?"
+			}
+		}
+	}
+	,"torrent-head":{
+		"buttons":{
+			"autoExpandAttribute":"Automatycznie rozwijaj szczegóły"
 		}
 	}
 	,"public":{
@@ -305,5 +375,9 @@ system.lang = {
 		,"text-saved":"Zapisano"
 		,"text-nochange":"Nie dokonano zmian"
 		,"text-info":"Informacje"
+		,"text-confirm":"Jesteś pewny?"
+		,"text-browsers-not-support-features":"Ta przeglądarka nie obsługuje tej funkcji!"
+		,"text-download-update":"Pobierz tę aktualizację"
+		,"text-have-update":"Aktualizacja jest dostępna"
 	}
 };
