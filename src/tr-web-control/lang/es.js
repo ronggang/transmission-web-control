@@ -14,6 +14,7 @@ system.lang = {
 	,"error":{
 		"data-error":"Error de datos."
 		,"data-post-error":"Error enviando datos."
+		,"rename-error":"Error renombrando"
 	}
 	,"config":{
 		"save-path":"Carpeta descargas"
@@ -28,7 +29,7 @@ system.lang = {
 		,"remove-all":"Eliminar todos"
 		,"remove-data":"Eliminar datos"
 		,"add-torrent":"Añadir torrent"
-		,"attribute":"Atributorrrr"
+		,"attribute":"Atributo"
 		,"alt-speed":"Velocidad alternativa"
 		,"system-config":"Configuración del servidor"
 		,"system-reload":"Actualizar"
@@ -39,6 +40,12 @@ system.lang = {
 		,"autoreload-enabled":"Activado"
 		,"search-prompt":"Búsqueda local"
 		,"tracker-replace":"Reemplazar trackers"
+		,"queue":"Cola"
+		,"ui-mobile":"IU Móvil"
+		,"ui-original":"IU Original"
+		,"ui-computer":"IU Escritorio"
+		,"plugin":"Extensiones/plugins"
+		,"rename":"Renombrar"
 		,"tip":{
 			"start":"Iniciar torrents seleccionados"
 			,"pause":"Pausar torrents seleccionados"
@@ -59,9 +66,21 @@ system.lang = {
 			,"autoreload-enabled":"Activar actualización automática"
 			,"tracker-replace":"Reemplazar trackers"
 			,"change-download-dir":"Establecer ubicación"
-			,"ui-mobile":"UI Móviles"
-			,"ui-original":"Original UI"
-			,"more-peers":"Solicitar más peers al trackers "
+			,"ui-mobile":"IU Móviles"
+			,"ui-original":"IU Original"
+			,"more-peers":"Solicitar más peers al trackers"
+			,"rename":"Renombrando ruta del Torrent"
+		}
+	}
+	,"menus":{
+		"queue":{
+			"move-top":"Mover al inicio"
+			,"move-up":"Mover arriba"
+			,"move-down":"Mover abajo"
+			,"move-bottom":"Move al final"
+		}
+		,"plugin": {
+			"auto-match-data-folder": "Elegir automáticamente directorio de datos"
 		}
 	}
 	,"title":{
@@ -128,6 +147,7 @@ system.lang = {
 				,"network":"Red"
 				,"limit":"Límites"
 				,"alt-speed":"Vel. alternativa"
+				,"dictionary-folders":"Diccionario de carpetas"
 			}
 			,"config-dir":"Carpeta de configuración de Transmission:"
 			,"download-dir":"Carpeta de descarga por defecto:"
@@ -173,6 +193,7 @@ system.lang = {
 				,"0":"Domingo"
 			}
 			,"blocklist-enabled":"Usar blocklist"
+			,"blocklist-size":"Blocklist tiene %n reglas."
 			,"seedRatioLimited":"Ratio de compartición máx. por torrent:"
 			,"queue-stalled-enabled":"Considerar o no los torrents inactivos como parados:"
 			,"idle-seeding-limit-enabled":"Los torrents compartiendo se detendrán si se encuentran inactivos más de:"
@@ -186,9 +207,12 @@ system.lang = {
 			,"button-reload":"Actualizar"
 			,"button-save":"Guardar"
 			,"button-close":"Cerrar"
+			,"button-update":"Actualizar"
+			,"button-config":"Configurar"
 		}
 		,"about":{
 			"infos":"Autor：culturist<br/>Declaración：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete."
+			,"check-update":"Comprobar actualización"
 		}
 		,"torrent-remove":{
 			"title":"Confirmar eliminar"
@@ -202,6 +226,7 @@ system.lang = {
 			,"new-download-dir":"Carpeta nueva:"
 			,"move-data":"Si se activa se moverán desde la ubicación anterior, en caso contrario busca archivos en 'Carpeta nueva'."
 			,"set-error":"¡Error al establecer la carpeta!"
+			,"recheck-data":"Recomprobar datos."
 		}
 		,"system-replaceTracker":{
 			"title":"Reemplazar Trackers"
@@ -209,6 +234,28 @@ system.lang = {
 			,"new-tracker":"Nuevo tracker："
 			,"tip":"Esta función buscará trackers en <b>todos los torrents</b>."
 			,"not-found":"Tracker no encontrado."
+		}
+		,"auto-match-data-folder":{
+			"title":"Elegir automáticamente directorio de datos"
+			,"torrent-count":"Recuento de Torrent:"
+			,"folder-count":"Recuento de carpeta:"
+			,"dictionary":"Diccionario de Carpetas"
+			,"time-begin":"Hora de inicio:"
+			,"time-now":"Ahora:"
+			,"status":"Estado:"
+			,"ignore":"Ignorar"
+			,"working-close-confirm":"Está trabajando, ¿está seguro de cerrarlo?"
+			,"time-interval":"Intervalo de tiempo (segundos):"
+			,"work-mode-title":"Modo:"
+			,"work-mode":{
+				"1":"Elegido individualmente por torrent"
+				,"2":"Elegido individualmente por folder"
+			}
+		}
+		,"torrent-rename": {
+			"title":"Renombrando ruta de Torrent",
+			"oldname": "Antigua",
+			"newname": "Nueva"
 		}
 	}
 	,"torrent":{
@@ -220,7 +267,7 @@ system.lang = {
 			,"totalSize":"Tamaño"
 			,"status":"Estado"
 			,"percentDone":"Progreso"
-			,"remainingTime":"Remaining time"
+			,"remainingTime":"Tiempo restante"
 			,"addedDate":"Añadido"
 			,"completeSize":"Descargado"
 			,"rateDownload":"Veloc. desc."
@@ -228,7 +275,8 @@ system.lang = {
 			,"leecherCount":"Leechers"
 			,"seederCount":"Seeders"
 			,"uploadedEver":"Subido"
-			,"uploadRatio":"Ratio"
+			,"uploadRatio":"Proporción"
+			,"queuePosition":"Cola"
 		}
 		,"status-text":{
 			"0":"Pausado"
@@ -317,6 +365,11 @@ system.lang = {
 			}
 		}
 	}
+	,"torrent-head":{
+		"buttons":{
+			"autoExpandAttribute":"Auto expandir atributos"
+		}
+	}
 	,"public":{
 		"text-unknown":"Desconocido"
 		,"text-drop-title":"Arrastre y suelte el archivo en la región para añadir a Transmission."
@@ -325,5 +378,7 @@ system.lang = {
 		,"text-info":"Información"
 		,"text-confirm":"¿Está seguro?"
 		,"text-browsers-not-support-features":"El navegador actual no soporta esta función!"
+		,"text-download-update":"Descargar esta actualización"
+		,"text-have-update":"Hay una actualización disponible"
 	}
 };
