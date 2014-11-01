@@ -75,6 +75,8 @@
 		{
 			$("<option/>").text(system.downloadDir).val(system.downloadDir).attr("selected",true).appendTo(thisDialog.find("#download-dir"));
 		}
+
+		thisDialog.find("#chkautostart").prop("checked", system.serverConfig["start-added-torrents"]);
 		thisDialog.find("#download-dir").combobox();
 		// 确认
 		thisDialog.find("#torrent-button-ok").click(function()
@@ -84,6 +86,20 @@
 			var isnewdir = system.serverConfig["download-dir"]!=dir;
 			var isupload = thisDialog.find("#torrent_upload_file")[0].value!="";
 			var autostart = thisDialog.find("#chkautostart").prop("checked");
+
+			if (autostart!=system.serverConfig["start-added-torrents"])
+			{
+				system.serverConfig["start-added-torrents"] = autostart;
+				// 开始设置参数
+				transmission.exec(
+					{
+						method:"session-set"
+						,arguments: {
+							"start-added-torrents": autostart
+						}
+					}
+				);
+			}
 
 			var button = $(this);
 			var icon = button.linkbutton("options").iconCls;
