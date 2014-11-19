@@ -13,8 +13,8 @@ system.defaultLang = {
 	}
 	,"error":{
 		"data-error":"Error recieving data!"
-		,"data-post-error":"Error posting data"
-		,"rename-error":"Error renaming file/folder"
+		,"data-post-error":"Error posting data!"
+		,"rename-error":"Error renaming file/folder!"
 	}
 	,"config":{
 		"save-path":"Download directory"
