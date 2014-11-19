@@ -94,7 +94,7 @@ system.defaultLang = {
 		,"active":"Active"
 		,"paused":"Paused"
 		,"downloading":"Downloading"
-		,"sending":"Sending"
+		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
 		,"actively":"Actively"
