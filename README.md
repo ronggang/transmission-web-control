@@ -1,6 +1,6 @@
 关于
 -----
-本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Goolge Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
+本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Google Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
 本项目设计之初仅针对PT站，因此增加了 Tracker 服务器分组及状态，但这不并适用于普通BT种子。
 
 #### [English Introduction](#introduction)
@@ -79,7 +79,7 @@ Transmission Web Control is a custom web UI. The project began in [Goolge Code](
 
 ### Multi-language
 #### How to use the language pack:
- - All language files are needed to put the "lang" directory, format refer "lang/en.js";
+ - All language files are needed to put in the "lang" directory, format refer "lang/en.js";
  - Translated language file naming, and then copied to the lang directory, note that necessary ".js" suffix, such as: en.js;
  - Modify the the "lang/`_`languages.js" file, the new language format to add a line;
  - Regain access to the TR, if your browser's default configuration language "`_`languages.js" where it will automatically display the current language, if not, please manually select the language or the end of the page plus "?lang=language"; such as: 192.168.1.1/transmission/web/?lang=en
