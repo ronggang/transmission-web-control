@@ -33,35 +33,35 @@ system.lang = {
 		,"system-config":"Instellingen"
 		,"system-reload":"Opnieuw laden"
 		,"about":"Over"
-		,"reload-time":"Automatisch verversen:"
-		,"reload-time-unit":"s/tijd"
+		,"reload-time":"Auto-verversen:"
+		,"reload-time-unit":"sec"
 		,"autoreload-disabled":"Uitgeschakeld"
 		,"autoreload-enabled":"Ingeschakeld"
-		,"search-prompt":"Zoek Locale Torrents"
+		,"search-prompt":"Zoek Lokale Torrents"
 		,"tracker-replace":"Vervang trackers"
 		,"tip":{
 			"start":"Start de geselecteerde torrents"
 			,"pause":"Pauzeer de geselecteerde torrents"
 			,"recheck":"Verifi&euml;ren"
-			,"recheck-confirm":"Weet u zeker dat u de geselecteerde torrents wilt Verifi&euml;ren? Dit kan enige tijd duren!"
+			,"recheck-confirm":"Weet je zeker dat je de geselecteerde torrents wilt Verifi&euml;ren? Dit kan enige tijd duren!"
 			,"start-all":"Start alles"
 			,"pause-all":"Pauzeer alles"
 			,"remove":"Verwijderen"
 			,"delete-all":"Torrent en data verwijderen"
 			,"delete-data":"Delete-data"
-			,"add-torrent":"Toevoegen torrent(s)"
+			,"add-torrent":"Torrent(s) toevoegen"
 			,"attribute":"Attribute"
 			,"alt-speed":"Alt-snelheid"
 			,"system-config":"Instellingen"
 			,"system-reload":"Opnieuw laden"
 			,"about":"Over deze app"
-			,"autoreload-disabled":"Automatisch Verversen uit zetten"
-			,"autoreload-enabled":"Automatisch verversen aan zetten"
+			,"autoreload-disabled":"Auto-verversen uitzetten"
+			,"autoreload-enabled":"Auto-verversen aanzetten"
 			,"tracker-replace":"Vervang trackers"
 			,"change-download-dir":"Locatie instellen"
 			,"ui-mobile":"Mobiele UI"
 			,"ui-original":"Originele UI"
-			,"more-peers":"Tracker voor meer peers vragen"
+			,"more-peers":"Tracker om meer peers vragen"
 		}
 	}
 	,"title":{
@@ -100,7 +100,7 @@ system.lang = {
 		,"folders":"Mappen"
 		,"toolbar":{
 			"nav":{
-				"folders":"Mappen"
+				"folders":"Toon mappen"
 			}
 		}
 	}
@@ -111,12 +111,12 @@ system.lang = {
 	}
 	,"dialog":{
 		"torrent-add":{
-			"download-dir":"Download Dir:"
+			"download-dir":"Downloadmap:"
 			,"torrent-url":"Torrent URL:"
-			,"tip-torrent-url":"Tip：scheid meerdere torrents met 'Enter'"
-			,"autostart":"Auto Start:"
-			,"tip-autostart":""
-			,"set-default-download-dir":"Instellen als standaard dir"
+			,"tip-torrent-url":"Tip: je kunt meerdere torrents scheiden met 'Enter'"
+			,"autostart":"Direct starten:"
+			,"tip-autostart":"Start direct met downloaden"
+			,"set-default-download-dir":"Instellen als standaardmap"
 			,"upload-file":"Torrent bestand(en):"
 			,"nosource":"Geen torrent bestand of URL."
 			,"tip-title":"Uploaden van het torrent-bestand heeft voorrang boven de URL van de torrent"
@@ -135,11 +135,11 @@ system.lang = {
 			,"incomplete-dir-enabled":"Locatie voor onvoltooide bestanden"
 			,"cache-size-mb":"Schijf cache grootte:"
 			,"rename-partial-files":"Voeg de '.part' extensie toe aan onvoltooide bestanden"
-			,"start-added-torrents":"Automatisch starten toegevoegde torrents"
-			,"download-queue-enabled":"Download wachtrij grootte:"
-			,"seed-queue-enabled":"Upload wachtrij grootte:"
+			,"start-added-torrents":"Start toegevoegde torrent automatisch"
+			,"download-queue-enabled":"Aantal gelijktijdige downloads:"
+			,"seed-queue-enabled":"Aantal gelijktijdige uploads:"
 			,"peer-port-random-on-start":"Neem een willekeurige poort als daemon opstart"
-			,"port-forwarding-enabled":"Poort forwarding ingeschakeld"
+			,"port-forwarding-enabled":"Portforwarding ingeschakeld"
 			,"test-port":"Test de poort"
 			,"port-is-open-true":"De poort is open"
 			,"port-is-open-false":"De poort is gesloten"
@@ -150,7 +150,7 @@ system.lang = {
 				,"preferred":"Encryptie aan"
 				,"tolerated":"Encryptie uit"
 			}
-			,"utp-enabled":"Enabled uTP(UPnP)"
+			,"utp-enabled":"Gebruik uTP(UPnP)"
 			,"dht-enabled":"Distributed Hash Table (DHT)"
 			,"lpd-enabled":"Local Peer Discovery (LPD)"
 			,"pex-enabled":"Peer uitwisseling"
@@ -161,8 +161,8 @@ system.lang = {
 			,"alt-speed-enabled":"Gebruik alternatieve bandbreedte instellingen"
 			,"alt-speed-down":"Maximum download snelheid:"
 			,"alt-speed-up":"Maximum upload snelheid:"
-			,"alt-speed-time-enabled":"Gebruik planner"
-			,"alt-speed-time":"Tijd："
+			,"alt-speed-time-enabled":"Gebruik tijdschema"
+			,"alt-speed-time":"Tijdbestek"
 			,"weekday":{
 				"1":"Maandag"
 				,"2":"Dinsdag"
@@ -174,9 +174,9 @@ system.lang = {
 			}
 			,"blocklist-enabled":"Blocklist gebruiken"
 			,"seedRatioLimited":"Seed ratio:"
-			,"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:"
+			,"queue-stalled-enabled":"Of inactieve torrents als opgehouden moeten worden behandeld:"
 			,"idle-seeding-limit-enabled":"Stop seeden wanneer inactief gedurende:"
-			,"minuets":"Minuets"
+			,"minuets":"Minuten"
 			,"nochange":"Geen wijzigingen"
 			,"saveing":"Verwerken..."
 		}
@@ -188,26 +188,26 @@ system.lang = {
 			,"button-close":"Sluiten"
 		}
 		,"about":{
-			"infos":"Auteur: culturist <br/> Verklaring: De meeste van de pictogrammen in dit programma komen vanaf het netwerk, als dit uw rechten schend, neem dan contact met mij op om deze te verwijderen."
+			"infos":"Auteur: culturist <br/> Verklaring: De meeste van de pictogrammen in dit programma komen ergens van internet. Schend dit uw rechten? Neem dan contact met mij op om deze te verwijderen."
 		}
 		,"torrent-remove":{
 			"title":"Verwijderen bevestigen"
 			,"confirm-text":"Weet je zeker dat je de gemarkeerde torrent(s) wilt verwijderen?"
-			,"remove-data":"Verwijder locale data"
+			,"remove-data":"Verwijder lokale data (data op schijf)"
 			,"remove-error":"Verwijderen is mislukt!"
 		}
 		,"torrent-changeDownloadDir":{
 			"title":"Locatie instellen"
 			,"old-download-dir":"Oude locatie:"
 			,"new-download-dir":"Nieuwe locatie:"
-			,"move-data":"Indien aangevinkt, verplaatsen van de vorige locatie. anders, zoeken 'Nieuwe locatie' voor bestanden."
+			,"move-data":"Indien aangevinkt, verplaatsen van de vorige locatie. Zo niet, gebruik 'Nieuwe locatie' voor bestanden."
 			,"set-error":"Locatie instellen mislukt!"
 		}
 		,"system-replaceTracker":{
 			"title":"Vervang Trackers"
-			,"old-tracker":"Oude tracker："
-			,"new-tracker":"Nieuwe tracker："
-			,"tip":"Deze functie vindt <b>alle torrent</b> Trackers"
+			,"old-tracker":"Oude tracker:"
+			,"new-tracker":"Nieuwe tracker:"
+			,"tip":"Deze functie vindt <b>alle torrent</b> trackers"
 			,"not-found":"Tracker is niet gevonden."
 		}
 	}
@@ -216,15 +216,15 @@ system.lang = {
 			"id":"#"
 			,"name":"Naam"
 			,"hashString":"HASH"
-			,"downloadDir":"Download Dir"
+			,"downloadDir":"Downloadmap"
 			,"totalSize":"Totale grootte"
 			,"status":"Status"
 			,"percentDone":"Gereed"
 			,"remainingTime":"Resterende tijd"
 			,"addedDate":"Toegevoegd op"
 			,"completeSize":"Grootte voltooid"
-			,"rateDownload":"Rate download"
-			,"rateUpload":"Rate upload"
+			,"rateDownload":"Download snelheid"
+			,"rateUpload":"Upload snelheid"
 			,"leecherCount":"Leecher"
 			,"seederCount":"Seeder"
 			,"uploadedEver":"Ge&uuml;pload"
@@ -232,11 +232,11 @@ system.lang = {
 		}
 		,"status-text":{
 			"0":"Gepauzeerd"
-			,"1":"Wacht check"
+			,"1":"Wacht op check"
 			,"2":"Verifi&euml;ren"
-			,"3":"Wacht download"
+			,"3":"In wachtrij"
 			,"4":"Downloaden"
-			,"5":"Wacht seed"
+			,"5":"Seeding-wachtwrij"
 			,"6":"Seeding"
 		}
 		,"attribute":{
@@ -260,9 +260,9 @@ system.lang = {
 				,"announceState":"Status"
 				,"lastAnnounceResult":"Info"
 				,"lastAnnounceSucceeded":"Geslaagd"
-				,"lastAnnounceTime":"Tid van aankondiging"
+				,"lastAnnounceTime":"Tijd van aankondiging"
 				,"lastAnnounceTimedOut":"Time-out"
-				,"downloadCount":"Aantal Downloads"
+				,"downloadCount":"Aantal downloads"
 				,"nextAnnounceTime":"Volgende aankondiging"
 			}
 			,"peers-fields":{
@@ -287,12 +287,12 @@ system.lang = {
 				,"addedDate":"Toegevoegd op:"
 				,"totalSize":"Totale grootte:"
 				,"completeSize":"Groote voltooid:"
-				,"leftUntilDone":"Ovet tot voltooid:"
+				,"leftUntilDone":"Over tot voltooid:"
 				,"hashString":"HASH:"
 				,"downloadDir":"Download dir:"
 				,"status":"Status:"
-				,"rateDownload":"Rate download:"
-				,"rateUpload":"Rate upload:"
+				,"rateDownload":"Downloadsnelheid:"
+				,"rateUpload":"Uploadsnelheid:"
 				,"leecherCount":"Leecher:"
 				,"seederCount":"Seeder:"
 				,"uploadedEver":"Ge&uuml;pload:"
@@ -300,12 +300,12 @@ system.lang = {
 				,"creator":"Maker:"
 				,"dateCreated":"Gemaakt op:"
 				,"comment":"Commentaar:"
-				,"errorString":"foutreeks:"
+				,"errorString":"Foutmelding(en):"
 				,"downloadLimited":"Maximum algemene download snelheid"
 				,"uploadLimited":"Maximum algemene upload snelheid"
-				,"peer-limit":"Maximum aantal peers per torrent："
-				,"seedRatioMode":"Seed ratio："
-				,"seedIdleMode":"Stop seeden wanneer inactief gedurende："
+				,"peer-limit":"Maximum aantal peers per torrent:"
+				,"seedRatioMode":"Seed ratio:"
+				,"seedIdleMode":"Stop seeden wanneer inactief gedurende:"
 			}
 			,"tip":{
 				"button-allow":"Download gemarkeerd(e) bestand(en)"
@@ -313,7 +313,7 @@ system.lang = {
 				,"button-priority":"Ingestelde prioriteit"
 			}
 			,"other":{
-				"tracker-remove-confim":"Bent u er zeker van dat u deze Tracker wilt verwijderen?"
+				"tracker-remove-confim":"Weet je zeker dat je deze tracker wilt verwijderen?"
 			}
 		}
 	}
@@ -324,12 +324,12 @@ system.lang = {
 	}
 	,"public":{
 		"text-unknown":"Onbekend"
-		,"text-drop-title":"Bestand Slepen en neerzetten in de regio om aan Transmission toe te voegen ."
+		,"text-drop-title":"Bestand Slepen en neerzetten in dit vlak om aan Transmission toe te voegen."
 		,"text-saved":"Opgeslagen"
 		,"text-nochange":"Geen verandering"
 		,"text-info":"Info"
-		,"text-confirm":"Weet u het zeker?"
-		,"text-browsers-not-support-features":"De huidige browser ondersteunt deze functie niet!"
+		,"text-confirm":"Weet je het zeker?"
+		,"text-browsers-not-support-features":"Jouw browser ondersteunt deze functie niet!"
 		,"text-download-update":"Download deze update"
 		,"text-have-update":"Er is een update beschikbaar"
 	}
