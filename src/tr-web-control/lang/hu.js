@@ -14,16 +14,17 @@ system.lang = {
 	,"error":{
 		"data-error":"Adat hiba."
 		,"data-post-error":"Adat küldési hiba."
+		,"rename-error":"Hiba a fájl/mappa átnevezésekor!"
 	}
 	,"config":{
 		"save-path":"Letöltési mappa"
 	}
 	,"toolbar":{
-		"start":"Indít"
+		"start":"Indítás"
 		,"pause":"Szünet"
 		,"recheck":"Ellenőrzés"
 		,"start-all":"Összes indítása"
-		,"pause-all":"Összes álj"
+		,"pause-all":"Összes megállítása"
 		,"remove":"Törlés"
 		,"remove-all":"Összes törlése"
 		,"remove-data":"Fájlok törlése"
@@ -34,16 +35,17 @@ system.lang = {
 		,"system-reload":"Frissítés"
 		,"about":"Névjegy"
 		,"reload-time":"Frissítési idő:"
-		,"reload-time-unit":"mp"
+		,"reload-time-unit":"mp/idő"
 		,"autoreload-disabled":"Tiltva"
 		,"autoreload-enabled":"Engedélyezve"
 		,"search-prompt":"Helyi torrentek keresése"
-		,"tracker-replace":"Tracker cseréje"
+		,"tracker-replace":"Trackerek cseréje"
 		,"queue":"Sor"
 		,"ui-mobile":"Mobil UI"
 		,"ui-original":"Eredeti UI"
 		,"ui-computer":"Asztali UI"
 		,"plugin":"Bővítmények/pluginok"
+		,"rename":"Átnevezés"
 		,"tip":{
 			"start":"Kijelölt torrentek indítása"
 			,"pause":"Kijelölt torrentek szüneteltetése"
@@ -62,11 +64,12 @@ system.lang = {
 			,"about":"Névjegy"
 			,"autoreload-disabled":"Automatikus frissítés tiltva"
 			,"autoreload-enabled":"Automatikus frissítés bekapcsolva"
-			,"tracker-replace":"Tracker cseréje"
-			,"change-download-dir":"Elérés beállítása"
+			,"tracker-replace":"Trackerek cseréje"
+			,"change-download-dir":"Letöltési hely beállítása"
 			,"ui-mobile":"Mobil UI"
 			,"ui-original":"Eredeti UI"
 			,"more-peers":"Több peer kérése a trackertől"
+			,"rename":"Egy torrent elérési útjának átnevezése"
 		}
 	}
 	,"menus":{
@@ -129,12 +132,12 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"Letöltési mappa:"
 			,"torrent-url":"Torrent URL:"
-			,"tip-torrent-url":"Tipp：Több URL hozzáadásakor 'Enter'-rel válaszd el őket"
+			,"tip-torrent-url":"Tipp： Több URL hozzáadásakor 'Enter'-rel válaszd el őket"
 			,"autostart":"Auto indítás:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Beállítás alpértelmezett letöltési mappaként"
 			,"upload-file":"Torrent fájl(ok):"
-			,"nosource":"Nincs torrent fájl az URL-ben."
+			,"nosource":"Nincs torrent fájl vagy URL."
 			,"tip-title":"Feltöltött torrentek elsőbbséget élveznek az URL-ben megadottakkal szemben!"
 		}
 		,"system-config":{
@@ -241,13 +244,18 @@ system.lang = {
 			,"time-now":"Most:"
 			,"status":"Állapot:"
 			,"ignore":"Kihagyás"
-			,"working-close-confirm":"Felismerés folyamatban, megszakítod?"
+			,"working-close-confirm":"Torrentek letöltése folyamatban, biztosan bezárod a Transmission-t?"
 			,"time-interval":"Idő intervallum (mp):"
 			,"work-mode-title":"Mód:"
 			,"work-mode":{
 				"1":"Egyénileg torrent alapján"
 				,"2":"Egyénileg könyvtár alapján"
 			}
+		}
+		,"torrent-rename": {
+			"title":"Egy torrent elérési útjának átnevezése",
+			"oldname": "Régi",
+			"newname": "Új"
 		}
 	}
 	,"torrent":{
@@ -262,12 +270,13 @@ system.lang = {
 			,"remainingTime":"Hátralévő idő"
 			,"addedDate":"Hozzáadva"
 			,"completeSize":"Letöltve"
-			,"rateDownload":"Letöltési arány"
-			,"rateUpload":"Feltöltési arány"
+			,"rateDownload":"Letöltési sebesség"
+			,"rateUpload":"Feltöltési sebesség"
 			,"leecherCount":"Leecher"
 			,"seederCount":"Seeder"
 			,"uploadedEver":"Feltöltve"
 			,"uploadRatio":"Arány"
+			,"queuePosition":"Sor"
 		}
 		,"status-text":{
 			"0":"Szünetel"
@@ -336,8 +345,8 @@ system.lang = {
 				,"seederCount":"Seeder:"
 				,"uploadedEver":"Feltöltve:"
 				,"uploadRatio":"Feltöltési arány:"
-				,"creator":"Feltöltő:"
-				,"dateCreated":"Feltöltve:"
+				,"creator":"Készítő:"
+				,"dateCreated":"Létrehozás dátuma:"
 				,"comment":"Megjegyzés:"
 				,"errorString":"Hibakód:"
 				,"downloadLimited":"Max letöltési sebesség："
