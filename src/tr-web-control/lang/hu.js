@@ -35,7 +35,7 @@ system.lang = {
 		,"system-reload":"Frissítés"
 		,"about":"Névjegy"
 		,"reload-time":"Frissítési idő:"
-		,"reload-time-unit":"mp/idő"
+		,"reload-time-unit":"mp"
 		,"autoreload-disabled":"Tiltva"
 		,"autoreload-enabled":"Engedélyezve"
 		,"search-prompt":"Helyi torrentek keresése"
