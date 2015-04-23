@@ -13,24 +13,19 @@ if ($.messager) {
     $.messager.defaults.ok = 'Ok';
     $.messager.defaults.cancel = 'Avbryt';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+        'combo','combobox','combogrid','combotree',
+        'datebox','datetimebox','numberbox',
+        'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+    if ($.fn[plugin]){
+        $.fn[plugin].defaults.missingMessage = 'Detta fält är obligatoriskt.';
+    }
+});
 if ($.fn.validatebox) {
-    $.fn.validatebox.defaults.missingMessage = 'Detta fält är obligatoriskt.';
     $.fn.validatebox.defaults.rules.email.message = 'Vänligen ange en korrekt e-post adress.';
     $.fn.validatebox.defaults.rules.url.message = 'Vänligen ange en korrekt URL.';
     $.fn.validatebox.defaults.rules.length.message = 'Vänligen ange ett nummer mellan {0} och {1}.';
     $.fn.validatebox.defaults.rules.remote.message = 'Vänligen åtgärda detta fält.';
-}
-if ($.fn.numberbox) {
-    $.fn.numberbox.defaults.missingMessage = 'Detta fält är obligatoriskt.';
-}
-if ($.fn.combobox) {
-    $.fn.combobox.defaults.missingMessage = 'Detta fält är obligatoriskt.';
-}
-if ($.fn.combotree) {
-    $.fn.combotree.defaults.missingMessage = 'Detta fält är obligatoriskt.';
-}
-if ($.fn.combogrid) {
-    $.fn.combogrid.defaults.missingMessage = 'Detta fält är obligatoriskt.';
 }
 if ($.fn.calendar) {
     $.fn.calendar.defaults.weeks = ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör'];
@@ -40,13 +35,11 @@ if ($.fn.datebox) {
     $.fn.datebox.defaults.currentText = 'I dag';
     $.fn.datebox.defaults.closeText = 'Stäng';
     $.fn.datebox.defaults.okText = 'Ok';
-    $.fn.datebox.defaults.missingMessage = 'Detta fält är obligatoriskt.';
 }
 if ($.fn.datetimebox && $.fn.datebox) {
     $.extend($.fn.datetimebox.defaults, {
         currentText: $.fn.datebox.defaults.currentText,
         closeText: $.fn.datebox.defaults.closeText,
-        okText: $.fn.datebox.defaults.okText,
-        missingMessage: $.fn.datebox.defaults.missingMessage
+        okText: $.fn.datebox.defaults.okText
     });
 }

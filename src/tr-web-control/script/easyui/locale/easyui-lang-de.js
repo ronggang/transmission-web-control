@@ -13,23 +13,18 @@ if ($.messager){
 	$.messager.defaults.ok = 'OK';
 	$.messager.defaults.cancel = 'Abbruch';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = 'Dieses Feld wird benötigt.';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = 'Dieses Feld wird benötigt.';
 	$.fn.validatebox.defaults.rules.email.message = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
 	$.fn.validatebox.defaults.rules.url.message = 'Bitte geben Sie eine gültige URL ein.';
 	$.fn.validatebox.defaults.rules.length.message = 'Bitte geben Sie einen Wert zwischen {0} und {1} ein.';
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'Dieses Feld wird benötigt.';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'Dieses Feld wird benötigt.';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'Dieses Feld wird benötigt.';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'Dieses Feld wird benötigt.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.firstDay = 1;
@@ -40,7 +35,6 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Heute';
 	$.fn.datebox.defaults.closeText = 'Schließen';
 	$.fn.datebox.defaults.okText = 'OK';
-	$.fn.datebox.defaults.missingMessage = 'Dieses Feld wird benötigt.';
 	$.fn.datebox.defaults.formatter = function(date){
 		var y = date.getFullYear();
 		var m = date.getMonth()+1;
@@ -64,7 +58,6 @@ if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }
