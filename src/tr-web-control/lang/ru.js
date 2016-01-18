@@ -158,8 +158,8 @@ system.lang = {
                         ,"peer-port-random-on-start":"Использовать случайный порт при запуске"
                         ,"port-forwarding-enabled":"Включить проброс портов (UPnP)"
                         ,"test-port":"Проверить"
-                        ,"port-is-open-true":"Порт закрыт"
-                        ,"port-is-open-false":"Порт открыт"
+                        ,"port-is-open-true":"Порт открыт"
+                        ,"port-is-open-false":"Порт закрыт"
                         ,"testing":"Тестирую..."
                         ,"encryption":"Шифрование:"
                         ,"encryption-type":{
