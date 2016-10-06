@@ -7,6 +7,9 @@
 .icon-edit{
 	background:url('icons/pencil.png') no-repeat center center;
 }
+.icon-clear{
+	background:url('icons/clear.png') no-repeat center center;
+}
 .icon-remove{
 	background:url('icons/edit_remove.png') no-repeat center center;
 }
@@ -52,6 +55,19 @@
 .icon-tip{
 	background:url('icons/tip.png') no-repeat center center;
 }
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+.icon-man{
+	background:url('icons/man.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('icons/lock.png') no-repeat center center;
+}
+.icon-more{
+	background:url('icons/more.png') no-repeat center center;
+}
+
 
 .icon-mini-add{
 	background:url('icons/mini_add.png') no-repeat center center;
@@ -63,43 +79,18 @@
 	background:url('icons/mini_refresh.png') no-repeat center center;
 }
 
-/* 自定义样式 */
-.icon-servers{
-	background:url('icons/servers.png') no-repeat;
+.icon-large-picture{
+	background:url('icons/large_picture.png') no-repeat center center;
 }
-.icon-server{
-	background:url('icons/server.png') no-repeat;
+.icon-large-clipart{
+	background:url('icons/large_clipart.png') no-repeat center center;
 }
-.icon-server-error{
-	background:url('icons/server_error.png') no-repeat;
+.icon-large-shapes{
+	background:url('icons/large_shapes.png') no-repeat center center;
 }
-.icon-home{
-	background:url('icons/home.png') no-repeat;
+.icon-large-smartart{
+	background:url('icons/large_smartart.png') no-repeat center center;
 }
-.icon-download{
-	background:url('icons/download1.png') no-repeat;
+.icon-large-chart{
+	background:url('icons/large_chart.png') no-repeat center center;
 }
-.icon-seed{
-	background:url('icons/seed.png') no-repeat;
-}
-.icon-warning{
-	background:url('icons/warning.png') no-repeat;
-}
-.icon-error{
-	background:url('icons/stop.png') no-repeat;
-}
-.icon-pause{
-	background:url('icons/pause.png') no-repeat;
-}
-.icon-check{
-	background:url('icons/yin-yang.png') no-repeat;
-}
-.icon-actively{
-	background:url('icons/actively.png') no-repeat;
-}
-.icon-wait{
-	background:url('icons/wait.png') no-repeat;
-}
-
-.icon-chart{
-	background:url('icons/chart.png') no-repeat;
