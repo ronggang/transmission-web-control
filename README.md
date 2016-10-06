@@ -99,6 +99,7 @@ Transmission Web Control is a custom web UI. The project began in [Goolge Code](
  - `2013-09-12` [French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js) @Amaury Aubry
  - `2013-12-05` [Korean](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js) @kdsz330
  - `2014-02-12` [European Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js) @pcgaldo
+ - `2015-09-11` [Ukrainian](https://github.com/ronggang/transmission-web-control/blob/master/src/tr-web-control/lang/uk.js) @noreplyme
  - If you have translated a language pack, please upload it here issue 9
 
 #### [How to install](https://code.google.com/p/transmission-control/wiki/Install#1._Automatic_Installation_(Linux))

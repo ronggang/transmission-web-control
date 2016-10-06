@@ -4,8 +4,8 @@ system.lang = {
 	,"system":{
 		"title":"Transmission WEB Control"
 		,"status":{
-			"connect":"З'єднання..."
-			,"connected":"З'єднане"
+			"connect":"З&#39;єднання..."
+			,"connected":"З&#39;єднане"
 			,"queue":"Чергу:"
 			,"queuefinish":"Черга завантаження завершена."
 			,"notfinal":"Не завершена"
@@ -151,7 +151,7 @@ system.lang = {
 			,"download-dir-free-space":"Вільно місця: "
 			,"incomplete-dir-enabled":"Використовувати директорію для незавершених файлів"
 			,"cache-size-mb":"Розмір дискового кешу:"
-			,"rename-partial-files":"Завантажувати файл '.part' незавершені файли"
+			,"rename-partial-files":"Завантажувати файл &#39;.part&#39; незавершені файли"
 			,"start-added-torrents":"Автостарт доданих торрентів"
 			,"download-queue-enabled":"Включити чергу завантаження, одночасно:"
 			,"seed-queue-enabled":"Включити чергу віддачі, одночасно:"
@@ -185,7 +185,7 @@ system.lang = {
 				,"2":"Вівторок"
 				,"3":"Середа"
 				,"4":"Четвер"
-				,"5":"П'ятниця"
+				,"5":"П&#39;ятниця"
 				,"6":"Субота"
 				,"0":"Неділя"
 			}
