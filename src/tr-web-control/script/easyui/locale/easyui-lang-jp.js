@@ -13,24 +13,19 @@ if ($.messager){
 	$.messager.defaults.ok = 'OK';
 	$.messager.defaults.cancel = 'キャンセル';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = '入力は必須です。';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = '入力は必須です。';
 	$.fn.validatebox.defaults.rules.email.message = '正しいメールアドレスを入力してください。';
 	$.fn.validatebox.defaults.rules.url.message = '正しいURLを入力してください。';
 	$.fn.validatebox.defaults.rules.length.message = '{0} から {1} の範囲の正しい値を入力してください。';
 	$.fn.validatebox.defaults.rules.remote.message = 'このフィールドを修正してください。';
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = '入力は必須です。';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = '入力は必須です。';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = '入力は必須です。';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = '入力は必須です。';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['日','月','火','水','木','金','土'];
@@ -40,13 +35,11 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = '今日';
 	$.fn.datebox.defaults.closeText = '閉じる';
 	$.fn.datebox.defaults.okText = 'OK';
-	$.fn.datebox.defaults.missingMessage = '入力は必須です。';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }

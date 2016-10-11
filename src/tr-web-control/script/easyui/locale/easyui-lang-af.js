@@ -13,23 +13,18 @@ if ($.messager){
 	$.messager.defaults.ok = 'Ok';
 	$.messager.defaults.cancel = 'Die styl';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = 'Die veld is verpligtend.';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = "Die veld is verpligtend.";
 	$.fn.validatebox.defaults.rules.email.message = "Gee 'n geldige e-pos adres.";
 	$.fn.validatebox.defaults.rules.url.message = "Gee 'n geldige URL nie.";
 	$.fn.validatebox.defaults.rules.length.message = "Voer 'n waarde tussen {0} en {1}.";
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'Die veld is verpligtend.';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'Die veld is verpligtend.';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'Die veld is verpligtend.';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'Die veld is verpligtend.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['S','M','T','W','T','F','S'];
@@ -39,13 +34,11 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Vandag';
 	$.fn.datebox.defaults.closeText = 'Sluit';
 	$.fn.datebox.defaults.okText = 'Ok';
-	$.fn.datebox.defaults.missingMessage = 'Die veld is verpligtend.';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }

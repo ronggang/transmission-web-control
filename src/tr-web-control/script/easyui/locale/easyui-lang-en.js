@@ -13,24 +13,19 @@ if ($.messager){
 	$.messager.defaults.ok = 'Ok';
 	$.messager.defaults.cancel = 'Cancel';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = 'This field is required.';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = 'This field is required.';
 	$.fn.validatebox.defaults.rules.email.message = 'Please enter a valid email address.';
 	$.fn.validatebox.defaults.rules.url.message = 'Please enter a valid URL.';
 	$.fn.validatebox.defaults.rules.length.message = 'Please enter a value between {0} and {1}.';
 	$.fn.validatebox.defaults.rules.remote.message = 'Please fix this field.';
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'This field is required.';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'This field is required.';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'This field is required.';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'This field is required.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['S','M','T','W','T','F','S'];
@@ -40,13 +35,11 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Today';
 	$.fn.datebox.defaults.closeText = 'Close';
 	$.fn.datebox.defaults.okText = 'Ok';
-	$.fn.datebox.defaults.missingMessage = 'This field is required.';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }

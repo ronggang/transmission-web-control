@@ -13,23 +13,18 @@ if ($.messager){
 	$.messager.defaults.ok = 'Ok';
 	$.messager.defaults.cancel = 'Cancel';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = 'Aquest camp és obligatori.';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = 'Aquest camp és obligatori.';
 	$.fn.validatebox.defaults.rules.email.message = 'Introduïu una adreça de correu electrònic vàlida.';
 	$.fn.validatebox.defaults.rules.url.message = 'Si us plau, introduïu un URL vàlida.';
 	$.fn.validatebox.defaults.rules.length.message = 'Si us plau, introduïu un valor entre {0} i {1}.';
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'Aquest camp és obligatori.';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'Aquest camp és obligatori.';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'Aquest camp és obligatori.';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'Aquest camp és obligatori.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['S','M','T','W','T','F','S'];
@@ -39,13 +34,11 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Avui';
 	$.fn.datebox.defaults.closeText = 'Tancar';
 	$.fn.datebox.defaults.okText = 'Ok';
-	$.fn.datebox.defaults.missingMessage = 'Aquest camp és obligatori.';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }

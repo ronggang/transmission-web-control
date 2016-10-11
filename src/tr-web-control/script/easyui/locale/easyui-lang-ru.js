@@ -13,24 +13,19 @@ if ($.messager){
 	$.messager.defaults.ok = 'Ок';
 	$.messager.defaults.cancel = 'Закрыть';
 }
+$.map(['validatebox','textbox','filebox','searchbox',
+		'combo','combobox','combogrid','combotree',
+		'datebox','datetimebox','numberbox',
+		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
+	if ($.fn[plugin]){
+		$.fn[plugin].defaults.missingMessage = 'Это поле необходимо.';
+	}
+});
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.missingMessage = 'Это поле необходимо.';
 	$.fn.validatebox.defaults.rules.email.message = 'Пожалуйста введите корректный e-mail адрес.';
 	$.fn.validatebox.defaults.rules.url.message = 'Пожалуйста введите корректный URL.';
 	$.fn.validatebox.defaults.rules.length.message = 'Пожалуйста введите зачение между {0} и {1}.';
 	$.fn.validatebox.defaults.rules.remote.message = 'Пожалуйста исправте это поле.';
-}
-if ($.fn.numberbox){
-	$.fn.numberbox.defaults.missingMessage = 'Это поле необходимо.';
-}
-if ($.fn.combobox){
-	$.fn.combobox.defaults.missingMessage = 'Это поле необходимо.';
-}
-if ($.fn.combotree){
-	$.fn.combotree.defaults.missingMessage = 'Это поле необходимо.';
-}
-if ($.fn.combogrid){
-	$.fn.combogrid.defaults.missingMessage = 'Это поле необходимо.';
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.firstDay = 1;
@@ -41,13 +36,11 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.currentText = 'Сегодня';
 	$.fn.datebox.defaults.closeText = 'Закрыть';
 	$.fn.datebox.defaults.okText = 'Ок';
-	$.fn.datebox.defaults.missingMessage = 'Это поле необходимо.';
 }
 if ($.fn.datetimebox && $.fn.datebox){
 	$.extend($.fn.datetimebox.defaults,{
 		currentText: $.fn.datebox.defaults.currentText,
 		closeText: $.fn.datebox.defaults.closeText,
-		okText: $.fn.datebox.defaults.okText,
-		missingMessage: $.fn.datebox.defaults.missingMessage
+		okText: $.fn.datebox.defaults.okText
 	});
 }
