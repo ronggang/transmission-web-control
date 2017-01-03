@@ -2,7 +2,7 @@
 var system = {
 	version:"1.0 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20141010"
+	,codeupdate:"20170103"
 	,configHead: "transmission-web-control"
 	,config:{
 		autoReload: true
@@ -280,7 +280,7 @@ var system = {
 		this.connect();
 		this.initEvent();
 		// 检查更新
-		this.checkUpdate();
+		//this.checkUpdate();
 	}
 	//
 	,initEvent:function()

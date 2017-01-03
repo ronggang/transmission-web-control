@@ -25,7 +25,8 @@
 	right:0;
 	z-index: 1;
 }
-.m-left>.l-btn,.m-right>.l-btn{
+.m-left>.l-btn,.m-right>.l-btn,
+.m-left>.switchbutton,.m-right>.switchbutton{
 	position: relative;
 	vertical-align: top;
 	top: 50%;
@@ -251,6 +252,9 @@
 	position: absolute;
 }
 
+.textbox .textbox-text{
+	padding: 8px 4px;
+}
 .calendar-header,.calendar-title{
 	height: 30px;
 }

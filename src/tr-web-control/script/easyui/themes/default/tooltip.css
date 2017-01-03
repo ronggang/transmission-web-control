@@ -29,6 +29,9 @@
   _border-color: tomato;
   _filter: chroma(color=tomato);
 }
+.tooltip-arrow {
+  display: none \9;
+}
 .tooltip-right .tooltip-arrow-outer {
   left: 0;
   top: 50%;

@@ -13,7 +13,7 @@ if ($.messager){
 	$.messager.defaults.ok = 'موافق';
 	$.messager.defaults.cancel = 'إلغاء';
 }
-$.map(['validatebox','textbox','filebox','searchbox',
+$.map(['validatebox','textbox','passwordbox','filebox','searchbox',
 		'combo','combobox','combogrid','combotree',
 		'datebox','datetimebox','numberbox',
 		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
