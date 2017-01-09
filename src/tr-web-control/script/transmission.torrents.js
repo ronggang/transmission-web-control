@@ -1,4 +1,4 @@
-// 种子相关信息
+// Torrent related information
 transmission.torrents = {
 	all:null
 	,puased:null
@@ -21,15 +21,15 @@ transmission.torrents = {
 					+",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,error,errorString,doneDate,queuePosition"
 		,config:"downloadLimit,downloadLimited,peer-limit,seedIdleLimit,seedIdleMode,seedRatioLimit,seedRatioMode,uploadLimit,uploadLimited"
 	}
-	// 所有已获取的种子列表
+	// List of all the torrents that have been acquired
 	,datas:{}
-	// 当前获取的种子列表
+	// The list of recently acquired torrents
 	,recently:null
-	// 当前移除的种子
+	// The recently removed seed
 	,removed:null
-	// 是否正在获取有变化的种子
+	// Whether the torrents are being changed
 	,isRecentlyActive:false
-	// 新增的种子
+	// New torrents
 	,newIds:new Array()
 	,getallids:function(callback,ids, moreFields)
 	{
@@ -48,7 +48,7 @@ transmission.torrents = {
 
 
 		this.isRecentlyActive = false;
-		// 如果已经获取过
+		// If it has been acquired
 		if (this.all&&ids==undefined)
 		{
 			arguments["ids"] = "recently-active";
@@ -94,20 +94,20 @@ transmission.torrents = {
 			}
 		);
 	}
-	// 根据种子状态将ID进行分类
+	// The IDs are sorted according to the torrent status
 	,splitid:function()
 	{
-		// 正在下载的种子
+		// Downloading
 		this.downloading = new Array();
-		// 已暂停的种子
+		// Paused
 		this.puased = new Array();
-		// 当前活动的种子
+		// Active lately
 		this.actively = new Array();
-		// 有错误提示的种子
+		// With Errors
 		this.error = new Array();
-		// 有警告提示的种子
+		// With Warnings
 		this.warning = new Array();
-		// 所有下载目录列表
+		// All download directories
 		transmission.downloadDirs = new Array();
 
 		var _Status = transmission._status;
@@ -119,7 +119,7 @@ transmission.torrents = {
 
 		var B64 = new Base64();
 
-		// 合并两个数
+		// Merge two numbers
 		for (var index in this.recently)
 		{
 			var item = this.recently[index];
@@ -128,14 +128,14 @@ transmission.torrents = {
 
 		var removed = new Array();
 
-		// 去除已经被删除的种子
+		// Remove the torrents that have been removed
 		for (var index in this.removed)
 		{
 			var item = this.removed[index];
 			removed.push(item);
 		}
 
-		// 将种子进行分类
+		// Torrents are classified
 		for (var index in this.datas)
 		{
 			var item = this.datas[index];
@@ -155,7 +155,7 @@ transmission.torrents = {
 				
 				continue;
 			}
-			// 如果当前是获取正有变化的种子，并且没有在之前种子列表内，即新增的种子，需要重新加载基本的信息
+			// If the current torrent is being acquired and there is no torrent in the previous torrent list, that is, the new torrent needs to be reloaded with the basic information
 			if (this.isRecentlyActive&&!this.all[item.id])
 			{
 				this.newIds.push(item.id);
@@ -173,28 +173,36 @@ transmission.torrents = {
 				this.status[item.status] = new Array();
 				type = this.status[item.status];
 			}
+
+			// Total size
+			this.totalSize=item.totalSize;
 			
-			// 剩余时间
+			// Time left
 			if (item.rateDownload>0&&item.leftUntilDone>0)
 			{
 				item["remainingTime"] = getTotalTime(item.leftUntilDone/item.rateDownload*1000);
+				item["remainingTimeRaw"] = Math.floor(item.leftUntilDone/item.rateDownload*1000);
 			}
-			else if (item.rateDownload==0&&item.leftUntilDone==0)
+			else if (item.rateDownload==0&&item.leftUntilDone==0&&item.totalSize!=0)
 			{
 				item["remainingTime"] = 0;
+				item["remainingTimeRaw"] = 0;
 			}
-			else
+			else {
 				item["remainingTime"] = "∞";
+				// ~100 years
+				item["remainingTimeRaw"] = 3153600000000;
+			}
 			
 
 			type.push(item);
-			// 发生错误的种子
+			// The seed for which the error occurred
 			if (item.error!=0)
 			{
 				this.error.push(item);
 			}
 			
-			// 当前有流量的种子
+			// There is currently a number of seeds
 			if (item.rateUpload>0||item.rateDownload>0)
 			{
 				this.actively.push(item);
@@ -213,9 +221,9 @@ transmission.torrents = {
 			
 			this.all[item.id]=item;
 			
-			this.totalSize+=item.totalSize;
+			//this.totalSize+=item.totalSize;
 
-			// 设置目录
+			// Set the directory
 			if ($.inArray(item.downloadDir, transmission.downloadDirs)==-1)
 			{
 				transmission.downloadDirs.push(item.downloadDir);
@@ -253,7 +261,7 @@ transmission.torrents = {
 		}
 		transmission.downloadDirs = transmission.downloadDirs.sort();
 
-		// 是否有需要获取的新种子
+		// If there a need to acquire new seeds
 		if (this.newIds.length>0)
 		{
 			this.getallids(null,this.newIds);

@@ -1,2 +1,3 @@
 *.tmp
 *.bkp
+node_modules
