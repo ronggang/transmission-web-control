@@ -6,17 +6,17 @@ index="index.html"
 tmpFolder="/tmp/tr-web-control/"
 packname="transmission-control-full.tar.gz"
 host="https://github.com/ronggang/transmission-web-control/raw/master/release/"
-downloadurl="$host$packname"
+donwloadurl="$host$packname"
 if [ ! -d "$tmpFolder" ]; then
 	cd /tmp
 	mkdir tr-web-control
 fi
 cd "$tmpFolder"
-# 找出web ui 目录
+# find web ui folder
 folderIsExist=0
 echo "Searching Transmission Web Folder..."
 
-# 感谢 yumin9822 提供的代码
+# thanks yumin9822 for this piece of code
 rootFolder=`find / -name 'web' -type d | grep 'transmission/web' | head -n 1 | sed 's/web.*$//g'`
 
 echo "Folder: ""$rootFolder""..."
@@ -25,18 +25,18 @@ if [ -d "$rootFolder""web/" ]; then
 	folderIsExist=1
 fi
 
-# 如果目录存在，则进行下载和更新动作
+# if the folder does not exist，then do download and installation
 if [ $folderIsExist = 1 ]; then
-	echo "Downloading Transmission Web Control..."
-	wget "$downloadurl"
+	echo "Transmission Web Control Is Downloading..."
+	wget "$donwloadurl" --no-check-certificate
 	echo "Installing..."
 	tar -xzf "$packname"
 	rm "$packname"
-	# 如果之前没有安装过，则先将原系统的文件改为
-	if [ ! -f "$webFolder/$orgindex" -a -f "$webFolder/$index" ]; then
-		mv "$webFolder/$index" "$webFolder/$orgindex"
+	# if did not install before，then change the original system file name
+	if [ ! -f "$webFolder$orgindex" -a -f "$webFolder$index" ]; then
+		mv "$webFolder$index" "$webFolder$orgindex"
 	fi
-	# 复制文件到
+	# copy the files to folder
 	cp -r web "$rootFolder"
 	echo "Done."
 else
