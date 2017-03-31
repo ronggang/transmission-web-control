@@ -2,11 +2,11 @@
   height: 180px;
 }
 .datebox-button {
-  height: 18px;
-  padding: 2px 5px;
+  padding: 0 5px;
   text-align: center;
 }
 .datebox-button a {
+  line-height: 22px;
   font-size: 12px;
   font-weight: bold;
   text-decoration: none;

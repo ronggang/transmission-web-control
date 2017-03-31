@@ -18,7 +18,7 @@ if ($.messager){
     $.messager.defaults.ok = 'Tamam';
     $.messager.defaults.cancel = 'İptal';
 }
-$.map(['validatebox','textbox','filebox','searchbox',
+$.map(['validatebox','textbox','passwordbox','filebox','searchbox',
         'combo','combobox','combogrid','combotree',
         'datebox','datetimebox','numberbox',
         'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){

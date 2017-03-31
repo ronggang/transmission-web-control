@@ -13,6 +13,7 @@
   left: 0;
   top: 0;
   z-index: 10;
+  background: url('images/blank.gif') no-repeat;
 }
 .l-btn-disabled .filebox-label {
   cursor: default;

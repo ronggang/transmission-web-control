@@ -205,29 +205,30 @@ function getMinutesFromHours(hours)
 	return (parseInt(hours.split(":")[0],10)*60+parseInt(hours.split(":")[1],10));
 }
 
-// 获取累计时间
+// Get the cumulative time
 function getTotalTime(time,format)
 {
+	//time [ms]
 	if (!format)
 	{
-		format = "%dd %hh %mm %ss";
+		format = "%dd %hh %mm %ss ";
 	}
-	//计算出相差天数
+	//Calculate the difference between the number of days
 	var days=Math.floor(time/(24*3600*1000));
 
-	//计算出小时数
+	//Calculate the number of hours
 	var leave1=time%(24*3600*1000);
-	//计算天数后剩余的毫秒数
+	//The number of milliseconds remaining after calculating the number of days
 	var hours=Math.floor(leave1/(3600*1000));
 
-	//计算相差分钟数
+	//Calculate the number of minutes
 	var leave2=leave1%(3600*1000);
-	//计算小时数后剩余的毫秒数
+	//The number of milliseconds remaining after the number of hours is counted
 	var minutes=Math.floor(leave2/(60*1000));
 
-	//计算相差秒数
+	//Calculate the number of seconds
 	var leave3=leave2%(60*1000);
-	//计算分钟数后剩余的毫秒数
+	//The number of milliseconds remaining after calculating the number of minutes
 	var seconds=Math.round(leave3/1000);
 
 	var result = format;
@@ -261,7 +262,7 @@ function getTotalTime(time,format)
 	return result;
 }
 
-// 数组对象排序扩展
+// Array object sort extension
 function arrayObjectSort(field,sortOrder)
 {
 	return function(object1, object2)
@@ -294,7 +295,7 @@ function arrayObjectSort(field,sortOrder)
 	}
 }
 
-// 通用分时处理函数
+// Generic time - sharing processing functions
 function timedChunk(items, process, context, delay,callback) 
 {
 	var todo = items.concat();
@@ -316,9 +317,9 @@ function timedChunk(items, process, context, delay,callback)
 	}, delay);
 }
 
-// jQuery 扩展
+// jQuery Extended
 (function($){
-	// 淡入谈出
+	// Fade in and out
 	$.fn.fadeInAndOut = function(speed,easing,fn){
 		var options = {
 			speed:speed
@@ -329,7 +330,7 @@ function timedChunk(items, process, context, delay,callback)
 		this.fadeIn(options.speed).delay(options.speed).fadeOut(options.speed,options.easing,options.fn);
 	};
 	
-	// 插件的defaults    
+	// Plugin defaults    
 	$.fn.fadeInAndOut.defaults = {    
 		speed:1000
 		,easing:"swing"

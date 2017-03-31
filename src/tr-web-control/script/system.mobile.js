@@ -2,9 +2,9 @@
 	移动版
 */
 var system = {
-	version:"1.0 Beta"
+	version:"1.1 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20141010"
+	,codeupdate:"20170317"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -36,7 +36,7 @@ var system = {
 			{
 				window.console.log(label,text);
 			}
-		}	
+		}
 	}
 	,setlang:function(lang,callback)
 	{
@@ -50,14 +50,14 @@ var system = {
 			//this.debug("lang",lang);
 		}
 		if (!lang) lang="zh-CN";
-		
+
 		// 如果语言代码中包含-，则需要将后半部份转为大写
 		if (lang.indexOf("-")!=-1)
 		{
 			// 因linux对文件有大小写限制，故重新赋值
 			lang=lang.split("-")[0].toLocaleLowerCase()+"-"+lang.split("-")[1].toLocaleUpperCase();
 		}
-		
+
 		// 如果该语言包没有定义，则使用英文
 		if (!this.languages[lang])
 		{
@@ -154,7 +154,7 @@ var system = {
 			{
 				$("#status_alt_speed").hide();
 			}
-			
+
 			system.downloadDir = result["download-dir"];
 
 			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
@@ -238,7 +238,7 @@ var system = {
 	,resetTorrentInfos:function(oldInfos)
 	{
 		var currentTorrentId = this.currentTorrentId;
-		
+
 		// 已暂停
 		if (transmission.torrents.status[transmission._status.stopped])
 		{
@@ -259,7 +259,7 @@ var system = {
 			this.updateCount("sending",0);
 		}
 
-		
+
 		// 校验
 		if (transmission.torrents.status[transmission._status.check])
 		{
@@ -289,14 +289,14 @@ var system = {
 		// 警告
 		this.updateCount("warning",transmission.torrents.warning.length);
 
-		
+
 		system.reloading = false;
 
 		if (system.config.autoReload)
 		{
 			system.autoReloadTimer = setTimeout(function(){system.reloadData();},system.config.reloadStep);
 		}
-		
+
 		// 总大小
 		this.updateCount("all",transmission.torrents.count);
 
@@ -351,7 +351,7 @@ var system = {
 		{
 			return;
 		}
-		
+
 		$("#content-"+config.page).show();
 		if (config.page!=this.currentContentPage)
 		{
@@ -362,7 +362,7 @@ var system = {
 		$("#torrent-page-bar").hide();
 		if (!this.torrentListChecked)
 			$("#torrent-toolbar").hide();
-		
+
 		this.currentContentPage = config.page;
 		switch (config.type)
 		{
@@ -411,7 +411,7 @@ var system = {
 			case "downloadwait":
 				torrents = transmission.torrents.status[transmission._status.downloadwait];
 				break;
-				
+
 			case "actively":
 				torrents = transmission.torrents.actively;
 				break;
@@ -419,7 +419,7 @@ var system = {
 			case "error":
 				torrents = transmission.torrents.error;
 				break;
-				
+
 			case "warning":
 				torrents = transmission.torrents.warning;
 				break;
@@ -447,10 +447,10 @@ var system = {
 			,page:1
 			,target:"all"
 		};
-		
+
 		jQuery.extend(def, config);
 		if (!config.target) return;
-		
+
 		var torrents = this.getTorrentFromType(config.target);
 
 		this.config.defaultSelectNode = config.target;
@@ -522,7 +522,7 @@ var system = {
 				}).checkboxradio();
 			}
 		}
-		
+
 		this.torrentPager.setDatas(datas,config.target);
 	}
 	// 添加种子信息到列表
@@ -535,7 +535,7 @@ var system = {
 			rateUpload: formatSize(data.rateUpload,false,"speed"),
 			completeSize: formatSize(data.completeSize),
 			totalSize: formatSize(data.totalSize),
-			percentDone: data.percentDone			
+			percentDone: data.percentDone
 		};
 
 		// 由于不能以对象的方式来创建 listview 子项，所以只能用拼接字符串的方式
@@ -608,7 +608,7 @@ var system = {
 			className = "iconlabel icon-exclamation";
 			tip+="\n\n"+this.lang["public"]["text-info"]+": "+torrent.errorString;
 		}
-		
+
 
 		return '<span class="'+className+'" title="'+tip+'">'+torrent.name+'</span>';
 	}
@@ -822,7 +822,7 @@ var system = {
 					return;
 				}
 				break;
-			
+
 			}
 			button = $(button);
 			button.attr("disabled",true);

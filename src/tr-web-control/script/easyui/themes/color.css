@@ -1,4 +1,4 @@
-.c1,.c1:hover{
+.c1,.c1:hover,.c1>.panel-header{
 	color: #fff;
 	border-color: #3c8b3c;
 	background: #4cae4c;
@@ -12,7 +12,17 @@ a.c1:hover{
 	background: #449d44;
 	filter: none;
 }
-.c2,.c2:hover{
+.c1>.panel-body{
+	border-color: #3c8b3c;
+}
+.c1>.dialog-toolbar,.c1>.dialog-button{
+	border-left-color: #3c8b3c;
+	border-right-color: #3c8b3c;
+}
+.c1>.dialog-button{
+	border-bottom-color: #3c8b3c;
+}
+.c2,.c2:hover,.c2>.panel-header{
 	color: #fff;
 	border-color: #5f5f5f;
 	background: #747474;
@@ -26,7 +36,17 @@ a.c2:hover{
 	background: #676767;
 	filter: none;
 }
-.c3,.c3:hover{
+.c2>.panel-body{
+	border-color: #5f5f5f;
+}
+.c2>.dialog-toolbar,.c2>.dialog-button{
+	border-left-color: #5f5f5f;
+	border-right-color: #5f5f5f;
+}
+.c2>.dialog-button{
+	border-bottom-color: #5f5f5f;
+}
+.c3,.c3:hover,.c3>.panel-header{
 	color: #333;
 	border-color: #ff8080;
 	background: #ffb3b3;
@@ -40,7 +60,17 @@ a.c3:hover{
 	background: #ff9999;
 	filter: none;
 }
-.c4,.c4:hover{
+.c3>.panel-body{
+	border-color: #ff8080;
+}
+.c3>.dialog-toolbar,.c3>.dialog-button{
+	border-left-color: #ff8080;
+	border-right-color: #ff8080;
+}
+.c3>.dialog-button{
+	border-bottom-color: #ff8080;
+}
+.c4,.c4:hover,.c4>.panel-header{
 	color: #333;
 	border-color: #52d689;
 	background: #b8eecf;
@@ -54,7 +84,17 @@ a.c4:hover{
 	background: #a4e9c1;
 	filter: none;
 }
-.c5,.c5:hover{
+.c4>.panel-body{
+	border-color: #52d689;
+}
+.c4>.dialog-toolbar,.c4>.dialog-button{
+	border-left-color: #52d689;
+	border-right-color: #52d689;
+}
+.c4>.dialog-button{
+	border-bottom-color: #52d689;
+}
+.c5,.c5:hover,.c5>.panel-header{
 	color: #fff;
 	border-color: #b52b27;
 	background: #d84f4b;
@@ -68,7 +108,17 @@ a.c5:hover{
 	background: #c9302c;
 	filter: none;
 }
-.c6,.c6:hover{
+.c5>.panel-body{
+	border-color: #b52b27;
+}
+.c5>.dialog-toolbar,.c5>.dialog-button{
+	border-left-color: #b52b27;
+	border-right-color: #b52b27;
+}
+.c5>.dialog-button{
+	border-bottom-color: #b52b27;
+}
+.c6,.c6:hover,.c6>.panel-header{
 	color: #fff;
 	border-color: #1f637b;
 	background: #2984a4;
@@ -82,7 +132,17 @@ a.c6:hover{
 	background: #24748f;
 	filter: none;
 }
-.c7,.c7:hover{
+.c6>.panel-body{
+	border-color: #1f637b;
+}
+.c6>.dialog-toolbar,.c6>.dialog-button{
+	border-left-color: #1f637b;
+	border-right-color: #1f637b;
+}
+.c6>.dialog-button{
+	border-bottom-color: #1f637b;
+}
+.c7,.c7:hover,.c7>.panel-header{
 	color: #333;
 	border-color: #e68900;
 	background: #ffab2e;
@@ -96,7 +156,17 @@ a.c7:hover{
 	background: #ff9900;
 	filter: none;
 }
-.c8,.c8:hover{
+.c7>.panel-body{
+	border-color: #e68900;
+}
+.c7>.dialog-toolbar,.c7>.dialog-button{
+	border-left-color: #e68900;
+	border-right-color: #e68900;
+}
+.c7>.dialog-button{
+	border-bottom-color: #e68900;
+}
+.c8,.c8:hover,.c8>.panel-header{
 	color: #fff;
 	border-color: #4b72a4;
 	background: #698cba;
@@ -109,4 +179,32 @@ a.c7:hover{
 a.c8:hover{
 	background: #577eb2;
 	filter: none;
+}
+.c8>.panel-body{
+	border-color: #4b72a4;
+}
+.c8>.dialog-toolbar,.c8>.dialog-button{
+	border-left-color: #4b72a4;
+	border-right-color: #4b72a4;
+}
+.c8>.dialog-button{
+	border-bottom-color: #4b72a4;
+}
+.c1>.panel-header>.panel-title,.c2>.panel-header>.panel-title,
+.c5>.panel-header>.panel-title,.c6>.panel-header>.panel-title,.c8>.panel-header>.panel-title{
+	color: #fff;
+}
+.c-plain{
+	border-color: #fff;
+	background: #fff;
+}
+.c-plain>.panel-header,
+.c-plain>.panel-body,
+.c-plain>.dialog-button,
+.c-plain>.dialog-toolbar{
+	border-color: transparent;
+	background: transparent;
+}
+.c-raised{
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
