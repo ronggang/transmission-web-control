@@ -33,7 +33,7 @@ var transmission = {
 	,headers:{}
 	,trackers:{}
 	,islocal:false
-	// 当前已存在的目录列表
+	// The list of directories that currently exist
 	,downloadDirs:new Array()
 	,getSessionId:function(me,callback)
 	{

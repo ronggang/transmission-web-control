@@ -397,8 +397,7 @@
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
 		// 本地设置信息
-		thisDialog.find("#local-storage-dictionary-folders").val(system.dictionary.folders);
-
+		thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 
 		// 取消
 		thisDialog.find("#system-config-button-cancel").click(function()

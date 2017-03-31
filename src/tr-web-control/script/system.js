@@ -1,8 +1,8 @@
-// 当前系统全局对象
+// Current system global object
 var system = {
-	version:"1.0 Beta"
+	version:"1.1 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20141010"
+	,codeupdate:"20170317"
 	,configHead: "transmission-web-control"
 	,config:{
 		autoReload: true
@@ -17,7 +17,7 @@ var system = {
 			folders:"dictionary.folders"
 		}
 	}
-	// 本地数据存储
+	// Local data storage
 	,dictionary:{
 		folders:null
 	}
@@ -31,7 +31,7 @@ var system = {
 	,downloadDir:""
 	,islocal:false
 	,B64:new Base64()
-	// 当前选中的种子编号
+	// The currently selected torrent number
 	,currentTorrentId:0
 	,control:{
 		tree:null
@@ -46,11 +46,11 @@ var system = {
 	}
 	,serverConfig:null
 	,serverSessionStats:null
-	// 对话框模板暂存列表
+	// Dialog Templates Temporary list
 	,templates:{}
 	,setlang:function(lang,callback)
 	{
-		// 如果未指定语言，则获取当前浏览器默认语言
+		// If no language is specified, acquires the current browser default language
 		if (!lang)
 		{
 			if (this.config.defaultLang)
@@ -60,15 +60,15 @@ var system = {
 			//this.debug("lang",lang);
 		}
 		if (!lang) lang="zh-CN";
-		
-		// 如果语言代码中包含-，则需要将后半部份转为大写
+
+		// If - contains the language code, you need to turn the second half to uppercase
 		if (lang.indexOf("-")!=-1)
 		{
-			// 因linux对文件有大小写限制，故重新赋值
+			// Because Linux file size restrictions
 			lang=lang.split("-")[0].toLocaleLowerCase()+"-"+lang.split("-")[1].toLocaleUpperCase();
 		}
-		
-		// 如果该语言包没有定义，则使用英文
+
+		// If the language pack is not defined, English is used
 		if (!this.languages[lang])
 		{
 			lang = "en";
@@ -77,12 +77,12 @@ var system = {
 		$.getScript(system.rootPath+"lang/"+lang+".js",function(){
 			system.lang = $.extend(true,system.defaultLang, system.lang);
 			system.resetLangText();
-			// 设置 easyui 语言
+			// Set the easyui language
 			$.getScript(system.rootPath+"script/easyui/locale/easyui-lang-"+lang.replace("-","_")+".js")
 				.done(function(script, textStatus){
 					if (callback)
 						callback();
-				// 如果加载失败，则加载英文语言
+				// If the loading fails, the English language is loaded
 				})
 				.fail(function(jqxhr, settings, exception) {
 					$.getScript(system.rootPath+"script/easyui/locale/easyui-lang-en.js",function(){
@@ -122,16 +122,16 @@ var system = {
 			,status_text:$("#status_text")
 			,droparea:$("#dropArea")
 		};
-		
+
 		if (this.lang==null)
 		{
 			this.setlang(lang,function(){system.initdata()});
 		}
 		else
 			this.initdata();
-			
+
 	}
-	// 设置语言信息
+	// Set the language information
 	,resetLangText:function(parent)
 	{
 		if (!parent)
@@ -162,7 +162,7 @@ var system = {
 			{
 				$(item).attr("title",eval("system.lang."+name));
 			}
-			
+
 		});
 	}
 	,initdata:function()
@@ -170,7 +170,7 @@ var system = {
 		//this.panel.title.text(this.lang.system.title+" "+this.version+" ("+this.codeupdate+")");
 		$(document).attr("title",this.lang.system.title+" "+this.version);
 
-		// 初始导航栏
+		// The initial navigation bar
 		var buttons = new Array();
 		var title = "<span>" + this.lang.title.left+"</span>";
 		buttons.push("<span class='tree-title-toolbar'>");
@@ -193,8 +193,8 @@ var system = {
 		{
 			this.panel.left_layout.panel("setTitle",title);
 		}
-		
-		// 初始化种子列表栏目标题
+
+		// Initialize the torrent list column title
 		title = "<span>" + this.lang.title.list+"</span>";
 		buttons.length = 0;
 		buttons.push("<span class='tree-title-toolbar'>");
@@ -227,7 +227,7 @@ var system = {
 					default:
 						break;
 				}
-				
+
 			}
 		}
 		else
@@ -264,7 +264,7 @@ var system = {
 			}
 		});
 
-		// 设置语言
+		// Set the language
 		$.each(this.languages, function(key, value){
 			$("<option/>").text(value).val(key).attr("selected",(key==system.lang.name?true:false)).appendTo(system.panel.top.find("#lang"));
 		});
@@ -279,18 +279,18 @@ var system = {
 		this.initTorrentTable();
 		this.connect();
 		this.initEvent();
-		// 检查更新
-		this.checkUpdate();
+		// Check for updates
+		//this.checkUpdate();
 	}
 	//
 	,initEvent:function()
 	{
-		// 窗口尺寸发生变化时
+		// When the window size changes
 		$(window).resize(function(){
 			$("#main").layout("resize");
 		});
 
-		// 添加文件拖放事件处理 Begin
+		// Add file drag-and-drop event handling - Begin
 		this.panel.droparea[0].addEventListener("dragover",function(e){
 			e.stopPropagation();
 			e.preventDefault();
@@ -323,7 +323,7 @@ var system = {
 		// End
 
 	}
-	// 导航工具栏单击事件
+	// Navigation toolbar Click Events
 	,navToolbarClick:function(source)
 	{
 		var key = source.id;
@@ -350,7 +350,7 @@ var system = {
 					this.config.autoExpandAttribute = true;
 				}
 				break;
-		
+
 		}
 
 		if (!treenode)
@@ -370,11 +370,11 @@ var system = {
 			$(treenode.target).parent().show();
 			status = 1;
 		}
-		
+
 		$(source).data("status",status);
 		this.saveConfig();
 	}
-	// 检查拖放的文件
+	// Check the dragged files
 	,checkDropFiles:function(sources)
 	{
 		if (!sources || !sources.length) return;
@@ -384,13 +384,13 @@ var system = {
 			if ((file.name.split(".")).pop().toLowerCase()=="torrent")
 				files.push(file);
 		}
-		
+
 		if (files.length>0)
 		{
 			system.openDialogFromTemplate({
 				id: "dialog-torrent-addfile",
 				options: {
-					title: system.lang.toolbar["add-torrent"],  
+					title: system.lang.toolbar["add-torrent"],
 					width: 620,
 					height: 300,
 					resizable: true
@@ -401,7 +401,7 @@ var system = {
 			});
 		}
 	}
-	// 初始化树形列表
+	// Initialize the tree list
 	,initTree:function()
 	{
 		this.panel.left.tree({
@@ -450,6 +450,7 @@ var system = {
 			,{
 				id:"servers"
 				,text:this.lang.tree.servers
+				,state:"closed"
 				,iconCls:"icon-servers"
 				,children:[
 					{
@@ -530,7 +531,7 @@ var system = {
 					}
 				]
 			}
-			
+
 		]
 		,onSelect:function(node){
 			system.loadTorrentToList({node:node});
@@ -544,7 +545,7 @@ var system = {
 			$(treenode.target).parent().hide();
 		}
 
-		// 是否有指定默认选择的节点
+		// node that specifies the default selection
 		if (this.config.defaultSelectNode)
 		{
 			var node = this.panel.left.tree("find",this.config.defaultSelectNode);
@@ -554,7 +555,7 @@ var system = {
 			}
 		}
 	}
-	// 初始化种子列表显示表格
+	// Initialize the torrent list display table
 	,initTorrentTable:function()
 	{
 		this.control.torrentlist = $("<table/>").attr("class","torrent-list").appendTo(this.panel.list);
@@ -568,15 +569,15 @@ var system = {
 			}
 
 			var _fields = JSON.stringify(fields);
-			// 用户字段设置
+			// User field settings
 			system.userConfig.torrentList.fields = JSON.parse(_fields);
-			
+
 			for (var key in fields)
 			{
 				fields[key].title = system.lang.torrent.fields[fields[key].field]||fields[key].field;
 				system.setFieldFormat(fields[key]);
 			}
-	
+
 			system.control.torrentlist.datagrid({
 				autoRowHeight:false
 				,pagination:true
@@ -590,7 +591,7 @@ var system = {
 				,sortName: system.userConfig.torrentList.sortName
 				,sortOrder: system.userConfig.torrentList.sortOrder
 				,drophead:true
-			   ,columns:[fields]
+				,columns:[fields]
 				,onCheck:function(rowIndex, rowData)
 				{
 					system.checkTorrentRow(rowIndex,rowData);
@@ -614,7 +615,7 @@ var system = {
 
 					if (system.config.autoExpandAttribute)
 					{
-						// 如果没有展开时，将其展开
+						// If it is not expanded, expand it
 						if (system.panel.attribute.panel("options").collapsed)
 							system.panel.layout_body.layout("expand","south");
 					}
@@ -625,7 +626,7 @@ var system = {
 				{
 					if (system.config.autoExpandAttribute)
 					{
-						// 如果展开时，将其合拢
+						// If expanded, collapse it
 						if (!system.panel.attribute.panel("options").collapsed)
 							system.panel.layout_body.layout("collapse","south");
 
@@ -633,15 +634,17 @@ var system = {
 					system.currentTorrentId = 0;
 					selectedIndex = -1;
 				}
-				// 加载数据之前
+				// Before loading data
 				,onBeforeLoad:function(param)
 				{
 					system.currentTorrentId = 0;
 				}
-				// 表头排序
+				// Header sorting
 				,onSortColumn:function(field, order)
 				{
-					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(field,order));
+					var field_func = field;
+					if(field == "remainingTime") { field_func = "remainingTimeRaw"; }
+					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(field_func,order));
 					system.control.torrentlist.datagrid("loadData",datas);
 
 					system.resetTorrentListFieldsUserConfig(system.control.torrentlist.datagrid("options").columns[0]);
@@ -652,6 +655,7 @@ var system = {
 				,onRowContextMenu: function(e, rowIndex, rowData)
 				{
 					//console.log("onRowContextMenu");
+					system.control.torrentlist.datagrid("uncheckAll");
 					system.control.torrentlist.datagrid("checkRow",rowIndex);
 					e.preventDefault();
 					system.showContextMenu("torrent-list",e);
@@ -682,7 +686,7 @@ var system = {
 			});
 		},"json");
 
-		// 创建表头右键菜单
+		// Create a header right-click menu
 		function createHeadContextMenu() {
 			if (headContextMenu)
 			{
@@ -718,14 +722,14 @@ var system = {
 						text: col.title,
 						name: field,
 						iconCls: (col.hidden?"icon-empty":"icon-ok")
-					});	
+					});
 				}
 			}
 		}
 		/*
 		this.panel.list.bind('contextmenu',function(e){
 			 e.preventDefault();
-			 system.showContextMenu("torrent-list",e); 
+			 system.showContextMenu("torrent-list",e);
 		});
 		*/
 	}
@@ -744,7 +748,7 @@ var system = {
 			system.userConfig.torrentList.fields.push(field);
 		});
 	}
-	// 显示右键菜单
+	// Show context menu
 	,showContextMenu: function(type,e)
 	{
 		var parent = this.contextMenus[type];
@@ -759,7 +763,7 @@ var system = {
 			parent.empty();
 		}
 		var menus = null;
-		
+
 		switch (type)
 		{
 			case "torrent-list":
@@ -816,6 +820,16 @@ var system = {
 	}
 	,checkTorrentRow:function(rowIndex, rowData)
 	{
+		this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:false});
+		this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
+		return;
+		/*
 		if (rowIndex=="all")
 		{
 			this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:rowData});
@@ -845,7 +859,7 @@ var system = {
 		this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
-		
+
 		var torrent = transmission.torrents.all[rowData.id];
 		switch (torrent.status)
 		{
@@ -871,11 +885,12 @@ var system = {
 				this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:false});
 				break;
 		}
+		*/
 	}
-	// 初始化系统工具栏
+	// Initialize the System Toolbar
 	,initToolbar:function()
 	{
-		// 刷新时间
+		// refresh time
 		this.panel.toolbar.find("#toolbar_label_reload_time").html(this.lang.toolbar["reload-time"]);
 		this.panel.toolbar.find("#toolbar_label_reload_time_unit").html(this.lang.toolbar["reload-time-unit"]);
 		this.panel.toolbar.find("#toolbar_reload_time").numberspinner(
@@ -894,7 +909,7 @@ var system = {
 			}
 		});
 
-		// 启用/禁用自动刷新
+		// Enable / disable auto-refresh
 		this.panel.toolbar.find("#toolbar_autoreload")
 			.linkbutton({text:(this.config.autoReload?this.lang.toolbar["autoreload-enabled"]:this.lang.toolbar["autoreload-disabled"]),iconCls:(this.config.autoReload?"icon-enabled":"icon-disabled")})
 			.attr("title",(this.config.autoReload?this.lang.toolbar.tip["autoreload-disabled"]:this.lang.toolbar.tip["autoreload-enabled"]))
@@ -916,8 +931,8 @@ var system = {
 				$(this).linkbutton({text:(system.config.autoReload?system.lang.toolbar["autoreload-enabled"]:system.lang.toolbar["autoreload-disabled"]),iconCls:(system.config.autoReload?"icon-enabled":"icon-disabled")})
 				.attr("title",(system.config.autoReload?system.lang.toolbar.tip["autoreload-disabled"]:system.lang.toolbar.tip["autoreload-enabled"]));
 			});
-		
-		// 添加种子
+
+		// Add torrents
 		this.panel.toolbar.find("#toolbar_add_torrents")
 			.linkbutton({text:this.lang.toolbar["add-torrent"],disabled:false})
 			.attr("title",this.lang.toolbar.tip["add-torrent"])
@@ -925,15 +940,15 @@ var system = {
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-add",
 					options: {
-						title: system.lang.toolbar["add-torrent"],  
+						title: system.lang.toolbar["add-torrent"],
 						width: 620,
 						height: 400,
 						resizable: true
 					}
 				});
 			});
-		
-		// 开始所有
+
+		// Start all
 		this.panel.toolbar.find("#toolbar_start_all")
 			//.linkbutton({text:this.lang.toolbar["start-all"],disabled:false})
 			.linkbutton({disabled:false})
@@ -947,8 +962,8 @@ var system = {
 					button = null;
 				});
 			});
-		
-		// 暂停所有
+
+		// Pause all
 		this.panel.toolbar.find("#toolbar_pause_all")
 			//.linkbutton({text:this.lang.toolbar["pause-all"],disabled:false})
 			.linkbutton({disabled:false})
@@ -963,7 +978,7 @@ var system = {
 				});
 			});
 
-		// 开始已选择的
+		// Start Selected
 		this.panel.toolbar.find("#toolbar_start")
 			.linkbutton({disabled:true})
 			.attr("title",this.lang.toolbar.tip["start"])
@@ -971,15 +986,15 @@ var system = {
 				system.changeSelectedTorrentStatus("start",$(this));
 			});
 
-		// 暂停已选择的
+		// Pause Selected
 		this.panel.toolbar.find("#toolbar_pause")
 			.linkbutton({disabled:true})
 			.attr("title",this.lang.toolbar.tip["pause"])
 			.click(function(){
 				system.changeSelectedTorrentStatus("stop",$(this));
 			});
-		
-		// 重新校验已选择的
+
+		// Recalculate selected
 		this.panel.toolbar.find("#toolbar_recheck")
 			.linkbutton({disabled:true})
 			.attr("title",this.lang.toolbar.tip["recheck"])
@@ -1004,19 +1019,19 @@ var system = {
 					}
 					else if (confirm(system.lang.toolbar.tip["recheck-confirm"]))
 					{
-						system.changeSelectedTorrentStatus("verify",$(this)); 
+						system.changeSelectedTorrentStatus("verify",$(this));
 					}
 				}
 			});
 
-		// 獲取更多的peer
+		// Get more peers
 		this.panel.toolbar.find("#toolbar_morepeers")
 			.linkbutton({disabled:true})
 			.click(function(){
 				system.changeSelectedTorrentStatus("reannounce",$(this));
 			});
-		
-		// 删除选定的内容
+
+		// Deletes the selected
 		this.panel.toolbar.find("#toolbar_remove")
 			.linkbutton({disabled:true})
 			.attr("title",this.lang.toolbar.tip["remove"])
@@ -1029,11 +1044,11 @@ var system = {
 					ids.push(rows[i].id);
 				}
 				if (ids.length==0) return;
-				
+
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-remove-confirm",
 					options: {
-						title: system.lang.dialog["torrent-remove"].title,  
+						title: system.lang.dialog["torrent-remove"].title,
 						width: 350,
 						height: 150
 					},
@@ -1043,18 +1058,18 @@ var system = {
 				});
 			});
 
-		// 改名选定的内容
+		// Renames the selected
 		this.panel.toolbar.find("#toolbar_rename")
 			.linkbutton({disabled:true})
 			.click(function()
 			{
 				var rows = system.control.torrentlist.datagrid("getChecked");
 				if (rows.length==0) return;
-				
+
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-rename",
 					options: {
-						title: system.lang.dialog["torrent-rename"].title,  
+						title: system.lang.dialog["torrent-rename"].title,
 						width: 450,
 						height: 150,
 						resizable: true
@@ -1065,7 +1080,7 @@ var system = {
 				});
 			});
 
-		// 修改选定的种子数据保存目录
+		// Modify the selected torrent data save directory
 		this.panel.toolbar.find("#toolbar_changeDownloadDir")
 		.linkbutton({disabled:true})
 		.attr("title",this.lang.toolbar.tip["change-download-dir"])
@@ -1078,11 +1093,11 @@ var system = {
 				ids.push(rows[i].id);
 			}
 			if (ids.length==0) return;
-			
+
 			system.openDialogFromTemplate({
 				id: "dialog-torrent-changeDownloadDir",
 				options: {
-					title: system.lang.dialog["torrent-changeDownloadDir"].title,  
+					title: system.lang.dialog["torrent-changeDownloadDir"].title,
 					width: 520,
 					height: 200
 				},
@@ -1091,8 +1106,8 @@ var system = {
 				}
 			});
 		});
-		
-		// 限速
+
+		// Speed limit
 		this.panel.toolbar.find("#toolbar_alt_speed")
 			.linkbutton()
 			.attr("title",this.lang.toolbar.tip["alt-speed"])
@@ -1128,8 +1143,8 @@ var system = {
 
 				button.linkbutton({iconCls:"icon-loading"});
 			});
-		
-		// 参数
+
+		// configuration
 		this.panel.toolbar.find("#toolbar_config")
 			.linkbutton()
 			.attr("title",this.lang.toolbar.tip["system-config"])
@@ -1137,53 +1152,53 @@ var system = {
 				system.openDialogFromTemplate({
 					id: "dialog-system-config",
 					options: {
-						title: system.lang.toolbar["system-config"],  
+						title: system.lang.toolbar["system-config"],
 						width: 620,
 						height: 440,
 						resizable: true
 					}
 				});
 			});
-		
-		// 刷新
+
+		// reload
 		this.panel.toolbar.find("#toolbar_reload")
 			.linkbutton()
 			.attr("title",this.lang.toolbar.tip["system-reload"])
 			.click(function(){
 				system.reloadData();
-			});		
-	
-		// 搜索
+			});
+
+		// search
 		this.panel.toolbar.find("#toolbar_search").searchbox(
-		{  
+		{
 			searcher:function(value){
 				system.searchTorrents(value);
-			},  
+			},
 			prompt:this.lang.toolbar["search-prompt"]
 		});
 	}
-	// 初始化状态栏
+	// Initialize the status bar
 	,initStatusBar:function()
 	{
 		this.panel.statusbar.find("#status_title_downloadspeed").html(this.lang.statusbar.downloadspeed);
 		this.panel.statusbar.find("#status_title_uploadspeed").html(this.lang.statusbar.uploadspeed);
 	}
-	// 连接服务器
+	// connect to the server
 	,connect:function()
 	{
 		this.showStatus(this.lang.system.status.connect,0);
-		
-		// 当种子总数发生变化时，重新获取种子信息
+
+		// When the total torrent number is changed, the torrent information is retrieved
 		transmission.on.torrentCountChange = function()
 		{
 			system.reloadTorrentBaseInfos();
 		};
-		// 提交错误时
+		// When submitting an error
 		transmission.on.postError = function()
 		{
 			//system.reloadTorrentBaseInfos();
 		};
-		// 初始化连接
+		// Initialize the connection
 		transmission.init(
 			{
 				islocal:true
@@ -1194,13 +1209,13 @@ var system = {
 			}
 		);
 	}
-	// 重新加载服务器信息
+	// Reload the server information
 	,reloadSession:function(isinit)
 	{
 		transmission.getSession(function(result)
 		{
 			system.serverConfig = result;
-			// 版本信息
+			// Version Information
 			$("#status_version").html("Transmission "+system.lang.statusbar.version+result["version"]+", RPC: "+result["rpc-version"]
 				+", WEB Control: "+system.version+"("+system.codeupdate+")");
 			if (result["alt-speed-enabled"]==true)
@@ -1213,10 +1228,13 @@ var system = {
 				system.panel.toolbar.find("#toolbar_alt_speed").linkbutton({iconCls:"icon-alt-speed-false"});
 				$("#status_alt_speed").hide();
 			}
-			
+
 			system.downloadDir = result["download-dir"];
 
-			// rpc-version 版本为 15 起，不再提供 download-dir-free-space 参数，需从新的方法获取
+			// Always push default download dir to the Dirs array
+			transmission.downloadDirs.push(system.downloadDir);
+
+			// Rpc-version version 15, no longer provide download-dir-free-space parameters, to be obtained from the new method
 			if (parseInt(system.serverConfig["rpc-version"])>=15)
 			{
 				transmission.getFreeSpace(system.downloadDir,function(datas){
@@ -1248,7 +1266,7 @@ var system = {
 		}
 		$("#status_freespace").text(system.lang.dialog["system-config"]["download-dir-free-space"]+" "+tmp);
 	}
-	// 重新获取种子信息
+	// Retrieve the torrent information again
 	,reloadTorrentBaseInfos:function(ids, moreFields)
 	{
 		if (this.reloading) return;
@@ -1259,7 +1277,7 @@ var system = {
 			,folders:transmission.torrents.folders
 		}
 
-		// 获取所有种子id信息
+		// Gets all the torrent id information
 		transmission.torrents.getallids(function(resultTorrents)
 		{
 			var ignore = new Array();
@@ -1269,7 +1287,7 @@ var system = {
 				ignore.push(item.id);
 			}
 
-			// 错误的编号列表
+			// Error numbered list
 			var errorIds = transmission.torrents.getErrorIds(ignore,true);
 
 			if (errorIds.length>0)
@@ -1284,13 +1302,14 @@ var system = {
 			}
 		},ids, moreFields);
 	}
-	//
+	// refresh the tree
 	,resetTorrentInfos:function(oldInfos)
 	{
 		var currentTorrentId = this.currentTorrentId;
 		var parentNode = this.panel.left.tree("find","servers");
 		if (parentNode)
 		{
+			var parentNode_collapsed = parentNode.state
 			this.removeTreeNode("servers-loading");
 		}
 		else
@@ -1298,11 +1317,12 @@ var system = {
 			this.appendTreeNode(null,[{
 					id:"servers"
 					,text:this.lang.tree.servers
+					,state:"closed"
 					,iconCls:"icon-servers"
 				}]);
 			parentNode = this.panel.left.tree("find","servers");
 		}
-		
+
 		var datas = new Array();
 		for (var index in transmission.trackers)
 		{
@@ -1324,8 +1344,13 @@ var system = {
 
 			oldInfos.trackers[tracker.nodeid] = null;
 		}
+		// Collapse the node if it was before
+		if (parentNode_collapsed == "closed")
+			{
+				this.panel.left.tree("collapse", parentNode.target);
+			}
 
-		// 删除已经不存在的服务器
+		// Delete the server that no longer exists
 		for (var index in oldInfos.trackers)
 		{
 			var tracker = oldInfos.trackers[index];
@@ -1335,8 +1360,7 @@ var system = {
 			}
 		}
 
-		
-		// 已暂停
+		// Paused
 		if (transmission.torrents.status[transmission._status.stopped])
 		{
 			system.updateTreeNodeText("paused",system.lang.tree.paused+this.showNodeMoreInfos(transmission.torrents.status[transmission._status.stopped].length));
@@ -1346,7 +1370,7 @@ var system = {
 			system.updateTreeNodeText("paused",system.lang.tree.paused);
 		}
 
-		// 做种
+		// Seeding
 		if (transmission.torrents.status[transmission._status.seed])
 		{
 			system.updateTreeNodeText("sending",system.lang.tree.sending+this.showNodeMoreInfos(transmission.torrents.status[transmission._status.seed].length));
@@ -1355,7 +1379,7 @@ var system = {
 		{
 			system.updateTreeNodeText("sending",system.lang.tree.sending);
 		}
-		// 等待做种
+		// Waiting for seed
 		if (transmission.torrents.status[transmission._status.seedwait])
 		{
 			var node = system.panel.left.tree("find","sending");
@@ -1374,8 +1398,8 @@ var system = {
 		{
 			system.removeTreeNode("seedwait");
 		}
-		
-		// 校验
+
+		// check
 		if (transmission.torrents.status[transmission._status.check])
 		{
 			system.updateTreeNodeText("check",system.lang.tree.check+this.showNodeMoreInfos(transmission.torrents.status[transmission._status.check].length));
@@ -1384,7 +1408,7 @@ var system = {
 		{
 			system.updateTreeNodeText("check",system.lang.tree.check);
 		}
-		// 等待校验
+		// Waiting for check
 		if (transmission.torrents.status[transmission._status.checkwait])
 		{
 			var node = system.panel.left.tree("find","check");
@@ -1404,7 +1428,7 @@ var system = {
 			system.removeTreeNode("checkwait");
 		}
 
-		// 下载中
+		// downloading
 		if (transmission.torrents.status[transmission._status.download])
 		{
 			system.updateTreeNodeText("downloading",system.lang.tree.downloading+this.showNodeMoreInfos(transmission.torrents.status[transmission._status.download].length));
@@ -1413,7 +1437,7 @@ var system = {
 		{
 			system.updateTreeNodeText("downloading",system.lang.tree.downloading);
 		}
-		// 等待下载
+		// Waiting for download
 		if (transmission.torrents.status[transmission._status.downloadwait])
 		{
 			var node = system.panel.left.tree("find","downloading");
@@ -1433,11 +1457,11 @@ var system = {
 			system.removeTreeNode("downloadwait");
 		}
 
-		// 活动中
+		// Active
 		system.updateTreeNodeText("actively",system.lang.tree.actively+this.showNodeMoreInfos(transmission.torrents.actively.length));
-		// 发生错误
+		// With error
 		system.updateTreeNodeText("error",system.lang.tree.error+this.showNodeMoreInfos(transmission.torrents.error.length));
-		// 警告
+		// With warning
 		system.updateTreeNodeText("warning",system.lang.tree.warning+this.showNodeMoreInfos(transmission.torrents.warning.length));
 
 		var node = system.panel.left.tree("getSelected");
@@ -1446,23 +1470,23 @@ var system = {
 			var p = system.control.torrentlist.datagrid("options").pageNumber;
 			system.loadTorrentToList({node:node,page:p});
 		}
-		
+
 		if (currentTorrentId!=0)
 		{
 			system.control.torrentlist.datagrid("selectRecord",currentTorrentId);
 		}
-		
+
 		system.reloading = false;
 
 		if (system.config.autoReload)
 		{
 			system.autoReloadTimer = setTimeout(function(){system.reloadData();},system.config.reloadStep);
 		}
-		
-		// 总大小
+
+		// Total count
 		system.updateTreeNodeText("torrent-all",system.lang.tree.all+this.showNodeMoreInfos(transmission.torrents.count,transmission.torrents.totalSize));
 
-		// 统计信息
+		// Statistics
 		var items = ("uploadedBytes,downloadedBytes,filesAdded,sessionCount,secondsActive").split(",");
 		$.each(items, function(key, item){
 			switch (item)
@@ -1489,16 +1513,16 @@ var system = {
 			oldInfos.folders[item.nodeid] = null;
 		}
 
-		// 加载目录列表
+		// Loads the directory listing
 		this.loadFolderList(oldInfos.folders);
 
-		// FF 浏览器显示各个 总大小 时，会下移一行，故单独处理
+		// FF browser displays the total size, will be moved down a row, so a separate treatment
 		if (navigator.userAgent.indexOf("Firefox")>0)
 		{
 			system.panel.left.find("span.nav-total-size").css({"margin-top":"-19px"});
 		}
 	}
-	// 显示当前种子数量和大小
+	// Displays the current torrent count and size
 	,showNodeMoreInfos:function(count,size)
 	{
 		var result = "";
@@ -1513,7 +1537,7 @@ var system = {
 
 		return result;
 	}
-	// 获取服务器当前状态
+	// Gets the current state of the server
 	,getServerStatus:function()
 	{
 		if (this.reloading) return;
@@ -1539,7 +1563,7 @@ var system = {
 			}
 		});
 	}
-	// 显示状态信息
+	// Displays status information
 	,showStatus:function(msg,outtime){
 		if ($("#m_status").panel("options").collapsed)
 		{
@@ -1559,7 +1583,7 @@ var system = {
 			$("#layout_left").layout("collapse","south");
 		});
 	}
-	// 更新指定树形节点文字内容
+	// Updates the tree node text
 	,updateTreeNodeText:function(id,text,iconCls)
 	{
 		var node = this.panel.left.tree("find",id);
@@ -1569,7 +1593,7 @@ var system = {
 				target: node.target,
 				text: text
 			};
-			
+
 			if (iconCls!=undefined)
 			{
 				data["iconCls"] = iconCls
@@ -1578,7 +1602,7 @@ var system = {
 		}
 		node = null;
 	}
-	// 追加树节点
+	// Append tree nodes
 	,appendTreeNode:function(parentid,data)
 	{
 		var parent = null;
@@ -1588,7 +1612,7 @@ var system = {
 		}
 		else
 			parent = parentid;
-		
+
 		if (parent)
 		{
 			this.panel.left.tree("append", {
@@ -1604,7 +1628,7 @@ var system = {
 		}
 		parent = null;
 	}
-	// 删除指定的节点
+	// Remove tree nodes
 	,removeTreeNode:function(id)
 	{
 		var node = this.panel.left.tree("find",id);
@@ -1614,7 +1638,7 @@ var system = {
 		}
 		node = null;
 	}
-	// 加载种子列表
+	// Load the torrent list
 	,loadTorrentToList:function(config)
 	{
 		if (!transmission.torrents.all)
@@ -1625,10 +1649,10 @@ var system = {
 			node:null
 			,page:1
 		};
-		
+
 		jQuery.extend(def, config);
 		if (!config.node) return;
-		
+
 		var torrents = null;
 		var parent = this.panel.left.tree("getParent",config.node.target)||{id:""};
 		var currentNodeId = this.panel.left.data("currentNodeId");
@@ -1676,7 +1700,7 @@ var system = {
 				case "downloadwait":
 					torrents = transmission.torrents.status[transmission._status.downloadwait];
 					break;
-					
+
 				case "actively":
 					torrents = transmission.torrents.actively;
 					break;
@@ -1684,7 +1708,7 @@ var system = {
 				case "error":
 					torrents = transmission.torrents.error;
 					break;
-					
+
 				case "warning":
 					torrents = transmission.torrents.warning;
 					break;
@@ -1694,7 +1718,7 @@ var system = {
 					break;
 
 				default:
-					// 分类目录
+					// Categories
 					if (config.node.id.indexOf("folders-")!=-1)
 					{
 						var folder = transmission.torrents.folders[config.node.id];
@@ -1724,12 +1748,12 @@ var system = {
 			}
 			var status = this.lang.torrent["status-text"][torrents[index].status];
 			var percentDone = parseFloat(torrents[index].percentDone*100).toFixed(2);
-			// 校验时，使用校验进度
+			// Checksum, the use of verification progress
 			if (status==transmission._status.check)
 			{
 				percentDone = parseFloat(torrents[index].recheckProgress*100).toFixed(2);
 			}
-			
+
 			if (torrents[index].error!=0)
 			{
 				status = "<span class='text-status-error'>"+status+"</span>";
@@ -1742,7 +1766,7 @@ var system = {
 			data = $.extend(data,torrents[index]);
 			data.status = status;
 			data.statusCode = torrents[index].status;
-			data.completeSize = (torrents[index].totalSize-torrents[index].leftUntilDone);
+			data.completeSize = Math.max(0,torrents[index].totalSize-torrents[index].leftUntilDone);
 			data.leecherCount = torrents[index].leecher;
 			data.seederCount = torrents[index].seeder;
 			//data.leecherCount = torrents[index].leecher;
@@ -1768,7 +1792,7 @@ var system = {
 
 			datas.push(data);
 		}
-		
+		/*
 		this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
@@ -1776,14 +1800,15 @@ var system = {
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
+		*/
 
 		this.updateTorrentCurrentPageDatas(datas);
 	}
-	// 更新种子列表当前页数据
+	// Update torrent list current page data
 	,updateTorrentCurrentPageDatas: function(currentTypeDatas)
 	{
 
-		// 获取当前页数据
+		// Get the current page data
 		var rows = this.control.torrentlist.datagrid("getRows");
 
 		if (currentTypeDatas.length==0&&rows.length>0)
@@ -1797,8 +1822,10 @@ var system = {
 		if (_options.sortName)
 		{
 			orderField = _options.sortName;
-			currentTypeDatas = currentTypeDatas.sort(arrayObjectSort(orderField,_options.sortOrder));
-		}		
+			var orderField_func = orderField;
+			if(orderField == "remainingTime") { orderField_func = "remainingTimeRaw"; }
+			currentTypeDatas = currentTypeDatas.sort(arrayObjectSort(orderField_func,_options.sortOrder));
+		}
 
 		if (rows.length==0||(currentTypeDatas.length!=this.control.torrentlist.datagrid("getData").total)&&currentTypeDatas.length>_options.pageSize)
 		{
@@ -1811,20 +1838,20 @@ var system = {
 			return;
 		}
 
-		// 设置数据
+		// Setting data
 		this.control.torrentlist.datagrid("getData").originalRows = currentTypeDatas;
-		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);  
-		var end = start + parseInt(_options.pageSize);  
+		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);
+		var end = start + parseInt(_options.pageSize);
 		currentTypeDatas = (currentTypeDatas.slice(start, end));
 
 		//this.debug("currentTypeDatas:",currentTypeDatas);
 
-		// 当前更新的种子列表
+		// Current updated torrent list
 		var recently = {};
 		//
 		var datas = {};
 
-		// 初始化最近更新的数据
+		// Initializes the most recently updated data
 		for (var index in transmission.torrents.recently)
 		{
 			var item = transmission.torrents.recently[index];
@@ -1832,7 +1859,7 @@ var system = {
 			item = null;
 		}
 
-		// 初始化当前类型下的数据
+		// Initializes the data under the current type
 		for (var index in currentTypeDatas)
 		{
 			var item = currentTypeDatas[index];
@@ -1845,7 +1872,7 @@ var system = {
 		//this.debug("rows:",rows);
 
 		var addedDatas = {};
-		// 更新有变化的数据
+		// Update the changed data
 		for (var index=rows.length-1;index>=0;index--)
 		{
 			var item = rows[index];
@@ -1862,7 +1889,7 @@ var system = {
 				});
 				addedDatas[item.id] = item;
 			}
-			// 移除当前删除的种子
+			// Removes the currently deleted torrent
 			else if (transmission.torrents.removed)
 			{
 				if (transmission.torrents.removed.length>0&&$.inArray(item.id,transmission.torrents.removed)!=-1)
@@ -1882,8 +1909,8 @@ var system = {
 			data = null;
 		}
 
-		
-		// 追加当前不存在的行
+
+		// Appends a row that does not currently exist
 		for (var index in currentTypeDatas)
 		{
 			var item = currentTypeDatas[index];
@@ -1892,12 +1919,12 @@ var system = {
 				this.control.torrentlist.datagrid("appendRow",item);
 			}
 		}
-		
+
 		rows = null;
 		recently = null;
 		datas = null;
 	}
-	// 获取种子名称显示区域的内容
+	// Gets the contents of the torrent name display area
 	,getTorrentNameBar:function(torrent)
 	{
 		var className = "";
@@ -1940,11 +1967,11 @@ var system = {
 			className = "iconlabel icon-exclamation";
 			tip+="\n\n"+this.lang["public"]["text-info"]+": "+torrent.errorString;
 		}
-		
+
 
 		return '<span class="'+className+'" title="'+tip+'">'+torrent.name+'</span>';
 	}
-	// 获取指定种子的进度条
+	// Gets the progress bar for the specified torrent
 	,getTorrentProgressBar:function(progress,torrent)
 	{
 		progress=progress+"%";
@@ -1992,7 +2019,7 @@ var system = {
 		}
 		return '<div class="torrent-progress" title="'+progress+'"><div class="torrent-progress-text">'+progress+'</div><div class="torrent-progress-bar '+className+'" style="width:'+progress+';"></div></div>';
 	}
-	// 增加种子
+	// Add torrent
 	,addTorrentsToServer:function(urls,count,autostart,savepath)
 	{
 		//this.config.autoReload = false;
@@ -2010,7 +2037,7 @@ var system = {
 			system.addTorrentsToServer(urls,count,autostart,savepath);
 		});
 	}
-	// 开始/暂停已选择的种子
+	// Starts / pauses the selected torrent
 	,changeSelectedTorrentStatus:function(status,button,method)
 	{
 		var rows = this.control.torrentlist.datagrid("getChecked");
@@ -2035,7 +2062,7 @@ var system = {
 				var icon = button.linkbutton("options").iconCls;
 				button.linkbutton({disabled:true,iconCls:"icon-loading"});
 			}
-			
+
 			transmission.exec({
 					method:method
 					,arguments:{
@@ -2046,14 +2073,14 @@ var system = {
 					if (button)
 					{
 						button.linkbutton({iconCls:icon});
-					}					
+					}
 					system.control.torrentlist.datagrid("uncheckAll");
 					system.reloadTorrentBaseInfos();
 				}
 			);
 		}
 	}
-	// 从种子列表中查找指定的种子
+	// Looks for the specified torrent from the torrent list
 	,searchTorrents:function(key)
 	{
 		if (key=="")
@@ -2080,7 +2107,7 @@ var system = {
 		}
 		this.panel.left.tree("select",node.target);
 	}
-	// 获取种子详细信息
+	// Get the torrent details
 	,getTorrentInfos:function(id)
 	{
 		if (!transmission.torrents.all[id]) return;
@@ -2090,27 +2117,27 @@ var system = {
 			if (transmission.torrents.all[this.currentTorrentId].infoIsLoading) return;
 		}
 		this.currentTorrentId = id;
-		// 只在展开时才加载
+		// Loads only when expanded
 		if (!this.panel.attribute.panel("options").collapsed)
 		{
 			//this.panel.attribute.panel({iconCls:"icon-loading"});
 			var torrent = transmission.torrents.all[id];
 			torrent.infoIsLoading = true;
 			var fields = "fileStats,trackerStats,peers,leftUntilDone,status,rateDownload,rateUpload,uploadedEver,uploadRatio,error,errorString";
-			// 如果是第一次加载这个种子资料时，获取更多信息
+			// If this is the first time to load this torrent information, load more information
 			if (!torrent.moreInfosTag)
 			{
 				fields += ",files,trackers,comment,dateCreated,creator,downloadDir";
 			}
 
-			// 获取文件列表
+			// Gets the list of files
 			transmission.torrents.getMoreInfos(fields,id,function(result){
 				torrent.infoIsLoading = false;
 				//system.panel.attribute.panel({iconCls:""});
 				if (result==null) return;
-				// 合并当前返回的值到当前种子
+				// Merge the currently returned value to the current torrent
 				jQuery.extend(torrent, result[0]);
-				if (system.currentTorrentId==0||system.currentTorrentId!=id) 
+				if (system.currentTorrentId==0||system.currentTorrentId!=id)
 				{
 					system.clearTorrentAttribute();
 					return;
@@ -2135,10 +2162,10 @@ var system = {
 		system.panel.attribute.find("#torrent-peers-table").datagrid("loadData",[]);
 		system.panel.attribute.find("span[id*='torrent-attribute-value']").html("");
 	}
-	// 更新指定的表示当前页数理
+	// Updates the specified current page count
 	,updateCurrentPageDatas:function(keyField,datas,sourceTable)
 	{
-		// 获取当前页数据
+		// Get the current page data
 		var rows = sourceTable.datagrid("getRows");
 		var _options = sourceTable.datagrid("options");
 		var orderField = null;
@@ -2146,7 +2173,7 @@ var system = {
 		{
 			orderField = _options.sortName;
 			datas = datas.sort(arrayObjectSort(orderField,_options.sortOrder));
-		}		
+		}
 
 		if (rows.length==0||(datas.length!=sourceTable.datagrid("getData").total)&&datas.length>_options.pageSize)
 		{
@@ -2159,14 +2186,14 @@ var system = {
 			return;
 		}
 
-		// 设置数据
+		// Setting data
 		sourceTable.datagrid("getData").originalRows = datas;
-		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);  
+		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);
 		var end = start + parseInt(_options.pageSize);
 		datas = (datas.slice(start, end));
 
 		var newDatas = {};
-		// 初始化当前类型下的数据
+		// Initializes the data under the current type
 		for (var index in datas)
 		{
 			var item = datas[index];
@@ -2174,7 +2201,7 @@ var system = {
 			item = null;
 		}
 
-		// 更新有变化的数据
+		// Update the changed data
 		for (var index=rows.length-1;index>=0;index--)
 		{
 			var item = rows[index];
@@ -2197,19 +2224,19 @@ var system = {
 			item = null;
 		}
 	}
-	// 填充种子的基本信息
+	// Fill the seed with basic information
 	,fillTorrentBaseInfos:function(torrent)
 	{
 		$.each(torrent, function(key, value){
 			switch (key)
 			{
-				// 速度相关
+				// Speed
 				case "rateDownload":
 				case "rateUpload":
 					value = formatSize(value,true,"speed");
 					break;
 
-				// 大小相关
+				// Size
 				case "totalSize":
 				case "uploadedEver":
 				case "leftUntilDone":
@@ -2217,18 +2244,18 @@ var system = {
 					value = formatSize(value);
 					break;
 
-				// 时间相关
+				// Dates
 				case "addedDate":
 				case "dateCreated":
 				case "doneDate":
 					value = formatLongTime(value);
 					break;
 
-				// 状态
+				// status
 				case "status":
 					value = system.lang.torrent["status-text"][value];
 					break;
-				// 错误
+				// error
 				case "error":
 					if (value==0)
 					{
@@ -2240,7 +2267,7 @@ var system = {
 					}
 					break;
 
-				// 描述
+				// description
 				case "comment":
 					value = system.replaceURI(value);
 					break;
@@ -2249,7 +2276,7 @@ var system = {
 			system.panel.attribute.find("#torrent-attribute-value-"+key).html(value);
 		});
 	}
-	// 填充种子的文件列表
+	// Fill the torrent with a list of files
 	,fillTorrentFileList:function(torrent)
 	{
 		var files = torrent.files;
@@ -2273,9 +2300,9 @@ var system = {
 		}
 
 		this.updateCurrentPageDatas("index",datas,system.panel.attribute.find("#torrent-files-table"));
-		
+
 	}
-	// 填充种子的服务器列表
+	// Fill in the torrent server list
 	,fillTorrentServerList:function(torrent)
 	{
 		var trackers = torrent.trackers;
@@ -2290,7 +2317,7 @@ var system = {
 			{
 				switch (key)
 				{
-					// 时间相关
+					// Dates
 					case "lastAnnounceTime":
 					case "nextAnnounceTime":
 						rowdata[key] = formatLongTime(stats[key]);
@@ -2310,14 +2337,14 @@ var system = {
 
 			datas.push(rowdata);
 		}
-		// 替換 Tracker 信息
+		// Replace the tracker information
 		transmission.torrents.addTracker(torrent);
 
 		this.updateCurrentPageDatas("id",datas,system.panel.attribute.find("#torrent-servers-table"));
 		//console.log("datas:",datas);
 		//system.panel.attribute.find("#torrent-servers-table").datagrid({loadFilter:pagerFilter,pageNumber:1}).datagrid("loadData",datas);
 	}
-	// 填充种子的用户列表
+	// Fill the torrent user list
 	,fillTorrentPeersList:function(torrent)
 	{
 		var peers = torrent.peers;
@@ -2339,7 +2366,7 @@ var system = {
 		//console.log("datas:",datas);
 		//system.panel.attribute.find("#torrent-peers-table").datagrid({loadFilter:pagerFilter,pageNumber:1}).datagrid("loadData",datas);
 	}
-	// 填充种子设置参数
+	// Fill torrent parameters
 	,fillTorrentConfig:function(torrent)
 	{
 		if (system.panel.attribute.find("#torrent-attribute-tabs").data("selectedIndex")!=4)
@@ -2348,9 +2375,9 @@ var system = {
 		}
 		transmission.torrents.getConfig(torrent.id,function(result){
 			if (result==null) return;
-			
+
 			var torrent = transmission.torrents.all[system.currentTorrentId];
-			// 合并当前返回的值到当前种子
+			// Merge the currently returned value to the current torrent
 			jQuery.extend(torrent, result[0]);
 			if (system.currentTorrentId==0) return;
 			$.each(result[0], function(key, value){
@@ -2374,7 +2401,7 @@ var system = {
 						{
 							checked = true;
 						}
-						
+
 						system.panel.attribute.find("input[enabledof='"+key+"']").prop("disabled",!checked);
 						if (useTag)
 						{
@@ -2393,7 +2420,7 @@ var system = {
 			});
 		});
 	}
-	// 设置字段显示格式
+	// Set the field display format
 	,setFieldFormat:function(field)
 	{
 		if (field.formatter)
@@ -2428,11 +2455,11 @@ var system = {
 					break;
 				}
 				break;
-				
+
 			}
 		}
 	}
-	// 重新加载数据
+	// Reload the data
 	,reloadData:function()
 	{
 		this.reloadSession();
@@ -2440,12 +2467,14 @@ var system = {
 		this.getServerStatus();
 		this.reloading=false;
 		this.reloadTorrentBaseInfos();
+		// enable all icons
+		this.checkTorrentRow("all",false);
 	}
-	// 加载目录列表
+	// Loads the directory listing
 	,loadFolderList:function(oldFolders)
 	{
 		this.removeTreeNode("folders-loading");
-		// 删除已经不存在的目录
+		// Delete the directory that does not exist
 		for (var index in oldFolders)
 		{
 			var item = oldFolders[index];
@@ -2460,20 +2489,20 @@ var system = {
 		}
 
 		timedChunk(transmission.downloadDirs, this.appendFolder, this, 10, function(){
-			// FF 浏览器显示各个 总大小 时，会下移一行，故单独处理
+			// FF browser displays the total size, will be moved down a row, so a separate treatment
 			if (navigator.userAgent.indexOf("Firefox")>0)
 			{
 				system.panel.left.find("span.nav-total-size").css({"margin-top":"-19px"});
 			}
 
-			
+
 		});
 		/*
 		for (var index in transmission.downloadDirs)
 		{
 			var parentkey = rootkey;
 			var fullkey = transmission.downloadDirs[index];
-			
+
 		}*/
 	}
 	,appendFolder:function(fullkey)
@@ -2486,7 +2515,7 @@ var system = {
 		var key = rootkey + "-";
 		for (var i in folder)
 		{
-			var name = folder[i]; 
+			var name = folder[i];
 			if (name=="")
 			{
 				continue;
@@ -2496,7 +2525,7 @@ var system = {
 			var node = this.panel.left.tree("find",key);
 			var folderinfos = transmission.torrents.folders[key];
 			var text = name+this.showNodeMoreInfos(folderinfos.count,folderinfos.size);
-			
+
 			if (!node)
 			{
 				this.appendTreeNode(parentkey,[{id:key,text:text}]);
@@ -2518,7 +2547,7 @@ var system = {
 		var reg = /(http|https|ftp):\/\/([^/:]+)(:\d*)?([^# ]*)/ig;
 		return text.replace(reg,function(url){return '<a href="'+url+'" target="_blank">'+url+'</a>';});
 	}
-	// 从 cookies 里加载配置
+	// Load the parameters from cookies
 	,readConfig:function()
 	{
 		this.readUserConfig();
@@ -2533,7 +2562,7 @@ var system = {
 			this.dictionary[key] = this.getStorageData(this.storageKeys.dictionary[key]);
 		}
 	}
-	// 在 cookies 里保存参数
+	// Save the parameters in cookies
 	,saveConfig:function()
 	{
 		cookies.set(this.configHead,this.config,100);
@@ -2556,10 +2585,10 @@ var system = {
 	{
 		window.localStorage[this.configHead] = JSON.stringify(this.userConfig);
 	}
-	// 上传种子文件
+	// Upload the torrent file
 	,uploadTorrentFile: function(fileInputId,savePath,paused,callback)
 	{
-		// 判断是否支持 FileReader 接口
+		// Determines whether the FileReader interface is supported
 		if (window.FileReader)
 		{
 			var files = $("input[id='"+fileInputId+"']")[0].files;
@@ -2584,7 +2613,7 @@ var system = {
 				$("#area-update-infos").hide();
 		});
 	}
-	// 設置語言，重新加載頁面
+	// Set the language to reload the page
 	,changeLanguages: function(lang)
 	{
 		if (lang==this.lang.name||!lang) return;
@@ -2601,11 +2630,11 @@ var system = {
 	{
 		window.localStorage[key] = value;
 	}
-	// 打开指定的模板窗口
+	// Opens the specified template window
 	,openDialogFromTemplate: function(config)
 	{
 		var defaultConfig = {
-			id: null,  
+			id: null,
 			options: null,
 			datas: null
 		};
@@ -2627,25 +2656,25 @@ var system = {
 					dialog.data(key,value);
 				});
 			}
-			
-			
+
+
 			dialog.dialog({content:system.templates[dialogId]});
-			
+
 			return;
 		}
 		var defaultOptions = {
-			title: "",  
+			title: "",
 			width: 100,
 			height: 100,
 			resizable: false,
 			cache: true,
-			content:"loading...",  
+			content:"loading...",
 			modal: true
 		};
 		options = $.extend(true,defaultOptions, options);
 
 		$("<div/>").attr("id",dialogId).appendTo(document.body).dialog(options);
-		
+
 		$.get(system.rootPath+"template/"+dialogId+".html?time="+(new Date()),function(data){
 			system.templates[dialogId] = data;
 			if (datas)
@@ -2654,11 +2683,11 @@ var system = {
 					$("#"+dialogId).data(key,value);
 				});
 			}
-			
+
 			$("#"+dialogId).dialog({content:data});
 		});
 	}
-	// 调试信息
+	// Debugging information
 	,debug:function(label,text){
 		if (window.console)
 		{
@@ -2666,48 +2695,48 @@ var system = {
 			{
 				window.console.log(label,text);
 			}
-		}	
+		}
 	}
 };
 
 $(document).ready(function(){
-	// 加载默认语言内容
+	// Loads the default language content
 	$.getScript(system.rootPath+"lang/default.js");
-	// 加载可用的语言列表
+	// Loads a list of available languages
 	$.getScript(system.rootPath+"lang/_languages.js",function(){
 		system.init(location.search.getQueryString("lang"),location.search.getQueryString("local"));
 	});
 });
 
-function pagerFilter(data){  
-	if (typeof data.length == 'number' && typeof data.splice == 'function'){    // is array  
-		 data = {  
-			  total: data.length,  
-			  rows: data  
-		 }  
-	}  
-	var dg = $(this);  
+function pagerFilter(data){
+	if (typeof data.length == 'number' && typeof data.splice == 'function'){    // is array
+		 data = {
+			  total: data.length,
+			  rows: data
+		 }
+	}
+	var dg = $(this);
 	var opts = dg.datagrid('options');
 	var pager = dg.datagrid('getPager');
 	var buttons = dg.data("buttons");
 	//system.debug("pagerFilter.buttons:",buttons);
-	pager.pagination({  
-		 onSelectPage:function(pageNum, pageSize){  
-			  opts.pageNumber = pageNum;  
+	pager.pagination({
+		 onSelectPage:function(pageNum, pageSize){
+			  opts.pageNumber = pageNum;
 			  opts.pageSize = pageSize;
-			  pager.pagination('refresh',{  
-					pageNumber:pageNum,  
-					pageSize:pageSize  
-			  });  
-			  dg.datagrid('loadData',data);  
+			  pager.pagination('refresh',{
+					pageNumber:pageNum,
+					pageSize:pageSize
+			  });
+			  dg.datagrid('loadData',data);
 		 }
 		 ,buttons:buttons
 	});
-	if (!data.originalRows){  
-		 data.originalRows = (data.rows);  
-	}  
-	var start = (opts.pageNumber-1)*parseInt(opts.pageSize);  
-	var end = start + parseInt(opts.pageSize);  
-	data.rows = (data.originalRows.slice(start, end));  
-	return data;  
+	if (!data.originalRows){
+		 data.originalRows = (data.rows);
+	}
+	var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+	var end = start + parseInt(opts.pageSize);
+	data.rows = (data.originalRows.slice(start, end));
+	return data;
 }

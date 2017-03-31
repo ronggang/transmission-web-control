@@ -91,7 +91,7 @@ system.lang = {
 		,"active":"Active"
 		,"paused":"Paused"
 		,"downloading":"Downloading"
-		,"sending":"Sending"
+		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
 		,"actively":"Actively"
@@ -108,8 +108,8 @@ system.lang = {
 			,"current":"Current"
 			,"uploadedBytes":"UploadedBytes: "
 			,"downloadedBytes":"DownloadedBytes: "
-			,"filesAdded":"FilesAdded: "   
-			,"sessionCount":"SessionCount: " 
+			,"filesAdded":"FilesAdded: "
+			,"sessionCount":"SessionCount: "
 			,"secondsActive":"SecondsActive: "
 		}
 		,"servers":"Trackers"
@@ -122,7 +122,7 @@ system.lang = {
 	}
 	,"statusbar":{
 		"downloadspeed":"Download speed:"
-		,"uploadspeed":"Send speed:"
+		,"uploadspeed":"Seed speed:"
 		,"version":"Version:"
 	}
 	,"dialog":{

@@ -1,24 +1,3 @@
-.searchbox {
-  display: inline-block;
-  white-space: nowrap;
-  margin: 0;
-  padding: 0;
-  border-width: 1px;
-  border-style: solid;
-  overflow: hidden;
-  vertical-align: middle;
-}
-.searchbox .searchbox-text {
-  font-size: 12px;
-  border: 0;
-  margin: 0;
-  padding: 0 2px;
-  vertical-align: top;
-}
-.searchbox .searchbox-prompt {
-  font-size: 12px;
-  color: #ccc;
-}
 .searchbox-button {
   width: 18px;
   height: 20px;
@@ -72,10 +51,6 @@
 .searchbox-button {
   background: url('images/searchbox_button.png') no-repeat center center;
 }
-.searchbox {
-  border-color: #95B8E7;
-  background-color: #fff;
-}
 .searchbox .l-btn-plain {
   background: #E0ECFF;
 }
@@ -83,8 +58,4 @@
 .searchbox .l-btn-plain-disabled:hover {
   opacity: 0.5;
   filter: alpha(opacity=50);
-}
-.textbox-invalid {
-  border-color: #ffa8a8;
-  background-color: #fff3f3;
 }

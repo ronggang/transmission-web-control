@@ -25,9 +25,20 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
+.textbox .textbox-text::-ms-clear,
+.textbox .textbox-text::-ms-reveal {
+  display: none;
+}
+.textbox textarea.textbox-text {
+  white-space: pre-wrap;
+}
 .textbox .textbox-prompt {
   font-size: 12px;
   color: #aaa;
+}
+.textbox .textbox-bgicon {
+  background-position: 3px center;
+  padding-left: 21px;
 }
 .textbox .textbox-button,
 .textbox .textbox-button:hover {
@@ -39,17 +50,57 @@
   -webkit-border-radius: 0 0 0 0;
   border-radius: 0 0 0 0;
 }
-.textbox-button-right,
-.textbox-button-right:hover {
+.textbox .textbox-button-right,
+.textbox .textbox-button-right:hover {
+  right: 0;
   border-width: 0 0 0 1px;
 }
-.textbox-button-left,
-.textbox-button-left:hover {
+.textbox .textbox-button-left,
+.textbox .textbox-button-left:hover {
+  left: 0;
   border-width: 0 1px 0 0;
+}
+.textbox .textbox-button-top,
+.textbox .textbox-button-top:hover {
+  left: 0;
+  border-width: 0 0 1px 0;
+}
+.textbox .textbox-button-bottom,
+.textbox .textbox-button-bottom:hover {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  border-width: 1px 0 0 0;
 }
 .textbox-addon {
   position: absolute;
   top: 0;
+}
+.textbox-label {
+  display: inline-block;
+  width: 80px;
+  height: 22px;
+  line-height: 22px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  padding-right: 5px;
+}
+.textbox-label-after {
+  padding-left: 5px;
+  padding-right: 0;
+}
+.textbox-label-top {
+  display: block;
+  width: auto;
+  padding: 0;
+}
+.textbox-disabled,
+.textbox-label-disabled {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
 }
 .textbox-icon {
   display: inline-block;
@@ -77,6 +128,7 @@
   filter: alpha(opacity=60);
 }
 .textbox-focused {
+  border-color: #6b9cde;
   -moz-box-shadow: 0 0 3px 0 #95B8E7;
   -webkit-box-shadow: 0 0 3px 0 #95B8E7;
   box-shadow: 0 0 3px 0 #95B8E7;

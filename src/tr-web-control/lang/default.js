@@ -111,8 +111,8 @@ system.defaultLang = {
 			,"current":"Current"
 			,"uploadedBytes":"UploadedBytes: "
 			,"downloadedBytes":"DownloadedBytes: "
-			,"filesAdded":"FilesAdded: "   
-			,"sessionCount":"SessionCount: " 
+			,"filesAdded":"FilesAdded: "
+			,"sessionCount":"SessionCount: "
 			,"secondsActive":"SecondsActive: "
 		}
 		,"servers":"Trackers"
@@ -125,7 +125,7 @@ system.defaultLang = {
 	}
 	,"statusbar":{
 		"downloadspeed":"Download speed:"
-		,"uploadspeed":"Send speed:"
+		,"uploadspeed":"Seed speed:"
 		,"version":"Version:"
 	}
 	,"dialog":{
@@ -197,9 +197,9 @@ system.defaultLang = {
 			,"seedRatioLimited":"The default seed ratio for torrents to use:"
 			,"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:"
 			,"idle-seeding-limit-enabled":"Torrents we're seeding will be stopped if they're idle for this long:"
-			,"minuets":"Minuets"
+			,"minutes":"Minutes"
 			,"nochange":"No change"
-			,"saveing":"Saveing..."
+			,"saving":"Saving..."
 		}
 		,"public":{
 			"button-ok":"OK"

@@ -132,13 +132,14 @@
   border: 1px dotted red;
 }
 .tree-editor {
-  border: 1px solid #ccc;
+  border: 1px solid #95B8E7;
   font-size: 12px;
-  height: 14px !important;
-  height: 18px;
-  line-height: 14px;
-  padding: 1px 2px;
+  line-height: 16px;
+  padding: 0 4px;
+  margin: 0;
   width: 80px;
+  outline-style: none;
+  vertical-align: top;
   position: absolute;
   top: 0;
 }

@@ -110,14 +110,19 @@
   padding-bottom: 5px;
 }
 .calendar-menu-year {
-  width: 40px;
+  width: 50px;
   text-align: center;
   border-width: 1px;
   border-style: solid;
+  outline-style: none;
+  resize: none;
   margin: 0;
   padding: 2px;
   font-weight: bold;
   font-size: 12px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
 .calendar-menu-prev,
 .calendar-menu-next {
