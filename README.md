@@ -20,6 +20,15 @@ Email: ronggang.zhou at gmail.com
  - Transmission 2.40 及以上版本（RPC版本：14及以上）
  - Transmission 2.40 and above (RPC version: 14 and above)
 
+### 已修复问题
+现在已经修改的问题如下：
+ - 更新了源程序的tar文件
+ - 修复英文界面的一些笔误
+ - 添加了http的安装方法
+ - 更新了install.sh的英文注释
+ - 更新了easyui到1.5.1和jquery到1.12.4 By -- @balonik
+ - 修复问题#20，#21，#23，#39，#40，#43，#44 By -- @balonik
+
 ### 功能介绍
  - 在线查看Transmission当前工作情况；
  - 在线添加新的种子文件或连接；
@@ -36,14 +45,21 @@ Email: ronggang.zhou at gmail.com
 ### 浏览器支持
  - 所有支持HTML5的浏览器(Chrome 15.0.874，Firefox 8.0.1，IE 9.0.8112，Opera 11.52)
 
-### 下载列表
- - 可通过以下地址获取最新版的程序：
- - https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
- - 或到下载安装脚本，此脚本只需要下载一次，以后只需要执行即可
- - https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
-
 ### 安装方法
- - https://code.google.com/p/transmission-control/wiki/Install
+ - 可通过以下地址获取最新版的程序：
+~~~
+  https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
+~~~
+ - 或到下载安装脚本，此脚本只需要下载一次，以后只需要执行即可:
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
+  sudo bash tr-control-easy-install.sh
+~~~
+ - 如果需要http而不是https，请使用以下命令:
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
+  sudo bash tr-control-easy-install-en-http.sh
+~~~
 
 ### 关于多语言(Multi-language)
 系统使用多语言的方式构建，所以可以支持其他任何语言；但，由于本人水平有限，只会中文，所以需要懂其他语言的您的帮助，如果您已经翻译好了一个语言版本，请同时发给我一份，我会打包在一起，分享给更多的用户，谢谢。
@@ -67,10 +83,19 @@ Email: ronggang.zhou at gmail.com
 
 Introduction
 -------------------
-Transmission Web Control is a custom web UI. The project began in [Goolge Code](https://code.google.com/p/transmission-control/). 
+Transmission Web Control is a custom web UI. The project began in [Goolge Code](https://code.google.com/p/transmission-control/).Welcome to give me any feedback or submit a Pull Request.
 
 ### Support Transmission Version
  - Transmission 2.40 and above (RPC version: 14 and above)
+
+### Fixed issues
+I will do my best to fix the issues in this repo.
+ - Updated the install tar file
+ - Fixed several typos in English interface
+ - Added http install script
+ - Added install.sh with English comments
+ - Updated easyui to 1.5.1 and jquery to 1.12.4 By -- @balonik
+ - Fixed issue #20, #21, #23, #39, #40, #43, #44 By -- @balonik
 
 ### Features
  - Add torrent files or URLs
@@ -110,16 +135,29 @@ Transmission Web Control is a custom web UI. The project began in [Goolge Code](
  - `2013-09-12` [French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js) @Amaury Aubry
  - `2013-12-05` [Korean](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js) @kdsz330
  - `2014-02-12` [European Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js) @pcgaldo
- - `2015-09-11` [Ukrainian](https://github.com/ronggang/transmission-web-control/blob/master/src/tr-web-control/lang/uk.js) @noreplyme
  - If you have translated a language pack, please upload it here issue 9
 
 #### [How to install](https://code.google.com/p/transmission-control/wiki/Install#1._Automatic_Installation_(Linux))
 
 ### Download
  - You can get the latest version of the program for this address:
- - https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
+~~~
  - Or download easy install script:
- - https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
+  sudo bash tr-control-easy-install.sh
+~~~
+ - If you need http download instead of https, please use the following
+     commands:
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
+  sudo bash tr-control-easy-install-en-http.sh
+~~~
+ - install.sh script with english comments:
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en.sh
+~~~
 
-
-###### 创建于(Create): 2012.12.18；更新于(Update): 2014.10.13 By 栽培者(ronggang) ######
+###### 创建于(Create): 2012.12.18；更新于(Update): 2014.10.13 By 栽培者(ronggang); Updated: 03-31-2017 by DarkAlexWang  ######
