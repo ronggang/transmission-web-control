@@ -1,13 +1,4 @@
-### 求助 ###
-因个人原因，已无更多精力维护该项目，导致项目基本处于停止状态，现希望有人帮忙继续更新该项目，如有意向者请和我联系，谢谢！
-
-### Please help this project ###
-For personal reasons, has no more effort to maintain the project, leading to the basic state of the project is stopped, I hope someone help to continue to update the project, if interested, please contact me, thank you!
-
-Email: ronggang.zhou at gmail.com
-
-栽培者 2016.10.11
-
+### 目前项目已恢复正常维护，感谢 @DarkAlexWang 支持 :)
 -----
 关于
 -----
