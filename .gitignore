@@ -1,3 +1,4 @@
 *.tmp
 *.bkp
+*.vscode
 node_modules

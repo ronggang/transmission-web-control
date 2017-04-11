@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version:"1.0 Beta"
+	version:"1.1 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170109"
+	,codeupdate:"20170317"
 	,configHead: "transmission-web-control"
 	,config:{
 		autoReload: true
@@ -60,14 +60,14 @@ var system = {
 			//this.debug("lang",lang);
 		}
 		if (!lang) lang="zh-CN";
-		
+
 		// If - contains the language code, you need to turn the second half to uppercase
 		if (lang.indexOf("-")!=-1)
 		{
 			// Because Linux file size restrictions
 			lang=lang.split("-")[0].toLocaleLowerCase()+"-"+lang.split("-")[1].toLocaleUpperCase();
 		}
-		
+
 		// If the language pack is not defined, English is used
 		if (!this.languages[lang])
 		{
@@ -122,14 +122,14 @@ var system = {
 			,status_text:$("#status_text")
 			,droparea:$("#dropArea")
 		};
-		
+
 		if (this.lang==null)
 		{
 			this.setlang(lang,function(){system.initdata()});
 		}
 		else
 			this.initdata();
-			
+
 	}
 	// Set the language information
 	,resetLangText:function(parent)
@@ -162,7 +162,7 @@ var system = {
 			{
 				$(item).attr("title",eval("system.lang."+name));
 			}
-			
+
 		});
 	}
 	,initdata:function()
@@ -193,7 +193,7 @@ var system = {
 		{
 			this.panel.left_layout.panel("setTitle",title);
 		}
-		
+
 		// Initialize the torrent list column title
 		title = "<span>" + this.lang.title.list+"</span>";
 		buttons.length = 0;
@@ -227,7 +227,7 @@ var system = {
 					default:
 						break;
 				}
-				
+
 			}
 		}
 		else
@@ -350,7 +350,7 @@ var system = {
 					this.config.autoExpandAttribute = true;
 				}
 				break;
-		
+
 		}
 
 		if (!treenode)
@@ -370,7 +370,7 @@ var system = {
 			$(treenode.target).parent().show();
 			status = 1;
 		}
-		
+
 		$(source).data("status",status);
 		this.saveConfig();
 	}
@@ -384,13 +384,13 @@ var system = {
 			if ((file.name.split(".")).pop().toLowerCase()=="torrent")
 				files.push(file);
 		}
-		
+
 		if (files.length>0)
 		{
 			system.openDialogFromTemplate({
 				id: "dialog-torrent-addfile",
 				options: {
-					title: system.lang.toolbar["add-torrent"],  
+					title: system.lang.toolbar["add-torrent"],
 					width: 620,
 					height: 300,
 					resizable: true
@@ -531,7 +531,7 @@ var system = {
 					}
 				]
 			}
-			
+
 		]
 		,onSelect:function(node){
 			system.loadTorrentToList({node:node});
@@ -571,13 +571,13 @@ var system = {
 			var _fields = JSON.stringify(fields);
 			// User field settings
 			system.userConfig.torrentList.fields = JSON.parse(_fields);
-			
+
 			for (var key in fields)
 			{
 				fields[key].title = system.lang.torrent.fields[fields[key].field]||fields[key].field;
 				system.setFieldFormat(fields[key]);
 			}
-	
+
 			system.control.torrentlist.datagrid({
 				autoRowHeight:false
 				,pagination:true
@@ -722,14 +722,14 @@ var system = {
 						text: col.title,
 						name: field,
 						iconCls: (col.hidden?"icon-empty":"icon-ok")
-					});	
+					});
 				}
 			}
 		}
 		/*
 		this.panel.list.bind('contextmenu',function(e){
 			 e.preventDefault();
-			 system.showContextMenu("torrent-list",e); 
+			 system.showContextMenu("torrent-list",e);
 		});
 		*/
 	}
@@ -763,7 +763,7 @@ var system = {
 			parent.empty();
 		}
 		var menus = null;
-		
+
 		switch (type)
 		{
 			case "torrent-list":
@@ -859,7 +859,7 @@ var system = {
 		this.panel.toolbar.find("#toolbar_rename").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:false});
 		this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
-		
+
 		var torrent = transmission.torrents.all[rowData.id];
 		switch (torrent.status)
 		{
@@ -931,7 +931,7 @@ var system = {
 				$(this).linkbutton({text:(system.config.autoReload?system.lang.toolbar["autoreload-enabled"]:system.lang.toolbar["autoreload-disabled"]),iconCls:(system.config.autoReload?"icon-enabled":"icon-disabled")})
 				.attr("title",(system.config.autoReload?system.lang.toolbar.tip["autoreload-disabled"]:system.lang.toolbar.tip["autoreload-enabled"]));
 			});
-		
+
 		// Add torrents
 		this.panel.toolbar.find("#toolbar_add_torrents")
 			.linkbutton({text:this.lang.toolbar["add-torrent"],disabled:false})
@@ -940,14 +940,14 @@ var system = {
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-add",
 					options: {
-						title: system.lang.toolbar["add-torrent"],  
+						title: system.lang.toolbar["add-torrent"],
 						width: 620,
 						height: 400,
 						resizable: true
 					}
 				});
 			});
-		
+
 		// Start all
 		this.panel.toolbar.find("#toolbar_start_all")
 			//.linkbutton({text:this.lang.toolbar["start-all"],disabled:false})
@@ -962,7 +962,7 @@ var system = {
 					button = null;
 				});
 			});
-		
+
 		// Pause all
 		this.panel.toolbar.find("#toolbar_pause_all")
 			//.linkbutton({text:this.lang.toolbar["pause-all"],disabled:false})
@@ -993,7 +993,7 @@ var system = {
 			.click(function(){
 				system.changeSelectedTorrentStatus("stop",$(this));
 			});
-		
+
 		// Recalculate selected
 		this.panel.toolbar.find("#toolbar_recheck")
 			.linkbutton({disabled:true})
@@ -1019,7 +1019,7 @@ var system = {
 					}
 					else if (confirm(system.lang.toolbar.tip["recheck-confirm"]))
 					{
-						system.changeSelectedTorrentStatus("verify",$(this)); 
+						system.changeSelectedTorrentStatus("verify",$(this));
 					}
 				}
 			});
@@ -1030,7 +1030,7 @@ var system = {
 			.click(function(){
 				system.changeSelectedTorrentStatus("reannounce",$(this));
 			});
-		
+
 		// Deletes the selected
 		this.panel.toolbar.find("#toolbar_remove")
 			.linkbutton({disabled:true})
@@ -1044,11 +1044,11 @@ var system = {
 					ids.push(rows[i].id);
 				}
 				if (ids.length==0) return;
-				
+
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-remove-confirm",
 					options: {
-						title: system.lang.dialog["torrent-remove"].title,  
+						title: system.lang.dialog["torrent-remove"].title,
 						width: 350,
 						height: 150
 					},
@@ -1065,11 +1065,11 @@ var system = {
 			{
 				var rows = system.control.torrentlist.datagrid("getChecked");
 				if (rows.length==0) return;
-				
+
 				system.openDialogFromTemplate({
 					id: "dialog-torrent-rename",
 					options: {
-						title: system.lang.dialog["torrent-rename"].title,  
+						title: system.lang.dialog["torrent-rename"].title,
 						width: 450,
 						height: 150,
 						resizable: true
@@ -1093,11 +1093,11 @@ var system = {
 				ids.push(rows[i].id);
 			}
 			if (ids.length==0) return;
-			
+
 			system.openDialogFromTemplate({
 				id: "dialog-torrent-changeDownloadDir",
 				options: {
-					title: system.lang.dialog["torrent-changeDownloadDir"].title,  
+					title: system.lang.dialog["torrent-changeDownloadDir"].title,
 					width: 520,
 					height: 200
 				},
@@ -1106,7 +1106,7 @@ var system = {
 				}
 			});
 		});
-		
+
 		// Speed limit
 		this.panel.toolbar.find("#toolbar_alt_speed")
 			.linkbutton()
@@ -1143,7 +1143,7 @@ var system = {
 
 				button.linkbutton({iconCls:"icon-loading"});
 			});
-		
+
 		// configuration
 		this.panel.toolbar.find("#toolbar_config")
 			.linkbutton()
@@ -1152,28 +1152,28 @@ var system = {
 				system.openDialogFromTemplate({
 					id: "dialog-system-config",
 					options: {
-						title: system.lang.toolbar["system-config"],  
+						title: system.lang.toolbar["system-config"],
 						width: 620,
 						height: 440,
 						resizable: true
 					}
 				});
 			});
-		
+
 		// reload
 		this.panel.toolbar.find("#toolbar_reload")
 			.linkbutton()
 			.attr("title",this.lang.toolbar.tip["system-reload"])
 			.click(function(){
 				system.reloadData();
-			});		
-	
+			});
+
 		// search
 		this.panel.toolbar.find("#toolbar_search").searchbox(
-		{  
+		{
 			searcher:function(value){
 				system.searchTorrents(value);
-			},  
+			},
 			prompt:this.lang.toolbar["search-prompt"]
 		});
 	}
@@ -1187,7 +1187,7 @@ var system = {
 	,connect:function()
 	{
 		this.showStatus(this.lang.system.status.connect,0);
-		
+
 		// When the total torrent number is changed, the torrent information is retrieved
 		transmission.on.torrentCountChange = function()
 		{
@@ -1228,7 +1228,7 @@ var system = {
 				system.panel.toolbar.find("#toolbar_alt_speed").linkbutton({iconCls:"icon-alt-speed-false"});
 				$("#status_alt_speed").hide();
 			}
-			
+
 			system.downloadDir = result["download-dir"];
 
 			// Always push default download dir to the Dirs array
@@ -1322,7 +1322,7 @@ var system = {
 				}]);
 			parentNode = this.panel.left.tree("find","servers");
 		}
-		
+
 		var datas = new Array();
 		for (var index in transmission.trackers)
 		{
@@ -1398,7 +1398,7 @@ var system = {
 		{
 			system.removeTreeNode("seedwait");
 		}
-		
+
 		// check
 		if (transmission.torrents.status[transmission._status.check])
 		{
@@ -1470,19 +1470,19 @@ var system = {
 			var p = system.control.torrentlist.datagrid("options").pageNumber;
 			system.loadTorrentToList({node:node,page:p});
 		}
-		
+
 		if (currentTorrentId!=0)
 		{
 			system.control.torrentlist.datagrid("selectRecord",currentTorrentId);
 		}
-		
+
 		system.reloading = false;
 
 		if (system.config.autoReload)
 		{
 			system.autoReloadTimer = setTimeout(function(){system.reloadData();},system.config.reloadStep);
 		}
-		
+
 		// Total count
 		system.updateTreeNodeText("torrent-all",system.lang.tree.all+this.showNodeMoreInfos(transmission.torrents.count,transmission.torrents.totalSize));
 
@@ -1593,7 +1593,7 @@ var system = {
 				target: node.target,
 				text: text
 			};
-			
+
 			if (iconCls!=undefined)
 			{
 				data["iconCls"] = iconCls
@@ -1612,7 +1612,7 @@ var system = {
 		}
 		else
 			parent = parentid;
-		
+
 		if (parent)
 		{
 			this.panel.left.tree("append", {
@@ -1649,10 +1649,10 @@ var system = {
 			node:null
 			,page:1
 		};
-		
+
 		jQuery.extend(def, config);
 		if (!config.node) return;
-		
+
 		var torrents = null;
 		var parent = this.panel.left.tree("getParent",config.node.target)||{id:""};
 		var currentNodeId = this.panel.left.data("currentNodeId");
@@ -1700,7 +1700,7 @@ var system = {
 				case "downloadwait":
 					torrents = transmission.torrents.status[transmission._status.downloadwait];
 					break;
-					
+
 				case "actively":
 					torrents = transmission.torrents.actively;
 					break;
@@ -1708,7 +1708,7 @@ var system = {
 				case "error":
 					torrents = transmission.torrents.error;
 					break;
-					
+
 				case "warning":
 					torrents = transmission.torrents.warning;
 					break;
@@ -1753,7 +1753,7 @@ var system = {
 			{
 				percentDone = parseFloat(torrents[index].recheckProgress*100).toFixed(2);
 			}
-			
+
 			if (torrents[index].error!=0)
 			{
 				status = "<span class='text-status-error'>"+status+"</span>";
@@ -1825,7 +1825,7 @@ var system = {
 			var orderField_func = orderField;
 			if(orderField == "remainingTime") { orderField_func = "remainingTimeRaw"; }
 			currentTypeDatas = currentTypeDatas.sort(arrayObjectSort(orderField_func,_options.sortOrder));
-		}		
+		}
 
 		if (rows.length==0||(currentTypeDatas.length!=this.control.torrentlist.datagrid("getData").total)&&currentTypeDatas.length>_options.pageSize)
 		{
@@ -1840,8 +1840,8 @@ var system = {
 
 		// Setting data
 		this.control.torrentlist.datagrid("getData").originalRows = currentTypeDatas;
-		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);  
-		var end = start + parseInt(_options.pageSize);  
+		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);
+		var end = start + parseInt(_options.pageSize);
 		currentTypeDatas = (currentTypeDatas.slice(start, end));
 
 		//this.debug("currentTypeDatas:",currentTypeDatas);
@@ -1909,7 +1909,7 @@ var system = {
 			data = null;
 		}
 
-		
+
 		// Appends a row that does not currently exist
 		for (var index in currentTypeDatas)
 		{
@@ -1919,7 +1919,7 @@ var system = {
 				this.control.torrentlist.datagrid("appendRow",item);
 			}
 		}
-		
+
 		rows = null;
 		recently = null;
 		datas = null;
@@ -1967,7 +1967,7 @@ var system = {
 			className = "iconlabel icon-exclamation";
 			tip+="\n\n"+this.lang["public"]["text-info"]+": "+torrent.errorString;
 		}
-		
+
 
 		return '<span class="'+className+'" title="'+tip+'">'+torrent.name+'</span>';
 	}
@@ -2062,7 +2062,7 @@ var system = {
 				var icon = button.linkbutton("options").iconCls;
 				button.linkbutton({disabled:true,iconCls:"icon-loading"});
 			}
-			
+
 			transmission.exec({
 					method:method
 					,arguments:{
@@ -2073,7 +2073,7 @@ var system = {
 					if (button)
 					{
 						button.linkbutton({iconCls:icon});
-					}					
+					}
 					system.control.torrentlist.datagrid("uncheckAll");
 					system.reloadTorrentBaseInfos();
 				}
@@ -2137,7 +2137,7 @@ var system = {
 				if (result==null) return;
 				// Merge the currently returned value to the current torrent
 				jQuery.extend(torrent, result[0]);
-				if (system.currentTorrentId==0||system.currentTorrentId!=id) 
+				if (system.currentTorrentId==0||system.currentTorrentId!=id)
 				{
 					system.clearTorrentAttribute();
 					return;
@@ -2173,7 +2173,7 @@ var system = {
 		{
 			orderField = _options.sortName;
 			datas = datas.sort(arrayObjectSort(orderField,_options.sortOrder));
-		}		
+		}
 
 		if (rows.length==0||(datas.length!=sourceTable.datagrid("getData").total)&&datas.length>_options.pageSize)
 		{
@@ -2188,7 +2188,7 @@ var system = {
 
 		// Setting data
 		sourceTable.datagrid("getData").originalRows = datas;
-		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);  
+		var start = (_options.pageNumber-1)*parseInt(_options.pageSize);
 		var end = start + parseInt(_options.pageSize);
 		datas = (datas.slice(start, end));
 
@@ -2300,7 +2300,7 @@ var system = {
 		}
 
 		this.updateCurrentPageDatas("index",datas,system.panel.attribute.find("#torrent-files-table"));
-		
+
 	}
 	// Fill in the torrent server list
 	,fillTorrentServerList:function(torrent)
@@ -2375,7 +2375,7 @@ var system = {
 		}
 		transmission.torrents.getConfig(torrent.id,function(result){
 			if (result==null) return;
-			
+
 			var torrent = transmission.torrents.all[system.currentTorrentId];
 			// Merge the currently returned value to the current torrent
 			jQuery.extend(torrent, result[0]);
@@ -2401,7 +2401,7 @@ var system = {
 						{
 							checked = true;
 						}
-						
+
 						system.panel.attribute.find("input[enabledof='"+key+"']").prop("disabled",!checked);
 						if (useTag)
 						{
@@ -2455,7 +2455,7 @@ var system = {
 					break;
 				}
 				break;
-				
+
 			}
 		}
 	}
@@ -2495,14 +2495,14 @@ var system = {
 				system.panel.left.find("span.nav-total-size").css({"margin-top":"-19px"});
 			}
 
-			
+
 		});
 		/*
 		for (var index in transmission.downloadDirs)
 		{
 			var parentkey = rootkey;
 			var fullkey = transmission.downloadDirs[index];
-			
+
 		}*/
 	}
 	,appendFolder:function(fullkey)
@@ -2515,7 +2515,7 @@ var system = {
 		var key = rootkey + "-";
 		for (var i in folder)
 		{
-			var name = folder[i]; 
+			var name = folder[i];
 			if (name=="")
 			{
 				continue;
@@ -2525,7 +2525,7 @@ var system = {
 			var node = this.panel.left.tree("find",key);
 			var folderinfos = transmission.torrents.folders[key];
 			var text = name+this.showNodeMoreInfos(folderinfos.count,folderinfos.size);
-			
+
 			if (!node)
 			{
 				this.appendTreeNode(parentkey,[{id:key,text:text}]);
@@ -2634,7 +2634,7 @@ var system = {
 	,openDialogFromTemplate: function(config)
 	{
 		var defaultConfig = {
-			id: null,  
+			id: null,
 			options: null,
 			datas: null
 		};
@@ -2656,25 +2656,25 @@ var system = {
 					dialog.data(key,value);
 				});
 			}
-			
-			
+
+
 			dialog.dialog({content:system.templates[dialogId]});
-			
+
 			return;
 		}
 		var defaultOptions = {
-			title: "",  
+			title: "",
 			width: 100,
 			height: 100,
 			resizable: false,
 			cache: true,
-			content:"loading...",  
+			content:"loading...",
 			modal: true
 		};
 		options = $.extend(true,defaultOptions, options);
 
 		$("<div/>").attr("id",dialogId).appendTo(document.body).dialog(options);
-		
+
 		$.get(system.rootPath+"template/"+dialogId+".html?time="+(new Date()),function(data){
 			system.templates[dialogId] = data;
 			if (datas)
@@ -2683,7 +2683,7 @@ var system = {
 					$("#"+dialogId).data(key,value);
 				});
 			}
-			
+
 			$("#"+dialogId).dialog({content:data});
 		});
 	}
@@ -2695,7 +2695,7 @@ var system = {
 			{
 				window.console.log(label,text);
 			}
-		}	
+		}
 	}
 };
 
@@ -2708,35 +2708,35 @@ $(document).ready(function(){
 	});
 });
 
-function pagerFilter(data){  
-	if (typeof data.length == 'number' && typeof data.splice == 'function'){    // is array  
-		 data = {  
-			  total: data.length,  
-			  rows: data  
-		 }  
-	}  
-	var dg = $(this);  
+function pagerFilter(data){
+	if (typeof data.length == 'number' && typeof data.splice == 'function'){    // is array
+		 data = {
+			  total: data.length,
+			  rows: data
+		 }
+	}
+	var dg = $(this);
 	var opts = dg.datagrid('options');
 	var pager = dg.datagrid('getPager');
 	var buttons = dg.data("buttons");
 	//system.debug("pagerFilter.buttons:",buttons);
-	pager.pagination({  
-		 onSelectPage:function(pageNum, pageSize){  
-			  opts.pageNumber = pageNum;  
+	pager.pagination({
+		 onSelectPage:function(pageNum, pageSize){
+			  opts.pageNumber = pageNum;
 			  opts.pageSize = pageSize;
-			  pager.pagination('refresh',{  
-					pageNumber:pageNum,  
-					pageSize:pageSize  
-			  });  
-			  dg.datagrid('loadData',data);  
+			  pager.pagination('refresh',{
+					pageNumber:pageNum,
+					pageSize:pageSize
+			  });
+			  dg.datagrid('loadData',data);
 		 }
 		 ,buttons:buttons
 	});
-	if (!data.originalRows){  
-		 data.originalRows = (data.rows);  
-	}  
-	var start = (opts.pageNumber-1)*parseInt(opts.pageSize);  
-	var end = start + parseInt(opts.pageSize);  
-	data.rows = (data.originalRows.slice(start, end));  
-	return data;  
+	if (!data.originalRows){
+		 data.originalRows = (data.rows);
+	}
+	var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+	var end = start + parseInt(opts.pageSize);
+	data.rows = (data.originalRows.slice(start, end));
+	return data;
 }
