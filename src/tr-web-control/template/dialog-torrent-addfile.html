@@ -49,13 +49,12 @@
 
 		thisDialog.find("#download-dir").val(system.downloadDir);
 
-		var downloadDirs = new Array();
+		var downloadDirs = $.merge([],transmission.downloadDirs);
 		if (system.dictionary.folders.length!=0)
 		{
-			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
+			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
 		}
-
-		$.merge(downloadDirs,transmission.downloadDirs);
+		downloadDirs = uniq(downloadDirs);
 		
 		$.each(downloadDirs, function(i, item){
 			$("<option/>").text(item).val(item).attr("selected",(item==system.downloadDir?true:false)).appendTo(thisDialog.find("#download-dir"));

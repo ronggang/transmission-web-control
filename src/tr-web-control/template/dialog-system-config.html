@@ -397,13 +397,13 @@
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
 		// Local dictionary folder list
-		folderList = transmission.downloadDirs
-		if (system.dictionary.folders!=null)
+		var downloadDirs = $.merge([],transmission.downloadDirs);
+		if (system.dictionary.folders.length!=0)
 		{
-			$.merge(folderList,system.dictionary.folders.split("\n"));
-			//transmission.downloadDirs.push(system.downloadDir);
+			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
 		}
-		thisDialog.find("#local-storage-dictionary-folders").val(folderList.join("\n"));
+		downloadDirs = uniq(downloadDirs);
+		thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
 
 		// Cancel
 		thisDialog.find("#system-config-button-cancel").click(function()
@@ -619,7 +619,7 @@
 			// Save the local data
 			function saveLocalData()
 			{
-				system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val();
+				system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "");
 				system.saveConfig();
 				thisDialog.dialog("close");
 			}
