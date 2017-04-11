@@ -1,14 +1,14 @@
 system.config = {
-	// 是否启用自动刷新
+	// Whether to enable automatic refresh
 	autoReload: true
-	// 自动刷新频率（毫秒）
+	// Automatic refresh rate (ms)
 	,reloadStep: 5000
-	// 默认每页显示的条目
+	// The default num of entries for each page
 	,pageSize: 30
-	// 初始界面默认选中的节点，名称可参考语言包中的 tree 
+	// The initial interface defaults to the selected node, the name can refer to the language package tree
 	,defaultSelectNode: "actively"
-	// 是否自动展开种子详细信息
+	// Whether the torrent details are automatically expanded
 	,autoExpandAttribute: false
-	// 默认语言
+	// default language
 	,defaultLang: ""
 };
