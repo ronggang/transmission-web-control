@@ -33,7 +33,7 @@ system.lang = {
                 ,"system-config":"Настройки"
                 ,"system-reload":"Обновить"
                 ,"about":"О программе"
-                ,"reload-time":"Авто-обновление:"
+                ,"reload-time":"Автообновление:"
                 ,"reload-time-unit":"с/раз"
                 ,"autoreload-disabled":"Отключено"
                 ,"autoreload-enabled":"Включено"
@@ -60,8 +60,8 @@ system.lang = {
                         ,"system-config":"Настройки"
                         ,"system-reload":"Обновить"
                         ,"about":"О программе"
-                        ,"autoreload-disabled":"Отключить авто-обновление"
-                        ,"autoreload-enabled":"Включить авто-обновление"
+                        ,"autoreload-disabled":"Отключить автообновление"
+                        ,"autoreload-enabled":"Включить автообновление"
                         ,"tracker-replace":"Заменить трекеры"
                         ,"change-download-dir":"Изменить каталог загрузки"
                         ,"ui-mobile":"Мобильный UI"
@@ -77,7 +77,7 @@ system.lang = {
                         ,"move-bottom":"Сдвинуть вниз"
                 }
                 ,"plugin": {
-                        "auto-match-data-folder": "Авто-сопоставление путей"
+                        "auto-match-data-folder": "Автосопоставление путей"
                 }
         }
         ,"title":{
@@ -146,7 +146,7 @@ system.lang = {
                                 ,"alt-speed":"Планировщик"
                                 ,"dictionary-folders":"Список путей"
                         }
-                        ,"config-dir":"Каталог конфигурации transmission-а:"
+                        ,"config-dir":"Каталог конфигурации Transmission:"
                         ,"download-dir":"Каталог для загрузки по умолчанию:"
                         ,"download-dir-free-space":"Свободно места: "
                         ,"incomplete-dir-enabled":"Использовать каталог для незавершенных файлов"
@@ -167,7 +167,7 @@ system.lang = {
                                 ,"preferred":"Включено"
                                 ,"tolerated":"Отключено"
                         }
-                        ,"utp-enabled":"Включить uTP"
+                        ,"utp-enabled":"Включить µTP"
                         ,"dht-enabled":"Включить DHT"
                         ,"lpd-enabled":"Включить Local Peer Discovery"
                         ,"pex-enabled":"Включить обмен пирами"
