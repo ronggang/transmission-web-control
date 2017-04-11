@@ -19,7 +19,7 @@
 	(function(thisDialog){
 		var callback = thisDialog.data("callback");
 		system.resetLangText(thisDialog);
-		// 本地设置信息
+		// Local setting information
 		thisDialog.find("#folders").val(system.dictionary.folders);
 
 		thisDialog.find("#button-cancel").click(function()
@@ -27,7 +27,7 @@
 			thisDialog.dialog("close");
 		});
 
-		// 确认
+		// Confirm
 		thisDialog.find("#button-ok").click(function()
 		{
 			system.dictionary.folders = thisDialog.find("#folders").val();

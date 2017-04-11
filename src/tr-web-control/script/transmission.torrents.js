@@ -107,7 +107,7 @@ transmission.torrents = {
 		this.error = new Array();
 		// With Warnings
 		this.warning = new Array();
-		// All download directories
+		// All download directories used by current torrents
 		transmission.downloadDirs = new Array();
 
 		var _Status = transmission._status;

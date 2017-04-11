@@ -3,7 +3,7 @@ system.plugin = {
 	{
 		switch (key)
 		{
-			// 替换 Tracker
+			// Replace Tracker
 			case "replace-tracker":
 				system.openDialogFromTemplate({
 					id: "dialog-system-replaceTracker",
@@ -15,7 +15,7 @@ system.plugin = {
 				});
 				break;
 
-			// 自动匹配数据目录
+			// Automatically match the data directory
 			case "auto-match-data-folder":
 				var rows = system.control.torrentlist.datagrid("getChecked");
 				var ids = new Array();

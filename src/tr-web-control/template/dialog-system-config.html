@@ -301,7 +301,7 @@
 			}
 		});
 
-		// 设置语言
+		// Set the language
 		$.each(system.languages, function(key, value){
 			$("<option/>").text(value).val(key).attr("selected",(key==system.lang.name?true:false)).appendTo(thisDialog.find("#system-config-lang"));
 		});
@@ -318,7 +318,7 @@
 
 		thisDialog.find("span[name='system-config-minuets']").html(system.lang.dialog["system-config"]["minuets"]);
 
-		// 置换系统参数
+		// Replace system settings
 		title = ("incomplete-dir-enabled,rename-partial-files,start-added-torrents,download-queue-enabled,seed-queue-enabled"
 					+",peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled,alt-speed-enabled,idle-seeding-limit-enabled"
 					+",port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled,blocklist-enabled,seedRatioLimited,queue-stalled-enabled"
@@ -331,7 +331,7 @@
 			});
 		});
 		
-		// 设置内容
+		// Set content
 		thisDialog.find("#download-dir").val(system.downloadDir);
 		$.each(transmission.downloadDirs, function(i, item){
 			$("<option/>").text(item).val(item).attr("selected",(item==system.downloadDir?true:false)).appendTo(thisDialog.find("#download-dir"));
@@ -361,7 +361,7 @@
 		
 		var days = ("0000000"+system.serverConfig["alt-speed-time-day"].toString(2)).right(7).split("").reverse();
 		var weekday = system.lang.dialog["system-config"]["weekday"];
-		//初始化星期
+		// Set schedule
 		for (var day in weekday)
 		{
 			thisDialog.find("#alt-speed-time-weekday-"+day).prop("checked",(days[day]==1?true:false)).prop("disabled",!system.serverConfig["alt-speed-time-enabled"]);
@@ -396,10 +396,16 @@
 		}
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
-		// 本地设置信息
-		thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
+		// Local dictionary folder list
+		folderList = transmission.downloadDirs
+		if (system.dictionary.folders!=null)
+		{
+			$.merge(folderList,system.dictionary.folders.split("\n"));
+			//transmission.downloadDirs.push(system.downloadDir);
+		}
+		thisDialog.find("#local-storage-dictionary-folders").val(folderList.join("\n"));
 
-		// 取消
+		// Cancel
 		thisDialog.find("#system-config-button-cancel").click(function()
 		{
 			thisDialog.dialog("close");
@@ -546,11 +552,11 @@
 
 			var cuslang = thisDialog.find("#system-config-lang").val();
 			
-			// 如果参数有改变则保存
+			// If the parameters are changed, save
 			if (!$.isEmptyObject(config))
 			{
 				$(this).linkbutton({text:system.lang.dialog["system-config"].saveing,disabled:true});
-				// 开始设置参数
+				// Start setting parameters
 				transmission.exec(
 					{
 						method:"session-set"
@@ -559,7 +565,7 @@
 					,function(data){
 						if (data.result=="success")
 						{
-							// 设置成功后，重新获取当前参数
+							// Once the settings are successful, regain the current parameters
 							transmission.exec(
 								{
 									method:"session-get"
@@ -595,7 +601,7 @@
 				);
 				return;
 			}
-			// 如果語言改變時，重新加載頁面
+			// If the language changes, reload the page
 			else if (cuslang!=system.lang.name)
 			{
 				system.changeLanguages(cuslang);
@@ -610,7 +616,7 @@
 			}
 
 			saveLocalData();
-			// 保存本地数据
+			// Save the local data
 			function saveLocalData()
 			{
 				system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val();
@@ -622,7 +628,7 @@
 		});
 
 
-		// 更新黑名單
+		// Update blacklist
 		thisDialog.find("#system-conifg-button-update-blocklist").click(function(){
 			var button = $(this);
 			button.prop("disabled",true);

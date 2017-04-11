@@ -143,7 +143,7 @@ system.lang = {
 				"base":"Base"
 				,"network":"Network"
 				,"limit":"Limit"
-				,"alt-speed":"Scheduled"
+				,"alt-speed":"Alternative speeds"
 				,"dictionary-folders":"Folders Dictionary"
 			}
 			,"config-dir":"Location of transmission's configuration directory:"
@@ -175,10 +175,10 @@ system.lang = {
 			,"peer-limit-per-torrent":"Maximum peers number of torrent:"
 			,"speed-limit-down-enabled":"Max global download speed:"
 			,"speed-limit-up-enabled":"Max global upload speed:"
-			,"alt-speed-enabled":"Use the alt speeds"
-			,"alt-speed-down":"Max global download speed:"
-			,"alt-speed-up":"Max global upload speed:"
-			,"alt-speed-time-enabled":"Use scheduled"
+			,"alt-speed-enabled":"Enable alternative speeds"
+			,"alt-speed-down":"Alternative global download speed:"
+			,"alt-speed-up":"Alternative global upload speed:"
+			,"alt-speed-time-enabled":"Use schedule"
 			,"alt-speed-time":"Time："
 			,"weekday":{
 				"1":"Monday"
