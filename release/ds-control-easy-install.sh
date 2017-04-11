@@ -15,14 +15,14 @@ if [ ! -d "$tmpFolder" ]; then
 	mkdir tr-web-control
 fi
 cd "$tmpFolder"
-# 找出web ui 目录
+# 判断DownloadStation安装目录是否存在
 folderIsExist=0
-echo "Searching Transmission Web Folder..."
+echo "Finding DownloadStation install target: ""$rootFolder""..."
 
 # 感谢 yumin9822 提供的代码
 rootFolder="/var/packages/DownloadStation/target"
 
-echo "Folder: ""$rootFolder""..."
+
 if [ -d "$rootFolder" ]; then
 	webFolder="$rootFolder""web/"
 	folderIsExist=1
@@ -56,10 +56,10 @@ fi
 	ln -s "$rootFolder/web" "$shareFolder/transmission/web"
 	echo "Done."
 else
-	echo "##############################################"
+	echo "#######################################################"
 	echo "#"
-	echo "# ERROR : DownloadStation Folder is missing."
+	echo "# ERROR : DownloadStation install target is missing."
 	echo "#"
-	echo "##############################################"
+	echo "#######################################################"
 fi
 rm -rf "$tmpFolder"
