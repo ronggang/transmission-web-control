@@ -31,6 +31,7 @@
  - 批量修改 Tracker；
  - 移动指定种子的数据存放目录；
  - 可按 Trackers 分组浏览；
+ - 增加对群晖downloadstation的支持；By - @hitechbeijing
  - 其他……
 
 ### 浏览器支持
@@ -50,6 +51,11 @@
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
   sudo bash tr-control-easy-install-en-http.sh
+~~~
+ - 如果需要安装到群晖downloadstation,请下载下列安装脚本并运行：
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
+  sudo bash ds-control-easy-install-en-http.sh
 ~~~
 
 ### 关于多语言(Multi-language)
@@ -99,6 +105,7 @@ I will do my best to fix the issues in this repo.
  - Set files priority
  - Change the torrent download directory
  - Trackers list
+ - Add support for Synology NAS downloadstation；By - @hitechbeijing
  - ...
 
 ### Browsers support
@@ -139,6 +146,11 @@ I will do my best to fix the issues in this repo.
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
   sudo bash tr-control-easy-install.sh
+~~~
+ - If you need to install into Synology NAS downloadstation, please download the following script:
+~~~
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
+  sudo bash ds-control-easy-install-en-http.sh
 ~~~
  - If you need http download instead of https, please use the following
      commands:
