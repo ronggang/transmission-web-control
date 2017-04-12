@@ -49,13 +49,12 @@
 
 		thisDialog.find("#download-dir").val(system.downloadDir);
 
-		var downloadDirs = new Array();
-		if (system.dictionary.folders)
+		var downloadDirs = $.merge([],transmission.downloadDirs);
+		if (system.dictionary.folders.length!=0)
 		{
-			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
+			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
 		}
-
-		$.merge(downloadDirs,transmission.downloadDirs);
+		downloadDirs = uniq(downloadDirs);
 		
 		$.each(downloadDirs, function(i, item){
 			$("<option/>").text(item).val(item).attr("selected",(item==system.downloadDir?true:false)).appendTo(thisDialog.find("#download-dir"));
@@ -71,7 +70,7 @@
 
 		thisDialog.find("#chkautostart").prop("checked", system.serverConfig["start-added-torrents"]);
 
-		// 确认
+		// Confirm
 		thisDialog.find("#torrent-button-ok").click(function()
 		{
 			var dir = thisDialog.find("#download-dir").combobox("getValue");
@@ -88,7 +87,7 @@
 			if (autostart!=system.serverConfig["start-added-torrents"])
 			{
 				system.serverConfig["start-added-torrents"] = autostart;
-				// 开始设置参数
+				// Start setting parameters
 				transmission.exec(
 					{
 						method:"session-set"
@@ -130,7 +129,7 @@
 			thisDialog.dialog("close");
 		});
 		
-		// 保存上传目录
+		// Save the upload directory
 		function updateDownloadDir(dir,callback)
 		{
 			transmission.exec(
@@ -152,8 +151,8 @@
 			);
 		}
 		
-		// 上传文件
-		// 2013/3/11 起失效
+		// Upload files
+		// 2013/3/11 failure
 		function uploadFile(paused,callback){
 			var xhr = new XMLHttpRequest();
 			var files = thisDialog.data("files");

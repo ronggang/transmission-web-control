@@ -1,4 +1,4 @@
-// 获取“查询字符串”
+// Get "query string"
 String.prototype.getQueryString = function(name,split)
 {
 	if (split==undefined) split="&";
@@ -337,3 +337,11 @@ function timedChunk(items, process, context, delay,callback)
 		,fn:null
 	};
 })(jQuery);
+
+// returns only unique values
+function uniq(a) {
+    var seen = {};
+    return a.filter(function(item) {
+        return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    });
+}

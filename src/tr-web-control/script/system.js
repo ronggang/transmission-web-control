@@ -561,6 +561,7 @@ var system = {
 		this.control.torrentlist = $("<table/>").attr("class","torrent-list").appendTo(this.panel.list);
 		var headContextMenu = null;
 		var selectedIndex = -1;
+		var flag_onselect = false;
 		$.get(system.rootPath+"template/torrent-fields.json?time="+(new Date()),function(data){
 			var fields = data.fields;
 			if (system.userConfig.torrentList.fields.length!=0)
@@ -610,8 +611,11 @@ var system = {
 				}
 				,onSelect:function(rowIndex, rowData)
 				{
-					if (selectedIndex!=-1)
+					if (selectedIndex!=-1) {
+						flag_onselect = true;
 						system.control.torrentlist.datagrid("unselectRow",selectedIndex);
+						flag_onselect = false;
+					}
 
 					if (system.config.autoExpandAttribute)
 					{
@@ -626,10 +630,11 @@ var system = {
 				{
 					if (system.config.autoExpandAttribute)
 					{
-						// If expanded, collapse it
-						if (!system.panel.attribute.panel("options").collapsed)
-							system.panel.layout_body.layout("collapse","south");
-
+						if (flag_onselect==false) {
+							// If expanded, collapse it
+							if (!system.panel.attribute.panel("options").collapsed)
+								system.panel.layout_body.layout("collapse","south");
+						}
 					}
 					system.currentTorrentId = 0;
 					selectedIndex = -1;
@@ -1232,7 +1237,10 @@ var system = {
 			system.downloadDir = result["download-dir"];
 
 			// Always push default download dir to the Dirs array
-			transmission.downloadDirs.push(system.downloadDir);
+			if (transmission.downloadDirs.length==0)
+			{
+				transmission.downloadDirs.push(system.downloadDir);
+			}
 
 			// Rpc-version version 15, no longer provide download-dir-free-space parameters, to be obtained from the new method
 			if (parseInt(system.serverConfig["rpc-version"])>=15)

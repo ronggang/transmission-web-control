@@ -122,7 +122,7 @@
 
 		thisDialog.find(".title").css({background:"#e6e6e6"});
 
-		// 取消
+		// Cancel
 		thisDialog.find("#button-cancel").click(function()
 		{
 			
@@ -141,7 +141,7 @@
 			}
 		});
 
-		// 忽略
+		// Ignore
 		thisDialog.find("#button-ignore").click(function()
 		{
 			if (isworking&&!ignore)
@@ -150,7 +150,7 @@
 			}
 		});
 
-		// 设置
+		// Set up
 		thisDialog.find("#button-config").click(function()
 		{
 			system.openDialogFromTemplate({
@@ -180,7 +180,7 @@
 		var folderIndex = 0;
 		thisDialog.find("#folder-count").html(notMatchedFolders.length);
 
-		// 确认
+		// Confirm
 		thisDialog.find("#button-ok").click(function()
 		{
 			system.control.torrentlist.datagrid("uncheckAll");
@@ -193,7 +193,7 @@
 			timeInterval = thisDialog.find("#time-interval").val()*1000;
 			switch (parseInt(modeType))
 			{
-				// 方式一
+				// method one
 				case 1:
 					thisDialog.find("#button-ignore").show();
 					thisDialog.find("#cus-torrent").html("-> "+torrent.name + " [" + (torrentIndex+1)+"/"+notMatchedTorrents.length + "] ");
@@ -202,7 +202,7 @@
 					_arrSource = null;
 					break;
 
-				// 方式二
+				// method two
 				case 2:
 					thisDialog.find("#button-ignore").hide();
 					thisDialog.find("#cus-folder").html("-> "+notMatchedFolders[folderIndex] + " [" + (folderIndex+1)+"/"+notMatchedFolders.length + "] ");
@@ -217,7 +217,7 @@
 			
 		});
 
-		// 方式一
+		// method one
 		function execMatchDataFolderMode1(folders,count,button,icon,id)
 		{
 			if (isworking==false) return;
@@ -254,7 +254,7 @@
 				execMatchDataFolderMode1(folders,count,button,icon,id);
 				return;
 			}
-			// 开始设置参数
+			// Start setting parameters
 			transmission.exec(
 				{
 					method:"torrent-set-location"
@@ -328,7 +328,7 @@
 			);
 		}
 
-		// 方式二
+		// method two
 		function execMatchDataFolderMode2(ids,count,button,icon,dir)
 		{
 			if (isworking==false) return;
@@ -417,7 +417,7 @@
 				return;
 			}
 
-			// 开始设置参数
+			// Start setting parameters
 			transmission.exec(
 				{
 					method:"torrent-set-location"
@@ -452,13 +452,13 @@
 			);
 		}
 
-		// 方式二
+		// method two
 		function execMatchDataFolderMode3(ids,count,button,icon,dir)
 		{
 			if (isworking==false) return;
 
 			thisDialog.find("#cus-torrent").html("-> "+count);
-			// 开始设置参数
+			// Start setting parameters
 			transmission.exec(
 				{
 					method:"torrent-set-location"

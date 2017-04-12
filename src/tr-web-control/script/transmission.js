@@ -142,7 +142,7 @@ var transmission = {
 						||transmission.torrents.activeTorrentCount!=data.arguments.activeTorrentCount
 						||transmission.torrents.pausedTorrentCount!=data.arguments.pausedTorrentCount)
 					{
-						// 当前种子总数
+						// Current total number of torrents
 						transmission.torrents.count = data.arguments.torrentCount;
 						transmission.torrents.activeTorrentCount = data.arguments.activeTorrentCount;
 						transmission.torrents.pausedTorrentCount = data.arguments.pausedTorrentCount;
