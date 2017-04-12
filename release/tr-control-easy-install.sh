@@ -13,7 +13,7 @@ fi
 # 找出web ui 目录
 folderIsExist=0
 echo "Searching Transmission Web Folder..."
-rootFolder="usr/share/transmission"
+rootFolder="/usr/share/transmission"
 echo "Looking for folder: $rootFolder/web"
 if [ -d "$rootFolder/web" ]; then
 	    webFolder="$rootFolder/web"
@@ -31,7 +31,8 @@ fi
 
 # 如果目录存在，则进行下载和更新动作
 if [ $folderIsExist = 1 ]; then
-        cd "$temFolder"
+        mkdir "$tmpFolder"
+        cd "$tmpFolder"
       	echo "Downloading Transmission Web Control..."
       	wget "$downloadurl"
       	echo "Installing..."
