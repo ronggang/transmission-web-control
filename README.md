@@ -18,7 +18,8 @@
  - 添加了http的安装方法
  - 更新了install.sh的英文注释
  - 更新了easyui到1.5.1和jquery到1.12.4 By -- @balonik
- - 修复问题#20，#21，#23，#39，#40，#43，#44 By -- @balonik
+ - 修复问题#20，#21，#23，#39，#40，#43，#44, #53 By -- @balonik
+ - 替换了一些中文注释为英文注释.
 
 ### 功能介绍
  - 在线查看Transmission当前工作情况；
@@ -92,7 +93,8 @@ I will do my best to fix the issues in this repo.
  - Added http install script
  - Added install.sh with English comments
  - Updated easyui to 1.5.1 and jquery to 1.12.4 By -- @balonik
- - Fixed issue #20, #21, #23, #39, #40, #43, #44 By -- @balonik
+ - Fixed issue #20, #21, #23, #39, #40, #43, #44 #53 By -- @balonik
+ - Replaced some Chinese comments to English
 
 ### Features
  - Add torrent files or URLs
