@@ -167,7 +167,7 @@ system.lang = {
                                 ,"preferred":"Включено"
                                 ,"tolerated":"Отключено"
                         }
-                        ,"utp-enabled":"Включить µTP"
+                        ,"utp-enabled":"Включить µTP (UPnP)"
                         ,"dht-enabled":"Включить DHT"
                         ,"lpd-enabled":"Включить Local Peer Discovery"
                         ,"pex-enabled":"Включить обмен пирами"
