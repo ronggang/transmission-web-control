@@ -167,7 +167,7 @@ system.lang = {
 				,"preferred":"Préféré"
 				,"tolerated":"Toléré"
 			}
-			,"utp-enabled":"Activer uTP(UPnP)"
+			,"utp-enabled":"Activer µTP (UPnP)"
 			,"dht-enabled":"Activer DHT"
 			,"lpd-enabled":"Activer LPD"
 			,"pex-enabled":"Activer PEX"
