@@ -150,7 +150,7 @@ system.lang = {
 				,"preferred":"Encryptie aan"
 				,"tolerated":"Encryptie uit"
 			}
-			,"utp-enabled":"Gebruik uTP(UPnP)"
+			,"utp-enabled":"Gebruik µTP (UPnP)"
 			,"dht-enabled":"Distributed Hash Table (DHT)"
 			,"lpd-enabled":"Local Peer Discovery (LPD)"
 			,"pex-enabled":"Peer uitwisseling"
