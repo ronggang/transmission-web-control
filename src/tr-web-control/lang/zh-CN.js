@@ -169,7 +169,7 @@ system.lang = {
 				,"preferred":"优先(preferred)"
 				,"tolerated":"允许(tolerated)"
 			}
-			,"utp-enabled":"启用 uTP(UPnP)"
+			,"utp-enabled":"启用 µTP(UPnP)"
 			,"dht-enabled":"启用分布式哈希表(DHT)"
 			,"lpd-enabled":"启用本地用户发现(LPD)"
 			,"pex-enabled":"启用用户交换"
