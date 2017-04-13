@@ -170,7 +170,7 @@ system.lang = {
 				,"preferred":"Preferált"
 				,"tolerated":"Megtűrt"
 			}
-			,"utp-enabled":"uTP(UPnP) engedélyezése"
+			,"utp-enabled":"µTP (UPnP) engedélyezése"
 			,"dht-enabled":"DHT engedélyezése"
 			,"lpd-enabled":"LPD engedélyezése"
 			,"pex-enabled":"PEX engedélyezése"
