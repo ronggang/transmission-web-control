@@ -170,7 +170,7 @@ system.lang = {
 				,"preferred":"Preferido"
 				,"tolerated":"Aceptado"
 			}
-			,"utp-enabled":"uTP(UPnP) activado"
+			,"utp-enabled":"µTP (UPnP) activado"
 			,"dht-enabled":"DHT activado"
 			,"lpd-enabled":"LPD activado"
 			,"pex-enabled":"PEX activado"
