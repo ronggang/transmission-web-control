@@ -167,7 +167,7 @@ system.lang = {
 				,"preferred":"Prefencialmente encriptada"
 				,"tolerated":"Qualquer conexão"
 			}
-			,"utp-enabled":"uTP(UPnP) habilitado"
+			,"utp-enabled":"µTP (UPnP) habilitado"
 			,"dht-enabled":"DHT habilitado"
 			,"lpd-enabled":"LPD habilitado"
 			,"pex-enabled":"PEX habilitado"
