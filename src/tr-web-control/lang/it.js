@@ -150,7 +150,7 @@ system.lang = {
 				,"preferred":"Preferita"
 				,"tolerated":"Tollerata"
 			}
-			,"utp-enabled":"Abilita uTP(UPnP)"
+			,"utp-enabled":"Abilita µTP (UPnP)"
 			,"dht-enabled":"Abilita DHT"
 			,"lpd-enabled":"Abilita LPD"
 			,"pex-enabled":"Abilita PEX"
