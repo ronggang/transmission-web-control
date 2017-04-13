@@ -150,7 +150,7 @@ system.lang = {
 				,"preferred":"Preferată"
 				,"tolerated":"Tolerată"
 			}
-			,"utp-enabled":"Activează uTP(UPnP)"
+			,"utp-enabled":"Activează µTP (UPnP)"
 			,"dht-enabled":"Activează DHT"
 			,"lpd-enabled":"Activează LPD"
 			,"pex-enabled":"Activează PEX"
