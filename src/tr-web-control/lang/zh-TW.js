@@ -166,7 +166,7 @@ system.lang = {
 				,"preferred":"優先(preferred)"
 				,"tolerated":"允許(tolerated)"
 			}
-			,"utp-enabled":"啟用 uTP(UPnP)"
+			,"utp-enabled":"啟用 µTP (UPnP)"
 			,"dht-enabled":"啟用分散式雜湊表(DHT)"
 			,"lpd-enabled":"啟用本機點探索(LPD)"
 			,"pex-enabled":"啟用用戶交換"
