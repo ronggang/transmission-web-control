@@ -54,7 +54,7 @@ system.lang = {
 			,"alt-speed":"Velocita alternativa"
 			,"system-config":"Configurazione"
 			,"system-reload":"Ricarica"
-			,"about":"Circa questa app"
+			,"about":"Riguardo questa app"
 			,"autoreload-disabled":"Disabilita l'auto aggiornamento"
 			,"autoreload-enabled":"Abilita l'auto aggiornamento"
 			,"tracker-replace":"Sostituisci i tracker"
@@ -88,8 +88,8 @@ system.lang = {
 		,"statistics":"Statistiche"
 		,"statistics":{
 			"title":"Statistiche"
-			,"cumulative":"Cumulative"
-			,"current":"Corrente"
+			,"cumulative":"Complessive"
+			,"current":"Sessione corrente"
 			,"uploadedBytes":"Byte Inviati: "
 			,"downloadedBytes":"Byte Ricevuti: "
 			,"filesAdded":"File Aggiunti: "   
@@ -113,7 +113,7 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"Cartella di Download:"
 			,"torrent-url":"Torrent URL:"
-			,"tip-torrent-url":"E' possibile inserire più URL separati da 'Invio'"
+			,"tip-torrent-url":"È possibile inserire più URL separati da 'Invio'"
 			,"autostart":"Avvia automaticamente:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Imposta come cartella di default"
@@ -139,12 +139,12 @@ system.lang = {
 			,"download-queue-enabled":"Abilita la coda di download, numero di file in coda:"
 			,"seed-queue-enabled":"Abilita la coda di seed, numero di file in coda:"
 			,"peer-port-random-on-start":"Usa una porta casuale"
-			,"port-forwarding-enabled":"Abilita il forwarding"
+			,"port-forwarding-enabled":"Abilita port forwarding"
 			,"test-port":"Testa la porta"
 			,"port-is-open-true":"La porta è aperta"
 			,"port-is-open-false":"La porta è chiusa"
 			,"testing":"Verifico..."
-			,"encryption":"Encryption:"
+			,"encryption":"Crittografia:"
 			,"encryption-type":{
 				"required":"Richiesta"
 				,"preferred":"Preferita"
@@ -278,7 +278,7 @@ system.lang = {
 				,"false":"Falso"
 			}
 			,"priority":{
-				"0":"Normal"
+				"0":"Normale"
 				,"1":"Alta"
 				,"-1":"Bassa"
 			}
