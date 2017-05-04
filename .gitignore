@@ -3,3 +3,4 @@
 *.vscode
 node_modules
 package.json
+Gruntfile.js

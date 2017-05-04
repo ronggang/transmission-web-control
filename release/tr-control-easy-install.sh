@@ -36,8 +36,7 @@ if [ $folderIsExist = 1 ]; then
       	echo "Downloading Transmission Web Control..."
       	wget "$downloadurl"
       	echo "Installing..."
-        mkdir web
-      	tar -xzf "$packname" -C "$tmpFolder/web"
+      	tar -xzf "$packname" -C "$tmpFolder"
       	rm "$packname"
       	# 如果之前没有安装过，则先将原系统的文件改为
       	if [ ! -f "$webFolder/$orgindex" -a -f "$webFolder/$index" ]; then

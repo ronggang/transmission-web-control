@@ -29,15 +29,14 @@ else
       fi
 fi
 
-# if the folder does not exist，then do download and installation
+# if the folder does exist，then do download and installation
 if [ $folderIsExist = 1 ]; then
         mkdir "$tmpFolder"
         cd "$tmpFolder"
       	echo "Downloading Transmission Web Control..."
       	wget "$downloadurl"
       	echo "Installing..."
-        mkdir web
-      	tar -xzf "$packname" -C "$tmpFolder/web"
+      	tar -xzf "$packname" -C "$tmpFolder"
       	rm "$packname"
 	    # if did not install before，then change the original system file name
       	if [ ! -f "$webFolder/$orgindex" -a -f "$webFolder/$index" ]; then
