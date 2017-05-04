@@ -397,13 +397,17 @@
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
 		// Local dictionary folder list
-		var downloadDirs = $.merge([],transmission.downloadDirs);
-		if (system.dictionary.folders.length!=0)
-		{
-			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
-		}
-		downloadDirs = uniq(downloadDirs);
-		thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
+		thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
+    // Will add back this feature if the bug solved
+		//var downloadDirs = $.merge([],transmission.downloadDirs);
+		//if (system.dictionary.folders.length!=0)
+		//{
+		//	$.extend(downloadDirs,system.dictionary.folders.split("\n"));
+		//}
+		//downloadDirs = uniq(downloadDirs);
+		//thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
+
+		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 
 		// Cancel
 		thisDialog.find("#system-config-button-cancel").click(function()
