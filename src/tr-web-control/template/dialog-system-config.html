@@ -29,7 +29,7 @@
 					</tr>
 					<tr>
 						<td width="65%"><span id="system-config-cache-size-mb"></span></td>
-						<td width="35%"><input id="cache-size-mb" value="" type="text" class="easyui-numberspinner"/> MB</td>
+						<td width="35%"><input id="cache-size-mb" value="" type="text" class="easyui-numberspinner" style="width:70px;"/> MB</td>
 					</tr>
 					<tr>
 						<td colspan="2"><hr/></td>
@@ -397,15 +397,15 @@
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
 		// Local dictionary folder list
-		thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
+		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
     // Will add back this feature if the bug solved
-		//var downloadDirs = $.merge([],transmission.downloadDirs);
-		//if (system.dictionary.folders.length!=0)
-		//{
-		//	$.extend(downloadDirs,system.dictionary.folders.split("\n"));
-		//}
-		//downloadDirs = uniq(downloadDirs);
-		//thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
+		var downloadDirs = $.merge([],transmission.downloadDirs);
+		if (system.dictionary.folders.length!=0)
+		{
+			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
+		}
+		downloadDirs = uniq(downloadDirs);
+		thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
 
 		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 

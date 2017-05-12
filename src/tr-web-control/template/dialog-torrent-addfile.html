@@ -52,7 +52,7 @@
 		var downloadDirs = $.merge([],transmission.downloadDirs);
 		if (system.dictionary.folders.length!=0)
 		{
-			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
+			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
 		}
 		downloadDirs = uniq(downloadDirs);
 		
