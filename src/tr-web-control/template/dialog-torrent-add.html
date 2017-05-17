@@ -61,18 +61,18 @@
 		thisDialog.find("#download-dir").val(system.downloadDir);
 
 		var downloadDirs = $.merge([],transmission.downloadDirs);
-		if (system.dictionary.folders.length!=0)
+		if (system.dictionary.folders != null)
 		{
-			$.extend(downloadDirs,system.dictionary.folders.split("\n"));
+			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
 		}
 		downloadDirs = uniq(downloadDirs);
-
-		$.each(downloadDirs, function(i, item){
-			$("<option/>").text(item).val(item).attr("selected",(item==system.downloadDir?true:false)).appendTo(thisDialog.find("#download-dir"));
-		});
-		if (downloadDirs.length==0)
+		if (downloadDirs == null)
 		{
 			$("<option/>").text(system.downloadDir).val(system.downloadDir).attr("selected",true).appendTo(thisDialog.find("#download-dir"));
+		} else {
+			$.each(downloadDirs, function(i, item){
+				$("<option/>").text(item).val(item).attr("selected",(item==system.downloadDir?true:false)).appendTo(thisDialog.find("#download-dir"));
+			});
 		}
 
 		thisDialog.find("#chkautostart").prop("checked", system.serverConfig["start-added-torrents"]);
