@@ -10,13 +10,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><select id="download-dir" style="width:573px;"></select></td>
+						<td colspan="2"><select id="download-dir" style="width:100%;"></select></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input id="incomplete-dir-enabled" type="checkbox" style="width:16px;"/><label id="system-config-incomplete-dir-enabled" for="incomplete-dir-enabled"></label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input id="incomplete-dir" value="" type="text" enabledof="incomplete-dir-enabled"/></td>
+						<td colspan="2"><input id="incomplete-dir" value="" type="text" enabledof="incomplete-dir-enabled" style="width:100%;"/></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input id="rename-partial-files" type="checkbox" style="width:16px;"/><label id="system-config-rename-partial-files" for="rename-partial-files"></label></td>
@@ -40,7 +40,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input id="config-dir" value="" type="text" readonly="readonly" disabled="disabled"/></td>
+						<td colspan="2"><input id="config-dir" value="" type="text" readonly="readonly" disabled="disabled" style="width:100%;"/></td>
 					</tr>
 					<tr>
 						<td colspan="2"><hr/></td>
@@ -396,16 +396,12 @@
 		}
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
-		// Local dictionary folder list
-		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
-    // Will add back this feature if the bug solved
-		var downloadDirs = $.merge([],transmission.downloadDirs);
-		if (system.dictionary.folders.length!=0)
-		{
-			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
-		}
-		downloadDirs = uniq(downloadDirs);
-		thisDialog.find("#local-storage-dictionary-folders").val(downloadDirs.join("\n"));
+		// Local dictionary folder list (not including transmission.downloadDirs)
+    if (system.dictionary.folders == null) {
+		          thisDialog.find("#local-storage-dictionary-folders").val("");
+    } else{
+		          thisDialog.find("#local-storage-dictionary-folders").val(system.dictionary.folders);
+    }
 
 		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 
@@ -623,7 +619,11 @@
 			// Save the local data
 			function saveLocalData()
 			{
-				system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "");
+        if(thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "").length==0) {
+              system.dictionary.folders=null;
+        } else {
+              system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "");
+        }
 				system.saveConfig();
 				thisDialog.dialog("close");
 			}

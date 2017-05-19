@@ -155,7 +155,7 @@ transmission.torrents = {
 				
 				continue;
 			}
-			// If the current torrent is being acquired and there is no torrent in the previous torrent list, that is, the new torrent needs to be reloaded with the basic information
+			// If the current torrent is being acquired and there is no such torrent in the previous torrent list, that is, the new torrent needs to be reloaded with the basic information
 			if (this.isRecentlyActive&&!this.all[item.id])
 			{
 				this.newIds.push(item.id);
