@@ -175,7 +175,7 @@ transmission.torrents = {
 			}
 
 			// Total size
-			this.totalSize=item.totalSize;
+			this.totalSize+=item.totalSize;
 			
 			// Time left
 			if (item.rateDownload>0&&item.leftUntilDone>0)
@@ -221,8 +221,6 @@ transmission.torrents = {
 			
 			this.all[item.id]=item;
 			
-			//this.totalSize+=item.totalSize;
-
 			// Set the directory
 			if ($.inArray(item.downloadDir, transmission.downloadDirs)==-1)
 			{

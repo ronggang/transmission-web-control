@@ -2,7 +2,7 @@
 var system = {
 	version:"1.1 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170317"
+	,codeupdate:"20170522"
 	,configHead: "transmission-web-control"
 	,config:{
 		autoReload: true
