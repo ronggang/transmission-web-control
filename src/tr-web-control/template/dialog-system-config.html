@@ -397,7 +397,7 @@
 		thisDialog.find("#download-dir-free-space").text(tmp);
 
 		// Local dictionary folder list (not including transmission.downloadDirs)
-		if(system.dictionary.folders == null) {
+		if(system.dictionary.folders == null || system.dictionary.folders == "") {
 			thisDialog.find("#local-storage-dictionary-folders").val("");
 		} else {
 			thisDialog.find("#local-storage-dictionary-folders").val(system.dictionary.folders);
@@ -618,7 +618,7 @@
 			function saveLocalData()
 			{
 				if(thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "").length==0) {
-					system.dictionary.folders=null;
+					system.dictionary.folders = "";
 				} else {
 					system.dictionary.folders = thisDialog.find("#local-storage-dictionary-folders").val().replace(/^\s*[\r\n]/gm, "");
 				}
