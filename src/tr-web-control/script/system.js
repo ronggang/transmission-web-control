@@ -2,13 +2,16 @@
 var system = {
 	version:"1.1 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170518"
+	,codeupdate:"20170522"
 	,configHead: "transmission-web-control"
+  // default config, can be customized in config.js
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
 		,pageSize: 30
-		,defaultSelectNode: null
+    ,pagination: true
+    ,pageList:[10,20,30,40,50,100,150,200,250,300]
+ 		,defaultSelectNode: null
 		,autoExpandAttribute: false
 		,defaultLang: ""
 	}
@@ -19,7 +22,7 @@ var system = {
 	}
 	// Local data storage
 	,dictionary:{
-		folders:null
+		folders: null
 	}
 	,checkUpdateScript:"https://transmission-control.googlecode.com/svn/resouces/checkupdate.js"
 	,contextMenus:{
@@ -581,11 +584,12 @@ var system = {
 
 			system.control.torrentlist.datagrid({
 				autoRowHeight:false
-				,pagination:true
+				,pagination:system.config.pagination
 				,rownumbers:true
 				,remoteSort:false
 				,checkOnSelect:false
 				,pageSize:system.config.pageSize
+				,pageList:system.config.pageList
 				,idField:"id"
 				,fit: true
 				,striped:true

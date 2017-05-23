@@ -61,7 +61,7 @@
 		thisDialog.find("#download-dir").val(system.downloadDir);
 
 		var downloadDirs = $.merge([],transmission.downloadDirs);
-		if (system.dictionary.folders != null)
+		if (system.dictionary.folders != null && system.dictionary.folders != "")
 		{
 			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
 		}
