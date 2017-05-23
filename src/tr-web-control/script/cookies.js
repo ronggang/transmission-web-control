@@ -1,14 +1,13 @@
 var cookies = {
 	/* ***********************************************
-	'** 函数名称:	取得Cookies的值
-	'** 函数功能:	显示分页信息
-	'** 参数说明:
-	'**				strName					要取值的Cookies名称
-	'**				strSubName				子项名称（如果有的话）
-	'** 函数返回:
-	'**				null						表示没有取得值
-	'**				cookies值				正确返回（有值）
-	'** 参考实例:
+	'** Function name:	Get the value of Cookies
+	'** Parameters:
+	'**				strName					Cookie name
+	'**				strSubName				subkey name (if any)
+	'** returns:
+	'**				null					if no values has been obtained
+	'**				cookie					values in cookie
+	'** Example:
 	'**				var strCookie = getCookie("myCookies","mySubCookies");
 	*************************************************/
 	get:function(strName,strSubName)
@@ -20,17 +19,17 @@ var cookies = {
 	  
 		for (var i=0; i < intCookiesLength; i++)
 		{
-			// 当有子项目时会有&符号
+			// There will be ampersand if there are subprojects
 			if (strCookies[i].indexOf("&") > 0)
 			{
-				// 取得头
+				// Get head
 				strHead = strCookies[i].split("=");
-				// 判断是否和要查找的参数相同
+				// If we have cookie we seek
 				if (strName == strHead[0])
 				{
-					// 去掉头信息
+					// Manipulate head information
 					strCookies[i] = strCookies[i].substr(strName.length+1);
-					// 以&分割字符，以取得所有子项
+					// Use the & divisible character to get all the children
 					strCookie = strCookies[i].split("&");
 					intLength = strCookie.length;
 					var result = {};
@@ -38,7 +37,8 @@ var cookies = {
 					{
 						strItem = strCookie[j].split("=");
 
-						var value = unescape(strItem[1]);
+						//var value = unescape(strItem[1]);
+						var value = JSON.parse(strItem[1]);
 						switch (value)
 						{
 							case "true":
@@ -50,19 +50,17 @@ var cookies = {
 							default:
 								result[strItem[0]] = value;
 								break;
-						}
-						
-						
+						}						
 						if (strSubName == strItem[0])
 						{
 							return value;
 						}	
 					}
-					// 如果没有指定子项名称时，则返回一个对象，包含所有子项；
+					// If no child name is specified, an object is returned that contains all the children;
 					return result;
 				}
 			}
-			// 没有子项时直接判断取值
+			// There is no child to determine the value directly
 			else
 			{
 				strItem = strCookies[i].split("=");
@@ -74,8 +72,8 @@ var cookies = {
 		}
 		return null;
 	}
-	// 设置 cookie 内容
-	// value 可为对象，格式如：key:value
+	// Set the cookie content
+	// Value can be an object, such as: key: value
 	,set:function(name,value,expireDays)
 	{
 		var exdate=new Date();
@@ -87,19 +85,21 @@ var cookies = {
 		var cookieValue = value;
 		switch (typeof(value))
 		{
-			// 如果为对象时，按格式拆分后保存
+			// Save it per object type
 			case "object":
 			case "function":
 				var arr = new Array();
 				for (var key in value)
 				{
-					arr.push(key+"="+escape(value[key]));
+					//arr.push(key+"="+escape(value[key]));
+					arr.push(key+"="+JSON.stringify(value[key]));
 				}
 				cookieValue = arr.join("&");
 				break;
 
 			default:
-				cookieValue = escape(value);
+				//cookieValue = escape(value);
+				cookieValue = JSON.stringify(value);
 				break;
 		}
 		document.cookie=name+"=" +cookieValue+((expireDays==0)? "" :"; expires="+exdate.toGMTString());

@@ -20,6 +20,8 @@
  - 更新了easyui到1.5.1和jquery到1.12.4 By -- @balonik
  - 修复问题#20，#21，#23，#39，#40，#43，#44, #53 By -- @balonik
  - 替换了一些中文注释为英文注释.
+ - 修复问题#77，#81 （如果载入错误，请清空cookies。） By -- @balonik
+ - 种子列表数修改为最多300，同时也可修改config.js中的"pagination:true" 为"pagination:false"来显示所有种子。 By -- @balonik
 
 ### 功能介绍
  - 在线查看Transmission当前工作情况；
@@ -95,6 +97,8 @@ I will do my best to fix the issues in this repo.
  - Updated easyui to 1.5.1 and jquery to 1.12.4 By -- @balonik
  - Fixed issue #20, #21, #23, #39, #40, #43, #44 #53 By -- @balonik
  - Replaced some Chinese comments to English
+ - Fixed issue #77，#81 (Please clear your cookies if you encounter any error) By -- @balonik
+ - Now the maximum number of torrents per page is 300，meanwhile, you can still modify the file config.js "pagination:true" to "pagination:false" in order to show ALL the torrents. By -- @balonik
 
 ### Features
  - Add torrent files or URLs
