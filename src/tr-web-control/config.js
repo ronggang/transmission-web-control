@@ -15,4 +15,6 @@ system.config = {
 	,autoExpandAttribute: false
 	// default language
 	,defaultLang: ""
+	//show Folders
+	,foldersShow: false
 };

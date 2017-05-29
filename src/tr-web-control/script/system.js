@@ -10,10 +10,11 @@ var system = {
 		,reloadStep: 5000
 		,pageSize: 30
 		,pagination: true
-		,pageList:[10,20,30,40,50,100,150,200,250,300]
+		,pageList: [10,20,30,40,50,100,150,200,250,300]
 		,defaultSelectNode: null
 		,autoExpandAttribute: false
 		,defaultLang: ""
+		,foldersShow: false
 	}
 	,storageKeys: {
 		dictionary: {
@@ -190,6 +191,19 @@ var system = {
 			for (var key in this.lang.tree.toolbar.nav)
 			{
 				$("#tree-toolbar-nav-"+key).linkbutton();
+				switch (key)
+				{
+					case "folders":
+						if (system.config.foldersShow) {
+							$("tree-toolbar-nav-"+key).linkbutton({iconCls:"icon-enabled"}).data("status",1);
+						}
+						else {
+							$("tree-toolbar-nav-"+key).linkbutton({iconCls:"icon-disabled"}).data("status",0);
+						}
+						break;
+					default:
+						break;
+				}
 			}
 		}
 		else
@@ -336,6 +350,13 @@ var system = {
 		{
 			case "tree-toolbar-nav-folders":
 				treenode = this.panel.left.tree("find","folders");
+				if (status==1){
+					this.config.foldersShow = false;
+				}
+				else
+				{
+					this.config.foldersShow = true;
+				}
 				break;
 
 			case "tree-toolbar-nav-statistics":
@@ -545,7 +566,15 @@ var system = {
 		for (var key in this.lang.tree.toolbar.nav)
 		{
 			var treenode = this.panel.left.tree("find",key);
-			$(treenode.target).parent().hide();
+			switch (key) {
+				case "folders":
+					if (system.config.foldersShow) {				
+						$("#tree-toolbar-nav-"+key).click();
+						$(treenode.target).parent().show();
+					} else {
+						$(treenode.target).parent().hide();
+					}
+			}
 		}
 
 		// node that specifies the default selection
