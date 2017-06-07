@@ -110,3 +110,74 @@
 .window-noborder {
   border: 0;
 }
+.window.panel-hleft .window-header {
+  padding: 0 6px 0 0;
+}
+.window.panel-hright .window-header {
+  padding: 0 0 0 6px;
+}
+.window.panel-hleft>.panel-header .panel-title {
+  top: auto;
+  left: 16px;
+}
+.window.panel-hright>.panel-header .panel-title {
+  top: auto;
+  right: 16px;
+}
+.window.panel-hleft>.panel-header .panel-title-up,
+.window.panel-hright>.panel-header .panel-title-up {
+  bottom: 0;
+}
+.window.panel-hleft .window-body {
+  border-width: 1px 1px 1px 0;
+}
+.window.panel-hright .window-body {
+  border-width: 1px 0 1px 1px;
+}
+.window.panel-hleft .window-header .panel-icon {
+  top: 1px;
+  margin-top: 0;
+  left: 0;
+}
+.window.panel-hright .window-header .panel-icon {
+  top: 1px;
+  margin-top: 0;
+  left: auto;
+  right: 1px;
+}
+.window.panel-hleft .window-header .panel-tool,
+.window.panel-hright .window-header .panel-tool {
+  margin-top: 0;
+  top: auto;
+  bottom: 1px;
+  right: auto;
+  margin-right: 0;
+  left: 50%;
+  margin-left: -11px;
+}
+.window.panel-hright .window-header .panel-tool {
+  left: auto;
+  right: 1px;
+}
+.window-thinborder.panel-hleft .window-header {
+  padding: 5px 6px 5px 5px;
+}
+.window-thinborder.panel-hright .window-header {
+  padding: 5px 5px 5px 6px;
+}
+.window-thinborder.panel-hleft>.panel-header .panel-title {
+  left: 21px;
+}
+.window-thinborder.panel-hleft>.panel-header .panel-title-up,
+.window-thinborder.panel-hright>.panel-header .panel-title-up {
+  bottom: 5px;
+}
+.window-thinborder.panel-hleft .window-header .panel-icon,
+.window-thinborder.panel-hright .window-header .panel-icon {
+  margin-top: 5px;
+}
+.window-thinborder.panel-hleft .window-header .panel-tool,
+.window-thinborder.panel-hright .window-header .panel-tool {
+  left: 16px;
+  bottom: 5px;
+}

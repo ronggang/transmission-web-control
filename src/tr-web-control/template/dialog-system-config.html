@@ -1,7 +1,7 @@
 <div class="easyui-layout" data-options="fit:true" style="width:100%;height:100%;">
 	<div data-options="region:'center'" style="padding:5px 6px 0px 6px;border:0px;">
 		<div id="system-config-tabs" class="easyui-tabs" style="width:100%;height:100%;" data-options="fit:true,plain:true">
-			<div title="基本信息" style="padding:5px;padding-right:10px;" class="dialog">
+			<div title="Basic Information" style="padding:5px;padding-right:10px;" class="dialog">
 				<table style="width:100%;">
 					<tr>
 						<td width="100%" colspan="2">
@@ -52,7 +52,7 @@
 					</tr>
 				</table>
 			</div>
-			<div title="网络" style="padding:5px;padding-right:10px;" class="dialog">
+			<div title="Network" style="padding:5px;padding-right:10px;" class="dialog">
 				<table style="width:100%;">
 					<tr>
 						<td width="65%">
@@ -133,7 +133,7 @@
 					</tr>
 				</table>
 			</div>
-			<div title="带宽" style="padding:5px;padding-right:10px;" class="dialog">
+			<div title="Limit" style="padding:5px;padding-right:10px;" class="dialog">
 				<table style="width:100%;">
 					<tr>
 						<td width="65%">
@@ -193,7 +193,7 @@
 					</tr>
 				</table>
 			</div>
-			<div title="时段" style="padding:5px;" class="dialog">
+			<div title="Alt speeds" style="padding:5px;" class="dialog">
 				<fieldset>
 					<table style="width:100%;">
 						<tr>
@@ -237,7 +237,7 @@
 				</fieldset>
 				<input id="alt-speed-enabled" type="checkbox" style="width:16px;"/><label id="system-config-alt-speed-enabled" for="alt-speed-enabled"></label>
 			</div>
-			<div title="目录字典" style="padding:5px;padding-right:10px;" class="dialog">
+			<div title="Folders Dictionary" style="padding:5px;padding-right:10px;" class="dialog">
 				<table style="width:100%;height:100%;">
 					<tr>
 						<td width="100%" height="100%">
@@ -327,7 +327,12 @@
 		$.each(title, function(i, item){
 			thisDialog.find("#"+item).prop("checked",system.serverConfig[item])
 			.click(function(){
-				thisDialog.find("*[enabledof='"+this.id+"']").prop("disabled",!this.checked);
+				if(thisDialog.find("*[enabledof='"+this.id+"']").hasClass("easyui-numberspinner")){
+					if(this.checked){thisDialog.find("*[enabledof='"+this.id+"']").numberspinner("enable");}
+					else {thisDialog.find("*[enabledof='"+this.id+"']").numberspinner("disable");}
+				} else {
+					thisDialog.find("*[enabledof='"+this.id+"']").prop("disabled",!this.checked);
+				}
 			});
 		});
 		
