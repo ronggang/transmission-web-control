@@ -261,7 +261,7 @@ transmission.torrents = {
 				tracker["host"] = trackerInfo.host;
 
 				// 判断当前tracker状态
-				if (trackerInfo.lastAnnounceSucceeded && trackerInfo.announceState != transmission._trackerStatus.inactive) {
+				if (!trackerInfo.lastAnnounceSucceeded && trackerInfo.announceState != transmission._trackerStatus.inactive) {
 					haveWarning = true;
 					item["warning"] = trackerInfo.lastAnnounceResult;
 
