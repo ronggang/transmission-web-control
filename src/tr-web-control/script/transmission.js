@@ -26,6 +26,12 @@ var transmission = {
 		// 自定义状态
 		,actively:101
 	}
+	,_trackerStatus: {
+		inactive:0
+		,waiting:1
+		,queued:2
+		,active:3
+	}
 	,options:{
 		getFolders:true
 		,getTarckers:true

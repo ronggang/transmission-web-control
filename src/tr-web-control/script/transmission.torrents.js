@@ -297,7 +297,7 @@ transmission.torrents = {
 				tracker["nodeid"] = id;
 				tracker["host"] = trackerInfo.host;
 				
-				if (lastResult!="success"&&trackerInfo.announceState!=0)
+				if (!trackerInfo.lastAnnounceSucceeded && trackerInfo.announceState != transmission._trackerStatus.inactive)
 				{
 					haveWarning = true;
 					item["warning"] = trackerInfo.lastAnnounceResult;
