@@ -77,7 +77,7 @@ system.lang = {
 		,"downloading":"Download in Corso"
 		,"sending":"In Seed"
 		,"error":"Con Errori"
-		,"warning":"Con Warning"
+		,"warning":"Con Avvisi"
 		,"actively":"Attivi"
 		,"check":"In Check"
 		,"wait":"In attesa"
