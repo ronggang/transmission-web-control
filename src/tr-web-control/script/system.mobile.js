@@ -517,7 +517,7 @@ var system = {
 					}
 					else
 					{
-						system.control.torrentlist.find("a[name='torrent']").css("marginLeft","-35px");
+						system.control.torrentlist.find("a[name='torrent']").css("marginLeft","0px");
 					}
 				}).checkboxradio();
 			}
@@ -539,7 +539,7 @@ var system = {
 		};
 
 		// 由于不能以对象的方式来创建 listview 子项，所以只能用拼接字符串的方式
-		var templates = "<li id='li-torrent-$id$' torrentid='$id$' style='padding:0px;'><a name='torrent' style='padding:0px;margin-left:-35px;'>"+
+		var templates = "<li id='li-torrent-$id$' torrentid='$id$' style='padding:0px;'><a name='torrent' style='padding:0px;margin-left:0px;'>"+
 							 "<label data-corners='false' style='margin:0px;border:0px;padding:0px;'>"+
 							 "<input type='checkbox' id='torrent-$id$'/><label for='torrent-$id$'>"+
 							 "<h3 style='margin:0px;'>$name$</h3>"+
@@ -562,7 +562,7 @@ var system = {
 		});
 		li.on("swipeleft",function(event){
 			//system.control.torrentlist.find("#torrent-"+$(this).attr("torrentid")).click();
-			system.control.torrentlist.find("a[name='torrent']").css("marginLeft","-35px");
+			system.control.torrentlist.find("a[name='torrent']").css("marginLeft","0px");
 		});
 
 		li.appendTo(this.control.torrentlist);
