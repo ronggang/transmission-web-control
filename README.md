@@ -83,7 +83,7 @@
 
 Introduction
 -------------------
-Transmission Web Control is a custom web UI. The project began in [Goolge Code](https://code.google.com/p/transmission-control/).Welcome to give me any feedback or submit a Pull Request.
+Transmission Web Control is a custom web UI. The project began in [Google Code](https://code.google.com/p/transmission-control/). Welcome to give me any feedback or submit a Pull Request.
 
 ### Support Transmission Version
  - Transmission 2.40 and above (RPC version: 14 and above)
@@ -103,19 +103,18 @@ I will do my best to fix the issues in this repo.
 ### Features
  - Add torrent files or URLs
  - Drag-and-drop to add torrent files
- - Online modify the Transmission setting (Download folder,Speed ​​limit,Port,etc.)
+ - Modify Transmission settings online (Download folder, Speed limit, Port, etc.)
  - Pause / resume / recheck selected or all torrents
- - View the current torrents status (Files,Peers,Trackers,etc.)
- - View Statistics(Cumulative/Current)
- - The pagination torrents
+ - View the current torrents status (Files, Peers, Trackers etc.)
+ - View Statistics (Cumulative/Current)
+ - Pagination
  - Set files priority
  - Change the torrent download directory
  - Trackers list
- - Add support for Synology NAS downloadstation；By - @hitechbeijing
- - ...
+ - Add support for Synology NAS Download Station；By - @hitechbeijing
 
 ### Browsers support
- - All browsers support HTML5. (Chrome 15.0.874，Firefox 8.0.1，IE 9.0.8112，Opera 11.52 etc.)
+ - A browser which supports HTML5. (Chrome 15.0.874，Firefox 8.0.1，IE 9.0.8112，Opera 11.52 etc.)
 
 ### Multi-language
 #### How to use the language pack:
@@ -144,16 +143,16 @@ I will do my best to fix the issues in this repo.
 #### [How to install](https://code.google.com/p/transmission-control/wiki/Install#1._Automatic_Installation_(Linux))
 
 ### Download
- - You can get the latest version of the program for this address:
+ - Latest source tarball:
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
 ~~~
- - Or download easy install script:
+ - Latest easy-install script:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en.sh
   sudo bash tr-control-easy-install.sh
 ~~~
- - If you need to install into Synology NAS downloadstation, please download the following script:
+ - If you need to install into Synology NAS download station, please download the following script:
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
   sudo bash ds-control-easy-install-en-http.sh
@@ -164,9 +163,6 @@ I will do my best to fix the issues in this repo.
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
   sudo bash tr-control-easy-install-en-http.sh
 ~~~
- - install.sh script with english comments:
-~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en.sh
-~~~
+
 
 ###### 创建于(Create): 2012.12.18；更新于(Update): 2014.10.13 By 栽培者(ronggang); Updated: 03-31-2017 by DarkAlexWang  ######
