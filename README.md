@@ -150,7 +150,7 @@ I will do my best to fix the issues in this repo.
  - Latest easy-install script:
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en.sh
-  sudo bash tr-control-easy-install.sh
+  sudo bash tr-control-easy-install-en.sh
 ~~~
  - If you need to install into Synology NAS download station, please download the following script:
 ~~~
