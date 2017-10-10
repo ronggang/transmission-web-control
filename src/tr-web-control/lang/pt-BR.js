@@ -16,7 +16,7 @@ system.lang = {
 		,"data-post-error":"Erro de dados Post."
 	}
 	,"config":{
-		"save-path":"Dir de descarga"
+		"save-path":"Dir de download"
 	}
 	,"toolbar":{
 		"start":"Iniciar"
@@ -53,7 +53,7 @@ system.lang = {
 			,"pause-all":"Pausar todos"
 			,"remove":"Remover"
 			,"delete-all":"Eliminar todos"
-			,"delete-data":"Eliminar ficheiros"
+			,"delete-data":"Eliminar arquivos"
 			,"add-torrent":"Adicionar torrent(s)"
 			,"attribute":"Atributos"
 			,"alt-speed":"Velocidade alternativa"
@@ -121,20 +121,20 @@ system.lang = {
 		}
 	}
 	,"statusbar":{
-		"downloadspeed":"Velocidade de descarga:"
+		"downloadspeed":"Velocidade de download:"
 		,"uploadspeed":"Velocidade de envio:"
 		,"version":"Versão:"
 	}
 	,"dialog":{
 		"torrent-add":{
-			"download-dir":"Diretório de descarga:"
+			"download-dir":"Diretório de download:"
 			,"torrent-url":"URL do Torrent:"
 			,"tip-torrent-url":"Dica: separe por linhas (Enter) múltiplos links para adicioná-los de uma só vez"
 			,"autostart":"Auto iniciar:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Diretório padrão"
 			,"upload-file":"Arquivos Torrent:"
-			,"nosource":"Nenhum ficheiro ou url Torrent."
+			,"nosource":"Nenhum arquivo ou url Torrent."
 			,"tip-title":"Arquivos Torrent têm preferência sobre URLs"
 		}
 		,"system-config":{
@@ -146,14 +146,14 @@ system.lang = {
 				,"alt-speed":"Agendamento"
 				,"dictionary-folders":"Dicionário de pastas"
 			}
-			,"config-dir":"Local do ficheiro de configuração do Transmission:"
-			,"download-dir":"Diretório padrão de descarga:"
+			,"config-dir":"Local do arquivo de configuração do Transmission:"
+			,"download-dir":"Diretório padrão de download:"
 			,"download-dir-free-space":"Espaço livre:"
-			,"incomplete-dir-enabled":"Usar diretório de ficheiros incompletos"
-			,"cache-size-mb":"Tamanho de caché de disco:"
-			,"rename-partial-files":"Adicinar '.part' aos ficheiros incompletos"
+			,"incomplete-dir-enabled":"Usar diretório de arquivos incompletos"
+			,"cache-size-mb":"Tamanho de cache de disco:"
+			,"rename-partial-files":"Adicinar '.part' aos arquivos incompletos"
 			,"start-added-torrents":"Iniciar torrents adicionados automaticamente"
-			,"download-queue-enabled":"Numero máximo de descargas na fila:"
+			,"download-queue-enabled":"Numero máximo de downloads na fila:"
 			,"seed-queue-enabled":"Número máximo de seeds na fila:"
 			,"peer-port-random-on-start":"Usar porta aleatória ao iniciar"
 			,"port-forwarding-enabled":"Habilitar redirecionamento de portas"
@@ -167,16 +167,16 @@ system.lang = {
 				,"preferred":"Prefencialmente encriptada"
 				,"tolerated":"Qualquer conexão"
 			}
-			,"utp-enabled":"uTP(UPnP) habilitado"
+			,"utp-enabled":"µTP (UPnP) habilitado"
 			,"dht-enabled":"DHT habilitado"
 			,"lpd-enabled":"LPD habilitado"
 			,"pex-enabled":"PEX habilitado"
 			,"peer-limit-global":"Número máximo de peers por conexão:"
 			,"peer-limit-per-torrent":"Número máximo de peers por Torrent:"
-			,"speed-limit-down-enabled":"Velocidade de descarga global:"
+			,"speed-limit-down-enabled":"Velocidade de download global:"
 			,"speed-limit-up-enabled":"Velocidade de envio global:"
 			,"alt-speed-enabled":"Usar velocidade alternativa"
-			,"alt-speed-down":"Velocidade de descarga global:"
+			,"alt-speed-down":"Velocidade de download global:"
 			,"alt-speed-up":"Velocidade de envio global:"
 			,"alt-speed-time-enabled":"Usar agendamento"
 			,"alt-speed-time":"Tempo:"
@@ -221,7 +221,7 @@ system.lang = {
 			"title":"Escolha um novo diretório"
 			,"old-download-dir":"Antigo diretório:"
 			,"new-download-dir":"Novo diretório:"
-			,"move-data":"Se marcado, mover da localização anterior. Caso contrário, procura 'Novo diretório' para os ficheiros."
+			,"move-data":"Se marcado, mover da localização anterior. Caso contrário, procura 'Novo diretório' para os arquivos."
 			,"set-error":"Erro!"
 			,"recheck-data":"Verificar dados novamente."
 		}
@@ -255,14 +255,14 @@ system.lang = {
 			"id":"#"
 			,"name":"Nome"
 			,"hashString":"HASH"
-			,"downloadDir":"Dir de descarga"
+			,"downloadDir":"Dir de download"
 			,"totalSize":"Tamanho total"
 			,"status":"Estado"
 			,"percentDone":"Completo"
 			,"remainingTime":"Tempo restante"
 			,"addedDate":"Data de adição"
 			,"completeSize":"Tamanho completo"
-			,"rateDownload":"Taxa de descarga"
+			,"rateDownload":"Taxa de download"
 			,"rateUpload":"Taxa de envio"
 			,"leecherCount":"Leechs"
 			,"seederCount":"Seeds"
@@ -273,7 +273,7 @@ system.lang = {
 			"0":"Pausado"
 			,"1":"Aguardando verificação"
 			,"2":"Comprovando"
-			,"3":"Aguardando descarga"
+			,"3":"Aguardando download"
 			,"4":"Descarregando"
 			,"5":"Aguardando semeamento"
 			,"6":"Semeando"
@@ -282,7 +282,7 @@ system.lang = {
 			"tabs":{
 				"base":"Base"
 				,"servers":"Trackers"
-				,"files":"Ficheiros"
+				,"files":"Arquivos"
 				,"users":"Peers"
 				,"config":"Configuração"
 			}
@@ -301,7 +301,7 @@ system.lang = {
 				,"lastAnnounceSucceeded":"Sucesso"
 				,"lastAnnounceTime":"Anúncio"
 				,"lastAnnounceTimedOut":"Tempo limite"
-				,"downloadCount":"Contagem de descarga"
+				,"downloadCount":"Contagem de download"
 				,"nextAnnounceTime":"Próximo anúncio"
 			}
 			,"peers-fields":{
@@ -309,7 +309,7 @@ system.lang = {
 				,"clientName":"Cliente"
 				,"flagStr":"Flag"
 				,"progress":"Progresso"
-				,"rateToClient":"Vel de descarga"
+				,"rateToClient":"Vel de download"
 				,"rateToPeer":"Vel de envio"
 			}
 			,"status":{
@@ -328,9 +328,9 @@ system.lang = {
 				,"completeSize":"Tamanho completo:"
 				,"leftUntilDone":"Tempo estimado:"
 				,"hashString":"HASH:"
-				,"downloadDir":"Dir descarga:"
+				,"downloadDir":"Dir download:"
 				,"status":"Estado:"
-				,"rateDownload":"Vel de descarga:"
+				,"rateDownload":"Vel de download:"
 				,"rateUpload":"Vel de envio:"
 				,"leecherCount":"Leechers:"
 				,"seederCount":"Seeds:"
@@ -340,10 +340,10 @@ system.lang = {
 				,"dateCreated":"Data de criação:"
 				,"comment":"Comentário:"
 				,"errorString":"Erro de String:"
-				,"downloadLimited":"Velocidade máxima de descarga:"
-				,"uploadLimited":"Velocidade máxima de envio:"
+				,"downloadLimited":"Velocidade máxima de download:"
+				,"uploadLimited":"Velocidade máxima de upload:"
 				,"peer-limit":"Número máximo de peers por torrent:"
-				,"seedRatioMode":"Proporção de envio:"
+				,"seedRatioMode":"Proporção de upload:"
 				,"seedIdleMode":"Semeamento será interrompido se inativos por:"
 			}
 			,"tip":{
@@ -363,7 +363,7 @@ system.lang = {
 	}
 	,"public":{
 		"text-unknown":"Desconhecido"
-		,"text-drop-title":"Arrasta o ficheiro Torrent para esta área para adicionar ele ao transmission."
+		,"text-drop-title":"Arraste o arquivo do Torrent para esta área para adicionar ele ao transmission."
 		,"text-saved":"Salvo"
 		,"text-nochange":"Sem alterações"
 		,"text-info":"Info"
