@@ -2,9 +2,10 @@
 	移动版
 */
 var system = {
-	version:"1.1 Beta"
+	version:"1.2 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170317"
+	,codeupdate:"20171015"
+	,configHead: "transmission-web-control"
 	,config:{
 		autoReload: true
 		,reloadStep: 5000
@@ -104,18 +105,26 @@ var system = {
 	// 从 cookies 里加载配置
 	,readConfig:function()
 	{
-		var config = cookies.get("transmission-web-control");
-		if ($.isPlainObject(config))
+		// 将原来的cookies的方式改为本地存储的方式
+		var config = this.getStorageData(this.configHead+'.system');
+		if (config)
 		{
-			this.config = $.extend(this.config, config);;
+			this.config = $.extend(this.config, JSON.parse(config));
 		}
 	}
 	// 在 cookies 里保存参数
 	,saveConfig:function()
 	{
-		cookies.set("transmission-web-control",this.config,100);
+		this.setStorageData(this.configHead+'.system',JSON.stringify(this.config));
 	}
-
+	,getStorageData: function(key,defaultValue)
+	{
+		return (window.localStorage[key]==null?defaultValue:window.localStorage[key]);
+	}
+	,setStorageData: function(key,value)
+	{
+		window.localStorage[key] = value;
+	}
 	// 连接服务器
 	,connect:function()
 	{

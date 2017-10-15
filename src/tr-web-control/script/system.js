@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version:"1.1 Beta"
+	version:"1.2 Beta"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170606"
+	,codeupdate:"20171015"
 	,configHead: "transmission-web-control"
 	// default config, can be customized in config.js
 	,config:{
@@ -2592,10 +2592,11 @@ var system = {
 	,readConfig:function()
 	{
 		this.readUserConfig();
-		var config = cookies.get(this.configHead);
-		if ($.isPlainObject(config))
+		// 将原来的cookies的方式改为本地存储的方式
+		var config = this.getStorageData(this.configHead+'.system');
+		if (config)
 		{
-			this.config = $.extend(this.config, config);;
+			this.config = $.extend(this.config, JSON.parse(config));
 		}
 
 		for (var key in this.storageKeys.dictionary)
@@ -2606,7 +2607,7 @@ var system = {
 	// Save the parameters in cookies
 	,saveConfig:function()
 	{
-		cookies.set(this.configHead,this.config,100);
+		this.setStorageData(this.configHead+'.system',JSON.stringify(this.config));
 		for (var key in this.storageKeys.dictionary)
 		{
 			this.setStorageData(this.storageKeys.dictionary[key],this.dictionary[key]);
