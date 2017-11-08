@@ -7,21 +7,14 @@
 
 #### [English Introduction](#introduction)
 
+### 界面预览
+![tr-web-control](https://user-images.githubusercontent.com/8065899/32538836-0c2d970e-c42d-11e7-966d-84210bb41825.png)
+
 ### 支持的Transmission版本(Support Transmission Version)
  - Transmission 2.40 及以上版本（RPC版本：14及以上）
  - Transmission 2.40 and above (RPC version: 14 and above)
 
-### 已修复问题
-现在已经修改的问题如下：
- - 更新了源程序的tar文件
- - 修复英文界面的一些笔误
- - 添加了http的安装方法
- - 更新了install.sh的英文注释
- - 更新了easyui到1.5.1和jquery到1.12.4 By -- @balonik
- - 修复问题#20，#21，#23，#39，#40，#43，#44, #53 By -- @balonik
- - 替换了一些中文注释为英文注释.
- - 修复问题#77，#81 （如果载入错误，请清空cookies。） By -- @balonik
- - 种子列表数修改为最多300，同时也可修改config.js中的"pagination:true" 为"pagination:false"来显示所有种子。 By -- @balonik
+### [更新日志](https://github.com/ronggang/transmission-web-control/blob/master/CHANGELOG.md)
 
 ### 功能介绍
  - 在线查看Transmission当前工作情况；

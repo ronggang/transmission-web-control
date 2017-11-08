@@ -10,26 +10,26 @@
 	<link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
 	<title>Transmission Web Control</title>
 	<!-- Style sheet -->
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20171015.1" />
-	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20171015.1"/>  
-	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20171015.1"/>
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20171015.1"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20171108" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20171108"/>  
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20171108"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20171108"/>
 	<!-- Base class library -->
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20171015.1"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20171108"></script>
 	<script type="text/javascript" src="tr-web-control/script/easyui/plugins/jquery.datagrid.drophead.js"></script>
 	<!-- -->
 	<!-- System class library -->
-	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/ua-parser.min.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/config.js?v=20171015.1"></script>
-	<script type="text/javascript" src="tr-web-control/plugin.js?v=20171015.1"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20171108"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/ua-parser.min.js?v=20171108"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20171108"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20171027"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20171108"></script>
+	<script type="text/javascript" src="tr-web-control/config.js?v=20171108"></script>
+	<script type="text/javascript" src="tr-web-control/plugin.js?v=20171108"></script>
 	<script type="text/javascript">
 		 var nonpc = [ "console", "mobile", "tablet", "smarttv", "wearable", "embedded" ]
 		 if ((nonpc.indexOf($.ua.device.type) != -1 )&&location.search.getQueryString("devicetype")!="computer") 
@@ -49,9 +49,9 @@
 			<div class="easyui-layout" data-options="fit:true">
 				<div id="m_title_layout" data-options="region:'center'" border="0">
 					<img src="tr-web-control/logo.png"/><span id="m_title" style="padding:10px;display:none;"></span>
-					<span id="area-update-infos" style="display:none;">
-						<span id="msg-updateInfos" style="color:red;"></span>
-						<a id="button-download-update" href="https://code.google.com/p/transmission-control/wiki/ChangeLog" system-lang="public['text-have-update']" target="_blank"></a>
+					<span id="area-update-infos" style="display:none;padding: 18px;position: absolute;background-color: #ffe48c;">
+						<span id="msg-updateInfos" style="color:#ff3232;"></span>
+						<a id="button-download-update" href="https://github.com/ronggang/transmission-web-control/releases" system-lang="public['text-have-update']" target="_blank"></a>
 					</span>
 					<div style="float:right;padding:13px;">
 						<!-- 切换到移动版 -->
