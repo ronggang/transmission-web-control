@@ -94,7 +94,7 @@ system.lang = {
 		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
-		,"actively":"Actively"
+		,"actively":"Active"
 		,"check":"Checking"
 		,"wait":"Waiting"
 		,"search-result":"Search Result"

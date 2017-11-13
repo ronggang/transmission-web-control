@@ -1,11 +1,12 @@
+
+## [English Introduction](#introduction)
+
 ### 目前项目已恢复正常维护，感谢 @DarkAlexWang 支持 :)
 -----
 关于
 -----
 本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Google Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
 本项目设计之初仅针对PT站，因此增加了 Tracker 服务器分组及状态，但这不并适用于普通BT种子。
-
-#### [English Introduction](#introduction)
 
 ### 界面预览
 ![tr-web-control](https://user-images.githubusercontent.com/8065899/32538836-0c2d970e-c42d-11e7-966d-84210bb41825.png)
@@ -27,7 +28,7 @@
  - 批量修改 Tracker；
  - 移动指定种子的数据存放目录；
  - 可按 Trackers 分组浏览；
- - 增加对群晖downloadstation的支持；By - @hitechbeijing
+ - 增加对群晖 `Download Station` 的支持；By - @hitechbeijing
  - 其他……
 
 ### 浏览器支持
@@ -36,26 +37,27 @@
 ### 安装方法
  - 可通过以下地址获取最新版的程序：
 ~~~
-  https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
+  https://github.com/ronggang/transmission-web-control/raw/master/release/src.tar.gz
 ~~~
  - 或到下载安装脚本，此脚本只需要下载一次，以后只需要执行即可:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install.sh
-  sudo bash tr-control-easy-install.sh
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh
+  sudo bash install-tr-control.sh
 ~~~
  - 如果需要http而不是https，请使用以下命令:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
-  sudo bash tr-control-easy-install-en-http.sh
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
+  sudo bash install-tr-control.sh
 ~~~
- - 如果需要安装到群晖downloadstation,请下载下列安装脚本并运行：
+ - 如果需要安装到群晖 `Download Station`，请下载下列安装脚本并运行：
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
   sudo bash ds-control-easy-install-en-http.sh
 ~~~
+ - 群晖 `Download Station` 安装注意事项，请参考这个 [Wiki](https://github.com/ronggang/transmission-web-control/wiki/%E5%85%B3%E4%BA%8E-Synology-Download-Station) 。
 
 ### 关于多语言(Multi-language)
-系统使用多语言的方式构建，所以可以支持其他任何语言；但，由于本人水平有限，只会中文，所以需要懂其他语言的您的帮助，如果您已经翻译好了一个语言版本，请同时发给我一份，我会打包在一起，分享给更多的用户，谢谢。
+系统使用多语言的方式构建，所以可以支持其他任何语言；但，由于本人水平有限，只会中文，所以需要懂其他语言的您的帮助，如果您已经翻译好了一个语言版本，欢迎提交 pull requests，我们会合并后分享给更多的用户，谢谢。
 
 #### 当前已支持的语言(Currently supported languages)：
  - `2013-04-22` [简体中文(Simplified Chinese)](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-CN.js) @栽培者
@@ -104,7 +106,7 @@ I will do my best to fix the issues in this repo.
  - Set files priority
  - Change the torrent download directory
  - Trackers list
- - Add support for Synology NAS Download Station；By - @hitechbeijing
+ - Add support for `Synology NAS Download Station`; By - @hitechbeijing
 
 ### Browsers support
  - A browser which supports HTML5. (Chrome 15.0.874，Firefox 8.0.1，IE 9.0.8112，Opera 11.52 etc.)
@@ -131,21 +133,21 @@ I will do my best to fix the issues in this repo.
  - `2013-09-12` [French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js) @Amaury Aubry
  - `2013-12-05` [Korean](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js) @kdsz330
  - `2014-02-12` [European Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js) @pcgaldo
- - If you have translated a language pack, please upload it here issue 9
+ - If you have translated a language pack, welcome pull requests.
 
-#### [How to install](https://code.google.com/p/transmission-control/wiki/Install#1._Automatic_Installation_(Linux))
+### How to install
 
-### Download
+#### Download
  - Latest source tarball:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/src.tar.gz
 ~~~
  - Latest easy-install script:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en.sh
-  sudo bash tr-control-easy-install-en.sh
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh
+  sudo bash install-tr-control.sh
 ~~~
- - If you need to install into Synology NAS download station, please download the following script:
+ - If you need to install into `Synology NAS Download Station`, please download the following script:
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
   sudo bash ds-control-easy-install-en-http.sh
@@ -153,8 +155,8 @@ I will do my best to fix the issues in this repo.
  - If you need http download instead of https, please use the following
      commands:
 ~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/tr-control-easy-install-en-http.sh --no-check-certificate
-  sudo bash tr-control-easy-install-en-http.sh
+  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
+  sudo bash install-tr-control.sh
 ~~~
 
 
