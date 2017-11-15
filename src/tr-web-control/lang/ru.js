@@ -14,6 +14,7 @@ system.lang = {
         ,"error":{
                 "data-error":"Ошибка данных."
                 ,"data-post-error":"Ошибка отправки данных."
+                ,"rename-error":"Ошибка переименования файла/папки!"
         }
         ,"config":{
                 "save-path":"Папка для загрузки"
@@ -44,6 +45,7 @@ system.lang = {
                 ,"ui-original":"Оригинальный UI"
                 ,"ui-computer":"Стандартный UI"
                 ,"plugin":"Плагины"
+                ,"rename":"Переименовать"
                 ,"tip":{
                         "start":"Запустить выбранные торренты"
                         ,"pause":"Приостановить выбранные торренты"
@@ -63,10 +65,11 @@ system.lang = {
                         ,"autoreload-disabled":"Отключить автообновление"
                         ,"autoreload-enabled":"Включить автообновление"
                         ,"tracker-replace":"Заменить трекеры"
-                        ,"change-download-dir":"Изменить папку для загрузки"
+                        ,"change-download-dir":"Изменить папку загрузки"
                         ,"ui-mobile":"Мобильный UI"
                         ,"ui-original":"Оригинальный UI"
-                        ,"more-peers":"Запросить у трекера больше пиров"
+                        ,"more-peers":"Запрос больше пиров у трекера"
+                        ,"rename":"Переименовать"
                 }
         }
         ,"menus":{
@@ -219,8 +222,8 @@ system.lang = {
                 }
                 ,"torrent-changeDownloadDir":{
                         "title":"Изменить папку загрузки"
-                        ,"old-download-dir":"Старый:"
-                        ,"new-download-dir":"Новый:"
+                        ,"old-download-dir":"Старая:"
+                        ,"new-download-dir":"Новая:"
                         ,"move-data":"Перенести данные из старой папки в новую."
                         ,"set-error":"ошибка!"
                         ,"recheck-data":"Перепроверить данные."
@@ -247,18 +250,23 @@ system.lang = {
                         ,"work-mode":{
                                 "1":"Individually matched by torrent"
                                 ,"2":"Individually matched by folder"
-                        }
-                }
-        }
+			}
+		}
+		,"torrent-rename": {
+			"title":"Переименовать Torrent",
+			"oldname": "Старый",
+			"newname": "Новый"
+		}
+	}
         ,"torrent":{
                 "fields":{
                         "id":"#"
                         ,"name":"Название"
                         ,"hashString":"Хэш"
-                        ,"downloadDir":"Папка"
+                        ,"downloadDir":"Папка загрузки"
                         ,"totalSize":"Размер"
                         ,"status":"Состояние"
-                        ,"percentDone":"%"
+                        ,"percentDone":"Готово %"
                         ,"remainingTime":"Осталось"
                         ,"addedDate":"Добавлен"
                         ,"completeSize":"Загружено"
@@ -268,6 +276,7 @@ system.lang = {
                         ,"seederCount":"Сиды"
                         ,"uploadedEver":"Отдано"
                         ,"uploadRatio":"Рейтинг"
+                        ,"queuePosition":"Очередь"
                 }
                 ,"status-text":{
                         "0":"Пауза"
