@@ -237,8 +237,8 @@ system.lang = {
                 }
                 ,"auto-match-data-folder":{
                         "title":"Автоматическое сопоставление путей"
-                        ,"torrent-count":"Кол-во торрентов:"
-                        ,"folder-count":"Кол-во папок:"
+                        ,"torrent-count":"Количество торрентов:"
+                        ,"folder-count":"Количество папок:"
                         ,"dictionary":"Список путей"
                         ,"time-begin":"Время начала:"
                         ,"time-now":"Текущее время:"
