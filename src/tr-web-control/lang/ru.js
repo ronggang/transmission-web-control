@@ -248,8 +248,8 @@ system.lang = {
                         ,"time-interval":"Интервал (секунд):"
                         ,"work-mode-title":"Режим:"
                         ,"work-mode":{
-                                "1":"Individually matched by torrent"
-                                ,"2":"Individually matched by folder"
+                                "1":"Соответствие по торренту"
+                                ,"2":"Соответствие по папке"
 			}
 		}
 		,"torrent-rename": {
