@@ -16,7 +16,7 @@ system.lang = {
                 ,"data-post-error":"Ошибка отправки данных."
         }
         ,"config":{
-                "save-path":"Каталог для загрузки"
+                "save-path":"Папка для загрузки"
         }
         ,"toolbar":{
                 "start":"Старт"
@@ -63,7 +63,7 @@ system.lang = {
                         ,"autoreload-disabled":"Отключить автообновление"
                         ,"autoreload-enabled":"Включить автообновление"
                         ,"tracker-replace":"Заменить трекеры"
-                        ,"change-download-dir":"Изменить каталог загрузки"
+                        ,"change-download-dir":"Изменить папку для загрузки"
                         ,"ui-mobile":"Мобильный UI"
                         ,"ui-original":"Оригинальный UI"
                         ,"more-peers":"Запросить у трекера больше пиров"
@@ -113,10 +113,10 @@ system.lang = {
                         ,"secondsActive":"Время работы: "
                 }
                 ,"servers":"Трекеры"
-                ,"folders":"Каталоги"
+                ,"folders":"Папки"
                 ,"toolbar":{
                         "nav":{
-                                "folders":"Каталоги"
+                                "folders":"Папки"
                         }
                 }
         }
@@ -127,12 +127,12 @@ system.lang = {
         }
         ,"dialog":{
                 "torrent-add":{
-                        "download-dir":"Каталог загрузки:"
+                        "download-dir":"Папка загрузки:"
                         ,"torrent-url":"Ссылка на .torrent или magnet:"
                         ,"tip-torrent-url":"Новая ссылка с новой строки"
                         ,"autostart":"Начать загрузку:"
                         ,"tip-autostart":""
-                        ,"set-default-download-dir":"Выбрать как каталог по умолчанию"
+                        ,"set-default-download-dir":"Выбрать как папку по умолчанию"
                         ,"upload-file":"Файлы .torrent:"
                         ,"nosource":"Указанный источник не является файлом .torrent."
                         ,"tip-title":"Приоритет для загрузок указанных через URL"
@@ -146,12 +146,12 @@ system.lang = {
                                 ,"alt-speed":"Планировщик"
                                 ,"dictionary-folders":"Список путей"
                         }
-                        ,"config-dir":"Каталог конфигурации Transmission:"
-                        ,"download-dir":"Каталог для загрузки по умолчанию:"
+                        ,"config-dir":"Папка конфигурации Transmission (settings.json):"
+                        ,"download-dir":"Папка для загрузки по умолчанию:"
                         ,"download-dir-free-space":"Свободно места: "
-                        ,"incomplete-dir-enabled":"Использовать каталог для незавершенных файлов"
+                        ,"incomplete-dir-enabled":"Папка для не полностью загруженных файлов:"
                         ,"cache-size-mb":"Размер дискового кеша:"
-                        ,"rename-partial-files":"Загружать в файл '.part' незавершенные файлы"
+                        ,"rename-partial-files":"Добавлять расширение .part к не полностью загруженным файлам"
                         ,"start-added-torrents":"Автостарт для добавленных торрентов"
                         ,"download-queue-enabled":"Включить очередь загрузки, одновременно:"
                         ,"seed-queue-enabled":"Включить очередь отдачи, одновременно:"
@@ -192,7 +192,7 @@ system.lang = {
                         ,"blocklist-enabled":"Использовать черный список"
                         ,"blocklist-size":"Черный список содержит %n правил."
                         ,"seedRatioLimited":"Раздача будет остановлена на рейтинге:"
-                        ,"queue-stalled-enabled":"Считать торренты зависшими, если нет активности:"
+                        ,"queue-stalled-enabled":"Считать активные торрренты зависшими, если нет активности:"
                         ,"idle-seeding-limit-enabled":"Раздача будет остановлена если нет активности:"
                         ,"minuets":"Минут"
                         ,"nochange":"Без изменений"
@@ -218,10 +218,10 @@ system.lang = {
                         ,"remove-error":"Удаление прошло неудачно!"
                 }
                 ,"torrent-changeDownloadDir":{
-                        "title":"Изменить каталог загрузки"
+                        "title":"Изменить папку загрузки"
                         ,"old-download-dir":"Старый:"
                         ,"new-download-dir":"Новый:"
-                        ,"move-data":"Перенести данные из старого каталога в новый."
+                        ,"move-data":"Перенести данные из старой папки в новую."
                         ,"set-error":"ошибка!"
                         ,"recheck-data":"Перепроверить данные."
                 }
@@ -235,7 +235,7 @@ system.lang = {
                 ,"auto-match-data-folder":{
                         "title":"Автоматическое сопоставление путей"
                         ,"torrent-count":"Кол-во торрентов:"
-                        ,"folder-count":"Кол-во каталогов:"
+                        ,"folder-count":"Кол-во папок:"
                         ,"dictionary":"Список путей"
                         ,"time-begin":"Время начала:"
                         ,"time-now":"Текущее время:"
@@ -255,7 +255,7 @@ system.lang = {
                         "id":"#"
                         ,"name":"Название"
                         ,"hashString":"Хэш"
-                        ,"downloadDir":"Каталог"
+                        ,"downloadDir":"Папка"
                         ,"totalSize":"Размер"
                         ,"status":"Состояние"
                         ,"percentDone":"%"
@@ -328,7 +328,7 @@ system.lang = {
                                 ,"completeSize":"Загружено:"
                                 ,"leftUntilDone":"Осталось:"
                                 ,"hashString":"Хэш:"
-                                ,"downloadDir":"Каталог:"
+                                ,"downloadDir":"Папка:"
                                 ,"status":"Статус:"
                                 ,"rateDownload":"Скорость загрузки:"
                                 ,"rateUpload":"Скорость отдачи:"
