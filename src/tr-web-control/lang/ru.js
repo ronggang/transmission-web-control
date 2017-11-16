@@ -14,9 +14,10 @@ system.lang = {
         ,"error":{
                 "data-error":"Ошибка данных."
                 ,"data-post-error":"Ошибка отправки данных."
+                ,"rename-error":"Ошибка переименования файла/папки!"
         }
         ,"config":{
-                "save-path":"Каталог для загрузки"
+                "save-path":"Папка для загрузки"
         }
         ,"toolbar":{
                 "start":"Старт"
@@ -44,6 +45,7 @@ system.lang = {
                 ,"ui-original":"Оригинальный UI"
                 ,"ui-computer":"Стандартный UI"
                 ,"plugin":"Плагины"
+                ,"rename":"Переименовать"
                 ,"tip":{
                         "start":"Запустить выбранные торренты"
                         ,"pause":"Приостановить выбранные торренты"
@@ -63,10 +65,11 @@ system.lang = {
                         ,"autoreload-disabled":"Отключить автообновление"
                         ,"autoreload-enabled":"Включить автообновление"
                         ,"tracker-replace":"Заменить трекеры"
-                        ,"change-download-dir":"Изменить каталог загрузки"
+                        ,"change-download-dir":"Изменить папку загрузки"
                         ,"ui-mobile":"Мобильный UI"
                         ,"ui-original":"Оригинальный UI"
-                        ,"more-peers":"Запросить у трекера больше пиров"
+                        ,"more-peers":"Запрос больше пиров у трекера"
+                        ,"rename":"Переименовать"
                 }
         }
         ,"menus":{
@@ -113,10 +116,10 @@ system.lang = {
                         ,"secondsActive":"Время работы: "
                 }
                 ,"servers":"Трекеры"
-                ,"folders":"Каталоги"
+                ,"folders":"Папки"
                 ,"toolbar":{
                         "nav":{
-                                "folders":"Каталоги"
+                                "folders":"Папки"
                         }
                 }
         }
@@ -127,12 +130,12 @@ system.lang = {
         }
         ,"dialog":{
                 "torrent-add":{
-                        "download-dir":"Каталог загрузки:"
+                        "download-dir":"Папка загрузки:"
                         ,"torrent-url":"Ссылка на .torrent или magnet:"
                         ,"tip-torrent-url":"Новая ссылка с новой строки"
                         ,"autostart":"Начать загрузку:"
                         ,"tip-autostart":""
-                        ,"set-default-download-dir":"Выбрать как каталог по умолчанию"
+                        ,"set-default-download-dir":"Выбрать как папку по умолчанию"
                         ,"upload-file":"Файлы .torrent:"
                         ,"nosource":"Указанный источник не является файлом .torrent."
                         ,"tip-title":"Приоритет для загрузок указанных через URL"
@@ -146,12 +149,12 @@ system.lang = {
                                 ,"alt-speed":"Планировщик"
                                 ,"dictionary-folders":"Список путей"
                         }
-                        ,"config-dir":"Каталог конфигурации Transmission:"
-                        ,"download-dir":"Каталог для загрузки по умолчанию:"
+                        ,"config-dir":"Папка конфигурации Transmission (settings.json):"
+                        ,"download-dir":"Папка для загрузки по умолчанию:"
                         ,"download-dir-free-space":"Свободно места: "
-                        ,"incomplete-dir-enabled":"Использовать каталог для незавершенных файлов"
+                        ,"incomplete-dir-enabled":"Папка для не полностью загруженных файлов:"
                         ,"cache-size-mb":"Размер дискового кеша:"
-                        ,"rename-partial-files":"Загружать в файл '.part' незавершенные файлы"
+                        ,"rename-partial-files":"Добавлять расширение .part к не полностью загруженным файлам"
                         ,"start-added-torrents":"Автостарт для добавленных торрентов"
                         ,"download-queue-enabled":"Включить очередь загрузки, одновременно:"
                         ,"seed-queue-enabled":"Включить очередь отдачи, одновременно:"
@@ -192,7 +195,7 @@ system.lang = {
                         ,"blocklist-enabled":"Использовать черный список"
                         ,"blocklist-size":"Черный список содержит %n правил."
                         ,"seedRatioLimited":"Раздача будет остановлена на рейтинге:"
-                        ,"queue-stalled-enabled":"Считать торренты зависшими, если нет активности:"
+                        ,"queue-stalled-enabled":"Считать активные торрренты зависшими, если нет активности:"
                         ,"idle-seeding-limit-enabled":"Раздача будет остановлена если нет активности:"
                         ,"minuets":"Минут"
                         ,"nochange":"Без изменений"
@@ -208,7 +211,7 @@ system.lang = {
                         ,"button-config":"Настройка"
                 }
                 ,"about":{
-                        "infos":"Автор: culturist<br/>Дисклеймер: Большинство используемых изображений найдены в сети, если они нарушают ваши авторские права, сообщите автору для удаления."
+                        "infos":"Автор: culturist<br/>Дисклеймер: Большинство используемых изображений найдены в сети, если они нарушают Ваши авторские права, сообщите автору для удаления."
                         ,"check-update":"Проверить обновления"
                 }
                 ,"torrent-remove":{
@@ -218,10 +221,10 @@ system.lang = {
                         ,"remove-error":"Удаление прошло неудачно!"
                 }
                 ,"torrent-changeDownloadDir":{
-                        "title":"Изменить каталог загрузки"
-                        ,"old-download-dir":"Старый:"
-                        ,"new-download-dir":"Новый:"
-                        ,"move-data":"Перенести данные из старого каталога в новый."
+                        "title":"Изменить папку загрузки"
+                        ,"old-download-dir":"Старая:"
+                        ,"new-download-dir":"Новая:"
+                        ,"move-data":"Перенести данные из старой папки в новую."
                         ,"set-error":"ошибка!"
                         ,"recheck-data":"Перепроверить данные."
                 }
@@ -234,8 +237,8 @@ system.lang = {
                 }
                 ,"auto-match-data-folder":{
                         "title":"Автоматическое сопоставление путей"
-                        ,"torrent-count":"Кол-во торрентов:"
-                        ,"folder-count":"Кол-во каталогов:"
+                        ,"torrent-count":"Количество торрентов:"
+                        ,"folder-count":"Количество папок:"
                         ,"dictionary":"Список путей"
                         ,"time-begin":"Время начала:"
                         ,"time-now":"Текущее время:"
@@ -245,20 +248,25 @@ system.lang = {
                         ,"time-interval":"Интервал (секунд):"
                         ,"work-mode-title":"Режим:"
                         ,"work-mode":{
-                                "1":"Individually matched by torrent"
-                                ,"2":"Individually matched by folder"
-                        }
-                }
-        }
+                                "1":"Соответствие по торренту"
+                                ,"2":"Соответствие по папке"
+			}
+		}
+		,"torrent-rename": {
+			"title":"Переименовать Torrent",
+			"oldname": "Старый",
+			"newname": "Новый"
+		}
+	}
         ,"torrent":{
                 "fields":{
                         "id":"#"
                         ,"name":"Название"
                         ,"hashString":"Хэш"
-                        ,"downloadDir":"Каталог"
+                        ,"downloadDir":"Папка загрузки"
                         ,"totalSize":"Размер"
                         ,"status":"Состояние"
-                        ,"percentDone":"%"
+                        ,"percentDone":"Готово %"
                         ,"remainingTime":"Осталось"
                         ,"addedDate":"Добавлен"
                         ,"completeSize":"Загружено"
@@ -268,6 +276,7 @@ system.lang = {
                         ,"seederCount":"Сиды"
                         ,"uploadedEver":"Отдано"
                         ,"uploadRatio":"Рейтинг"
+                        ,"queuePosition":"Очередь"
                 }
                 ,"status-text":{
                         "0":"Пауза"
@@ -328,7 +337,7 @@ system.lang = {
                                 ,"completeSize":"Загружено:"
                                 ,"leftUntilDone":"Осталось:"
                                 ,"hashString":"Хэш:"
-                                ,"downloadDir":"Каталог:"
+                                ,"downloadDir":"Папка:"
                                 ,"status":"Статус:"
                                 ,"rateDownload":"Скорость загрузки:"
                                 ,"rateUpload":"Скорость отдачи:"
@@ -336,8 +345,8 @@ system.lang = {
                                 ,"seederCount":"Сидеры:"
                                 ,"uploadedEver":"Отдано всего:"
                                 ,"uploadRatio":"Рейтинг отдачи:"
-                                ,"creator":"Автор:"
-                                ,"dateCreated":"Создан:"
+                                ,"creator":"Создан:"
+                                ,"dateCreated":"Дата создания:"
                                 ,"comment":"Комментарий:"
                                 ,"errorString":"Ошибка:"
                                 ,"downloadLimited":"Максимальная скорость приема: "
