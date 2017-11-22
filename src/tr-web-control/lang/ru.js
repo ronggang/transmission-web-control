@@ -293,7 +293,7 @@ system.lang = {
 				,"servers":"Трекеры"
 				,"files":"Файлы"
 				,"users":"Пиры"
-				,"config":"Конфиг"
+				,"config":"Настройки"
 			}
 			,"files-fields":{
 				"name":"Название"
