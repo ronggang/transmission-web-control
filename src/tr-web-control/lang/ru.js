@@ -74,10 +74,10 @@ system.lang = {
 	}
 	,"menus":{
 		"queue":{
-			"move-top":"Сдвинуть вверх"
+			"move-top":"Сдвинуть в начало"
 			,"move-up":"Сдвинуть выше"
 			,"move-down":"Сдвинуть ниже"
-			,"move-bottom":"Сдвинуть вниз"
+			,"move-bottom":"Сдвинуть в конец"
 		}
 		,"plugin": {
 			"auto-match-data-folder": "Автосопоставление путей"
