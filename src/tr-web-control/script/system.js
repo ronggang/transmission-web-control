@@ -792,7 +792,7 @@ var system = {
 		var parent = this.contextMenus[type];
 		if (!parent)
 		{
-			parent = $("<div/>").attr("class","easyui-menu").css({"width":"180px"}).appendTo(this.panel.main);
+			parent = $("<div/>").attr("class","easyui-menu").css({"min-width":"180px"}).appendTo(this.panel.main);
 			this.contextMenus[type] = parent;
 			parent.menu();
 		}
