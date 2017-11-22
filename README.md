@@ -62,21 +62,21 @@
 #### 当前已支持的语言(Currently supported languages)：
 ||语言|合作者|最近更新|
 |-|-|-|-|
-|🇨🇳|[简体中文](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-CN.js)|栽培者, vodek3|`2017-04-14`|
-|🇨🇳|[正體中文](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-TW.js) |Sean, vodek3|`2017-04-14`|
-|🇬🇧|[英语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/en.js)|栽培者, ASAPHAANING, vodek3, DarkAlexWang|`2017-04-14` 
-|🇷🇺|[俄语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ru.js)|Oleksandr Gureiev, irherder, Isseq, DarkAlexWang, vodek3|`2017-11-16` 
-|🇪🇸|[西班牙语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/es.js)|Adrián González, malkavi, vodek3|`2017-04-14` 
-|🇵🇱|[波兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|`2017-04-14` 
-|🇭🇺|[匈牙利语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|`2017-04-14`
-|🇷🇴|[罗马尼亚](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|`2017-04-14` 
-|🇮🇹|[意大利](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|`2017-06-29` 
-|🇧🇷|[葡萄牙语（巴西）](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|`2017-09-29`
-|🇳🇱|[荷兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|`2017-04-14`
-|🇫🇷|[法语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|`2017-04-14` 
-|🇰🇷|[韩语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js)|kdsz330, vodek3|`2017-04-14`
-|🇵🇹|[葡萄牙语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js)|pcgaldo, vodek3|`2017-04-14`
-|🇺🇦|[乌克兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/uk.js)|Andrew, vodek3|`2017-04-14`
+|🇨🇳|[简体中文](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-CN.js)|栽培者, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/zh-CN.js)|
+|🇨🇳|[正體中文](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-TW.js) |Sean, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/zh-TW.js)|
+|🇬🇧|[英语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/en.js)|栽培者, ASAPHAANING, vodek3, DarkAlexWang|[2017-11-19](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/en.js)
+|🇷🇺|[俄语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ru.js)|Oleksandr Gureiev, irherder, Isseq, DarkAlexWang, vodek3|[2017-11-21](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ru.js)
+|🇪🇸|[西班牙语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/es.js)|Adrián González, malkavi, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/es.js)
+|🇵🇱|[波兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pl.js)
+|🇭🇺|[匈牙利语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/hu.js)
+|🇷🇴|[罗马尼亚](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ro.js)
+|🇮🇹|[意大利](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2017-06-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
+|🇧🇷|[葡萄牙语（巴西）](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|[2017-09-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-BR.js)
+|🇳🇱|[荷兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/nl.js)
+|🇫🇷|[法语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/fr.js)
+|🇰🇷|[韩语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js)|kdsz330, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ko.js)
+|🇵🇹|[葡萄牙语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js)|pcgaldo, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-PT.js)
+|🇺🇦|[乌克兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/uk.js)|Andrew, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/uk.js)
 
 
 -----
@@ -124,22 +124,21 @@ I will do my best to fix the issues in this repo.
 #### Currently supported languages：
 ||Language|Team|Update|
 |-|-|-|-|
-|🇨🇳|[Simplified Chinese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-CN.js)|ronggang, vodek3|`2017-04-14`|
-|🇨🇳|[Traditional Chinese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-TW.js) |Sean, vodek3|`2017-04-14`|
-|🇬🇧|[English](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/en.js)|ronggang, ASAPHAANING, vodek3, DarkAlexWang|`2017-04-14` 
-|🇷🇺|[Russian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ru.js)|Oleksandr Gureiev, irherder, Isseq, DarkAlexWang, vodek3|`2017-11-16` 
-|🇪🇸|[Spanish](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/es.js)|Adrián González, malkavi, vodek3|`2017-04-14` 
-|🇵🇱|[Polish](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|`2017-04-14` 
-|🇭🇺|[Hungarian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|`2017-04-14`
-|🇷🇴|[Romanian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|`2017-04-14` 
-|🇮🇹|[Italian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|`2017-06-29` 
-|🇧🇷|[Brazilian Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|`2017-09-29`
-|🇳🇱|[Dutch/Flemmisch](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|`2017-04-14`
-|🇫🇷|[French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|`2017-04-14` 
-|🇰🇷|[Korean](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js)|kdsz330, vodek3|`2017-04-14`
-|🇵🇹|[European Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js)|pcgaldo, vodek3|`2017-04-14`
-|🇺🇦|[Ukrainian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/uk.js)|Andrew, vodek3|`2017-04-14`
-
+|🇨🇳|[Simplified Chinese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-CN.js)|ronggang, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/zh-CN.js)|
+|🇨🇳|[Traditional Chinese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/zh-TW.js) |Sean, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/zh-TW.js)|
+|🇬🇧|[English](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/en.js)|ronggang, ASAPHAANING, vodek3, DarkAlexWang|[2017-11-19](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/en.js)
+|🇷🇺|[Russian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ru.js)|Oleksandr Gureiev, irherder, Isseq, DarkAlexWang, vodek3|[2017-11-21](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ru.js)
+|🇪🇸|[Spanish](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/es.js)|Adrián González, malkavi, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/es.js)
+|🇵🇱|[Polish](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pl.js)
+|🇭🇺|[Hungarian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/hu.js)
+|🇷🇴|[Romanian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ro.js)
+|🇮🇹|[Italian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2017-06-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
+|🇧🇷|[Brazilian Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|[2017-09-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-BR.js)
+|🇳🇱|[Dutch/Flemmisch](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/nl.js)
+|🇫🇷|[French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/fr.js)
+|🇰🇷|[Korean](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ko.js)|kdsz330, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ko.js)
+|🇵🇹|[European Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-PT.js)|pcgaldo, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-PT.js)
+|🇺🇦|[Ukrainian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/uk.js)|Andrew, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/uk.js)
 - **If you have translated a language pack, welcome pull requests.**
 
 ### How to install
