@@ -74,10 +74,10 @@ system.lang = {
 	}
 	,"menus":{
 		"queue":{
-			"move-top":"Сдвинуть вверх"
+			"move-top":"Сдвинуть в начало"
 			,"move-up":"Сдвинуть выше"
 			,"move-down":"Сдвинуть ниже"
-			,"move-bottom":"Сдвинуть вниз"
+			,"move-bottom":"Сдвинуть в конец"
 		}
 		,"plugin": {
 			"auto-match-data-folder": "Автосопоставление путей"
@@ -293,7 +293,7 @@ system.lang = {
 				,"servers":"Трекеры"
 				,"files":"Файлы"
 				,"users":"Пиры"
-				,"config":"Конфиг"
+				,"config":"Настройки"
 			}
 			,"files-fields":{
 				"name":"Название"
