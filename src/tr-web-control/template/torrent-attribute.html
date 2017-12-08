@@ -404,28 +404,7 @@
 					id:"pager-button-trackerAdd",
 					iconCls:'icon-tracker-add',
 					handler:function(){
-						var URL = prompt("Tracker:","");
-						var button = $(this);
-						if (URL!="")
-						{
-							var icon = button.linkbutton("options").iconCls;
-							button.linkbutton({disabled:true,iconCls:"icon-loading"});
-							transmission.exec({
-									method:"torrent-set"
-									,arguments:{
-										ids:system.currentTorrentId
-										,trackerAdd:[URL]
-									}
-								}
-								,function(data){
-									if (data.result=="success")
-									{
-										system.getTorrentInfos(system.currentTorrentId);
-									}
-									button.linkbutton({iconCls:icon,disabled:false});
-								}
-							);
-						}
+						addTracker();
 					}
 				},'-',{
 					id:"pager-button-trackerReplace",
@@ -502,6 +481,38 @@
 					);
 				}
 			}
+		}
+
+		/**
+		 * 添加Tracker 
+		 */
+		function addTracker() {
+			if (system.currentTorrentId==0) return;
+			
+			var dialog = $("#dialog-torrent-attribute-add-tracker");
+			if (dialog.length)
+			{
+				dialog.dialog("open");
+				dialog.data("ids",system.currentTorrentId);
+				dialog.dialog({content:system.templates["dialog-torrent-attribute-add-tracker.html"]});
+				return;
+			}
+			
+			$("<div/>").attr("id","dialog-torrent-attribute-add-tracker").appendTo(document.body).dialog({  
+				title: system.lang.dialog["torrent-attribute-add-tracker"].title,  
+				width: 520,
+				height: 240,
+				resizable: false,
+				cache: true,
+				content:"loading...",  
+				modal: true
+			});
+			
+			$.get(system.rootPath+"template/dialog-torrent-attribute-add-tracker.html?time="+(new Date()),function(data){
+				system.templates["dialog-torrent-attribute-add-tracker.html"] = data;
+				$("#dialog-torrent-attribute-add-tracker").data("ids",system.currentTorrentId);
+				$("#dialog-torrent-attribute-add-tracker").dialog({content:data});
+			});
 		}
 
 		// 用户列表
