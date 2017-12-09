@@ -259,7 +259,7 @@ system.lang = {
 		},
 		"torrent-attribute-add-tracker": {
 			"title": "Добавить трекеры",
-			"tip": "Одна строка - один трекер"
+			"tip": "Одна строка, один трекер"
 		}
 	}
 	,"torrent":{
