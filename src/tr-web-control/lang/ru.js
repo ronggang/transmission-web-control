@@ -256,6 +256,10 @@ system.lang = {
 		"title":"Переименовать Torrent",
 		"oldname": "Старый",
 		"newname": "Новый"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Добавить трекеры",
+			"tip": "Одна строка, один трекер"
 		}
 	}
 	,"torrent":{
