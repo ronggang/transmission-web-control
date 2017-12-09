@@ -256,6 +256,10 @@ system.lang = {
 			"title":"Renaming a Torrent's Path",
 			"oldname": "Old",
 			"newname": "New"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line, One Tracker"
 		}
 	}
 	,"torrent":{
