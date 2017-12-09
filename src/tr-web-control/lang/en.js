@@ -257,6 +257,10 @@ system.lang = {
 			"oldname": "Old",
 			"newname": "New"
 		}
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line One Tracker"
+		}
 	}
 	,"torrent":{
 		"fields":{
