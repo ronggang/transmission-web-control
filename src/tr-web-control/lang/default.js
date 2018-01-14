@@ -97,7 +97,7 @@ system.defaultLang = {
 		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
-		,"actively":"Actively"
+		,"actively":"Active"
 		,"check":"Checking"
 		,"wait":"Waiting"
 		,"search-result":"Search Result"
@@ -257,6 +257,10 @@ system.defaultLang = {
 			"oldname": "Old",
 			"newname": "New"
 		}
+		,"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line One Tracker"
+ 		}
 	}
 	,"torrent":{
 		"fields":{

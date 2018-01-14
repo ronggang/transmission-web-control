@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version:"1.1 Beta"
+	version:"1.4.0"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20170522"
+	,codeupdate:"20180114"
 	,configHead: "transmission-web-control"
 	// default config, can be customized in config.js
 	,config:{
@@ -25,7 +25,7 @@ var system = {
 	,dictionary:{
 		folders: null
 	}
-	,checkUpdateScript:"https://transmission-control.googlecode.com/svn/resouces/checkupdate.js"
+	,checkUpdateScript:"https://raw.githubusercontent.com/ronggang/transmission-web-control/dev/release/update.json"
 	,contextMenus:{
 	}
 	,panel:null
@@ -598,7 +598,7 @@ var system = {
 			var fields = data.fields;
 			if (system.userConfig.torrentList.fields.length!=0)
 			{
-				fields = system.userConfig.torrentList.fields;
+				fields = $.extend(fields,system.userConfig.torrentList.fields);
 			}
 
 			var _fields = JSON.stringify(fields);
@@ -792,7 +792,7 @@ var system = {
 		var parent = this.contextMenus[type];
 		if (!parent)
 		{
-			parent = $("<div/>").attr("class","easyui-menu").css({"width":"180px"}).appendTo(this.panel.main);
+			parent = $("<div/>").attr("class","easyui-menu").css({"min-width":"180px"}).appendTo(this.panel.main);
 			this.contextMenus[type] = parent;
 			parent.menu();
 		}
@@ -1333,10 +1333,11 @@ var system = {
 
 			if (errorIds.length>0)
 			{
+				system.debug("errorIds:",errorIds);
 				transmission.torrents.getallids(function(){
 					system.resetTorrentInfos(oldInfos);
 				},errorIds);
-			}
+			system.resetTorrentInfos(oldInfos);}
 			else
 			{
 				system.resetTorrentInfos(oldInfos);
@@ -2496,7 +2497,15 @@ var system = {
 					break;
 				}
 				break;
-
+			case "ratio":
+				field.formatter =  function(value,row,index){
+					var className = '';
+					if (parseFloat(value)<1)  {
+						className = 'text-status-warning';
+					}
+					return '<span class="'+className+'">'+value+'</span>';
+				};
+				break;
 			}
 		}
 	}
@@ -2592,10 +2601,11 @@ var system = {
 	,readConfig:function()
 	{
 		this.readUserConfig();
-		var config = cookies.get(this.configHead);
-		if ($.isPlainObject(config))
+		// 将原来的cookies的方式改为本地存储的方式
+		var config = this.getStorageData(this.configHead+'.system');
+		if (config)
 		{
-			this.config = $.extend(this.config, config);;
+			this.config = $.extend(this.config, JSON.parse(config));
 		}
 
 		for (var key in this.storageKeys.dictionary)
@@ -2606,7 +2616,7 @@ var system = {
 	// Save the parameters in cookies
 	,saveConfig:function()
 	{
-		cookies.set(this.configHead,this.config,100);
+		this.setStorageData(this.configHead+'.system',JSON.stringify(this.config));
 		for (var key in this.storageKeys.dictionary)
 		{
 			this.setStorageData(this.storageKeys.dictionary[key],this.dictionary[key]);
@@ -2644,14 +2654,19 @@ var system = {
 	}
 	,checkUpdate: function()
 	{
-		$.getScript(this.checkUpdateScript,function(){
-			if (system.codeupdate<system.lastUpdateInfos.update)
-			{
-				$("#area-update-infos").show();
-				$("#msg-updateInfos").html(system.lastUpdateInfos.update+" -> "+system.lastUpdateInfos.infos);
-			}
-			else
-				$("#area-update-infos").hide();
+		$.ajax({
+			url: this.checkUpdateScript,
+			dataType: "json",
+			success: function(result) {
+				if (result && result.update) {
+					if (system.codeupdate<result.update) {
+						$("#area-update-infos").show();
+						$("#msg-updateInfos").html(result.update+" -> "+result.infos);
+					} else {
+						$("#area-update-infos").hide();
+					}
+				}
+ 			}
 		});
 	}
 	// Set the language to reload the page
