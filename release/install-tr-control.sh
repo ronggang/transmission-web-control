@@ -35,8 +35,8 @@ findWebFolder() {
 	# 指定一次当前系统的默认目录
 	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
 	ROOT_FOLDER="/usr/local/transmission/share/transmission"
-	# Fedora 发行版的默认 ROOT_FOLDER 目录
-	if [ -f /etc/fedora-release ]; then
+	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
+	if [ -f /etc/fedora-release ] || [ -f "/etc/debian_version" ]; then
 		ROOT_FOLDER="/usr/share/transmission"
 	fi
 
