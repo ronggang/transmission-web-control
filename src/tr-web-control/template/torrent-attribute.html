@@ -1,6 +1,6 @@
 <div class="easyui-layout" data-options="fit:true" style="width:100%;height:100%;" id="torrent-attribute-layout">
 	<div data-options="region:'center'" style="padding:0px;border:0px;">
-		<div id="torrent-attribute-tabs" class="easyui-tabs" style="width:100%;height:100%;" data-options="fit:true,plain:true,tabPosition:'left',border:0,headerWidth:70">
+		<div id="torrent-attribute-tabs" class="easyui-tabs" style="width:100%;height:100%;" data-options="fit:true,plain:true,tabPosition:'left',border:0,headerWidth:105">
 			<div title="常规" style="padding:2px;" class="dialog">
 				<table style="width:100%;">
 					<tr>
@@ -132,7 +132,10 @@
 		thisLayout.find("#torrent-attribute-config-nochange").html(system.lang["public"]["text-nochange"]);
 		thisLayout.find("#torrent-attribute-config-saved").html(system.lang["public"]["text-saved"]);
 
-		thisLayout.find(".title").css({background:"#e6e6e6"});
+		thisLayout.find(".title").css({
+			// background:"#e6e6e6"
+			"border-bottom": "1px solid #ccc"
+		});
 
 		var tabs = thisLayout.find("#torrent-attribute-tabs");
 		tabs.tabs();
@@ -404,28 +407,7 @@
 					id:"pager-button-trackerAdd",
 					iconCls:'icon-tracker-add',
 					handler:function(){
-						var URL = prompt("Tracker:","");
-						var button = $(this);
-						if (URL!="")
-						{
-							var icon = button.linkbutton("options").iconCls;
-							button.linkbutton({disabled:true,iconCls:"icon-loading"});
-							transmission.exec({
-									method:"torrent-set"
-									,arguments:{
-										ids:system.currentTorrentId
-										,trackerAdd:[URL]
-									}
-								}
-								,function(data){
-									if (data.result=="success")
-									{
-										system.getTorrentInfos(system.currentTorrentId);
-									}
-									button.linkbutton({iconCls:icon,disabled:false});
-								}
-							);
-						}
+						addTracker();
 					}
 				},'-',{
 					id:"pager-button-trackerReplace",
@@ -502,6 +484,38 @@
 					);
 				}
 			}
+		}
+
+		/**
+		 * 添加Tracker 
+		 */
+		function addTracker() {
+			if (system.currentTorrentId==0) return;
+			
+			var dialog = $("#dialog-torrent-attribute-add-tracker");
+			if (dialog.length)
+			{
+				dialog.dialog("open");
+				dialog.data("ids",system.currentTorrentId);
+				dialog.dialog({content:system.templates["dialog-torrent-attribute-add-tracker.html"]});
+				return;
+			}
+			
+			$("<div/>").attr("id","dialog-torrent-attribute-add-tracker").appendTo(document.body).dialog({  
+				title: system.lang.dialog["torrent-attribute-add-tracker"].title,  
+				width: 520,
+				height: 240,
+				resizable: false,
+				cache: true,
+				content:"loading...",  
+				modal: true
+			});
+			
+			$.get(system.rootPath+"template/dialog-torrent-attribute-add-tracker.html?time="+(new Date()),function(data){
+				system.templates["dialog-torrent-attribute-add-tracker.html"] = data;
+				$("#dialog-torrent-attribute-add-tracker").data("ids",system.currentTorrentId);
+				$("#dialog-torrent-attribute-add-tracker").dialog({content:data});
+			});
 		}
 
 		// 用户列表

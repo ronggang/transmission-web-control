@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version:"1.2 Beta"
+	version:"1.4.1"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20171015"
+	,codeupdate:"20180208"
 	,configHead: "transmission-web-control"
 	// default config, can be customized in config.js
 	,config:{
@@ -25,7 +25,7 @@ var system = {
 	,dictionary:{
 		folders: null
 	}
-	,checkUpdateScript:"https://transmission-control.googlecode.com/svn/resouces/checkupdate.js"
+	,checkUpdateScript:"https://raw.githubusercontent.com/ronggang/transmission-web-control/dev/release/update.json"
 	,contextMenus:{
 	}
 	,panel:null
@@ -131,9 +131,11 @@ var system = {
 		{
 			this.setlang(lang,function(){system.initdata()});
 		}
-		else
+		else {
 			this.initdata();
+		}
 
+		this.initThemes();
 	}
 	// Set the language information
 	,resetLangText:function(parent)
@@ -297,7 +299,7 @@ var system = {
 		this.connect();
 		this.initEvent();
 		// Check for updates
-		//this.checkUpdate();
+		this.checkUpdate();
 	}
 	//
 	,initEvent:function()
@@ -598,7 +600,7 @@ var system = {
 			var fields = data.fields;
 			if (system.userConfig.torrentList.fields.length!=0)
 			{
-				fields = system.userConfig.torrentList.fields;
+				fields = $.extend(fields,system.userConfig.torrentList.fields);
 			}
 
 			var _fields = JSON.stringify(fields);
@@ -792,7 +794,7 @@ var system = {
 		var parent = this.contextMenus[type];
 		if (!parent)
 		{
-			parent = $("<div/>").attr("class","easyui-menu").css({"width":"180px"}).appendTo(this.panel.main);
+			parent = $("<div/>").attr("class","easyui-menu").css({"min-width":"180px"}).appendTo(this.panel.main);
 			this.contextMenus[type] = parent;
 			parent.menu();
 		}
@@ -2496,6 +2498,15 @@ var system = {
 					break;
 				}
 				break;
+			case "ratio":
+				field.formatter =  function(value,row,index){
+					var className = '';
+					if (parseFloat(value)<1)  {
+						className = 'text-status-warning';
+					}
+					return '<span class="'+className+'">'+value+'</span>';
+				};
+				break;
 
 			}
 		}
@@ -2645,14 +2656,19 @@ var system = {
 	}
 	,checkUpdate: function()
 	{
-		$.getScript(this.checkUpdateScript,function(){
-			if (system.codeupdate<system.lastUpdateInfos.update)
-			{
-				$("#area-update-infos").show();
-				$("#msg-updateInfos").html(system.lastUpdateInfos.update+" -> "+system.lastUpdateInfos.infos);
+		$.ajax({
+			url: this.checkUpdateScript,
+			dataType: "json",
+			success: function(result) {
+				if (result && result.update) {
+					if (system.codeupdate<result.update) {
+						$("#area-update-infos").show();
+						$("#msg-updateInfos").html(result.update+" -> "+result.infos);
+					} else {
+						$("#area-update-infos").hide();
+					}
+				}
 			}
-			else
-				$("#area-update-infos").hide();
 		});
 	}
 	// Set the language to reload the page
@@ -2737,6 +2753,27 @@ var system = {
 			{
 				window.console.log(label,text);
 			}
+		}
+	},
+	/**
+	 * 初始化主题
+	 */
+	initThemes: function() {
+		if (this.themes) {
+			$('#select-themes').combobox({
+				groupField:'group',
+				data: this.themes,
+				editable: false,
+				panelHeight:'auto',
+				onChange: function(value) {
+					$("#styleEasyui").attr('href', 'tr-web-control/script/easyui/themes/'+value+'/easyui.css');
+					system.config.theme = value;
+					system.saveConfig();
+				},
+				onLoadSuccess:function(){
+					$(this).combobox('setValue', system.config.theme||"default");
+				}
+			});
 		}
 	}
 };

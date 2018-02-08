@@ -97,7 +97,7 @@ system.defaultLang = {
 		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
-		,"actively":"Actively"
+		,"actively":"Active"
 		,"check":"Checking"
 		,"wait":"Waiting"
 		,"search-result":"Search Result"
@@ -132,7 +132,7 @@ system.defaultLang = {
 		"torrent-add":{
 			"download-dir":"Download Dir:"
 			,"torrent-url":"Torrent URL:"
-			,"tip-torrent-url":"Tip：Please add multiple content with an  'Enter' key press to separate"
+			,"tip-torrent-url":"Tip: Please add multiple content with an  'Enter' key press to separate"
 			,"autostart":"Auto Start:"
 			,"tip-autostart":""
 			,"set-default-download-dir":"Set as default directory"
@@ -256,6 +256,10 @@ system.defaultLang = {
 			"title":"Renaming a Torrent's Path",
 			"oldname": "Old",
 			"newname": "New"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line One Tracker"
 		}
 	}
 	,"torrent":{

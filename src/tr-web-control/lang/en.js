@@ -14,6 +14,7 @@ system.lang = {
 	,"error":{
 		"data-error":"Data error."
 		,"data-post-error":"Data post error."
+		,"rename-error":"Error renaming file/folder!"
 	}
 	,"config":{
 		"save-path":"Download dir"
@@ -44,6 +45,7 @@ system.lang = {
 		,"ui-original":"Original UI"
 		,"ui-computer":"Desktop UI"
 		,"plugin":"Extensions/plugins"
+		,"rename":"Rename"
 		,"tip":{
 			"start":"Start the checked torrents"
 			,"pause":"Pause the checked torrents"
@@ -63,10 +65,11 @@ system.lang = {
 			,"autoreload-disabled":"Disabled auto reload"
 			,"autoreload-enabled":"Enabled auto reload"
 			,"tracker-replace":"Replace trackers"
-			,"change-download-dir":"Set location"
+			,"change-download-dir":"Change download location"
 			,"ui-mobile":"Mobile UI"
 			,"ui-original":"Original UI"
 			,"more-peers":"Ask tracker for more peers"
+			,"rename":"Renaming a Torrent's Path"
 		}
 	}
 	,"menus":{
@@ -94,7 +97,7 @@ system.lang = {
 		,"sending":"Seeding"
 		,"error":"Error"
 		,"warning":"Warning"
-		,"actively":"Actively"
+		,"actively":"Active"
 		,"check":"Checking"
 		,"wait":"Waiting"
 		,"search-result":"Search Result"
@@ -248,6 +251,15 @@ system.lang = {
 				"1":"Individually matched by torrent"
 				,"2":"Individually matched by folder"
 			}
+		}
+		,"torrent-rename": {
+			"title":"Renaming a Torrent's Path",
+			"oldname": "Old",
+			"newname": "New"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line, One Tracker"
 		}
 	}
 	,"torrent":{

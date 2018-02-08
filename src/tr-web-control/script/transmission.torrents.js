@@ -231,9 +231,11 @@ transmission.torrents = {
 	addTracker: function(item) {
 		var trackerStats = item.trackerStats;
 		var haveWarning = false;
+		var trackers = [];
 
 		item.leecherCount = 0;
 		item.seederCount = 0;
+
 		if (trackerStats.length > 0) {
 			for (var index in trackerStats) {
 				var trackerInfo = trackerStats[index];
@@ -275,6 +277,7 @@ transmission.torrents = {
 				tracker.size += item.totalSize;
 				item.leecherCount += trackerInfo.leecherCount;
 				item.seederCount += trackerInfo.seederCount;
+				trackers.push(name);
 			}
 			if (haveWarning) {
 				// 设置下次更新时间
@@ -293,6 +296,7 @@ transmission.torrents = {
 			//item.seeder = item.seederCount+" | "+item.peersSendingToUs;
 			item.leecher = item.leecherCount + " (" + item.peersGettingFromUs + ")";
 			item.seeder = item.seederCount + " (" + item.peersSendingToUs + ")";
+			item.trackers = trackers.join(";");
 		}
 	},
 	// 获取下载者和做种者数量测试
