@@ -132,7 +132,10 @@
 		thisLayout.find("#torrent-attribute-config-nochange").html(system.lang["public"]["text-nochange"]);
 		thisLayout.find("#torrent-attribute-config-saved").html(system.lang["public"]["text-saved"]);
 
-		thisLayout.find(".title").css({background:"#e6e6e6"});
+		thisLayout.find(".title").css({
+			// background:"#e6e6e6"
+			"border-bottom": "1px solid #ccc"
+		});
 
 		var tabs = thisLayout.find("#torrent-attribute-tabs");
 		tabs.tabs();

@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version:"1.4.0"
+	version:"1.4.1"
 	,rootPath: "tr-web-control/"
-	,codeupdate:"20171108"
+	,codeupdate:"20180208"
 	,configHead: "transmission-web-control"
 	// default config, can be customized in config.js
 	,config:{
@@ -131,9 +131,11 @@ var system = {
 		{
 			this.setlang(lang,function(){system.initdata()});
 		}
-		else
+		else {
 			this.initdata();
+		}
 
+		this.initThemes();
 	}
 	// Set the language information
 	,resetLangText:function(parent)
@@ -2751,6 +2753,27 @@ var system = {
 			{
 				window.console.log(label,text);
 			}
+		}
+	},
+	/**
+	 * 初始化主题
+	 */
+	initThemes: function() {
+		if (this.themes) {
+			$('#select-themes').combobox({
+				groupField:'group',
+				data: this.themes,
+				editable: false,
+				panelHeight:'auto',
+				onChange: function(value) {
+					$("#styleEasyui").attr('href', 'tr-web-control/script/easyui/themes/'+value+'/easyui.css');
+					system.config.theme = value;
+					system.saveConfig();
+				},
+				onLoadSuccess:function(){
+					$(this).combobox('setValue', system.config.theme||"default");
+				}
+			});
 		}
 	}
 };
