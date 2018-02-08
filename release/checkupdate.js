@@ -1,4 +1,4 @@
 system.lastUpdateInfos = {
-	update:"20171027"
-	,infos:"增加分享率颜色显示，增加 trackers 栏，详见更新日志 (See changelog)"
+	update: "20180208",
+	infos: "版本更新至 1.4.1"
 };
