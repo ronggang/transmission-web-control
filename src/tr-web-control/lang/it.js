@@ -127,7 +127,7 @@ system.lang = {
 				"base":"Base"
 				,"network":"Rete"
 				,"limit":"Limiti"
-				,"alt-speed":"Schedulazione"
+				,"alt-speed":"Programmazione"
 			}
 			,"config-dir":"Cartella con i file di configurazione di Transmission:"
 			,"download-dir":"Cartella di download di default:"
@@ -161,7 +161,7 @@ system.lang = {
 			,"alt-speed-enabled":"Usa le velocità alternative"
 			,"alt-speed-down":"Velocità massima di download:"
 			,"alt-speed-up":"Velocità massima di upload:"
-			,"alt-speed-time-enabled":"Usa la schedulazione"
+			,"alt-speed-time-enabled":"Usa la programmazione"
 			,"alt-speed-time":"Orario"
 			,"weekday":{
 				"1":"Lunedì"
