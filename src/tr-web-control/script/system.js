@@ -2348,12 +2348,10 @@ var system = {
 	// Fill in the torrent server list
 	,fillTorrentServerList:function(torrent)
 	{
-		var trackers = torrent.trackers;
 		var trackerStats = torrent.trackerStats;
 		var datas = new Array();
-		for (var index in trackers)
+		for (var index in trackerStats)
 		{
-			var item = trackers[index];
 			var stats = trackerStats[index];
 			var rowdata = {};
 			for (var key in stats)

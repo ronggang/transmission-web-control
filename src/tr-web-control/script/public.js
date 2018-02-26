@@ -12,6 +12,20 @@ String.prototype.right = function(len)
 	return (this.substr(-len));
 }
 
+String.prototype.getHostName = function() {
+	var url = this;
+	var result = url;
+	var regex = /^\w+\:\/\/([^\/]*).*/;
+	var match = url.match(regex);
+	if (typeof match != "undefined" && null != match) {
+		result = match[1];
+		if (result.indexOf(":") != -1) {
+			result = result.split(":")[0];
+		}
+	}
+	return result;
+}
+
 
 //公用函数定义
 //格式化数字

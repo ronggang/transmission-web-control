@@ -240,7 +240,8 @@ transmission.torrents = {
 			for (var index in trackerStats) {
 				var trackerInfo = trackerStats[index];
 				var lastResult = trackerInfo.lastAnnounceResult.toLowerCase();
-				var trackerUrl = (trackerInfo.host.replace("http://", "").replace("https://", "").split(":")[0]).split(".");
+				var hostName = trackerInfo.host.getHostName();
+				var trackerUrl = hostName.split(".");
 				if ($.inArray(trackerUrl[0], "www,tracker".split(",")) != -1) {
 					trackerUrl.shift();
 				}
@@ -272,12 +273,17 @@ transmission.torrents = {
 					}
 				}
 
-				tracker.torrents.push(item);
-				tracker.count++;
-				tracker.size += item.totalSize;
+				if (tracker.torrents.indexOf(item)==-1) {
+					tracker.torrents.push(item);
+					tracker.count++;
+					tracker.size += item.totalSize;
+				}
+				
 				item.leecherCount += trackerInfo.leecherCount;
 				item.seederCount += trackerInfo.seederCount;
-				trackers.push(name);
+				if (trackers.indexOf(name)==-1) {
+					trackers.push(name);
+				}
 			}
 			if (haveWarning) {
 				// 设置下次更新时间
@@ -292,8 +298,6 @@ transmission.torrents = {
 			if (item.leecherCount < 0) item.leecherCount = 0;
 			if (item.seederCount < 0) item.seederCount = 0;
 
-			//item.leecher = item.leecherCount+" | "+item.peersGettingFromUs;
-			//item.seeder = item.seederCount+" | "+item.peersSendingToUs;
 			item.leecher = item.leecherCount + " (" + item.peersGettingFromUs + ")";
 			item.seeder = item.seederCount + " (" + item.peersSendingToUs + ")";
 			item.trackers = trackers.join(";");
