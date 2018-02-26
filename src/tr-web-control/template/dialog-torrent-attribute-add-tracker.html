@@ -42,7 +42,7 @@
 				var newTrackers = [];
 				var items = urls.split("\n");
 				$.each(items, function(index, value) {
-					if (isURL(value)) {
+					if (isURL(value) && newTrackers.indexOf(value)==-1) {
 						newTrackers.push(value);
 					}
 				});
