@@ -8,12 +8,15 @@
 本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Google Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
 本项目设计之初仅针对PT站，因此增加了 Tracker 服务器分组及状态，但这不并适用于普通BT种子。
 
+另外，本项目仅为一套自定义的WebUI，不能代替 Transmission 工作，用户需要自行安装 Transmission 后才可正常使，Transmission 安装方法请稳步至官网：https://www.transmissionbt.com/
+
+因项目使用人数日渐增多，本人能力及时间有限，为保持项目持续更新，现已为本项目建立QQ群（群号：723130968 <a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=353d3f247de2b78c071e28a31777022424660c97c9fdd6f25640a4a51c6b9d65" ><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="Transmission Web Control" title="Transmission Web Control (723130968)"></a>），欢迎各界朋友一起讨论，互帮互助。
+
 ### 界面预览
 ![tr-web-control](https://user-images.githubusercontent.com/8065899/32538836-0c2d970e-c42d-11e7-966d-84210bb41825.png)
 
-### 支持的Transmission版本(Support Transmission Version)
+### 支持的Transmission版本
  - Transmission 2.40 及以上版本（RPC版本：14及以上）
- - Transmission 2.40 and above (RPC version: 14 and above)
 
 ### [更新日志](https://github.com/ronggang/transmission-web-control/blob/master/CHANGELOG.md)
 
@@ -39,7 +42,7 @@
 ~~~
   https://github.com/ronggang/transmission-web-control/raw/master/release/src.tar.gz
 ~~~
- - 或到下载安装脚本，此脚本只需要下载一次，以后只需要执行即可:
+ - 或下载安装脚本，此脚本只需要下载一次，以后更新只需要执行即可:
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh
   sudo bash install-tr-control.sh
@@ -70,7 +73,7 @@
 |🇵🇱|[波兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pl.js)
 |🇭🇺|[匈牙利语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/hu.js)
 |🇷🇴|[罗马尼亚](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ro.js)
-|🇮🇹|[意大利](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2017-06-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
+|🇮🇹|[意大利](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2018-02-15](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
 |🇧🇷|[葡萄牙语（巴西）](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|[2017-09-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-BR.js)
 |🇳🇱|[荷兰语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/nl.js)
 |🇫🇷|[法语](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/fr.js)
@@ -132,7 +135,7 @@ I will do my best to fix the issues in this repo.
 |🇵🇱|[Polish](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pl.js)|Daniel Kolek, Piotr Kozica, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pl.js)
 |🇭🇺|[Hungarian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/hu.js)|Swartzy, Marcell, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/hu.js)
 |🇷🇴|[Romanian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/ro.js)|Laurentiu Dinulescu, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/ro.js)
-|🇮🇹|[Italian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2017-06-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
+|🇮🇹|[Italian](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/it.js)|Daniele Buccilli, vodek3, Oliver Cervera|[2018-02-15](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/it.js)
 |🇧🇷|[Brazilian Portuguese](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/pt-BR.js)|Dudu Maroja, pcgaldo, vodek3, Brivaldo Junior, DarkAlexWang|[2017-09-29](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/pt-BR.js)
 |🇳🇱|[Dutch/Flemmisch](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/nl.js)|Alwin Hummels, Jeroen, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/nl.js)
 |🇫🇷|[French](https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/lang/fr.js)|Amaury Aubry, ewan34500, vodek3|[2017-04-14](https://github.com/ronggang/transmission-web-control/commits/master/src/tr-web-control/lang/fr.js)
@@ -148,7 +151,7 @@ I will do my best to fix the issues in this repo.
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/src.tar.gz
 ~~~
- - Latest easy-install script:
+ - Latest easy-install script, This script only needs to be downloaded once and executed when the version is updated.
 ~~~
   wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh
   sudo bash install-tr-control.sh
@@ -166,4 +169,4 @@ I will do my best to fix the issues in this repo.
 ~~~
 
 
-###### 创建于(Create): 2012.12.18；更新于(Update): 2014.10.13 By 栽培者(ronggang); Updated: 03-31-2017 by DarkAlexWang  ######
+###### 创建于(Create): 2012.12.18；更新于(Update): 2018.02.26 By 栽培者(ronggang); Updated: 03-31-2017 by DarkAlexWang  ######
