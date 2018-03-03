@@ -116,6 +116,7 @@
 	display:inline-block;
 	width:auto;
 	padding-left:19px;
+	min-height: 16px;
 	margin-top:2px;
 	text-overflow: ellipsis;
 	overflow: hidden;
