@@ -1,5 +1,6 @@
 #!/bin/sh
-ROOT_FOLDER=""
+# 获取第一个参数做为目录
+ROOT_FOLDER="$1"
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
 INDEX_FILE="index.html"
@@ -11,6 +12,7 @@ DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 1 安装至当前 Transmission Web 所在目录
 # 2 安装至 TRANSMISSION_WEB_HOME 环境变量指定的目录，参考：https://github.com/transmission/transmission/wiki/Environment-Variables#transmission-specific-variables
 # 使用环境变量时，如果 transmission 不是当前用户运行的，则需要将 TRANSMISSION_WEB_HOME 添加至 /etc/profile 文件，以达到“永久”的目的
+# 3 用户指定参数做为目录，如 sh install-tr-control.sh /usr/local/transmission/share/transmission
 INSTALL_TYPE=-1
 
 # 开始
@@ -20,8 +22,15 @@ main() {
 		mkdir -p "$TMP_FOLDER"
 	fi
 
-	# 查找目录
-	findWebFolder
+	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
+	if [ -d "$ROOT_FOLDER" ]; then
+		echo "use arg: $ROOT_FOLDER"
+		INSTALL_TYPE=3
+		WEB_FOLDER="$ROOT_FOLDER/web"
+	else
+		# 查找目录
+		findWebFolder
+	fi
 	# 安装
 	install
 	# 清理
@@ -39,7 +48,7 @@ findWebFolder() {
 	if [ -f /etc/fedora-release ] || [ -f "/etc/debian_version" ]; then
 		ROOT_FOLDER="/usr/share/transmission"
 	fi
-
+		
 	# 判断 TRANSMISSION_WEB_HOME 环境变量是否被定义，如果是，直接用这个变量的值
 	if [ $TRANSMISSION_WEB_HOME ]; then
 		echo "use TRANSMISSION_WEB_HOME: $TRANSMISSION_WEB_HOME"
@@ -65,7 +74,7 @@ findWebFolder() {
 # 安装
 install() {
 	# 如果目录存在，则进行下载和更新动作
-	if [ $INSTALL_TYPE = 1 ]; then
+	if [ $INSTALL_TYPE = 1 -o $INSTALL_TYPE = 3 ]; then
 		# 下载最新的安装包
 		download
 		echo "Installing..."
