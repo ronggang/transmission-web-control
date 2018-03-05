@@ -43,7 +43,7 @@ system.themes = [{
 		group: 'Base'
 	},
 	{
-		value: 'black',
+		value: 'black;logo-white.png',
 		text: 'Black',
 		group: 'Base'
 	},
@@ -78,7 +78,7 @@ system.themes = [{
 		group: 'UI'
 	},
 	{
-		value: 'ui-dark-hive',
+		value: 'ui-dark-hive;logo-white.png',
 		text: 'Dark Hive',
 		group: 'UI'
 	},

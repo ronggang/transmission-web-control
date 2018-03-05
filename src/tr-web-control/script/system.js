@@ -2764,7 +2764,11 @@ var system = {
 				editable: false,
 				panelHeight:'auto',
 				onChange: function(value) {
-					$("#styleEasyui").attr('href', 'tr-web-control/script/easyui/themes/'+value+'/easyui.css');
+					var values = (value+";").split(";");
+					var theme = values[0];
+					var logo = values[1]||"logo.png";
+					$("#styleEasyui").attr('href', 'tr-web-control/script/easyui/themes/'+theme+'/easyui.css');
+					$("#logo").attr("src", "tr-web-control/"+logo);
 					system.config.theme = value;
 					system.saveConfig();
 				},
