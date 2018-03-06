@@ -37,27 +37,7 @@
 ### 浏览器支持
  - 所有支持HTML5的浏览器(Chrome 15.0.874，Firefox 8.0.1，IE 9.0.8112，Opera 11.52)
 
-### 安装方法
- - 可通过以下地址获取最新版的程序：
-~~~
-  https://github.com/ronggang/transmission-web-control/raw/master/release/src.tar.gz
-~~~
- - 或下载安装脚本，此脚本只需要下载一次，以后更新只需要执行即可:
-~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh
-  sudo bash install-tr-control.sh
-~~~
- - 如果需要http而不是https，请使用以下命令:
-~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control.sh --no-check-certificate
-  sudo bash install-tr-control.sh
-~~~
- - 如果需要安装到群晖 `Download Station`，请下载下列安装脚本并运行：
-~~~
-  wget https://github.com/ronggang/transmission-web-control/raw/master/release/ds-control-easy-install.sh
-  sudo bash ds-control-easy-install-en-http.sh
-~~~
- - 群晖 `Download Station` 安装注意事项，请参考这个 [Wiki](https://github.com/ronggang/transmission-web-control/wiki/%E5%85%B3%E4%BA%8E-Synology-Download-Station) 。
+### 安装方法请参考 [Wiki](https://github.com/ronggang/transmission-web-control/wiki) 。
 
 ### 关于多语言(Multi-language)
 系统使用多语言的方式构建，所以可以支持其他任何语言；但，由于本人水平有限，只会中文，所以需要懂其他语言的您的帮助，如果您已经翻译好了一个语言版本，欢迎提交 pull requests，我们会合并后分享给更多的用户，谢谢。
