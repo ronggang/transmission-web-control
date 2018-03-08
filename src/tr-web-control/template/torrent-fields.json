@@ -19,5 +19,6 @@
 		,{"field":"queuePosition","width":"30","align":"center"}
 		,{"field":"trackers","width":"100","align":"left","sortable":true}
 		,{"field":"downloadDir","width":200,"align":"left","sortable":true}
+		,{"field":"activityDate","width":130,"align":"center","sortable":true,"formatter":"longtime"}
 	]
 }

@@ -8,7 +8,8 @@ system.lang = {
 			"connected": "已连接至服务器",
 			"queue": "队列：",
 			"queuefinish": "本次队列完成。",
-			"notfinal": "未完成……"
+			"notfinal": "未完成……",
+			"checked": "已选中 %n 条数据："
 		}
 	},
 	"error": {
@@ -210,8 +211,10 @@ system.lang = {
 			"button-config": "设置"
 		},
 		"about": {
-			"infos": "程序设计、制作：栽培者<br/>声明：本程序使用的大部分图标来自网络，如有侵犯您的权益，请与本人联系删除。<br/>如您有什么意见建议，也欢迎与我联系。",
-			"check-update": "检查更新"
+			"infos": "程序设计：栽培者<br/>使用帮助：<a href='https://github.com/ronggang/transmission-web-control/wiki/Home-CN'>查看</a><br/>QQ群：723130968 <a target='_blank' href='https://shang.qq.com/wpa/qunwpa?idkey=353d3f247de2b78c071e28a31777022424660c97c9fdd6f25640a4a51c6b9d65' ><img border='0' src='https://pub.idqqimg.com/wpa/images/group.png' alt='Transmission Web Control' title='Transmission Web Control (723130968)'></a>",
+			"check-update": "检查更新",
+			"home": "项目主页",
+			"help": "使用帮助"
 		},
 		"torrent-remove": {
 			"title": "删除种子确认",
@@ -279,7 +282,8 @@ system.lang = {
 			"seederCount": "种子|活跃",
 			"uploadedEver": "已上传",
 			"uploadRatio": "分享率",
-			"queuePosition": "队列"
+			"queuePosition": "队列",
+			"activityDate": "最后活动于"
 		},
 		"status-text": {
 			"0": "已暂停",
