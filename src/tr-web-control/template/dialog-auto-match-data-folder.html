@@ -64,7 +64,7 @@
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<span id="text-nochange" style="display:none;"></span>
-		<span id="text-count" style=""></span>
+		<span id="text-count"></span>
 		<a id="button-ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" href="javascript:void(0);">Cancel</a>  
 	</div>
@@ -119,8 +119,6 @@
 		$.each("button-ok,button-cancel".split(","), function(i, item){
 			thisDialog.find("#"+item).html(system.lang.dialog["public"][item]);
 		});
-
-		thisDialog.find(".title").css({background:"#e6e6e6"});
 
 		// Cancel
 		thisDialog.find("#button-cancel").click(function()
