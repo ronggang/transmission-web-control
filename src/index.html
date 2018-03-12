@@ -14,7 +14,7 @@
 	<link id="styleEasyui" rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20180208"/>  
 	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20180208"/>
 	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20180208"/>
-	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_vwnk0ttel0yn9udi.css"/>
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_dgegcjrqys7tlnmi.css"/>
 	<!-- Base class library -->
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
@@ -43,6 +43,10 @@
 	.tree-title {
 		display: inline;
 	}
+
+	.iconfont {
+		background: url("") no-repeat;
+	}
 </style>
 <body>
 	<div id="main" class="easyui-layout">
@@ -65,7 +69,7 @@
 						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><label system-lang="toolbar['ui-original']"></label></a>
 						<span class="button-split">|</span>
 						<!-- 关于 -->
-						<a id="toolbar_about" href="javascript:void(0);" onclick="javascript:system.openDialogFromTemplate({id: 'dialog-about',options: {title: system.lang.toolbar['about'],width: 400,height: 310}});" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true" system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>
+						<a id="toolbar_about" href="javascript:void(0);" onclick="javascript:system.openDialogFromTemplate({id: 'dialog-about',options: {title: system.lang.toolbar['about'],width: 420,height: 350}});" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true" system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>
 					</div>
 					<div style="float:right;display:none;">Language：<select id="lang" value="" style="width:200px;"></select></div>
 				</div>
@@ -75,7 +79,7 @@
 					<a id="toolbar_add_torrents" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-plus',plain:true,disabled:true"></a>
 					<span class="button-split">|</span>
 					<!-- 限速 -->
-					<a id="toolbar_alt_speed" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-alt-speed-false',plain:true"></a>
+					<a id="toolbar_alt_speed" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-rocket',plain:true"></a>
 					<span class="button-split">|</span>
 					<!-- 刷新 -->
 					<a id="toolbar_reload" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-reload',plain:true"></a>
@@ -94,7 +98,7 @@
 					<!-- 删除 -->
 					<a id="toolbar_remove" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-delete',plain:true,disabled:true"></a>
 					<!-- 重新校验 -->
-					<a id="toolbar_recheck" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-recheck-torrent',plain:true,disabled:true"></a>
+					<a id="toolbar_recheck" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-data-check',plain:true,disabled:true"></a>
 					<!-- 获取更多Peers -->
 					<a id="toolbar_morepeers" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-more-peers',plain:true,disabled:true" system-tip-lang="toolbar.tip['more-peers']"></a>
 					<!-- 设置下载目录 -->

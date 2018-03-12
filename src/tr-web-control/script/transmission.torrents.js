@@ -254,7 +254,8 @@ transmission.torrents = {
 						count: 0,
 						torrents: new Array(),
 						size: 0,
-						connected: true
+						connected: true,
+						isBT: (trackerStats.length>1)
 					};
 					tracker = transmission.trackers[id];
 				}

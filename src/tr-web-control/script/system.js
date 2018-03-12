@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.5.0",
+	version: "1.5.0 beta",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180308",
+	codeupdate: "20180312",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -410,42 +410,42 @@ var system = {
 		this.panel.left.tree({
 			data: [{
 					id: "torrent-all",
-					iconCls: "icon-home",
+					iconCls: "iconfont tr-icon-home",
 					text: this.lang.tree.all + " (" + this.lang.tree.status.loading + ")",
 					children: [{
 						id: "downloading",
 						text: this.lang.tree.downloading,
-						iconCls: "icon-download"
+						iconCls: "iconfont tr-icon-download"
 					}, {
 						id: "paused",
 						text: this.lang.tree.paused,
-						iconCls: "icon-pause"
+						iconCls: "iconfont tr-icon-pause2"
 					}, {
 						id: "sending",
 						text: this.lang.tree.sending,
-						iconCls: "icon-seed"
+						iconCls: "iconfont tr-icon-upload"
 					}, {
 						id: "check",
 						text: this.lang.tree.check,
-						iconCls: "icon-check"
+						iconCls: "iconfont tr-icon-data-check"
 					}, {
 						id: "actively",
 						text: this.lang.tree.actively,
-						iconCls: "icon-actively"
+						iconCls: "iconfont tr-icon-actively"
 					}, {
 						id: "error",
 						text: this.lang.tree.error,
-						iconCls: "icon-error"
+						iconCls: "iconfont tr-icon-errors"
 					}, {
 						id: "warning",
 						text: this.lang.tree.warning,
-						iconCls: "icon-warning"
+						iconCls: "iconfont tr-icon-warning"
 					}]
 				}, {
 					id: "servers",
 					text: this.lang.tree.servers,
 					state: "closed",
-					iconCls: "icon-servers",
+					iconCls: "iconfont tr-icon-servers",
 					children: [{
 						id: "servers-loading",
 						text: this.lang.tree.status.loading,
@@ -454,6 +454,7 @@ var system = {
 				}, {
 					id: "folders",
 					text: this.lang.tree.folders,
+					iconCls: "iconfont tr-icon-folder",
 					children: [{
 						id: "folders-loading",
 						text: this.lang.tree.status.loading,
@@ -463,44 +464,56 @@ var system = {
 					id: "statistics",
 					text: this.lang.tree.statistics.title,
 					state: "closed",
-					iconCls: "icon-chart",
+					iconCls: "iconfont tr-icon-shuju",
 					children: [{
 						id: "cumulative-stats",
 						text: this.lang.tree.statistics.cumulative,
+						iconCls: "iconfont tr-icon-folder",
 						children: [{
 							id: "uploadedBytes",
-							text: this.lang.tree.statistics.uploadedBytes
+							text: this.lang.tree.statistics.uploadedBytes,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "downloadedBytes",
-							text: this.lang.tree.statistics.downloadedBytes
+							text: this.lang.tree.statistics.downloadedBytes,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "filesAdded",
-							text: this.lang.tree.statistics.filesAdded
+							text: this.lang.tree.statistics.filesAdded,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "sessionCount",
-							text: this.lang.tree.statistics.sessionCount
+							text: this.lang.tree.statistics.sessionCount,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "secondsActive",
-							text: this.lang.tree.statistics.secondsActive
+							text: this.lang.tree.statistics.secondsActive,
+							iconCls: "iconfont tr-icon-empty"
 						}]
 					}, {
 						id: "current-stats",
 						text: this.lang.tree.statistics.current,
+						iconCls: "iconfont tr-icon-folder",
 						children: [{
 							id: "current-uploadedBytes",
-							text: this.lang.tree.statistics.uploadedBytes
+							text: this.lang.tree.statistics.uploadedBytes,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "current-downloadedBytes",
-							text: this.lang.tree.statistics.downloadedBytes
+							text: this.lang.tree.statistics.downloadedBytes,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "current-filesAdded",
-							text: this.lang.tree.statistics.filesAdded
+							text: this.lang.tree.statistics.filesAdded,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "current-sessionCount",
-							text: this.lang.tree.statistics.sessionCount
+							text: this.lang.tree.statistics.sessionCount,
+							iconCls: "iconfont tr-icon-empty"
 						}, {
 							id: "current-secondsActive",
-							text: this.lang.tree.statistics.secondsActive
+							text: this.lang.tree.statistics.secondsActive,
+							iconCls: "iconfont tr-icon-empty"
 						}]
 					}]
 				}
@@ -1145,7 +1158,7 @@ var system = {
 				var button = $(this);
 				var options = button.linkbutton("options");
 				var enabled = false;
-				if (options.iconCls == "icon-alt-speed-false") {
+				if (options.iconCls == "iconfont tr-icon-rocket") {
 					enabled = true;
 				}
 				transmission.exec({
@@ -1157,7 +1170,7 @@ var system = {
 					if (data.result == "success") {
 						system.serverConfig["alt-speed-enabled"] = enabled;
 						button.linkbutton({
-							iconCls: "icon-alt-speed-" + enabled.toString()
+							iconCls: "iconfont tr-icon-" + (enabled?"woniu":"rocket")//"icon-alt-speed-" + enabled.toString()
 						});
 						if (enabled) {
 							$("#status_alt_speed").show();
@@ -1238,12 +1251,12 @@ var system = {
 				", WEB Control: " + system.version + "(" + system.codeupdate + ")");
 			if (result["alt-speed-enabled"] == true) {
 				system.panel.toolbar.find("#toolbar_alt_speed").linkbutton({
-					iconCls: "icon-alt-speed-true"
+					iconCls: "iconfont tr-icon-woniu"
 				});
 				$("#status_alt_speed").show();
 			} else {
 				system.panel.toolbar.find("#toolbar_alt_speed").linkbutton({
-					iconCls: "icon-alt-speed-false"
+					iconCls: "iconfont tr-icon-rocket"
 				});
 				$("#status_alt_speed").hide();
 			}
@@ -1312,40 +1325,62 @@ var system = {
 	// refresh the tree
 	resetTorrentInfos: function (oldInfos) {
 		var currentTorrentId = this.currentTorrentId;
-		var parentNode = this.panel.left.tree("find", "servers");
-		if (parentNode) {
-			var parentNode_collapsed = parentNode.state
+		// 获取服务器分布主节点
+		var serversNode = this.panel.left.tree("find", "servers");
+		if (serversNode) {
+			var serversNode_collapsed = serversNode.state;
 			this.removeTreeNode("servers-loading");
 		} else {
 			this.appendTreeNode(null, [{
 				id: "servers",
 				text: this.lang.tree.servers,
 				state: "closed",
-				iconCls: "icon-servers"
+				iconCls: "iconfont tr-icon-servers"
 			}]);
-			parentNode = this.panel.left.tree("find", "servers");
+			serversNode = this.panel.left.tree("find", "servers");
 		}
 
 		var datas = new Array();
+		var BTServersNode = this.panel.left.tree("find", "btservers");
+		// 加载服务器列表
 		for (var index in transmission.trackers) {
 			var tracker = transmission.trackers[index];
+			if (tracker.isBT) {
+				// 是否显示BT服务器
+				if (!system.config.showBTServers) {
+					continue;
+				}
+				if (!BTServersNode) {
+					this.appendTreeNode(serversNode, [{
+						id: "btservers",
+						text: "BT",
+						state: "open",
+						iconCls: "iconfont tr-icon-bt"
+					}]);
+					BTServersNode = this.panel.left.tree("find", "btservers");
+				}
+			}
 			var node = system.panel.left.tree("find", tracker.nodeid);
 			var text = tracker.name + this.showNodeMoreInfos(tracker.count, tracker.size);
 			if (node) {
-				system.updateTreeNodeText(tracker.nodeid, text, (tracker.connected ? "icon-server" : "icon-server-error"));
+				system.updateTreeNodeText(tracker.nodeid, text, (tracker.connected ? "iconfont tr-icon-server" : "iconfont tr-icon-server-error"));
 			} else {
-				system.appendTreeNode(parentNode, [{
+				system.appendTreeNode((tracker.isBT? BTServersNode: serversNode), [{
 					id: tracker.nodeid,
 					text: text,
-					iconCls: (tracker.connected ? "icon-server" : "icon-server-error")
+					iconCls: (tracker.connected ? "iconfont tr-icon-server" : "iconfont tr-icon-server-error")
 				}]);
 			}
 
 			oldInfos.trackers[tracker.nodeid] = null;
 		}
 		// Collapse the node if it was before
-		if (parentNode_collapsed == "closed") {
-			this.panel.left.tree("collapse", parentNode.target);
+		if (serversNode_collapsed == "closed") {
+			this.panel.left.tree("collapse", serversNode.target);
+		}
+
+		if (system.config.showBTServers) {
+			this.panel.left.tree("collapse", BTServersNode.target);
 		}
 
 		// Delete the server that no longer exists
@@ -1380,7 +1415,7 @@ var system = {
 				system.appendTreeNode(node, [{
 					id: "seedwait",
 					text: text,
-					iconCls: "icon-wait"
+					iconCls: "iconfont tr-icon-wait"
 				}]);
 			}
 		} else {
@@ -1404,7 +1439,7 @@ var system = {
 				system.appendTreeNode(node, [{
 					id: "checkwait",
 					text: text,
-					iconCls: "icon-wait"
+					iconCls: "iconfont tr-icon-wait"
 				}]);
 			}
 		} else {
@@ -1428,7 +1463,7 @@ var system = {
 				system.appendTreeNode(node, [{
 					id: "downloadwait",
 					text: text,
-					iconCls: "icon-wait"
+					iconCls: "iconfont tr-icon-wait"
 				}]);
 			}
 		} else {
@@ -1528,9 +1563,9 @@ var system = {
 			$("#status_uploadspeed").html(formatSize(data["uploadSpeed"], false, "speed"));
 			system.serverSessionStats = data;
 			if (data["torrentCount"] == 0) {
-				var parentNode = system.panel.left.tree("find", "servers");
-				if (parentNode) {
-					system.panel.left.tree('remove', parentNode.target);
+				var serversNode = system.panel.left.tree("find", "servers");
+				if (serversNode) {
+					system.panel.left.tree('remove', serversNode.target);
 				}
 				system.updateTreeNodeText("torrent-all", system.lang.tree.all);
 			}
@@ -2016,7 +2051,7 @@ var system = {
 			this.appendTreeNode("torrent-all", [{
 				id: "search-result",
 				text: text,
-				iconCls: "icon-search"
+				iconCls: "iconfont tr-icon-search"
 			}]);
 			node = this.panel.left.tree("find", "search-result");
 		} else {
@@ -2417,7 +2452,8 @@ var system = {
 			if (!node) {
 				this.appendTreeNode(parentkey, [{
 					id: key,
-					text: text
+					text: text,
+					iconCls: "iconfont tr-icon-file"
 				}]);
 				if (parentkey != rootkey) {
 					node = this.panel.left.tree("find", parentkey);

@@ -215,7 +215,9 @@ system.defaultLang = {
 			"infos": "Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete.",
 			"check-update": "Check Update",
 			"home": "Project Home",
-			"help": "Wiki"
+			"help": "Wiki",
+			"donate": "Donate",
+			"pt-plugin": "PT Plugin"
 		},
 		"torrent-remove": {
 			"title": "Remove confirm",

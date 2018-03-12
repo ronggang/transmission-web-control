@@ -18,7 +18,9 @@ system.config = {
 	//show Folders
 	foldersShow: false,
 	// theme
-	theme: "default"
+	theme: "default",
+	// 是否显示BT服务器
+	showBTServers: false
 };
 
 // 主题样式
