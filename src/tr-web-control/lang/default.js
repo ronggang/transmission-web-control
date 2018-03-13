@@ -148,7 +148,8 @@ system.defaultLang = {
 				"network": "Network",
 				"limit": "Limit",
 				"alt-speed": "Scheduled",
-				"dictionary-folders": "Folders Dictionary"
+				"dictionary-folders": "Folders Dictionary",
+				"more": "More"
 			},
 			"config-dir": "Location of transmission's configuration directory:",
 			"download-dir": "Default path to download torrents:",
@@ -200,7 +201,8 @@ system.defaultLang = {
 			"idle-seeding-limit-enabled": "Torrents we're seeding will be stopped if they're idle for this long:",
 			"minutes": "Minutes",
 			"nochange": "No change",
-			"saving": "Saving..."
+			"saving": "Saving...",
+			"show-bt-servers": "Show 'BT servers' on Trackers."
 		},
 		"public": {
 			"button-ok": "OK",

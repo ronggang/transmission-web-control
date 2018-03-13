@@ -14,7 +14,11 @@ var system = {
 		defaultSelectNode: null,
 		autoExpandAttribute: false,
 		defaultLang: "",
-		foldersShow: false
+		foldersShow: false,
+		// theme
+		theme: "default",
+		// 是否显示BT服务器
+		showBTServers: false
 	},
 	storageKeys: {
 		dictionary: {
@@ -1342,6 +1346,7 @@ var system = {
 
 		var datas = new Array();
 		var BTServersNode = this.panel.left.tree("find", "btservers");
+		var BTServersNodeState = (BTServersNode?BTServersNode.state:"close");
 		// 加载服务器列表
 		for (var index in transmission.trackers) {
 			var tracker = transmission.trackers[index];
@@ -1379,7 +1384,7 @@ var system = {
 			this.panel.left.tree("collapse", serversNode.target);
 		}
 
-		if (system.config.showBTServers) {
+		if (system.config.showBTServers && BTServersNode && BTServersNodeState == "closed") {
 			this.panel.left.tree("collapse", BTServersNode.target);
 		}
 
@@ -1665,7 +1670,12 @@ var system = {
 
 		switch (parent.id) {
 			case "servers":
-				torrents = transmission.trackers[config.node.id].torrents;
+			case "btservers":
+				if (config.node.id=="btservers") {
+					torrents = transmission.torrents.btItems;
+				} else {
+					torrents = transmission.trackers[config.node.id].torrents;
+				}
 				break;
 			default:
 				switch (config.node.id) {
@@ -1712,6 +1722,10 @@ var system = {
 
 					case "search-result":
 						torrents = transmission.torrents.searchResult;
+						break;
+
+					case "btservers":
+						torrents = transmission.torrents.btItems;
 						break;
 
 					default:

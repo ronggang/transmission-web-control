@@ -147,7 +147,8 @@ system.lang = {
 				"network": "网络传输",
 				"limit": "带宽限制",
 				"alt-speed": "时段限制",
-				"dictionary-folders": "目录字典"
+				"dictionary-folders": "目录字典",
+				"more": "额外设置"
 			},
 			"config-dir": "Transmission 配置文件目录（只读）：",
 			"download-dir": "默认保存目录：",
@@ -199,7 +200,8 @@ system.lang = {
 			"idle-seeding-limit-enabled": "当种子超过这个时间没有流量时，自动停止做种：",
 			"minuets": "分钟",
 			"nochange": "参数未改变",
-			"saveing": "正在保存..."
+			"saveing": "正在保存...",
+			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。"
 		},
 		"public": {
 			"button-ok": "确定",
