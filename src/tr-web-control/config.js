@@ -1,4 +1,4 @@
-system.config = {
+system.config = $.extend(system.config, {
 	// Whether to enable automatic refresh
 	autoReload: true,
 	// Automatic refresh rate (ms)
@@ -21,7 +21,7 @@ system.config = {
 	theme: "default",
 	// 是否显示BT服务器
 	showBTServers: false
-};
+});
 
 // 主题样式
 system.themes = [{

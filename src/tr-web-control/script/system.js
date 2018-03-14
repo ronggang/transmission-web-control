@@ -18,7 +18,12 @@ var system = {
 		// theme
 		theme: "default",
 		// 是否显示BT服务器
-		showBTServers: false
+		showBTServers: false,
+		ui: {
+			tree: {
+				status: {}
+			}
+		}
 	},
 	storageKeys: {
 		dictionary: {
@@ -528,7 +533,15 @@ var system = {
 					node: node
 				});
 			},
-			lines: true
+			lines: true,
+			onExpand: function(node) {
+				system.config.ui.tree.status[node.id] = node.state;
+				system.saveConfig();
+			},
+			onCollapse: function(node) {
+				system.config.ui.tree.status[node.id] = node.state;
+				system.saveConfig();
+			}
 		});
 
 		for (var key in this.lang.tree.toolbar.nav) {
