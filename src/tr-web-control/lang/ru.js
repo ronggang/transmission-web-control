@@ -8,7 +8,8 @@ system.lang = {
 			,"connected":"Соединено"
 			,"queue":"Очередь:"
 			,"queuefinish":"Очередь загрузки завершена."
-			,"notfinal":"Не завершена"
+			,"notfinal":"Не завершена",
+			"checked": "%n data checked: "
 		}
 	}
 	,"error":{
@@ -212,7 +213,11 @@ system.lang = {
 		}
 		,"about":{
 			"infos":"Автор: culturist<br/>Дисклеймер: Большинство используемых изображений найдены в сети, если они нарушают Ваши авторские права, сообщите автору для удаления."
-			,"check-update":"Проверить обновления"
+			,"check-update":"Проверить обновления",
+			"home": "Project Home",
+			"help": "Wiki",
+			"donate": "Donate",
+			"pt-plugin": "PT Plugin"
 		}
 		,"torrent-remove":{
 			"title":"Удалить торрент"
@@ -280,7 +285,8 @@ system.lang = {
 			,"seederCount":"Сиды"
 			,"uploadedEver":"Отдано"
 			,"uploadRatio":"Рейтинг"
-			,"queuePosition":"Очередь"
+			,"queuePosition":"Очередь",
+			"activityDate": "Activity Date"
 		}
 		,"status-text":{
 			"0":"Пауза"
