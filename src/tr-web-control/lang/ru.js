@@ -9,7 +9,7 @@ system.lang = {
 			,"queue":"Очередь:"
 			,"queuefinish":"Очередь загрузки завершена."
 			,"notfinal":"Не завершена",
-			"checked": "%n data checked: "
+			"checked": "Отмечено %n торрент(а/ов): "
 		}
 	}
 	,"error":{
@@ -214,9 +214,9 @@ system.lang = {
 		,"about":{
 			"infos":"Автор: culturist<br/>Дисклеймер: Большинство используемых изображений найдены в сети, если они нарушают Ваши авторские права, сообщите автору для удаления."
 			,"check-update":"Проверить обновления",
-			"home": "Project Home",
+			"home": "Домашняя страница проекта",
 			"help": "Wiki",
-			"donate": "Donate",
+			"donate": "Поддержать проект",
 			"pt-plugin": "PT Plugin"
 		}
 		,"torrent-remove":{
@@ -286,7 +286,7 @@ system.lang = {
 			,"uploadedEver":"Отдано"
 			,"uploadRatio":"Рейтинг"
 			,"queuePosition":"Очередь",
-			"activityDate": "Activity Date"
+			"activityDate": "Последняя активность"
 		}
 		,"status-text":{
 			"0":"Пауза"
