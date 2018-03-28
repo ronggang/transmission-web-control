@@ -47,6 +47,7 @@ system.defaultLang = {
 		"ui-computer": "Desktop UI",
 		"plugin": "Extensions/plugins",
 		"rename": "Rename",
+		"copy-path-to-clipboard": "Copy download location to clipboard",
 		"tip": {
 			"start": "Start the checked torrents",
 			"pause": "Pause the checked torrents",
@@ -70,7 +71,8 @@ system.defaultLang = {
 			"ui-mobile": "Mobile UI",
 			"ui-original": "Original UI",
 			"more-peers": "Ask tracker for more peers",
-			"rename": "Renaming a Torrent's Path"
+			"rename": "Renaming a Torrent's Path",
+			"copy-path-to-clipboard": "Copy download location to clipboard"
 		}
 	},
 	"menus": {

@@ -20,8 +20,14 @@ var system = {
 		// 是否显示BT服务器
 		showBTServers: false,
 		ui: {
-			tree: {
-				status: {}
+			status: {
+				tree: {},
+				layout: {
+					main: {},
+					body: {},
+					left: {}
+				},
+				panel: {}
 			}
 		}
 	},
@@ -125,9 +131,10 @@ var system = {
 			top: $("#m_top"),
 			toolbar: $("#m_toolbar"),
 			left_layout: $("#m_left_layout"),
-			left: $("#m_left"),
+			left: $("#m_left").hide(),
 			body: $("#m_body"),
 			layout_body: $("#layout_body"),
+			layout_left: $("#layout_left"),
 			list: $("#m_list"),
 			attribute: $("#m_attribute"),
 			bottom: $("#m_bottom"),
@@ -147,6 +154,9 @@ var system = {
 		}
 
 		this.initThemes();
+		// 剪切板组件
+		this.clipboard = new ClipboardJS('#toolbar_copyPath');
+
 	},
 	// Set the language information
 	resetLangText: function (parent) {
@@ -216,12 +226,12 @@ var system = {
 		// Initialize the torrent list column title
 		title = "<span>" + this.lang.title.list + "</span>";
 		buttons.length = 0;
-		buttons.push("<span class='tree-title-toolbar'>");
-		for (var key in this.lang["torrent-head"].buttons) {
-			var value = this.lang["torrent-head"].buttons[key];
-			buttons.push('<a href="javascript:void(0);" id="torrent-head-buttons-' + key + '" class="easyui-linkbutton" data-options="plain:true,iconCls:\'icon-disabled\'" onclick="javascript:system.navToolbarClick(this);">' + value + "</a>");
-		}
-		buttons.push("</span>");
+		// buttons.push("<span class='tree-title-toolbar'>");
+		// for (var key in this.lang["torrent-head"].buttons) {
+		// 	var value = this.lang["torrent-head"].buttons[key];
+		// 	buttons.push('<a href="javascript:void(0);" id="torrent-head-buttons-' + key + '" class="easyui-linkbutton" data-options="plain:true,iconCls:\'icon-disabled\'" onclick="javascript:system.navToolbarClick(this);">' + value + "</a>");
+		// }
+		// buttons.push("</span>");
 		if (buttons.length > 1) {
 			title += buttons.join("");
 			this.panel.body.panel("setTitle", title);
@@ -250,6 +260,7 @@ var system = {
 		}
 
 		this.panel.status.panel("setTitle", this.lang.title.status);
+		// 设置属性栏
 		this.panel.attribute.panel({
 			title: this.lang.title.attribute,
 			onExpand: function () {
@@ -335,6 +346,51 @@ var system = {
 			system.control.torrentlist.datagrid("uncheckAll");
 		});
 
+		// 树型目录事件
+		this.panel.left.tree({
+			onExpand: function(node) {
+				system.config.ui.status.tree[node.id] = node.state;
+				system.saveConfig();
+			},
+			onCollapse: function(node) {
+				system.config.ui.status.tree[node.id] = node.state;
+				system.saveConfig();
+			}
+		});
+
+		// 设置属性栏
+		this.panel.layout_body.layout({
+			onExpand: function (region) {
+				system.config.ui.status.layout.body[region] = "open";
+				system.saveConfig();
+			},
+			onCollapse: function(region) {
+				system.config.ui.status.layout.body[region] = "closed";
+				system.saveConfig();
+			}
+		});
+
+		this.panel.layout_left.layout({
+			onExpand: function (region) {
+				system.config.ui.status.layout.left[region] = "open";
+				system.saveConfig();
+			},
+			onCollapse: function(region) {
+				system.config.ui.status.layout.left[region] = "closed";
+				system.saveConfig();
+			}
+		});
+
+		this.panel.main.layout({
+			onExpand: function (region) {
+				system.config.ui.status.layout.main[region] = "open";
+				system.saveConfig();
+			},
+			onCollapse: function(region) {
+				system.config.ui.status.layout.main[region] = "closed";
+				system.saveConfig();
+			}
+		});
 	},
 	// Navigation toolbar Click Events
 	navToolbarClick: function (source) {
@@ -464,6 +520,7 @@ var system = {
 					id: "folders",
 					text: this.lang.tree.folders,
 					iconCls: "iconfont tr-icon-folder",
+					state: "closed",
 					children: [{
 						id: "folders-loading",
 						text: this.lang.tree.status.loading,
@@ -533,15 +590,7 @@ var system = {
 					node: node
 				});
 			},
-			lines: true,
-			onExpand: function(node) {
-				system.config.ui.tree.status[node.id] = node.state;
-				system.saveConfig();
-			},
-			onCollapse: function(node) {
-				system.config.ui.tree.status[node.id] = node.state;
-				system.saveConfig();
-			}
+			lines: true
 		});
 
 		for (var key in this.lang.tree.toolbar.nav) {
@@ -562,6 +611,51 @@ var system = {
 			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
 			if (node) {
 				this.panel.left.tree("select", node.target);
+			}
+		}
+	},
+	/**
+	 * 初始化界面状态
+	 */
+	initUIStatus: function() {
+		var status = this.config.ui.status.tree;
+		for (var key in status) {
+			var node = this.panel.left.tree("find", key);
+			if (node && node.target) {
+				if (status[key]=="open") {
+					this.panel.left.tree("expand", node.target);
+				} else {
+					this.panel.left.tree("collapse", node.target);
+				}
+			}
+		}
+
+		this.panel.left.show();
+
+		status = this.config.ui.status.layout.body;
+		for (var key in status) {
+			if (status[key]=="open") {
+				this.panel.layout_body.layout("expand", key);
+			} else {
+				this.panel.layout_body.layout("collapse", key);
+			}
+		}
+
+		status = this.config.ui.status.layout.left;
+		for (var key in status) {
+			if (status[key]=="open") {
+				this.panel.layout_left.layout("expand", key);
+			} else {
+				this.panel.layout_left.layout("collapse", key);
+			}
+		}
+
+		status = this.config.ui.status.layout.main;
+		for (var key in status) {
+			if (status[key]=="open") {
+				this.panel.main.layout("expand", key);
+			} else {
+				this.panel.main.layout("collapse", key);
 			}
 		}
 	},
@@ -620,22 +714,22 @@ var system = {
 						flag_onselect = false;
 					}
 
-					if (system.config.autoExpandAttribute) {
-						// If it is not expanded, expand it
-						if (system.panel.attribute.panel("options").collapsed)
-							system.panel.layout_body.layout("expand", "south");
-					}
+					// if (system.config.autoExpandAttribute) {
+					// 	// If it is not expanded, expand it
+					// 	if (system.panel.attribute.panel("options").collapsed)
+					// 		system.panel.layout_body.layout("expand", "south");
+					// }
 					system.getTorrentInfos(rowData.id);
 					selectedIndex = rowIndex;
 				},
 				onUnselect: function (rowIndex, rowData) {
-					if (system.config.autoExpandAttribute) {
-						if (flag_onselect == false) {
-							// If expanded, collapse it
-							if (!system.panel.attribute.panel("options").collapsed)
-								system.panel.layout_body.layout("collapse", "south");
-						}
-					}
+					// if (system.config.autoExpandAttribute) {
+					// 	if (flag_onselect == false) {
+					// 		// If expanded, collapse it
+					// 		if (!system.panel.attribute.panel("options").collapsed)
+					// 			system.panel.layout_body.layout("collapse", "south");
+					// 	}
+					// }
 					system.currentTorrentId = 0;
 					selectedIndex = -1;
 				},
@@ -767,7 +861,7 @@ var system = {
 
 		switch (type) {
 			case "torrent-list":
-				menus = new Array("start", "pause", "-", "rename", "remove", "recheck", "-", "morepeers", "changeDownloadDir", "-", "menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom");
+				menus = new Array("start", "pause", "-", "rename", "remove", "recheck", "-", "morepeers", "changeDownloadDir", "copyPath", "-", "menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom");
 				var toolbar = this.panel.toolbar;
 				for (var item in menus) {
 					var key = menus[item];
@@ -825,7 +919,7 @@ var system = {
 			if (this.control.torrentlist.datagrid("getRows").length==0) {
 				return;
 			}
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: rowData
 			});
 
@@ -839,7 +933,7 @@ var system = {
 		// 如果没有被选中的数据时
 		if (this.checkedRows.length == 0) {
 			// 禁用所有菜单
-			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: true
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
@@ -848,7 +942,7 @@ var system = {
 		// 当仅有一条数据被选中时
 		} else if (this.checkedRows.length == 1) {
 			// 设置 删除、改名、变更保存目录、移动队列功能可用
-			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir", this.panel.toolbar).linkbutton({
+			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
@@ -887,7 +981,7 @@ var system = {
 
 		// 多条数据被选中时
 		} else {
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			$("#toolbar_rename, #toolbar_morepeers", this.panel.toolbar).linkbutton({
@@ -905,10 +999,14 @@ var system = {
 			this.showStatus(undefined, 0);
 			var items = [];
 			var text = this.lang.system.status.checked.replace("%n", this.checkedRows.length);
+			var paths = [];
 			$("<div style='padding: 5px;'/>").html(text).appendTo(this.panel.status_text);
 			for (var index = 0; index < this.checkedRows.length; index++) {
 				var item = this.checkedRows[index];
 				items.push({value: index, text: (index+1)+". "+item.name});
+				if ($.inArray(item.downloadDir, paths)===-1) {
+					paths.push(item.downloadDir);
+				}
 			}
 			$("<div/>").appendTo(this.panel.status_text).datalist({
 				data: items
@@ -918,10 +1016,12 @@ var system = {
 				border: 0
 			});
 			$("#button-cancel-checked").show();
+			$("#clipboard-source").val(paths.join("\n"));
 		} else {
 			// this.showStatus("无", 100);
 			$("#button-cancel-checked").hide();
 			this.panel.status_text.empty();
+			$("#clipboard-source").val("");
 		}
 	},
 	// Initialize the System Toolbar
@@ -1233,6 +1333,10 @@ var system = {
 			},
 			prompt: this.lang.toolbar["search-prompt"]
 		});
+
+		this.panel.toolbar.find("#toolbar_copyPath")
+			.linkbutton()
+			.attr("title", this.lang.toolbar.tip["copy-path-to-clipboard"]);
 	},
 	// Initialize the status bar
 	initStatusBar: function () {
@@ -1257,6 +1361,9 @@ var system = {
 		}, function () {
 			system.reloadSession(true);
 			system.getServerStatus();
+			setTimeout(function(){
+				system.initUIStatus();
+			}, 300);
 		});
 	},
 	// Reload the server information
@@ -2504,7 +2611,7 @@ var system = {
 		// 将原来的cookies的方式改为本地存储的方式
 		var config = this.getStorageData(this.configHead + '.system');
 		if (config) {
-			this.config = $.extend(this.config, JSON.parse(config));
+			this.config = $.extend(true, this.config, JSON.parse(config));
 		}
 
 		for (var key in this.storageKeys.dictionary) {

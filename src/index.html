@@ -14,7 +14,7 @@
 	<link id="styleEasyui" rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20180312"/>  
 	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20180312"/>
 	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20180312"/>
-	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_dgegcjrqys7tlnmi.css"/>
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_ggookhq7noyzm2t9.css"/>
 	<!-- Base class library -->
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
@@ -24,6 +24,7 @@
 	<script type="text/javascript" src="tr-web-control/script/easyui/plugins/jquery.datagrid.drophead.js"></script>
 	<!-- -->
 	<!-- System class library -->
+	<script type="text/javascript" src="tr-web-control/script/min/clipboard.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20180312"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/ua-parser.min.js?v=20180312"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20180312"></script>
@@ -103,6 +104,8 @@
 					<a id="toolbar_morepeers" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-more-peers',plain:true,disabled:true" system-tip-lang="toolbar.tip['more-peers']"></a>
 					<!-- 设置下载目录 -->
 					<a id="toolbar_changeDownloadDir" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-folder-change',plain:true,disabled:true"></a>
+					<!-- 复制下载目录 -->
+					<a id="toolbar_copyPath" href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-clippy',plain:true,disabled:true" data-clipboard-action="copy" data-clipboard-target="#clipboard-source"></a>
 					<span class="button-split">|</span>
 					<!-- 队列 -->
 					<a id="toolbar_queue" href="#" class="easyui-menubutton" data-options="menu:'#menu-queue',iconCls:'iconfont tr-icon-queue-move',disabled:true" system-tip-lang="toolbar.queue"></a>
@@ -162,5 +165,6 @@
 		<div id="menu-plugin-tracker-replace" data-options="iconCls:'iconfont tr-icon-replace'" system-tip-lang="toolbar.tip['tracker-replace']" onclick="system.plugin.exec('replace-tracker');"><span system-lang="toolbar['tracker-replace']"></span></div>
 		<div id="menu-plugin-auto-match-data-folder" data-options="iconCls:'iconfont tr-icon-auto-match'" system-tip-lang="menus.plugin['auto-match-data-folder']" onclick="system.plugin.exec('auto-match-data-folder');"><span system-lang="menus.plugin['auto-match-data-folder']"></span></div>
 	</div>
+	<textarea id="clipboard-source"></textarea>
 </body>
 </html>

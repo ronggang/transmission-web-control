@@ -47,6 +47,7 @@ system.lang = {
 		"ui-computer": "桌面UI",
 		"plugin": "扩展功能/插件",
 		"rename": "改名",
+		"copy-path-to-clipboard": "复制保存目录到剪切板",
 		"tip": {
 			"start": "重新开始已经选中的种子",
 			"pause": "暂停已经选中的种子",
@@ -70,7 +71,8 @@ system.lang = {
 			"ui-mobile": "切换到移动设备界面",
 			"ui-original": "切换到原版界面",
 			"more-peers": "获取更多Peer",
-			"rename": "修改种子文件或目录名称"
+			"rename": "修改种子文件或目录名称",
+			"copy-path-to-clipboard": "复制保存目录到剪切板",
 		}
 	},
 	"menus": {
