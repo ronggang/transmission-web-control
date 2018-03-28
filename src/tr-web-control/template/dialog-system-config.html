@@ -336,14 +336,13 @@
 		$.each(title, function (i, item) {
 			thisDialog.find("#" + item).prop("checked", system.serverConfig[item])
 				.click(function () {
-					if (thisDialog.find("*[enabledof='" + this.id + "']").hasClass("easyui-numberspinner")) {
-						if (this.checked) {
-							thisDialog.find("*[enabledof='" + this.id + "']").numberspinner("enable");
-						} else {
-							thisDialog.find("*[enabledof='" + this.id + "']").numberspinner("disable");
-						}
+					thisDialog.find("*[enabledof='" + this.id + "']").prop("disabled", !this.checked);
+					if (this.checked) {
+						thisDialog.find(".easyui-numberspinner[enabledof='" + this.id + "']").numberspinner("enable");
+						thisDialog.find(".easyui-timespinner[enabledof='" + this.id + "']").timespinner("enable");
 					} else {
-						thisDialog.find("*[enabledof='" + this.id + "']").prop("disabled", !this.checked);
+						thisDialog.find(".easyui-numberspinner[enabledof='" + this.id + "']").numberspinner("disable");
+						thisDialog.find(".easyui-timespinner[enabledof='" + this.id + "']").timespinner("disable");
 					}
 				});
 		});
