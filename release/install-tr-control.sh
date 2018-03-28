@@ -6,7 +6,7 @@ ORG_INDEX_FILE="index.original.html"
 INDEX_FILE="index.html"
 TMP_FOLDER="/tmp/tr-web-control"
 PACK_NAME="src.tar.gz"
-WEB_HOST="https://github.com/ronggang/transmission-web-control/raw/master/release/"
+WEB_HOST="https://github.com/ronggang/twc-release/raw/master/"
 DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 安装类型
 # 1 安装至当前 Transmission Web 所在目录

@@ -1,6 +1,6 @@
 // Current system global object
 var system = {
-	version: "1.5.0",
+	version: "1.5.1",
 	rootPath: "tr-web-control/",
 	codeupdate: "20180328",
 	configHead: "transmission-web-control",
@@ -40,7 +40,7 @@ var system = {
 	dictionary: {
 		folders: null
 	},
-	checkUpdateScript: "https://raw.githubusercontent.com/ronggang/transmission-web-control/dev/release/update.json",
+	checkUpdateScript: "https://raw.githubusercontent.com/ronggang/twc-release/master/update.json",
 	contextMenus: {},
 	panel: null,
 	lang: null,
