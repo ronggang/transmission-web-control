@@ -4,7 +4,7 @@
 		,{"field":"name","width":"300","sortable":"true","formatter":"_usename_"}
 		,{"field":"totalSize","width":"80","align":"right","sortable":"true","formatter":"size"}
 		,{"field":"percentDone","width":"70","align":"center","sortable":"true","formatter":"progress"}
-		,{"field":"remainingTime","width":"100","align":"right","sortable":"true"}
+		,{"field":"remainingTime","width":"100","align":"right","sortable":true, "formatter": "remainingTime"}
 		,{"field":"uploadRatio","width":"60","align":"right","sortable":"true","formatter":"ratio"}
 		,{"field":"status","width":"60","align":"center","sortable":"true"}
 		,{"field":"statusCode","hidden":"true","allowCustom":"false"}

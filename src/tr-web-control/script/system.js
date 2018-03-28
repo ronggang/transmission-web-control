@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.5.0 beta",
+	version: "1.5.0",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180312",
+	codeupdate: "20180328",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -664,10 +664,10 @@ var system = {
 		this.control.torrentlist = $("<table/>").attr("class", "torrent-list").appendTo(this.panel.list);
 		var headContextMenu = null;
 		var selectedIndex = -1;
-		var flag_onselect = false;
 		$.get(system.rootPath + "template/torrent-fields.json?time=" + (new Date()), function (data) {
 			var fields = data.fields;
 			if (system.userConfig.torrentList.fields.length != 0) {
+				system.userConfig.torrentList.fields["formatter"] = fields["formatter"];
 				fields = $.extend(fields, system.userConfig.torrentList.fields);
 			}
 
@@ -709,27 +709,12 @@ var system = {
 				},
 				onSelect: function (rowIndex, rowData) {
 					if (selectedIndex != -1) {
-						flag_onselect = true;
 						system.control.torrentlist.datagrid("unselectRow", selectedIndex);
-						flag_onselect = false;
 					}
-
-					// if (system.config.autoExpandAttribute) {
-					// 	// If it is not expanded, expand it
-					// 	if (system.panel.attribute.panel("options").collapsed)
-					// 		system.panel.layout_body.layout("expand", "south");
-					// }
 					system.getTorrentInfos(rowData.id);
 					selectedIndex = rowIndex;
 				},
 				onUnselect: function (rowIndex, rowData) {
-					// if (system.config.autoExpandAttribute) {
-					// 	if (flag_onselect == false) {
-					// 		// If expanded, collapse it
-					// 		if (!system.panel.attribute.panel("options").collapsed)
-					// 			system.panel.layout_body.layout("collapse", "south");
-					// 	}
-					// }
 					system.currentTorrentId = 0;
 					selectedIndex = -1;
 				},
@@ -740,9 +725,6 @@ var system = {
 				// Header sorting
 				onSortColumn: function (field, order) {
 					var field_func = field;
-					if (field == "remainingTime") {
-						field_func = "remainingTimeRaw";
-					}
 					var datas = system.control.torrentlist.datagrid("getData").originalRows.sort(arrayObjectSort(field_func, order));
 					system.control.torrentlist.datagrid("loadData", datas);
 
@@ -1311,8 +1293,8 @@ var system = {
 					id: "dialog-system-config",
 					options: {
 						title: system.lang.toolbar["system-config"],
-						width: 620,
-						height: 440,
+						width: 680,
+						height: 450,
 						resizable: true
 					}
 				});
@@ -1942,9 +1924,6 @@ var system = {
 		if (_options.sortName) {
 			orderField = _options.sortName;
 			var orderField_func = orderField;
-			if (orderField == "remainingTime") {
-				orderField_func = "remainingTimeRaw";
-			}
 			currentTypeDatas = currentTypeDatas.sort(arrayObjectSort(orderField_func, _options.sortOrder));
 		}
 
@@ -2517,6 +2496,15 @@ var system = {
 							className = 'text-status-warning';
 						}
 						return '<span class="' + className + '">' + value + '</span>';
+					};
+					break;
+
+				case "remainingTime":
+					field.formatter = function (value, row, index) {
+						if (value>=3153600000000) {
+							return "∞";
+						}
+						return getTotalTime(value);
 					};
 					break;
 

@@ -153,15 +153,12 @@ transmission.torrents = {
 
 			// Time left
 			if (item.rateDownload > 0 && item.leftUntilDone > 0) {
-				item["remainingTime"] = getTotalTime(item.leftUntilDone / item.rateDownload * 1000);
-				item["remainingTimeRaw"] = Math.floor(item.leftUntilDone / item.rateDownload * 1000);
+				item["remainingTime"] = Math.floor(item.leftUntilDone / item.rateDownload * 1000);
 			} else if (item.rateDownload == 0 && item.leftUntilDone == 0 && item.totalSize != 0) {
 				item["remainingTime"] = 0;
-				item["remainingTimeRaw"] = 0;
 			} else {
-				item["remainingTime"] = "∞";
 				// ~100 years
-				item["remainingTimeRaw"] = 3153600000000;
+				item["remainingTime"] = 3153600000000;
 			}
 
 
