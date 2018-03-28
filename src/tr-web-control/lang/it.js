@@ -4,19 +4,21 @@ system.lang = {
 	,"system":{
 		"title":"Transmission WEB Control"
 		,"status":{
-			"connect":"Connettendo..."
+			"connect":"Connessione in corso..."
 			,"connected":"Connesso"
 			,"queue":"Coda:"
 			,"queuefinish":"La coda di download è completata."
 			,"notfinal":"Non finale"
+			,"checked": "%n dati verificati: "
 		}
 	}
 	,"error":{
 		"data-error":"Errore nei dati."
 		,"data-post-error":"Errore nei dati post."
+		,"rename-error":"Impossibile rinominare il file/cartella!"
 	}
 	,"config":{
-		"save-path":"Download dir"
+		"save-path":"Cartella di download"
 	}
 	,"toolbar":{
 		"start":"Avvia"
@@ -28,11 +30,11 @@ system.lang = {
 		,"remove-all":"Rimuovi tutti"
 		,"remove-data":"Rimuovi i dati"
 		,"add-torrent":"Aggiungi Torrent"
-		,"attribute":"Attributi"
+		,"attribute":"Dettagli"
 		,"alt-speed":"Velocità alternativa"
 		,"system-config":"Configurazione"
 		,"system-reload":"Ricarica"
-		,"about":"Circa"
+		,"about":"Info su"
 		,"reload-time":"Aggiornamento:"
 		,"reload-time-unit":"s/tempo"
 		,"autoreload-disabled":"Disabilitato"
@@ -50,7 +52,7 @@ system.lang = {
 			,"delete-all":"Cancella tutti"
 			,"delete-data":"Cancella i dati"
 			,"add-torrent":"Aggiungi torrent"
-			,"attribute":"Attributi"
+			,"attribute":"Dettagli"
 			,"alt-speed":"Velocita alternativa"
 			,"system-config":"Configurazione"
 			,"system-reload":"Aggiorna"
@@ -67,19 +69,19 @@ system.lang = {
 	,"title":{
 		"left":"Navigazione"
 		,"list":"Torrent"
-		,"attribute":"Attributi"
+		,"attribute":"Dettagli"
 		,"status":"Stato"
 	}
 	,"tree":{
 		"all":"Tutti"
 		,"active":"Attivi"
 		,"paused":"In Pausa"
-		,"downloading":"Download in Corso"
+		,"downloading":"In Download"
 		,"sending":"In Seed"
 		,"error":"Con Errori"
 		,"warning":"Con Avvisi"
 		,"actively":"Attivi"
-		,"check":"In Check"
+		,"check":"In Controllo"
 		,"wait":"In attesa"
 		,"search-result":"Risultati della Ricerca"
 		,"status":{
@@ -116,7 +118,7 @@ system.lang = {
 			,"tip-torrent-url":"È possibile inserire più URL separati da 'Invio'"
 			,"autostart":"Avvia automaticamente:"
 			,"tip-autostart":""
-			,"set-default-download-dir":"Imposta come cartella di default"
+			,"set-default-download-dir":"Imposta come cartella predefinita"
 			,"upload-file":"File Torrent:"
 			,"nosource":"Nessun file torrent o URL."
 			,"tip-title":"Il caricamento per file ha precedenza su quello per URL"
@@ -128,6 +130,7 @@ system.lang = {
 				,"network":"Rete"
 				,"limit":"Limiti"
 				,"alt-speed":"Programmazione"
+				,"dictionary-folders":"Raccolta Cartelle"
 			}
 			,"config-dir":"Cartella con i file di configurazione di Transmission:"
 			,"download-dir":"Cartella di download di default:"
@@ -178,7 +181,7 @@ system.lang = {
 			,"idle-seeding-limit-enabled":"I Torrent in seeding verranno bloccati se fermi per:"
 			,"minuets":"Minuti"
 			,"nochange":"Nessuna modifica"
-			,"saveing":"Sto Salvando..."
+			,"saveing":"Salvataggio in corso..."
 		}
 		,"public":{
 			"button-ok":"OK"
@@ -210,6 +213,11 @@ system.lang = {
 			,"tip":"Questa funzione cercherà <b>tutti i torrent</b> nel nuovo tracker."
 			,"not-found":"Tracker non trovato."
 		}
+		,"torrent-rename": {
+			"title":"Rinomina file Torrent"
+			,"oldname": "Vecchio"
+			,"newname": "Nuovo"
+},
 	} //here
 	,"torrent":{
 		"fields":{
@@ -217,26 +225,28 @@ system.lang = {
 			,"name":"Nome"
 			,"hashString":"HASH"
 			,"downloadDir":"Cartella di download"
-			,"totalSize":"Dimensione"
+			,"totalSize":"Dimensione totale"
 			,"status":"Stato"
 			,"percentDone":"% di completamento"
 			,"remainingTime":"Tempo rimanante"
-			,"addedDate":"Creato"
+			,"addedDate":"Aggiunto"
 			,"completeSize":"Scaricato"
 			,"rateDownload":"Velocità di download"
 			,"rateUpload":"Velocità di upload"
 			,"leecherCount":"Leecher"
 			,"seederCount":"Seeder"
 			,"uploadedEver":"Inviato"
-			,"uploadRatio":"Ratio"
+			,"uploadRatio":"Rapporto"
+			,"queuePosition":"Coda"
+			,"activityDate": "Ultima attività"
 		}
 		,"status-text":{
 			"0":"In Pausa"
-			,"1":"Aspettando Check"
-			,"2":"In Check"
-			,"3":"Aspettando il download"
-			,"4":"Downloading"
-			,"5":"Aspettando i seed"
+			,"1":"In attesa del controllo"
+			,"2":"In controllo"
+			,"3":"In attesa del download"
+			,"4":"In download"
+			,"5":"In attesa di seed"
 			,"6":"Seeding"
 		}
 		,"attribute":{
@@ -263,7 +273,7 @@ system.lang = {
 				,"lastAnnounceTime":"AnnounceTime"
 				,"lastAnnounceTimedOut":"Scaduto"
 				,"downloadCount":"Numero di download"
-				,"nextAnnounceTime":"Next announce"
+				,"nextAnnounceTime":"Prossimo annuncio"
 			}
 			,"peers-fields":{
 				"address":"Indirizzo IP"
@@ -304,7 +314,7 @@ system.lang = {
 				,"downloadLimited":"Velocità di download massima"
 				,"uploadLimited":"Velocità di upload massima"
 				,"peer-limit":"Numero massimo di peer"
-				,"seedRatioMode":"Ratio da utilizzare"
+				,"seedRatioMode":"Rapporto da utilizzare"
 				,"seedIdleMode":"I Torrent in seeding verranno bloccati se fermi per"
 			}
 			,"tip":{
@@ -319,7 +329,7 @@ system.lang = {
 	}
 	,"torrent-head":{
 		"buttons":{
-			"autoExpandAttribute":"Espandi automaticamante gli attributi"
+			"autoExpandAttribute":"Espandi automaticamante i dettagli"
 		}
 	}
 	,"public":{
@@ -328,7 +338,7 @@ system.lang = {
 		,"text-saved":"Salvato"
 		,"text-nochange":"Nessuna modifica"
 		,"text-info":"Info"
-		,"text-confirm":"sei sicuro?"
+		,"text-confirm":"Sei sicuro?"
 		,"text-browsers-not-support-features":"Il browser utilizzato non supporta questa funzione!"
 		,"text-download-update":"Scarica l'aggiornamento"
 		,"text-have-update":"È disponibile un aggiornamento"
