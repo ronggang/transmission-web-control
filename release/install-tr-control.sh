@@ -52,6 +52,10 @@ findWebFolder() {
 	# 判断 TRANSMISSION_WEB_HOME 环境变量是否被定义，如果是，直接用这个变量的值
 	if [ $TRANSMISSION_WEB_HOME ]; then
 		echo "use TRANSMISSION_WEB_HOME: $TRANSMISSION_WEB_HOME"
+		# 判断目录是否存在，如果不存在则创建 https://github.com/ronggang/transmission-web-control/issues/167
+		if [ ! -d "$TRANSMISSION_WEB_HOME" ]; then
+         mkdir -p "$TRANSMISSION_WEB_HOME"
+      fi
 		INSTALL_TYPE=2
 	else
 		echo "Looking for folder: $ROOT_FOLDER/web"
