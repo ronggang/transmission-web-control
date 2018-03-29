@@ -605,14 +605,6 @@ var system = {
 					}
 			}
 		}
-
-		// node that specifies the default selection
-		if (this.config.defaultSelectNode) {
-			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
-			if (node) {
-				this.panel.left.tree("select", node.target);
-			}
-		}
 	},
 	/**
 	 * 初始化界面状态
@@ -631,6 +623,14 @@ var system = {
 		}
 
 		this.panel.left.show();
+
+		// node that specifies the default selection
+		if (this.config.defaultSelectNode) {
+			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
+			if (node) {
+				this.panel.left.tree("select", node.target);
+			}
+		}
 
 		status = this.config.ui.status.layout.body;
 		for (var key in status) {
