@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.5.1",
+	version: "1.5.1 update-1",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180328",
+	codeupdate: "20180329",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -666,18 +666,23 @@ var system = {
 		var selectedIndex = -1;
 		$.get(system.rootPath + "template/torrent-fields.json?time=" + (new Date()), function (data) {
 			var fields = data.fields;
+			var _fields = JSON.parse(JSON.stringify(fields));
 			if (system.userConfig.torrentList.fields.length != 0) {
 				system.userConfig.torrentList.fields["formatter"] = fields["formatter"];
 				fields = $.extend(fields, system.userConfig.torrentList.fields);
 			}
 
-			var _fields = JSON.stringify(fields);
 			// User field settings
-			system.userConfig.torrentList.fields = JSON.parse(_fields);
+			system.userConfig.torrentList.fields = fields;
 
 			for (var key in fields) {
-				fields[key].title = system.lang.torrent.fields[fields[key].field] || fields[key].field;
-				system.setFieldFormat(fields[key]);
+				var item = fields[key];
+				if (_fields[key] && _fields[key]["formatter"]) {
+					item["formatter"] = _fields[key]["formatter"];
+				}
+				
+				item.title = system.lang.torrent.fields[item.field] || item.field;
+				system.setFieldFormat(item);
 			}
 
 			system.control.torrentlist.datagrid({
@@ -2314,6 +2319,15 @@ var system = {
 					} else {
 						system.panel.attribute.find("#torrent-attribute-tr-error").show();
 					}
+					break;
+
+				case "remainingTime":
+					if (value>=3153600000000) {
+						value = "∞";
+					} else {
+						value = getTotalTime(value);
+					}
+					
 					break;
 
 					// description
