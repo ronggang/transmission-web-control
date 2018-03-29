@@ -105,6 +105,11 @@ install() {
 		echo "Installing..."
 		# 解压缩包
 		tar -xzf "$PACK_NAME" -C "$TRANSMISSION_WEB_HOME"
+
+		# 设置权限
+		find "$TRANSMISSION_WEB_HOME" -type d -exec chmod o+rx {} \;
+		find "$TRANSMISSION_WEB_HOME" -type f -exec chmod o+r {} \;
+
 		# 安装完成
 		installed
 	else
