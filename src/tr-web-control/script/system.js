@@ -666,9 +666,13 @@ var system = {
 		var selectedIndex = -1;
 		$.get(system.rootPath + "template/torrent-fields.json?time=" + (new Date()), function (data) {
 			var fields = data.fields;
-			var _fields = JSON.parse(JSON.stringify(fields));
+			var _fields = {}
+			for (var i=0;i<fields.length;i++) {
+				var item = fields[i];
+				_fields[item.field] = item;
+			}
+
 			if (system.userConfig.torrentList.fields.length != 0) {
-				system.userConfig.torrentList.fields["formatter"] = fields["formatter"];
 				fields = $.extend(fields, system.userConfig.torrentList.fields);
 			}
 
@@ -677,8 +681,9 @@ var system = {
 
 			for (var key in fields) {
 				var item = fields[key];
-				if (_fields[key] && _fields[key]["formatter"]) {
-					item["formatter"] = _fields[key]["formatter"];
+				var _field = _fields[item.field];
+				if (_field && _field["formatter"]) {
+					item["formatter"] = _field["formatter"];
 				}
 				
 				item.title = system.lang.torrent.fields[item.field] || item.field;
