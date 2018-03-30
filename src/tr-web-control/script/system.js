@@ -68,6 +68,7 @@ var system = {
 	templates: {},
 	// 当前已选中的行
 	checkedRows: [],
+	loadCount: 0,
 	/**
 	 * 设置语言
 	 */
@@ -116,6 +117,7 @@ var system = {
 	 */
 	init: function (lang, islocal, devicetype) {
 		this.readConfig();
+		this.lastUIStatus = JSON.parse(JSON.stringify(this.config.ui.status));
 		/*
 		 alert(screen.width+","+this.config.mobileDeviceWidth);
 		//return;
@@ -445,7 +447,6 @@ var system = {
 		this.saveConfig();
 	},
 	// Check the dragged files
-
 	checkDropFiles: function (sources) {
 		if (!sources || !sources.length) return;
 		var files = new Array();
@@ -610,7 +611,7 @@ var system = {
 	 * 初始化界面状态
 	 */
 	initUIStatus: function() {
-		var status = this.config.ui.status.tree;
+		var status = this.lastUIStatus.tree;
 		for (var key in status) {
 			var node = this.panel.left.tree("find", key);
 			if (node && node.target) {
@@ -629,10 +630,13 @@ var system = {
 			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
 			if (node) {
 				this.panel.left.tree("select", node.target);
+			} else {
+				node = this.panel.left.tree("find", "torrent-all");
+				this.panel.left.tree("select", node.target);
 			}
 		}
 
-		status = this.config.ui.status.layout.body;
+		status = this.lastUIStatus.layout.body;
 		for (var key in status) {
 			if (status[key]=="open") {
 				this.panel.layout_body.layout("expand", key);
@@ -641,7 +645,7 @@ var system = {
 			}
 		}
 
-		status = this.config.ui.status.layout.left;
+		status = this.lastUIStatus.layout.left;
 		for (var key in status) {
 			if (status[key]=="open") {
 				this.panel.layout_left.layout("expand", key);
@@ -650,7 +654,7 @@ var system = {
 			}
 		}
 
-		status = this.config.ui.status.layout.main;
+		status = this.lastUIStatus.layout.main;
 		for (var key in status) {
 			if (status[key]=="open") {
 				this.panel.main.layout("expand", key);
@@ -1361,9 +1365,6 @@ var system = {
 		}, function () {
 			system.reloadSession(true);
 			system.getServerStatus();
-			setTimeout(function(){
-				system.initUIStatus();
-			}, 300);
 		});
 	},
 	// Reload the server information
@@ -2570,7 +2571,10 @@ var system = {
 				});
 			}
 
-
+			if (system.loadCount==0) {
+				system.initUIStatus();
+			}
+			system.loadCount++;
 		});
 		/*
 		for (var index in transmission.downloadDirs)
@@ -2585,7 +2589,7 @@ var system = {
 
 		var rootkey = "folders";
 		var parentkey = rootkey;
-		var folder = fullkey.split("/");
+		var folder = fullkey.replace(/\\/g,"/").split("/");
 		var key = rootkey + "-";
 		for (var i in folder) {
 			var name = folder[i];
@@ -2593,7 +2597,8 @@ var system = {
 				continue;
 			}
 			//key += "--" + text.replace(/\./g,"。") + "--";
-			key += this.B64.encode(name);
+			var _key = this.B64.encode(name);
+			key += _key.replace(/[+|\/|=]/g,"0");
 			var node = this.panel.left.tree("find", key);
 			var folderinfos = transmission.torrents.folders[key];
 			var text = name + this.showNodeMoreInfos(folderinfos.count, folderinfos.size);

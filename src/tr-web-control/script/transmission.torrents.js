@@ -192,14 +192,15 @@ transmission.torrents = {
 
 			if (transmission.options.getFolders) {
 				if (item.downloadDir) {
-					var folder = item.downloadDir.split("/");
+					var folder = item.downloadDir.replace(/\\/g,"/").split("/");
 					var folderkey = "folders-";
 					for (var i in folder) {
 						var text = folder[i];
 						if (text == "") {
 							continue;
 						}
-						folderkey += B64.encode(text);
+						var key = B64.encode(text);
+						folderkey += key.replace(/[+|\/|=]/g,"0");
 						var node = this.folders[folderkey];
 						if (!node) {
 							node = {
