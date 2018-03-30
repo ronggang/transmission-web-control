@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.5.1 update-1",
+	version: "1.5.1 update-2",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180329",
+	codeupdate: "20180330",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -888,6 +888,14 @@ var system = {
 						menu = null;
 					}
 				}
+				// 设置剪切板组件，因为直接调用 click 不能执行相关操作
+				var btn = $('#copyPath', parent);
+				btn.attr({
+					"data-clipboard-action": "copy",
+					"data-clipboard-target": "#clipboard-source"
+				});
+    			var clipboard = new ClipboardJS(btn.get(0));
+
 				break;
 		}
 		parent.menu("show", {
@@ -2816,5 +2824,15 @@ function pagerFilter(data) {
 	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
 	var end = start + parseInt(opts.pageSize);
 	data.rows = (data.originalRows.slice(start, end));
+
+	if (buttons && buttons.length) {
+		for (var i=0;i<buttons.length;i++) {
+			var button = buttons[i];
+			if (button.id && button.title) {
+				$("#"+button.id, pager).attr("title", button.title);
+			}
+		}
+	}
+
 	return data;
 }

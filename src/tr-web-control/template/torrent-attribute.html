@@ -11,7 +11,8 @@
 						<td class="title"><span id="torrent-attribute-label-downloadDir"></span></td>
 						<td colspan="3">
 							<span id="torrent-attribute-value-downloadDir"></span>
-							<a id="torrent-attribute-config-button-changeDownloadDir" class="easyui-linkbutton" data-options="iconCls:'icon-folder-change',plain:true" href="javascript:void(0);"></a>
+							<a id="torrent-attribute-config-button-changeDownloadDir" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-folder-change',plain:true" href="javascript:void(0);" system-tip-lang="toolbar.tip['change-download-dir']"></a>
+							<a id="torrent-attribute-config-button-copyPath" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-clippy',plain:true" href="javascript:void(0);" data-clipboard-action="copy" data-clipboard-target="#torrent-attribute-value-downloadDir" system-tip-lang="toolbar.tip['copy-path-to-clipboard']"></a>
 						</td>
 					</tr>
 					<tr>
@@ -124,6 +125,9 @@
 <script type="text/javascript">
 	(function(thisLayout){
 		var labels = system.lang.torrent.attribute.label;
+		system.resetLangText(thisLayout);
+		var clipboard = new ClipboardJS('#torrent-attribute-config-button-copyPath');
+
 		$.each(labels, function(key, item){
 			thisLayout.find("#torrent-attribute-label-"+key).html(item);
 		});
@@ -241,18 +245,21 @@
 			var buttons = [{
 					id:"pager-button-allow",
 					iconCls:'icon-allow',
+					title: system.lang.torrent.attribute["tip"]["button-deny"],
 					handler:function(){
 						changeSelectedFilesWanted(true,$(this));
 					}
 				},'-',{
 					id:"pager-button-deny",
 					iconCls:'icon-deny',
+					title: system.lang.torrent.attribute["tip"]["button-allow"],
 					handler:function(){
 						changeSelectedFilesWanted(false,$(this));
 					}
 				},'-',{
 					id:"pager-button-priority",
 					iconCls:'icon-flag-edit',
+					title: system.lang.torrent.attribute["tip"]["button-priority"],
 					handler:function(){
 						priorityMenu.menu("show",$(this).offset());
 					}
@@ -286,9 +293,9 @@
 				buttons:buttons
 			});
 			
-			pager.find("#pager-button-allow").attr({"title":system.lang.torrent.attribute["tip"]["button-allow"],"alt":system.lang.torrent.attribute["tip"]["button-allow"]});
-			pager.find("#pager-button-deny").attr({"title":system.lang.torrent.attribute["tip"]["button-deny"],"alt":system.lang.torrent.attribute["tip"]["button-deny"]});
-			pager.find("#pager-button-priority").attr({"title":system.lang.torrent.attribute["tip"]["button-priority"],"alt":system.lang.torrent.attribute["tip"]["button-priority"]});
+			// pager.find("#pager-button-allow").attr({"title":system.lang.torrent.attribute["tip"]["button-allow"],"alt":system.lang.torrent.attribute["tip"]["button-allow"]});
+			// pager.find("#pager-button-deny").attr({"title":system.lang.torrent.attribute["tip"]["button-deny"],"alt":system.lang.torrent.attribute["tip"]["button-deny"]});
+			// pager.find("#pager-button-priority").attr({"title":system.lang.torrent.attribute["tip"]["button-priority"],"alt":system.lang.torrent.attribute["tip"]["button-priority"]});
 		},"json");
 
 		// 设置已选中的文件是否下载
@@ -406,18 +413,21 @@
 			var buttons = [{
 					id:"pager-button-trackerAdd",
 					iconCls:'icon-tracker-add',
+					title: system.lang.torrent.attribute["tip"]["button-tracker-add"],
 					handler:function(){
 						addTracker();
 					}
 				},'-',{
 					id:"pager-button-trackerReplace",
 					iconCls:'icon-tracker-edit',
+					title: system.lang.torrent.attribute["tip"]["button-tracker-edit"],
 					handler:function(){
 						changeSelectedTracker($(this));
 					}
 				},'-',{
 					id:"pager-button-trackerRemove",
 					iconCls:'icon-tracker-remove',
+					title: system.lang.torrent.attribute["tip"]["button-tracker-remove"],
 					handler:function(){
 						var tracker = serverlist.datagrid("getSelected");
 						if (tracker)
@@ -553,8 +563,8 @@
 			
 			$("<div/>").attr("id","dialog-torrent-changeDownloadDir").appendTo(document.body).dialog({  
 				title: system.lang.dialog["torrent-changeDownloadDir"].title,  
-				width: 520,
-				height: 180,
+				width: 600,
+				height: 200,
 				resizable: false,
 				cache: true,
 				content:"loading...",  
