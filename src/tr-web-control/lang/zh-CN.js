@@ -203,7 +203,8 @@ system.lang = {
 			"minuets": "分钟",
 			"nochange": "参数未改变",
 			"saveing": "正在保存...",
-			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。"
+			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。",
+			"restore-default-settings": "恢复界面默认设置（含主题）"
 		},
 		"public": {
 			"button-ok": "确定",
@@ -373,7 +374,10 @@ system.lang = {
 			"tip": {
 				"button-allow": "下载已选择的文件",
 				"button-deny": "忽略已选择的文件",
-				"button-priority": "设置优先级别"
+				"button-priority": "设置优先级别",
+				"button-tracker-add": "增加新的 Tracker",
+				"button-tracker-edit": "修改已选中的 Tracker 地址",
+				"button-tracker-remove": "删除已选中的 Tracker 地址"
 			},
 			"other": {
 				"tracker-remove-confim": "确认要删除这个 Tracker 吗？"

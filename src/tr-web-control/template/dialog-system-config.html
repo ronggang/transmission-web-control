@@ -248,11 +248,13 @@
 			</div>
 			<div title="More" style="padding:10px;" class="dialog">
 				<input id="show-bt-servers" type="checkbox" style="width:16px;" config-type="1"/><label for="show-bt-servers" system-lang="dialog['system-config']['show-bt-servers']"></label>
+				<hr/>
 			</div>
 		</div>
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<a id="system-config-button-reload" href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" style="float:left;display:none;"></a>
+		<button id="restore-default-settings" style="float:left;" system-lang="dialog['system-config']['restore-default-settings']" data-options="iconCls:'iconfont tr-icon-restore'"  class="easyui-linkbutton"></button>
 		<span id="system-config-nochange" style="display:none;"></span>
 		<span id="system-config-saved" style="display:none;"></span>
 		<a id="system-config-button-save" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" href="javascript:void(0);">Ok</a>
@@ -625,6 +627,20 @@
 				};
 				button.prop("disabled", false);
 			});
+		});
+
+		// 恢复界面默认设置
+		$("#restore-default-settings", thisDialog).click(function(){
+			if (confirm(system.lang["public"]["text-confirm"])==false)
+			{
+				return;
+			}
+			system.config = {};
+			system.userConfig = {};
+			system.saveConfig();
+			system.saveUserConfig();
+
+			location.href = location.href;
 		});
 	})($("#dialog-system-config"));
 </script>

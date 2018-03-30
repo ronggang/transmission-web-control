@@ -204,7 +204,8 @@ system.defaultLang = {
 			"minutes": "Minutes",
 			"nochange": "No change",
 			"saving": "Saving...",
-			"show-bt-servers": "Show 'BT servers' on Trackers."
+			"show-bt-servers": "Show 'BT servers' on Trackers.",
+			"restore-default-settings": "Restore UI Default Settings"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -372,7 +373,10 @@ system.defaultLang = {
 			"tip": {
 				"button-allow": "Download checked file(s)",
 				"button-deny": "Skip checked file(s)",
-				"button-priority": "Set priority"
+				"button-priority": "Set priority",
+				"button-tracker-add": "Add New Tracker",
+				"button-tracker-edit": "Edit Tracker",
+				"button-tracker-remove": "Remove Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "Are you sure you want to remove this Tracker?"
