@@ -72,7 +72,7 @@ system.lang = {
 			,"ui-original":"Oryginalne UI"
 			,"more-peers":"Zapytaj tracker o więcej peerów"
 			,"rename":"Zmiana nazwy katalogu"
-			,"copy-path-to-clipboard":"Kopiowanie lokalizacji pobierania do schowka"
+			,"copy-path-to-clipboard":"Kopiuj lokalizację pobierania do schowka"
 		}
 	}
 	,"menus":{
