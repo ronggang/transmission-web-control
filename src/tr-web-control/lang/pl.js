@@ -293,6 +293,7 @@ system.lang = {
 			,"uploadRatio":"Ratio"
 			,"queuePosition":"Kolejka"
 			,"activityDate":"Ostatnia aktywność"
+			,"trackers":"Trackery"
 		}
 		,"status-text":{
 			"0":"Wstrzymano"
