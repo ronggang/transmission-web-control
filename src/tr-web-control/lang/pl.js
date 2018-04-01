@@ -1,4 +1,4 @@
-﻿// lang file
+// lang file
 system.lang = {
 	"name":"pl"
 	,"system":{
@@ -13,8 +13,8 @@ system.lang = {
 		}
 	}
 	,"error":{
-		"data-error":"Błąd danych."
-		,"data-post-error":"Błąd danych."
+		"data-error":"Błąd pobierania danych!"
+		,"data-post-error":"Błąd wysyłania danych!"
 		,"rename-error":"Błąd zmiany nazwy"
 	}
 	,"config":{
