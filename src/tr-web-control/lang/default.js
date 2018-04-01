@@ -292,7 +292,8 @@ system.defaultLang = {
 			"uploadedEver": "Uploaded till date",
 			"uploadRatio": "Ratio",
 			"queuePosition": "Queue",
-			"activityDate": "Activity Date"
+			"activityDate": "Activity Date",
+			"trackers": "Trackers"
 		},
 		"status-text": {
 			"0": "Paused",
