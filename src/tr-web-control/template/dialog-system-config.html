@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
-							<span>Language：</span><select id="system-config-lang" value="" style="width:200px;"></select>
+							<span id="system-config-language"></span>&nbsp;<select id="system-config-lang" value="" style="width:200px;"></select>
 						</td>
 					</tr>
 				</table>
@@ -321,7 +321,7 @@
 			",download-queue-enabled,seed-queue-enabled,encryption,peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled" +
 			",alt-speed-enabled,alt-speed-down,alt-speed-up,test-port,port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled" +
 			",peer-limit-global,peer-limit-per-torrent,blocklist-enabled,seedRatioLimited,queue-stalled-enabled,idle-seeding-limit-enabled" +
-			",alt-speed-time-enabled,alt-speed-time,nochange,port-is-open-true,port-is-open-false"
+			",alt-speed-time-enabled,alt-speed-time,nochange,port-is-open-true,port-is-open-false,language"
 		).split(",");
 		$.each(title, function (i, item) {
 			thisDialog.find("#system-config-" + item).html(system.lang.dialog["system-config"][item]);
