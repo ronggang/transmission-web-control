@@ -205,7 +205,8 @@ system.defaultLang = {
 			"nochange": "No change",
 			"saving": "Saving...",
 			"show-bt-servers": "Show 'BT servers' on Trackers.",
-			"restore-default-settings": "Restore UI Default Settings"
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:"
 		},
 		"public": {
 			"button-ok": "OK",
