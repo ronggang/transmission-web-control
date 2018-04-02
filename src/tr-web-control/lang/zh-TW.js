@@ -193,9 +193,9 @@ system.lang = {
 			,"seedRatioLimited":"當種子的分享率達到這個數時，自動停止做種："
 			,"queue-stalled-enabled":"當未完成的種子超過這個時間沒有收到資料時，自動停止下載："
 			,"idle-seeding-limit-enabled":"當種子超過這個時間沒有流量時，自動停止做種："
-			,"minuets":"分鐘"
+			,"minutes":"分鐘"
 			,"nochange":"參數未改變"
-			,"saveing":"儲存中..."
+			,"saving":"儲存中..."
 		}
 		,"public":{
 			"button-ok":"確定"
