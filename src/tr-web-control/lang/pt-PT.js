@@ -194,9 +194,9 @@ system.lang = {
 			,"seedRatioLimited":"Taxa máxima de Seeds:"
 			,"queue-stalled-enabled":"Considerar os Torrents inativos como parados:"
 			,"idle-seeding-limit-enabled":"O semeamento dos Torrents parará se ficam inativos por:"
-			,"minuets":"Minutos"
+			,"minutes":"Minutos"
 			,"nochange":"Sem mudanças"
-			,"saveing":"A salvar..."
+			,"saving":"A salvar..."
 		}
 		,"public":{
 			"button-ok":"Aceptar"
