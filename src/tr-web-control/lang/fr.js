@@ -194,9 +194,9 @@ system.lang = {
 			,"seedRatioLimited":"Le ratio de partage des torrents par défaut:"
 			,"queue-stalled-enabled":"Durée d'inactivité après laquelle le torrent est considéré comme bloqué:"
 			,"idle-seeding-limit-enabled":"Durée d'inactivité après laquelle le torrent en seed est stoppé :"
-			,"minuets":"Minutes"
+			,"minutes":"Minutes"
 			,"nochange":"Pas de changement"
-			,"saveing":"Sauvegarde..."
+			,"saving":"Sauvegarde..."
 		}
 		,"public":{
 			"button-ok":"OK"
