@@ -198,9 +198,9 @@ system.lang = {
 			"seedRatioLimited":"Раздача будет остановлена на рейтинге:",
 			"queue-stalled-enabled":"Считать активные торрренты зависшими, если нет активности:",
 			"idle-seeding-limit-enabled":"Раздача будет остановлена если нет активности:",
-			"minuets":"Минут",
+			"minutes":"Минут",
 			"nochange":"Без изменений",
-			"saveing":"Сохранение..."
+			"saving":"Сохранение..."
 		},
 		"public":{
 			"button-ok":"OK",
