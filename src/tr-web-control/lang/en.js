@@ -201,9 +201,9 @@ system.lang = {
 			"seedRatioLimited":"The default seed ratio for torrents to use:",
 			"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:",
 			"idle-seeding-limit-enabled":"Torrents we're seeding will be stopped if they're idle for this long:",
-			"minuets":"Minutes",
+			"minutes":"Minutes",
 			"nochange":"No change",
-			"saveing":"Saving...",
+			"saving":"Saving...",
 			"show-bt-servers": "Show 'BT servers' on Trackers.",
 			"restore-default-settings": "Restore UI Default Settings",
 			"language": "Language:"
