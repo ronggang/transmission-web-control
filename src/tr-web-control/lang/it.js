@@ -179,9 +179,9 @@ system.lang = {
 			,"seedRatioLimited":"Rapporto di condivisone predefinito per i torrent:"
 			,"queue-stalled-enabled":"Considera i torrent inattivi come fermi:"
 			,"idle-seeding-limit-enabled":"I Torrent in seeding verranno bloccati se fermi per:"
-			,"minuets":"Minuti"
+			,"minutes":"Minuti"
 			,"nochange":"Nessuna modifica"
-			,"saveing":"Salvataggio in corso..."
+			,"saving":"Salvataggio in corso..."
 		}
 		,"public":{
 			"button-ok":"OK"
