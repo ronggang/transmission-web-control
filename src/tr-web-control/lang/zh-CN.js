@@ -200,9 +200,9 @@ system.lang = {
 			"seedRatioLimited": "当种子的分享率达到这个数时，自动停止做种：",
 			"queue-stalled-enabled": "当未完成的种子超过这个时间没有收到数据时，自动停止下载：",
 			"idle-seeding-limit-enabled": "当种子超过这个时间没有流量时，自动停止做种：",
-			"minuets": "分钟",
+			"minutes": "分钟",
 			"nochange": "参数未改变",
-			"saveing": "正在保存...",
+			"saving": "正在保存...",
 			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。",
 			"restore-default-settings": "恢复界面默认设置（含主题）"
 		},

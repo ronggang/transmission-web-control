@@ -183,13 +183,13 @@
 						<td>
 							<input id="idle-seeding-limit-enabled" type="checkbox" style="width:16px;"/><label id="system-config-idle-seeding-limit-enabled" for="idle-seeding-limit-enabled"></label>
 						</td>
-						<td><input id="idle-seeding-limit" value="" type="text" class="easyui-numberspinner" enabledof="idle-seeding-limit-enabled"/> <span name="system-config-minuets"></span></td>
+						<td><input id="idle-seeding-limit" value="" type="text" class="easyui-numberspinner" enabledof="idle-seeding-limit-enabled"/> <span name="system-config-minutes"></span></td>
 					</tr>
 					<tr>
 						<td>
 							<input id="queue-stalled-enabled" type="checkbox" style="width:16px;"/><label id="system-config-queue-stalled-enabled" for="queue-stalled-enabled"></label>
 						</td>
-						<td><input id="queue-stalled-minutes" value="" type="text" class="easyui-numberspinner" enabledof="queue-stalled-enabled"/> <span name="system-config-minuets"></span></td>
+						<td><input id="queue-stalled-minutes" value="" type="text" class="easyui-numberspinner" enabledof="queue-stalled-enabled"/> <span name="system-config-minutes"></span></td>
 					</tr>
 				</table>
 			</div>
@@ -327,7 +327,7 @@
 			thisDialog.find("#system-config-" + item).html(system.lang.dialog["system-config"][item]);
 		});
 
-		thisDialog.find("span[name='system-config-minuets']").html(system.lang.dialog["system-config"]["minuets"]);
+		thisDialog.find("span[name='system-config-minutes']").html(system.lang.dialog["system-config"]["minutes"]);
 
 		// Replace system settings
 		title = ("incomplete-dir-enabled,rename-partial-files,start-added-torrents,download-queue-enabled,seed-queue-enabled" +
@@ -551,7 +551,7 @@
 			// If the parameters are changed, save
 			if (!$.isEmptyObject(config)) {
 				$(this).linkbutton({
-					text: system.lang.dialog["system-config"].saveing,
+					text: system.lang.dialog["system-config"].saving,
 					disabled: true
 				});
 				// Start setting parameters

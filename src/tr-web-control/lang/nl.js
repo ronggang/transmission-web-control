@@ -176,9 +176,9 @@ system.lang = {
 			,"seedRatioLimited":"Seed ratio:"
 			,"queue-stalled-enabled":"Of inactieve torrents als opgehouden moeten worden behandeld:"
 			,"idle-seeding-limit-enabled":"Stop seeden wanneer inactief gedurende:"
-			,"minuets":"Minuten"
+			,"minutes":"Minuten"
 			,"nochange":"Geen wijzigingen"
-			,"saveing":"Verwerken..."
+			,"saving":"Verwerken..."
 		}
 		,"public":{
 			"button-ok":"OK"

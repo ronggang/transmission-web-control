@@ -98,7 +98,7 @@
 								<td class="title">
 									<input id="seedIdleMode" type="checkbox" style="width:16px;"/><label id="torrent-attribute-label-seedIdleMode" for="seedIdleMode"></label>
 								</td>
-								<td><input id="seedIdleLimit" type="text" class="easyui-numberspinner" enabledof="seedIdleMode"/> <span name="system-config-minuets"></span></td>
+								<td><input id="seedIdleLimit" type="text" class="easyui-numberspinner" enabledof="seedIdleMode"/> <span name="system-config-minutes"></span></td>
 							</tr>
 							<tr>
 								<td class="title">
@@ -628,7 +628,7 @@
 			{
 				jQuery.extend(torrent,config);
 				config["ids"] = torrent.id;
-				$(this).linkbutton({text:system.lang.dialog["system-config"].saveing,disabled:true});
+				$(this).linkbutton({text:system.lang.dialog["system-config"].saving,disabled:true});
 				// 开始设置参数
 				transmission.exec(
 					{
