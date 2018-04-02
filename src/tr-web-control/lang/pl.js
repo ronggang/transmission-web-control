@@ -9,11 +9,12 @@ system.lang = {
 			,"queue":"Kolejka:"
 			,"queuefinish":"Zakończono kolejkę."
 			,"notfinal":"Nie ukończone"
+			,"checked": "Zaznaczone pozycje: %n"
 		}
 	}
 	,"error":{
-		"data-error":"Błąd danych."
-		,"data-post-error":"Błąd danych."
+		"data-error":"Błąd pobierania danych!"
+		,"data-post-error":"Błąd wysyłania danych!"
 		,"rename-error":"Błąd zmiany nazwy"
 	}
 	,"config":{
@@ -46,6 +47,7 @@ system.lang = {
 		,"ui-computer":"Desktop UI"
 		,"plugin":"Rozszerzenia/wtyczki"
 		,"rename":"Zmień nazwę"
+		,"copy-path-to-clipboard": "Skopiuj lokalizację pobierania do schowka"
 		,"tip":{
 			"start":"Pobieraj wybrane torrenty"
 			,"pause":"Wstrzymaj wybrane torrenty"
@@ -70,6 +72,7 @@ system.lang = {
 			,"ui-original":"Oryginalne UI"
 			,"more-peers":"Zapytaj tracker o więcej peerów"
 			,"rename":"Zmiana nazwy katalogu"
+			,"copy-path-to-clipboard":"Kopiuj lokalizację pobierania do schowka"
 		}
 	}
 	,"menus":{
@@ -111,8 +114,8 @@ system.lang = {
 			,"current":"Bieżące"
 			,"uploadedBytes":"Wysłano: "
 			,"downloadedBytes":"Pobrano: "
-			,"filesAdded":"Dodane pliki: "   
-			,"sessionCount":"Ilość sesji: " 
+			,"filesAdded":"Dodane pliki: "
+			,"sessionCount":"Ilość sesji: "
 			,"secondsActive":"Czas aktywności: "
 		}
 		,"servers":"Trackery"
@@ -147,6 +150,8 @@ system.lang = {
 				,"network":"Sieć"
 				,"limit":"Limitowanie prędkości"
 				,"alt-speed":"Harmonogram"
+				,"dictionary-folders":"Słownik folderów"
+				,"more":"Więcej"
 			}
 			,"config-dir":"Lokalizacja katalogu z konfiguracją Transmission:"
 			,"download-dir":"Domyślny katalog pobierania torrentów:"
@@ -196,9 +201,12 @@ system.lang = {
 			,"seedRatioLimited":"Domyślne ratio dla torrentów:"
 			,"queue-stalled-enabled":"Bezczynne torrenty będą blokowane po czasie :"
 			,"idle-seeding-limit-enabled":"Wysyłanie pobranych torrentów zostanie zatrzymane, jeżeli nikt nie będzie ich pobierał przez:"
-			,"minuets":"Minut"
+			,"minutes":"Minut"
 			,"nochange":"Nie dokonano zmian"
-			,"saveing":"Zapisywanie..."
+			,"saving":"Zapisywanie..."
+			,"show-bt-servers":"Pokazuj serwery BT na liście Trackerów"
+			,"restore-default-settings":"Przywróć ustawienia domyślne"
+			,"language":"Język:"
 		}
 		,"public":{
 			"button-ok":"OK"
@@ -212,6 +220,10 @@ system.lang = {
 		,"about":{
 			"infos":"Autor：culturist, Tłumaczenie: Simplydan<br/>Poprawki + nowe tłumaczenia: vipKoza<br/>Oświadczenie: Jeżeli któraś ikona narusza twoje prawa, skontaktuj się z autorem."
 			,"check-update":"Sprawdź aktualizację"
+			,"home": "Strona domowa"
+			,"help": "Wiki"
+			,"donate": "Dotacja"
+			,"pt-plugin": "Plugin PT"
 		}
 		,"torrent-remove":{
 			"title":"Potwierdź"
@@ -256,6 +268,10 @@ system.lang = {
 			"oldname": "Stary",
 			"newname": "Nowy"
 		}
+		,"torrent-attribute-add-tracker": {
+			"title": "Dodaj trackery",
+			"tip": "Jedna linia - jeden Tracker"
+		}
 	}
 	,"torrent":{
 		"fields":{
@@ -276,6 +292,8 @@ system.lang = {
 			,"uploadedEver":"Wysłano"
 			,"uploadRatio":"Ratio"
 			,"queuePosition":"Kolejka"
+			,"activityDate":"Ostatnia aktywność"
+			,"trackers":"Trackery"
 		}
 		,"status-text":{
 			"0":"Wstrzymano"
@@ -292,7 +310,7 @@ system.lang = {
 				,"servers":"Trackery"
 				,"files":"Pliki"
 				,"users":"Peery"
-				,"config":"Konf."
+				,"config":"Konfiguracja"
 			}
 			,"files-fields":{
 				"name":"Nazwa"
@@ -358,6 +376,9 @@ system.lang = {
 				"button-allow":"Pobierz sprawdzone pliki"
 				,"button-deny":"Pomiń sprawdzone pliki"
 				,"button-priority":"Ustaw priorytet"
+				,"button-tracker-add":"Dodaj nowy tracker"
+				,"button-tracker-edit":"Edytuj tracker"
+				,"button-tracker-remove":"Usuń tracker"
 			}
 			,"other":{
 				"tracker-remove-confim":"Czy na pewno chcesz usunąć ten tracker?"

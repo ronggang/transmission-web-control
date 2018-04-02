@@ -205,7 +205,8 @@ system.defaultLang = {
 			"nochange": "No change",
 			"saving": "Saving...",
 			"show-bt-servers": "Show 'BT servers' on Trackers.",
-			"restore-default-settings": "Restore UI Default Settings"
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -291,7 +292,8 @@ system.defaultLang = {
 			"uploadedEver": "Uploaded till date",
 			"uploadRatio": "Ratio",
 			"queuePosition": "Queue",
-			"activityDate": "Activity Date"
+			"activityDate": "Activity Date",
+			"trackers": "Trackers"
 		},
 		"status-text": {
 			"0": "Paused",
