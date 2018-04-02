@@ -47,6 +47,7 @@ system.lang = {
 		"ui-computer":"Стандартный UI",
 		"plugin":"Плагины",
 		"rename":"Переименовать",
+		"copy-path-to-clipboard": "Скопировать путь загрузки в буфер обмена",
 		"tip":{
 			"start":"Запустить выбранные торренты",
 			"pause":"Приостановить выбранные торренты",
@@ -70,7 +71,8 @@ system.lang = {
 			"ui-mobile":"Мобильный UI",
 			"ui-original":"Оригинальный UI",
 			"more-peers":"Запросить у трекера больше пиров",
-			"rename":"Переименовать торрент"
+			"rename":"Переименовать торрент",
+			"copy-path-to-clipboard": "Скопировать путь загрузки в буфер обмена"
 		}
 	},
 	"menus":{
@@ -148,7 +150,8 @@ system.lang = {
 				"network":"Сеть",
 				"limit":"Ограничения",
 				"alt-speed":"Планировщик",
-				"dictionary-folders":"Список путей"
+				"dictionary-folders":"Список путей",
+				"more": "Дополнительно"
 			},
 			"config-dir":"Папка конфигурации Transmission (settings.json):",
 			"download-dir":"Папка для загрузки по умолчанию:",
@@ -200,7 +203,10 @@ system.lang = {
 			"idle-seeding-limit-enabled":"Раздача будет остановлена если нет активности:",
 			"minuets":"Минут",
 			"nochange":"Без изменений",
-			"saveing":"Сохранение..."
+			"saveing":"Сохранение...",
+			"show-bt-servers": "Показать 'BT-серверы' на Трекерах.",
+			"restore-default-settings": "Настойки по-умолчанию",
+			"language": "Язык:"
 		},
 		"public":{
 			"button-ok":"OK",
@@ -286,7 +292,8 @@ system.lang = {
 			"uploadedEver":"Отдано",
 			"uploadRatio":"Рейтинг",
 			"queuePosition":"Очередь",
-			"activityDate": "Последняя активность"
+			"activityDate": "Последняя активность",
+			"trackers": "Трекеры"
 		},
 		"status-text":{
 			"0":"Пауза",
@@ -368,7 +375,10 @@ system.lang = {
 			"tip":{
 				"button-allow":"Загрузить выбранные файлы",
 				"button-deny":"Пропустить выбранные файлы",
-				"button-priority":"Установить приоритет"
+				"button-priority":"Установить приоритет",
+				"button-tracker-add": "Добавить новый трекер",
+				"button-tracker-edit": "Редактировать трекер",
+				"button-tracker-remove": "Удалить трекер"
 			},
 			"other":{
 				"tracker-remove-confim":"Вы уверены, что хотите удалить этот Трекер?"
