@@ -197,9 +197,9 @@ system.lang = {
 				,"0":"Niedziela"
 			}
 			,"blocklist-enabled":"Używaj blocklist'y (czarna lista z adresami IP organizacji antypirackich)"
-			,"blocklist-size":"%n reguł na czarnej liście."
+			,"blocklist-size":"Na czarnej liście jest %n reguł"
 			,"seedRatioLimited":"Domyślne ratio dla torrentów:"
-			,"queue-stalled-enabled":"Bezczynne torrenty będą blokowane po czasie :"
+			,"queue-stalled-enabled":"Bezczynne torrenty będą blokowane po czasie:"
 			,"idle-seeding-limit-enabled":"Wysyłanie pobranych torrentów zostanie zatrzymane, jeżeli nikt nie będzie ich pobierał przez:"
 			,"minutes":"Minut"
 			,"nochange":"Nie dokonano zmian"
@@ -265,8 +265,8 @@ system.lang = {
 		}
 		,"torrent-rename": {
 			"title":"Zmiana nazwy katalogu",
-			"oldname": "Stary",
-			"newname": "Nowy"
+			"oldname": "Stary:",
+			"newname": "Nowy:"
 		}
 		,"torrent-attribute-add-tracker": {
 			"title": "Dodaj trackery",
@@ -327,7 +327,7 @@ system.lang = {
 				,"lastAnnounceSucceeded":"Udane połączenie"
 				,"lastAnnounceTime":"Godzina połączenia"
 				,"lastAnnounceTimedOut":"Timeout"
-				,"downloadCount":"ilość pobrań"
+				,"downloadCount":"Ilość pobrań"
 				,"nextAnnounceTime":"Następne połączenie"
 			}
 			,"peers-fields":{
@@ -356,8 +356,8 @@ system.lang = {
 				,"hashString":"HASH:"
 				,"downloadDir":"Katalog pobierania:"
 				,"status":"Status:"
-				,"rateDownload":"Prędkość pobierania :"
-				,"rateUpload":"Prędkość wysyłania :"
+				,"rateDownload":"Prędkość pobierania:"
+				,"rateUpload":"Prędkość wysyłania:"
 				,"leecherCount":"Ilość peerów:"
 				,"seederCount":"Ilość seedów:"
 				,"uploadedEver":"Wysłano:"
