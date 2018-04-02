@@ -197,9 +197,9 @@ system.lang = {
 			,"seedRatioLimited":"Ratio de compartición máx. por torrent:"
 			,"queue-stalled-enabled":"Considerar o no los torrents inactivos como parados:"
 			,"idle-seeding-limit-enabled":"Los torrents compartiendo se detendrán si se encuentran inactivos más de:"
-			,"minuets":"Minutos"
+			,"minutes":"Minutos"
 			,"nochange":"Sin cambio"
-			,"saveing":"Guardando..."
+			,"saving":"Guardando..."
 		}
 		,"public":{
 			"button-ok":"Aceptar"
