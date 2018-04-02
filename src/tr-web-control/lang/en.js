@@ -47,6 +47,7 @@ system.lang = {
 		"ui-computer":"Desktop UI",
 		"plugin":"Extensions/plugins",
 		"rename":"Rename",
+		"copy-path-to-clipboard": "Copy download location to clipboard",
 		"tip":{
 			"start":"Start the checked torrents",
 			"pause":"Pause the checked torrents",
@@ -70,7 +71,8 @@ system.lang = {
 			"ui-mobile":"Mobile UI",
 			"ui-original":"Original UI",
 			"more-peers":"Ask tracker for more peers",
-			"rename":"Renaming a Torrent's Path"
+			"rename":"Renaming a Torrent's Path",
+			"copy-path-to-clipboard": "Copy download location to clipboard"
 		}
 	},
 	"menus":{
@@ -148,7 +150,8 @@ system.lang = {
 				"network":"Network",
 				"limit":"Limit",
 				"alt-speed":"Alternative speeds",
-				"dictionary-folders":"Folders Dictionary"
+				"dictionary-folders":"Folders Dictionary",
+				"more": "More"
 			},
 			"config-dir":"Location of transmission's configuration directory:",
 			"download-dir":"Default path to download torrents:",
@@ -198,9 +201,12 @@ system.lang = {
 			"seedRatioLimited":"The default seed ratio for torrents to use:",
 			"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:",
 			"idle-seeding-limit-enabled":"Torrents we're seeding will be stopped if they're idle for this long:",
-			"minuets":"Minutes",
+			"minutes":"Minutes",
 			"nochange":"No change",
-			"saveing":"Saving..."
+			"saving":"Saving...",
+			"show-bt-servers": "Show 'BT servers' on Trackers.",
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:"
 		},
 		"public":{
 			"button-ok":"OK",
@@ -286,7 +292,8 @@ system.lang = {
 			"uploadedEver":"Uploaded ever",
 			"uploadRatio":"Ratio",
 			"queuePosition":"Queue",
-			"activityDate": "Activity Date"
+			"activityDate": "Activity Date",
+			"trackers": "Trackers"
 		},
 		"status-text":{
 			"0":"Paused",
@@ -368,7 +375,10 @@ system.lang = {
 			"tip":{
 				"button-allow":"Download checked file(s)",
 				"button-deny":"Skip checked file(s)",
-				"button-priority":"Set priority"
+				"button-priority":"Set priority",
+				"button-tracker-add": "Add New Tracker",
+				"button-tracker-edit": "Edit Tracker",
+				"button-tracker-remove": "Remove Tracker"
 			},
 			"other":{
 				"tracker-remove-confim":"Are you sure want to remove this Tracker?"
