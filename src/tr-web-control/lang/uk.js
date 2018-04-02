@@ -194,9 +194,9 @@ system.lang = {
 			,"seedRatioLimited":"Роздача буде зупинена на рейтингу:"
 			,"queue-stalled-enabled":"Вважати торренти завислими, якщо немає активності:"
 			,"idle-seeding-limit-enabled":"Роздача буде зупинена якщо немає активності:"
-			,"minuets":"Хвилин"
+			,"minutes":"Хвилин"
 			,"nochange":"Без змін"
-			,"saveing":"Збереження..."
+			,"saving":"Збереження..."
 		}
 		,"public":{
 			"button-ok":"OK"
