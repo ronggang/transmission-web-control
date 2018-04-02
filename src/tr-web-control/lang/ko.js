@@ -194,9 +194,9 @@ system.lang = {
 			,"seedRatioLimited":"기본 시드 비율:"
 			,"queue-stalled-enabled":"Whether or not to consider idle torrents as stalled:"
 			,"idle-seeding-limit-enabled":"토렌트가 오래동안 유휴상태이면, 정지합니다:"
-			,"minuets":"분"
+			,"minutes":"분"
 			,"nochange":"변경 안됨"
-			,"saveing":"저장 중..."
+			,"saving":"저장 중..."
 		}
 		,"public":{
 			"button-ok":"확인"
