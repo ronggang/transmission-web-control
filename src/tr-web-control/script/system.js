@@ -133,7 +133,7 @@ var system = {
 			top: $("#m_top"),
 			toolbar: $("#m_toolbar"),
 			left_layout: $("#m_left_layout"),
-			left: $("#m_left").hide(),
+			left: $("#m_left"),
 			body: $("#m_body"),
 			layout_body: $("#layout_body"),
 			layout_left: $("#layout_left"),
@@ -623,12 +623,17 @@ var system = {
 			}
 		}
 
-		this.panel.left.show();
+		// 是否显示数据目录
+		if (!this.config.foldersShow) {
+			var node = this.panel.left.tree("find", "folders");
+			$(node.target).parent().hide();
+		}
 
 		// node that specifies the default selection
 		if (this.config.defaultSelectNode) {
 			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
-			if (node) {
+			// 当不显示目录时，如果最后选择的为目录，则显示所有种子；
+			if (node && (this.config.foldersShow || this.config.defaultSelectNode.indexOf("folders")==-1)) {
 				this.panel.left.tree("select", node.target);
 			} else {
 				node = this.panel.left.tree("find", "torrent-all");
