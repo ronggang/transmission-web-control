@@ -1235,7 +1235,7 @@ var system = {
 					options: {
 						title: system.lang.dialog["torrent-rename"].title,
 						width: 520,
-						height: 180,
+						height: 200,
 						resizable: true
 					},
 					datas: {
