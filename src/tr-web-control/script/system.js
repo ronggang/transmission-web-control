@@ -2601,22 +2601,28 @@ var system = {
 			key += _key.replace(/[+|\/|=]/g,"0");
 			var node = this.panel.left.tree("find", key);
 			var folderinfos = transmission.torrents.folders[key];
-			var text = name + this.showNodeMoreInfos(folderinfos.count, folderinfos.size);
+			if (folderinfos) {
+				var text = name + this.showNodeMoreInfos(folderinfos.count, folderinfos.size);
 
-			if (!node) {
-				this.appendTreeNode(parentkey, [{
-					id: key,
-					text: text,
-					iconCls: "iconfont tr-icon-file"
-				}]);
-				if (parentkey != rootkey) {
-					node = this.panel.left.tree("find", parentkey);
-					this.panel.left.tree("collapse", node.target);
+				if (!node) {
+					this.appendTreeNode(parentkey, [{
+						id: key,
+						text: text,
+						iconCls: "iconfont tr-icon-file"
+					}]);
+					if (parentkey != rootkey) {
+						node = this.panel.left.tree("find", parentkey);
+						this.panel.left.tree("collapse", node.target);
+					}
+				} else {
+					this.updateTreeNodeText(key, text);
 				}
+				parentkey = key;
 			} else {
-				this.updateTreeNodeText(key, text);
+				this.debug("appendFolder:key", key);
+				this.debug("appendFolder:name", name);
+				this.debug("appendFolder:node", node);
 			}
-			parentkey = key;
 		}
 	},
 	replaceURI: function (text) {
