@@ -108,12 +108,8 @@ install() {
 		showLog "Copying installation package..."
 		# 复制文件到
 		cp -r "$TMP_FOLDER/transmission-web-control-$VERSION/src/." "$WEB_FOLDER/"
-
-		showLog "Setting permissions..."
 		# 设置权限
-		find "$WEB_FOLDER" -type d -exec chmod o+rx {} \;
-		find "$WEB_FOLDER" -type f -exec chmod o+r {} \;
-
+		setPermissions "$WEB_FOLDER"
 		# 安装完成
 		installed
 
@@ -130,31 +126,25 @@ install() {
 		showLog "Copying installation package..."
 		# 复制文件到
 		cp -r web "$ROOT_FOLDER"
-
-		showLog "Setting permissions..."
 		# 设置权限
-		find "$ROOT_FOLDER" -type d -exec chmod o+rx {} \;
-		find "$ROOT_FOLDER" -type f -exec chmod o+r {} \;
-
+		setPermissions "$ROOT_FOLDER"
 		# 安装完成
 		installed
+
 	elif [ $INSTALL_TYPE = 2 ]; then
 		# 下载最新的安装包
 		download
 		# 解压缩包
 		unpack "$TRANSMISSION_WEB_HOME"
-
-		showLog "Setting permissions..."
 		# 设置权限
-		find "$TRANSMISSION_WEB_HOME" -type d -exec chmod o+rx {} \;
-		find "$TRANSMISSION_WEB_HOME" -type f -exec chmod o+r {} \;
-
+		setPermissions "$TRANSMISSION_WEB_HOME"
 		# 安装完成
 		installed
+
 	else
 		echo "##############################################"
 		echo "#"
-		echo "# ERROR : Transmisson WEB UI Folder is missing, Please confirm if Transmisson is installed 。"
+		echo "# ERROR : Transmisson WEB UI Folder is missing, Please confirm Transmisson is installed."
 		echo "#"
 		echo "##############################################"
 	fi
@@ -195,7 +185,8 @@ installed() {
 
 # 输出日志
 showLog() {
-	echo ">>>>> $1"
+	TIME=`date "+%Y-%m-%d %H:%M:%S"`
+	echo "<< $TIME >> $1"
 }
 
 # 解压安装包
@@ -230,8 +221,17 @@ clear() {
 		rm -rf "$TMP_FOLDER"
 	fi
 
-	showLog "The installation script execution is completed. If you have problems please check: https://github.com/ronggang/transmission-web-control/wiki "
+	showLog "Installation completed. Installation problems see: https://github.com/ronggang/transmission-web-control/wiki "
 	end
+}
+
+# 设置权限
+setPermissions() {
+	folder="$1"
+	showLog "Setting permissions, It takes about one minute ..."
+	# 设置权限
+	find "$folder" -type d -exec chmod o+rx {} \;
+	find "$folder" -type f -exec chmod o+r {} \;
 }
 
 # 开始
@@ -257,9 +257,10 @@ showMainMenu() {
 	3. Revert to the official UI;
 	4. Re-download the installation script;
 	5. Check if Transmission is started;
+	6. Input the Transmission Web directory;
 	===================
 	0. Exit the installation;\n
-	Please enter the corresponding number:"
+	Please enter the corresponding number: "
 	echo -n "$msg"
 	read flag
 	echo "\n"
@@ -269,7 +270,7 @@ showMainMenu() {
 			;;
 
 		2)
-			echo -n "Please enter the version number (do not include v, such as: 1.5.1): "
+			echo -n "Please enter the version number (do not include 'v', such as: 1.5.1): "
 			read VERSION
 			main
 			;;
@@ -285,6 +286,20 @@ showMainMenu() {
 		5)
 			checkTransmissionDaemon
 			;;
+
+		6)
+			echo -n "Please enter the directory where the Transmission Web is located (without 'web', eg /usr/share/transmission): "
+			read input
+			if [ -d "$input/web" ]; then
+				ROOT_FOLDER="$input"
+				showLog "The installation directory is specified as: $input/web"
+			else
+				showLog "The input path is invalid."
+			fi
+			sleep 2
+			showMainMenu
+			;;
+
 		*)
 			showLog "END"
 			;;

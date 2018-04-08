@@ -78,7 +78,7 @@ findWebFolder() {
       fi
 		INSTALL_TYPE=2
 	else
-		showLog "判断 $ROOT_FOLDER/web 是否可用"
+		showLog "正在检测 $ROOT_FOLDER/web 是否可用..."
 		if [ -d "$ROOT_FOLDER/web" ]; then
 			WEB_FOLDER="$ROOT_FOLDER/web"
 			INSTALL_TYPE=1
@@ -102,18 +102,14 @@ install() {
 		showLog "正在尝试指定版本 $VERSION"
 		# 下载最新的安装包
 		download
-		# 
+		# 解压安装包
 		unpack
 
 		showLog "正在复制安装包..."
 		# 复制文件到
 		cp -r "$TMP_FOLDER/transmission-web-control-$VERSION/src/." "$WEB_FOLDER/"
-
-		showLog "正在设置权限..."
 		# 设置权限
-		find "$WEB_FOLDER" -type d -exec chmod o+rx {} \;
-		find "$WEB_FOLDER" -type f -exec chmod o+r {} \;
-
+		setPermissions "$WEB_FOLDER"
 		# 安装完成
 		installed
 
@@ -130,27 +126,21 @@ install() {
 		showLog "正在复制安装包..."
 		# 复制文件到
 		cp -r web "$ROOT_FOLDER"
-
-		showLog "正在设置权限..."
 		# 设置权限
-		find "$ROOT_FOLDER" -type d -exec chmod o+rx {} \;
-		find "$ROOT_FOLDER" -type f -exec chmod o+r {} \;
-
+		setPermissions "$ROOT_FOLDER"
 		# 安装完成
 		installed
+
 	elif [ $INSTALL_TYPE = 2 ]; then
 		# 下载最新的安装包
 		download
 		# 解压缩包
 		unpack "$TRANSMISSION_WEB_HOME"
-
-		showLog "正在设置权限..."
 		# 设置权限
-		find "$TRANSMISSION_WEB_HOME" -type d -exec chmod o+rx {} \;
-		find "$TRANSMISSION_WEB_HOME" -type f -exec chmod o+r {} \;
-
+		setPermissions "$TRANSMISSION_WEB_HOME"
 		# 安装完成
 		installed
+
 	else
 		echo "##############################################"
 		echo "#"
@@ -195,7 +185,8 @@ installed() {
 
 # 输出日志
 showLog() {
-	echo ">>>>> $1"
+	TIME=`date "+%Y-%m-%d %H:%M:%S"`
+	echo "<< $TIME >> $1"
 }
 
 # 解压安装包
@@ -234,6 +225,15 @@ clear() {
 	end
 }
 
+# 设置权限
+setPermissions() {
+	folder="$1"
+	showLog "正在设置权限，大约需要一分钟 ..."
+	# 设置权限
+	find "$folder" -type d -exec chmod o+rx {} \;
+	find "$folder" -type f -exec chmod o+r {} \;
+}
+
 # 开始
 begin() {
 	echo ""
@@ -257,6 +257,7 @@ showMainMenu() {
 	3. 恢复到官方UI；
 	4. 重新下载安装脚本；
 	5. 检测 Transmission 是否已启动；
+	6. 指定安装目录；
 	===================
 	0. 退出安装；\n
 	请输入对应的数字："
@@ -284,6 +285,19 @@ showMainMenu() {
 
 		5)
 			checkTransmissionDaemon
+			;;
+
+		6)
+			echo -n "请输入 Transmission Web 所在的目录（不包含web，如：/usr/share/transmission）："
+			read input
+			if [ -d "$input/web" ]; then
+				ROOT_FOLDER="$input"
+				showLog "安装目录已指定为：$input/web"
+			else
+				showLog "输入的路径无效。"
+			fi
+			sleep 2
+			showMainMenu
 			;;
 		*)
 			showLog "结束"
@@ -317,7 +331,7 @@ revertOriginalUI() {
 			rm "$WEB_FOLDER/index.html"
 			rm "$WEB_FOLDER/index.mobile.html"
 			mv "$WEB_FOLDER/$ORG_INDEX_FILE" "$WEB_FOLDER/$INDEX_FILE"
-			showLog "恢复完成，在浏览器中重新访问 http://ip:9091/ 或刷新即可查看官方UI。"
+			showLog "恢复完成，在浏览器中重新访问 http://ip:9091/ 或刷新即可查看官方UI。\n"
 		else
 			showLog "Transmission Web Control 目录不存在。"
 			sleep 2
