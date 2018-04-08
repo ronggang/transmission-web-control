@@ -1,8 +1,9 @@
 #!/bin/sh
 # 获取第一个参数做为目录
 ROOT_FOLDER="$1"
+SCRIPT_NAME="$0"
 SCRIPT_VERSION="1.1.0"
-VERSION="$2"
+VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
 INDEX_FILE="index.html"
@@ -18,16 +19,10 @@ DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 INSTALL_TYPE=-1
 SKIP_SEARCH=0
 
-# 开始
-main() {
-	begin
+initValues() {
 	# 判断临时目录是否存在，不存在则创建
 	if [ ! -d "$TMP_FOLDER" ]; then
 		mkdir -p "$TMP_FOLDER"
-	fi
-
-	if [ "$VERSION" = "" ]; then
-		VERSION="$ROOT_FOLDER"
 	fi
 
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
@@ -49,7 +44,13 @@ main() {
 		# 查找目录
 		findWebFolder
 	fi
+}
 
+# 开始
+main() {
+	begin
+	# 初始化值
+	initValues
 	# 安装
 	install
 	# 清理
@@ -194,7 +195,7 @@ installed() {
 
 # 输出日志
 showLog() {
-	echo "=== TR WEB Control === >>>>> $1"
+	echo ">>>>> $1"
 }
 
 # 解压安装包
@@ -233,17 +234,118 @@ clear() {
 	end
 }
 
+# 开始
 begin() {
 	echo ""
 	showLog "== 开始 =="
 	showLog ""
-	showLog "欢迎使用 Transmission Web Control 中文安装脚本，当前脚本版本：$SCRIPT_VERSION"
-	showLog ""	
 }
 
+# 结束
 end() {
 	showLog "== 结束 ==\n"
 }
 
+# 显示主菜单
+showMainMenu() {
+	msg="
+	欢迎使用 Transmission Web Control 中文安装脚本。
+	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki 
+	安装脚本版本：$SCRIPT_VERSION\n
+	1. 安装最新发布版本；
+	2. 安装指定版本；
+	3. 恢复到官方UI；
+	4. 重新下载安装脚本；
+	5. 检测 Transmission 是否已启动；
+	===================
+	0. 退出安装；\n
+	请输入对应的数字："
+	echo -n "$msg"
+	read flag
+	echo "\n"
+	case $flag in
+		1)
+			main
+			;;
+
+		2)
+			echo -n "请输入版本号（不要包含v，如：1.5.1）："
+			read VERSION
+			main
+			;;
+		
+		3)
+			revertOriginalUI
+			;;
+
+		4)
+			downloadInstallScript
+			;;
+
+		5)
+			showLog "正在检测 Transmission 进程..."
+			checkTransmissionDaemon
+			;;
+		*)
+			showLog "结束"
+			;;
+	esac
+}
+
+# 检测 Transmission 进程是否存在
+checkTransmissionDaemon() {
+	ps -fe|grep ransmission-daemon |grep -v grep
+	if [ $? -ne 0 ]; then
+		showLog "在系统进程中没有找到 Transmission ，请确认是否已启动。"
+	else
+		showLog "Transmission 已启动。"
+	fi
+	sleep 2
+	showMainMenu
+}
+
+# 恢复官方UI
+revertOriginalUI() {
+	initValues
+	# 判断是否有官方的UI存在
+	if [ -f "$WEB_FOLDER/$ORG_INDEX_FILE" ]; then
+		showLog "正在恢复官方UI..."
+		# 清除原来的内容
+		if [ -d "$WEB_FOLDER/tr-web-control" ]; then
+			rm -rf "$WEB_FOLDER/tr-web-control"
+			rm "$WEB_FOLDER/favicon.ico"
+			rm "$WEB_FOLDER/index.html"
+			rm "$WEB_FOLDER/index.mobile.html"
+			mv "$WEB_FOLDER/$ORG_INDEX_FILE" "$WEB_FOLDER/$INDEX_FILE"
+			showLog "恢复完成，在浏览器中重新访问 http://ip:9091/ 或刷新即可查看官方UI。"
+		else
+			showLog "Transmission Web Control 目录不存在。"
+			sleep 2
+			showMainMenu
+		fi
+	else
+		showLog "官方UI不存在。"
+		sleep 2
+		showMainMenu
+	fi
+}
+
+# 重新下载安装脚本
+downloadInstallScript() {
+	if [ -f "$SCRIPT_NAME" ]; then
+		rm "$SCRIPT_NAME"
+	fi
+	showLog "正在重新下载安装脚本..."
+	wget "https://github.com/ronggang/transmission-web-control/raw/master/release/$SCRIPT_NAME" --no-check-certificate
+	# 判断是否下载成功
+	if [ $? -eq 0 ]; then
+		showLog "下载完成，请重新运行安装脚本。"
+	else 
+		showLog "安装脚本下载失败！"
+		sleep 2
+		showMainMenu
+	fi
+}
+
 # 执行
-main
+showMainMenu
