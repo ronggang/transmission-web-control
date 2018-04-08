@@ -283,7 +283,6 @@ showMainMenu() {
 			;;
 
 		5)
-			showLog "正在检测 Transmission 进程..."
 			checkTransmissionDaemon
 			;;
 		*)
@@ -294,6 +293,7 @@ showMainMenu() {
 
 # 检测 Transmission 进程是否存在
 checkTransmissionDaemon() {
+	showLog "正在检测 Transmission 进程..."
 	ps -fe|grep ransmission-daemon |grep -v grep
 	if [ $? -ne 0 ]; then
 		showLog "在系统进程中没有找到 Transmission ，请确认是否已启动。"
