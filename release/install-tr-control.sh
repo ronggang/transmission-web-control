@@ -309,7 +309,7 @@ showMainMenu() {
 # 检测 Transmission 进程是否存在
 checkTransmissionDaemon() {
 	showLog "Detecting the Transmission process..."
-	ps -fe|grep ransmission-daemon |grep -v grep
+	ps -C transmission-daemon
 	if [ $? -ne 0 ]; then
 		showLog "No Transmission was found in the system process. Please confirm that it is started."
 	else
