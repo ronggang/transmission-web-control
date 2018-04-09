@@ -26,6 +26,8 @@ initValues() {
 		mkdir -p "$TMP_FOLDER"
 	fi
 
+	getTransmissionPath
+
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
 	if [ -d "$ROOT_FOLDER" ]; then
 		showLog "使用参数: $ROOT_FOLDER"
@@ -313,6 +315,10 @@ showMainMenu() {
 			sleep 2
 			showMainMenu
 			;;
+		
+		7)
+			testTransmissionPath
+			;;
 
 		# 下载最新的代码
 		9)
@@ -323,6 +329,21 @@ showMainMenu() {
 			showLog "结束"
 			;;
 	esac
+}
+
+# 获取Tr所在的目录
+getTransmissionPath() {
+	if [ ! -d "$ROOT_FOLDER" ]; then
+		infos=`ps -ef | awk '/[t]ransmission-da/{print $8}'`
+		if [ "$infos" != "" ]; then
+			search="bin/transmission-daemon"
+			replace="share/transmission"
+			path=${infos//$search/$replace}
+			if [ -d "$path" ]; then
+				ROOT_FOLDER=$path
+			fi
+		fi
+	fi
 }
 
 # 检测 Transmission 进程是否存在
