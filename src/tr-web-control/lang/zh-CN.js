@@ -204,7 +204,8 @@ system.lang = {
 			"nochange": "参数未改变",
 			"saving": "正在保存...",
 			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。",
-			"restore-default-settings": "恢复界面默认设置（含主题）"
+			"restore-default-settings": "恢复界面默认设置（含主题）",
+			"language": "界面语言："
 		},
 		"public": {
 			"button-ok": "确定",
