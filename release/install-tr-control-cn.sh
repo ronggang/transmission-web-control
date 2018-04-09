@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # 获取第一个参数做为目录
 ROOT_FOLDER="$1"
 SCRIPT_NAME="$0"
@@ -18,6 +18,7 @@ DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 3 用户指定参数做为目录，如 sh install-tr-control.sh /usr/local/transmission/share/transmission
 INSTALL_TYPE=-1
 SKIP_SEARCH=0
+USER=`whoami`
 
 initValues() {
 	# 判断临时目录是否存在，不存在则创建
@@ -35,8 +36,17 @@ initValues() {
 
 	# 判断是否指定了版本
 	if [ "$VERSION" != "" ]; then
+		# 是否指定了 v
+		if [ "$VERSION" = "master" ]; then
+			PACK_NAME="$VERSION.tar.gz"
+		elif [ ${VERSION:0:1} = "v" ]; then
+			PACK_NAME="$VERSION.tar.gz"
+			VERSION=${VERSION:1}
+		else
+			PACK_NAME="v$VERSION.tar.gz"
+		fi
 		showLog "您正在使用指定版本安装，版本：$VERSION"
-		PACK_NAME="v$VERSION.tar.gz"
+		
 		DOWNLOAD_URL="https://github.com/ronggang/transmission-web-control/archive/$PACK_NAME"
 	fi	
 
@@ -100,7 +110,7 @@ install() {
 	# 是否指定版本
 	if [ "$VERSION" != "" ]; then
 		showLog "正在尝试指定版本 $VERSION"
-		# 下载最新的安装包
+		# 下载安装包
 		download
 		# 解压安装包
 		unpack
@@ -115,7 +125,7 @@ install() {
 
 	# 如果目录存在，则进行下载和更新动作
 	elif [ $INSTALL_TYPE = 1 -o $INSTALL_TYPE = 3 ]; then
-		# 下载最新的安装包
+		# 下载安装包
 		download
 		# 创建web文件夹，从 20171014 之后，打包文件不包含web目录，直接打包为src下所有文件
 		mkdir web
@@ -132,7 +142,7 @@ install() {
 		installed
 
 	elif [ $INSTALL_TYPE = 2 ]; then
-		# 下载最新的安装包
+		# 下载安装包
 		download
 		# 解压缩包
 		unpack "$TRANSMISSION_WEB_HOME"
@@ -150,7 +160,7 @@ install() {
 	fi
 }
 
-# 下载最新的安装包
+# 下载安装包
 download() {
 	# 切换到临时目录
 	cd "$TMP_FOLDER"
@@ -165,7 +175,8 @@ download() {
 			return 0
 		fi
 	fi
-	showLog "正在下载 Transmission Web Control...\n"
+	showLog "正在下载 Transmission Web Control..."
+	echo ""
 	wget "$DOWNLOAD_URL" --no-check-certificate
 	# 判断是否下载成功
 	if [ $? -eq 0 ]; then
@@ -243,7 +254,8 @@ begin() {
 
 # 结束
 end() {
-	showLog "== 结束 ==\n"
+	showLog "== 结束 =="
+	echo ""
 }
 
 # 显示主菜单
@@ -251,26 +263,28 @@ showMainMenu() {
 	msg="
 	欢迎使用 Transmission Web Control 中文安装脚本。
 	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki 
-	安装脚本版本：$SCRIPT_VERSION\n
-	1. 安装最新发布版本；
+	安装脚本版本：$SCRIPT_VERSION
+
+	1. 安装最新的发布版本（release）；
 	2. 安装指定版本；
 	3. 恢复到官方UI；
 	4. 重新下载安装脚本；
 	5. 检测 Transmission 是否已启动；
 	6. 指定安装目录；
 	===================
-	0. 退出安装；\n
+	0. 退出安装；
+
 	请输入对应的数字："
 	echo -n "$msg"
 	read flag
-	echo "\n"
+	echo ""
 	case $flag in
 		1)
 			main
 			;;
 
 		2)
-			echo -n "请输入版本号（不要包含v，如：1.5.1）："
+			echo -n "请输入版本号（如：1.5.1）："
 			read VERSION
 			main
 			;;
@@ -299,6 +313,12 @@ showMainMenu() {
 			sleep 2
 			showMainMenu
 			;;
+
+		# 下载最新的代码
+		9)
+			VERSION="master"
+			main
+			;;
 		*)
 			showLog "结束"
 			;;
@@ -311,6 +331,11 @@ checkTransmissionDaemon() {
 	ps -C transmission-daemon
 	if [ $? -ne 0 ]; then
 		showLog "在系统进程中没有找到 Transmission ，请确认是否已启动。"
+		echo -n "是否尝试启动 Transmission ？（y/n）"
+		read input
+		if [ "$input" = "y" -o "$input" = "Y" ] ; then
+			service transmission-daemon start
+		fi
 	else
 		showLog "Transmission 已启动。"
 	fi
@@ -331,7 +356,7 @@ revertOriginalUI() {
 			rm "$WEB_FOLDER/index.html"
 			rm "$WEB_FOLDER/index.mobile.html"
 			mv "$WEB_FOLDER/$ORG_INDEX_FILE" "$WEB_FOLDER/$INDEX_FILE"
-			showLog "恢复完成，在浏览器中重新访问 http://ip:9091/ 或刷新即可查看官方UI。\n"
+			showLog "恢复完成，在浏览器中重新访问 http://ip:9091/ 或刷新即可查看官方UI。"
 		else
 			showLog "Transmission Web Control 目录不存在。"
 			sleep 2
@@ -361,5 +386,9 @@ downloadInstallScript() {
 	fi
 }
 
+if [ "$USER" != 'root' ]; then
+	showLog "当前非 root 用户，无法进行安装操作。"
+	exit -1
+fi
 # 执行
 showMainMenu
