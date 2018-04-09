@@ -27,7 +27,11 @@ var system = {
 					body: {},
 					left: {}
 				},
-				panel: {}
+				panel: {},
+				size: {
+					nav: {},
+					attribute: {}
+				}
 			}
 		}
 	},
@@ -118,15 +122,6 @@ var system = {
 	init: function (lang, islocal, devicetype) {
 		this.readConfig();
 		this.lastUIStatus = JSON.parse(JSON.stringify(this.config.ui.status));
-		/*
-		 alert(screen.width+","+this.config.mobileDeviceWidth);
-		//return;
-		if (screen.width<=this.config.mobileDeviceWidth&&devicetype!="computer")
-		{
-			location.href = "index.mobile.html";
-			return;
-		}
-		*/
 		this.islocal = (islocal == 1 ? true : false);
 		this.panel = {
 			main: $("#main"),
@@ -394,6 +389,13 @@ var system = {
 			}
 		});
 	},
+	layoutResize: function(target, size) {
+		if (system.loadCount==0) return;
+		if (system.config.ui.status.size[target]) {
+			system.config.ui.status.size[target] = size;
+			system.saveConfig();
+		}
+	},
 	// Navigation toolbar Click Events
 	navToolbarClick: function (source) {
 		var key = source.id;
@@ -641,6 +643,18 @@ var system = {
 			}
 		}
 
+		// 恢复尺寸
+		if (this.lastUIStatus.size.nav && this.lastUIStatus.size.nav.width) {
+			this.panel.main.layout('panel', 'west').panel('resize', { width: this.lastUIStatus.size.nav.width });
+			this.panel.main.layout("resize");
+		}
+
+		if (this.lastUIStatus.size.attribute && this.lastUIStatus.size.attribute.height) {
+			this.panel.layout_body.layout('panel', 'south').panel('resize', { height: this.lastUIStatus.size.attribute.height });
+			this.panel.layout_body.layout("resize");
+		}
+
+		// 恢复展开状态
 		status = this.lastUIStatus.layout.body;
 		for (var key in status) {
 			if (status[key]=="open") {

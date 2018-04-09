@@ -128,7 +128,7 @@
 		</div>
 		<div id="m_left_layout" title="." data-options="region:'west',split:true,border:0">
 			<div id="layout_left" class="easyui-layout" data-options="fit:true">
-				<div id="m_left" data-options="region:'center',border:0"></div>
+				<div id="m_left" data-options="region:'center',border:0,onResize:function(w,h){system.layoutResize('nav', {width:w});}"></div>
 				<div id="m_status" title="status" data-options="region:'south',split:true,border:0,collapsed:true">
 					<span id="status_text"></span>
 					<a id="button-cancel-checked" class="easyui-linkbutton" data-options="iconCls:'iconfont tr-icon-cancel-checked'" style="display:none;right: 5px;bottom: 5px;position:absolute;" system-tip-lang="dialog['public']['button-cancel']"></a>
@@ -138,7 +138,7 @@
 		<div id="m_body" title="." data-options="region:'center',border:0" >
 			<div id="layout_body"  class="easyui-layout" data-options="fit:true">
 				<div id="m_list" data-options="region:'center',border:0"></div>
-				<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'tr-web-control/template/torrent-attribute.html',cache:true"></div>
+				<div id="m_attribute" title="attribute" data-options="region:'south',split:true,border:0,collapsed:true,href:'tr-web-control/template/torrent-attribute.html',cache:true,onResize:function(w,h){system.layoutResize('attribute', {height:h});}"></div>
 			</div>
 		</div>
 		<div id="m_statusbar" data-options="region:'south'">
