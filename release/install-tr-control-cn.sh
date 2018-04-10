@@ -1,8 +1,9 @@
 #!/bin/bash
-# 获取第一个参数做为目录
-ROOT_FOLDER="$1"
+# 获取第一个参数
+ARG1="$1"
+ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.1.0"
+SCRIPT_VERSION="1.2.0"
 VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
@@ -19,6 +20,14 @@ DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 INSTALL_TYPE=-1
 SKIP_SEARCH=0
 USER=`whoami`
+AUTOINSTALL=0
+
+# 是否自动安装
+if [ "$ARG1" = "auto" ]; then
+	AUTOINSTALL=1
+else
+	ROOT_FOLDER=$ARG1
+fi
 
 initValues() {
 	# 判断临时目录是否存在，不存在则创建
@@ -161,8 +170,13 @@ download() {
 	cd "$TMP_FOLDER"
 	# 判断安装包文件是否已存在
 	if [ -f "$PACK_NAME" ]; then
-		echo -n "\n$PACK_NAME 已存在，是否重新下载？（y/n）"
-		read flag
+		if [ $AUTOINSTALL = 0 ]; then
+			echo -n "\n$PACK_NAME 已存在，是否重新下载？（y/n）"
+			read flag
+		else
+			flag="y"
+		fi
+
 		if [ "$flag" = "y" -o "$flag" = "Y" ] ; then
 			rm "$PACK_NAME"
 		else
@@ -265,7 +279,7 @@ showMainMenu() {
 	msg="
 	欢迎使用 Transmission Web Control 中文安装脚本。
 	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki 
-	安装脚本版本：$SCRIPT_VERSION
+	安装脚本版本：$SCRIPT_VERSION 
 
 	1. 安装最新的发布版本（release）；
 	2. 安装指定版本，可用于降级；
@@ -340,9 +354,9 @@ getTransmissionPath() {
 	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
 	# ROOT_FOLDER="/usr/local/transmission/share/transmission"
 	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
-	# if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ]; then
-	# 	ROOT_FOLDER="/usr/share/transmission"
-	# fi
+	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ]; then
+		ROOT_FOLDER="/usr/share/transmission"
+	fi
 
 	if [ ! -d "$ROOT_FOLDER" ]; then
 		showLog "正在尝试从进程中识别 Transmission Web 目录..." "n"
@@ -426,5 +440,10 @@ if [ "$USER" != 'root' ]; then
 	showLog "当前非 root 用户，无法进行安装操作。"
 	exit -1
 fi
-# 执行
-showMainMenu
+
+if [ $AUTOINSTALL = 1 ]; then
+	main
+else
+	# 执行
+	showMainMenu
+fi
