@@ -1,4 +1,4 @@
-﻿// lang file
+// lang file
 system.lang = {
 	"name":"en",
 	"system":{
