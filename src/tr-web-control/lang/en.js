@@ -1,4 +1,4 @@
-// lang file
+﻿// lang file
 system.lang = {
 	"name":"en",
 	"system":{
@@ -7,18 +7,18 @@ system.lang = {
 			"connect":"Connecting...",
 			"connected":"Connected",
 			"queue":"Queue:",
-			"queuefinish":"The queue(s) is finish.",
-			"notfinal":"Not final",
-			"checked": "%n data checked: "
+			"queuefinish":"The queue(s) has finished.",
+			"notfinal":"Not finalized",
+			"checked":"%n data checked: "
 		}
 	},
 	"error":{
-		"data-error":"Data error.",
-		"data-post-error":"Data post error.",
+		"data-error":"Error recieving data!",
+		"data-post-error":"Error posting data!",
 		"rename-error":"Error renaming file/folder!"
 	},
 	"config":{
-		"save-path":"Download dir"
+		"save-path":"Download directory"
 	},
 	"toolbar":{
 		"start":"Start",
@@ -47,12 +47,12 @@ system.lang = {
 		"ui-computer":"Desktop UI",
 		"plugin":"Extensions/plugins",
 		"rename":"Rename",
-		"copy-path-to-clipboard": "Copy download location to clipboard",
+		"copy-path-to-clipboard":"Copy download location to clipboard",
 		"tip":{
 			"start":"Start the checked torrents",
 			"pause":"Pause the checked torrents",
 			"recheck":"Recheck the checked torrents",
-			"recheck-confirm":"You sure you want to re-check the selected torrents? This may take some time!",
+			"recheck-confirm":"Are you sure you want to re-check the selected torrents? This may take some time!",
 			"start-all":"Start all",
 			"pause-all":"Pause all",
 			"remove":"Remove",
@@ -64,15 +64,15 @@ system.lang = {
 			"system-config":"Config",
 			"system-reload":"Reload",
 			"about":"About this app",
-			"autoreload-disabled":"Disabled auto reload",
-			"autoreload-enabled":"Enabled auto reload",
+			"autoreload-disabled":"Click to disable auto reload",
+			"autoreload-enabled":"Click to enable auto reload",
 			"tracker-replace":"Replace trackers",
 			"change-download-dir":"Change download location",
 			"ui-mobile":"Mobile UI",
 			"ui-original":"Original UI",
 			"more-peers":"Ask tracker for more peers",
 			"rename":"Renaming a Torrent's Path",
-			"copy-path-to-clipboard": "Copy download location to clipboard"
+			"copy-path-to-clipboard":"Copy download location to clipboard"
 		}
 	},
 	"menus":{
@@ -82,8 +82,8 @@ system.lang = {
 			"move-down":"Move down",
 			"move-bottom":"Move to bottom"
 		},
-		"plugin": {
-			"auto-match-data-folder": "Automatically matches data directory"
+		"plugin":{
+			"auto-match-data-folder":"Automatically matches data directory"
 		}
 	},
 	"title":{
@@ -135,13 +135,13 @@ system.lang = {
 		"torrent-add":{
 			"download-dir":"Download Dir:",
 			"torrent-url":"Torrent URL:",
-			"tip-torrent-url":"Tip：Please multiple content with 'Enter' to separate",
+			"tip-torrent-url":"Tip: Please add multiple content with an 'Enter' key press to separate",
 			"autostart":"Auto Start:",
 			"tip-autostart":"",
-			"set-default-download-dir":"Set as default dir",
+			"set-default-download-dir":"Set as default directory",
 			"upload-file":"Torrent file(s):",
 			"nosource":"No torrent file or URL.",
-			"tip-title":"Upload the torrent file takes precedence over the torrent URL"
+			"tip-title":"Uploading the torrent file takes precedence over the torrent URL"
 		},
 		"system-config":{
 			"title":"Server Config",
@@ -151,12 +151,12 @@ system.lang = {
 				"limit":"Limit",
 				"alt-speed":"Alternative speeds",
 				"dictionary-folders":"Folders Dictionary",
-				"more": "More"
+				"more":"More"
 			},
 			"config-dir":"Location of transmission's configuration directory:",
 			"download-dir":"Default path to download torrents:",
 			"download-dir-free-space":"Free space: ",
-			"incomplete-dir-enabled":"Use incomplete dir",
+			"incomplete-dir-enabled":"Use incomplete directory",
 			"cache-size-mb":"Disk cache size:",
 			"rename-partial-files":"Append '.part' to incomplete files",
 			"start-added-torrents":"Auto start added torrents",
@@ -204,10 +204,10 @@ system.lang = {
 			"minutes":"Minutes",
 			"nochange":"No change",
 			"saving":"Saving...",
-			"show-bt-servers": "Show 'BT servers' on Trackers.",
-			"restore-default-settings": "Restore UI Default Settings",
-			"language": "Language:",
-			"loading": "Loading..."
+			"show-bt-servers":"Show 'BT servers' on Trackers.",
+			"restore-default-settings":"Restore UI Default Settings",
+			"language":"Language:",
+			"loading":"Loading..."
 		},
 		"public":{
 			"button-ok":"OK",
@@ -221,10 +221,10 @@ system.lang = {
 		"about":{
 			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete.",
 			"check-update":"Check Update",
-			"home": "Project Home",
-			"help": "Wiki",
-			"donate": "Donate",
-			"pt-plugin": "PT Plugin"
+			"home":"Project Home",
+			"help":"Wiki",
+			"donate":"Donate",
+			"pt-plugin":"PT Plugin"
 		},
 		"torrent-remove":{
 			"title":"Remove confirm",
@@ -256,7 +256,7 @@ system.lang = {
 			"time-now":"Now:",
 			"status":"Status:",
 			"ignore":"Ignore",
-			"working-close-confirm":"Is working, make sure to close it?",
+			"working-close-confirm":"Torrents are currently downloading, are sure you want to close Transmission?",
 			"time-interval":"Time interval (seconds):",
 			"work-mode-title":"Mode:",
 			"work-mode":{
@@ -264,14 +264,14 @@ system.lang = {
 				"2":"Individually matched by folder"
 			}
 		},
-		"torrent-rename": {
+		"torrent-rename":{
 			"title":"Renaming a Torrent's Path",
-			"oldname": "Old",
-			"newname": "New",
+			"oldname":"Old",
+			"newname":"New"
 		},
-		"torrent-attribute-add-tracker": {
-			"title": "Add Trackers",
-			"tip": "One Line, One Tracker"
+		"torrent-attribute-add-tracker":{
+			"title":"Add Trackers",
+			"tip":"One Line, One Tracker"
 		}
 	},
 	"torrent":{
@@ -284,17 +284,17 @@ system.lang = {
 			"status":"Status",
 			"percentDone":"Percent done",
 			"remainingTime":"Remaining time",
-			"addedDate":"Added date",
+			"addedDate":"Date added",
 			"completeSize":"Complete size",
-			"rateDownload":"Rate download",
-			"rateUpload":"Rate upload",
+			"rateDownload":"Download rate",
+			"rateUpload":"Upload rate",
 			"leecherCount":"Leecher",
 			"seederCount":"Seeder",
 			"uploadedEver":"Uploaded ever",
 			"uploadRatio":"Ratio",
 			"queuePosition":"Queue",
-			"activityDate": "Activity Date",
-			"trackers": "Trackers"
+			"activityDate":"Activity Date",
+			"trackers":"Trackers"
 		},
 		"status-text":{
 			"0":"Paused",
@@ -369,7 +369,7 @@ system.lang = {
 				"errorString":"Error string:",
 				"downloadLimited":"Max global download speed：",
 				"uploadLimited":"Max global upload speed：",
-				"peer-limit":"Maximum peers number of torrent：",
+				"peer-limit":"Maximum peers for this torrent：",
 				"seedRatioMode":"Seed ratio for torrents to use：",
 				"seedIdleMode":"Torrents we're seeding will be stopped if they're idle for this long："
 			},
@@ -377,9 +377,9 @@ system.lang = {
 				"button-allow":"Download checked file(s)",
 				"button-deny":"Skip checked file(s)",
 				"button-priority":"Set priority",
-				"button-tracker-add": "Add New Tracker",
-				"button-tracker-edit": "Edit Tracker",
-				"button-tracker-remove": "Remove Tracker"
+				"button-tracker-add":"Add New Tracker",
+				"button-tracker-edit":"Edit Tracker",
+				"button-tracker-remove":"Remove Tracker"
 			},
 			"other":{
 				"tracker-remove-confim":"Are you sure want to remove this Tracker?"
