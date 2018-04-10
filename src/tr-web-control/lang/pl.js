@@ -207,6 +207,7 @@ system.lang = {
 			,"show-bt-servers":"Pokazuj serwery BT na liście Trackerów"
 			,"restore-default-settings":"Przywróć ustawienia domyślne"
 			,"language":"Język:"
+			,"loading":"Ładowanie..."
 		}
 		,"public":{
 			"button-ok":"OK"
