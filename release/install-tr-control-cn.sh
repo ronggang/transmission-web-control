@@ -26,11 +26,12 @@ initValues() {
 		mkdir -p "$TMP_FOLDER"
 	fi
 
+	# 获取 Transmission 目录
 	getTransmissionPath
 
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
 	if [ -d "$ROOT_FOLDER" ]; then
-		showLog "使用参数: $ROOT_FOLDER"
+		showLog "当前 Transmission Web 目录为: $ROOT_FOLDER/web"
 		INSTALL_TYPE=3
 		WEB_FOLDER="$ROOT_FOLDER/web"
 		SKIP_SEARCH=1
@@ -73,13 +74,6 @@ main() {
 findWebFolder() {
 	# 找出web ui 目录
 	showLog "正在搜索 Transmission Web 目录..."
-	# 指定一次当前系统的默认目录
-	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
-	ROOT_FOLDER="/usr/local/transmission/share/transmission"
-	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
-	if [ -f /etc/fedora-release ] || [ -f "/etc/debian_version" ]; then
-		ROOT_FOLDER="/usr/share/transmission"
-	fi
 		
 	# 判断 TRANSMISSION_WEB_HOME 环境变量是否被定义，如果是，直接用这个变量的值
 	if [ $TRANSMISSION_WEB_HOME ]; then
@@ -90,8 +84,7 @@ findWebFolder() {
       fi
 		INSTALL_TYPE=2
 	else
-		showLog "正在检测 $ROOT_FOLDER/web 是否可用..."
-		if [ -d "$ROOT_FOLDER/web" ]; then
+		if [ -d "$ROOT_FOLDER" -a -d "$ROOT_FOLDER/web" ]; then
 			WEB_FOLDER="$ROOT_FOLDER/web"
 			INSTALL_TYPE=1
 			showLog "$ROOT_FOLDER/web 可用."
@@ -199,7 +192,14 @@ installed() {
 # 输出日志
 showLog() {
 	TIME=`date "+%Y-%m-%d %H:%M:%S"`
-	echo "<< $TIME >> $1"
+
+	case $2 in
+		"n")
+			echo -n "<< $TIME >> $1" ;;
+		*)
+			echo "<< $TIME >> $1" ;;
+	esac
+	
 }
 
 # 解压安装包
@@ -268,11 +268,12 @@ showMainMenu() {
 	安装脚本版本：$SCRIPT_VERSION
 
 	1. 安装最新的发布版本（release）；
-	2. 安装指定版本；
+	2. 安装指定版本，可用于降级；
 	3. 恢复到官方UI；
-	4. 重新下载安装脚本；
+	4. 重新下载安装脚本（$SCRIPT_NAME）；
 	5. 检测 Transmission 是否已启动；
 	6. 指定安装目录；
+	9. 安装最新代码库中的内容（master）；
 	===================
 	0. 退出安装；
 
@@ -316,14 +317,16 @@ showMainMenu() {
 			showMainMenu
 			;;
 		
-		7)
-			testTransmissionPath
-			;;
-
 		# 下载最新的代码
 		9)
-			VERSION="master"
-			main
+			echo -n "最新代码可能包含未知错误，是否确认安装？ (y/n): "
+			read input
+			if [ "$input" = "y" -o "$input" = "Y" ]; then
+				VERSION="master"
+				main
+			else
+				showMainMenu
+			fi
 			;;
 		*)
 			showLog "结束"
@@ -333,15 +336,27 @@ showMainMenu() {
 
 # 获取Tr所在的目录
 getTransmissionPath() {
+	# 指定一次当前系统的默认目录
+	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
+	# ROOT_FOLDER="/usr/local/transmission/share/transmission"
+	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
+	# if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ]; then
+	# 	ROOT_FOLDER="/usr/share/transmission"
+	# fi
+
 	if [ ! -d "$ROOT_FOLDER" ]; then
+		showLog "正在尝试从进程中识别 Transmission Web 目录..." "n"
 		infos=`ps -ef | awk '/[t]ransmission-da/{print $8}'`
 		if [ "$infos" != "" ]; then
+			echo " √"
 			search="bin/transmission-daemon"
 			replace="share/transmission"
 			path=${infos//$search/$replace}
 			if [ -d "$path" ]; then
 				ROOT_FOLDER=$path
 			fi
+		else
+			echo " × 识别失败，请确认 Transmission 已启动。"
 		fi
 	fi
 }
