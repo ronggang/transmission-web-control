@@ -64,8 +64,8 @@ system.defaultLang = {
 			"system-config": "Config",
 			"system-reload": "Reload",
 			"about": "About this app",
-			"autoreload-disabled": "Auto reload is disabled",
-			"autoreload-enabled": "Auto reload is enabled",
+			"autoreload-disabled": "Click to disable auto reload",
+			"autoreload-enabled": "Click to enable auto reload",
 			"tracker-replace": "Replace trackers",
 			"change-download-dir": "Change download location",
 			"ui-mobile": "Mobile UI",
@@ -135,7 +135,7 @@ system.defaultLang = {
 		"torrent-add": {
 			"download-dir": "Download Dir:",
 			"torrent-url": "Torrent URL:",
-			"tip-torrent-url": "Tip: Please add multiple content with an  'Enter' key press to separate",
+			"tip-torrent-url": "Tip: Please add multiple content with an 'Enter' key press to separate",
 			"autostart": "Auto Start:",
 			"tip-autostart": "",
 			"set-default-download-dir": "Set as default directory",
@@ -149,7 +149,7 @@ system.defaultLang = {
 				"base": "Base",
 				"network": "Network",
 				"limit": "Limit",
-				"alt-speed": "Scheduled",
+				"alt-speed": "Alternative speeds",
 				"dictionary-folders": "Folders Dictionary",
 				"more": "More"
 			},
@@ -182,10 +182,10 @@ system.defaultLang = {
 			"peer-limit-per-torrent": "Maximum peers number of torrent:",
 			"speed-limit-down-enabled": "Max global download speed:",
 			"speed-limit-up-enabled": "Max global upload speed:",
-			"alt-speed-enabled": "Use the alt speeds",
-			"alt-speed-down": "Max global download speed:",
-			"alt-speed-up": "Max global upload speed:",
-			"alt-speed-time-enabled": "Use scheduled",
+			"alt-speed-enabled": "Enable alternative speeds",
+			"alt-speed-down": "Alternative global download speed:",
+			"alt-speed-up": "Alternative global upload speed:",
+			"alt-speed-time-enabled": "Use schedule",
 			"alt-speed-time": "Time：",
 			"weekday": {
 				"1": "Monday",
@@ -206,7 +206,8 @@ system.defaultLang = {
 			"saving": "Saving...",
 			"show-bt-servers": "Show 'BT servers' on Trackers.",
 			"restore-default-settings": "Restore UI Default Settings",
-			"language": "Language:"
+			"language": "Language:",
+			"loading": "Loading..."
 		},
 		"public": {
 			"button-ok": "OK",
@@ -270,7 +271,7 @@ system.defaultLang = {
 		},
 		"torrent-attribute-add-tracker": {
 			"title": "Add Trackers",
-			"tip": "One Line One Tracker"
+			"tip": "One Line, One Tracker"
 		}
 	},
 	"torrent": {
@@ -285,11 +286,11 @@ system.defaultLang = {
 			"remainingTime": "Remaining time",
 			"addedDate": "Date added",
 			"completeSize": "Complete size",
-			"rateDownload": "Dowload Rate",
+			"rateDownload": "Download rate",
 			"rateUpload": "Upload rate",
 			"leecherCount": "Leecher",
 			"seederCount": "Seeder",
-			"uploadedEver": "Uploaded till date",
+			"uploadedEver": "Uploaded ever",
 			"uploadRatio": "Ratio",
 			"queuePosition": "Queue",
 			"activityDate": "Activity Date",
@@ -381,7 +382,7 @@ system.defaultLang = {
 				"button-tracker-remove": "Remove Tracker"
 			},
 			"other": {
-				"tracker-remove-confim": "Are you sure you want to remove this Tracker?"
+				"tracker-remove-confim": "Are you sure want to remove this Tracker?"
 			}
 		}
 	},
@@ -392,7 +393,7 @@ system.defaultLang = {
 	},
 	"public": {
 		"text-unknown": "Unknown",
-		"text-drop-title": "Drag and drop the file in your browser to add to Transmission.",
+		"text-drop-title": "Drag and drop the file in the region to add to the Transmission.",
 		"text-saved": "Saved",
 		"text-nochange": "No change",
 		"text-info": "Infos",

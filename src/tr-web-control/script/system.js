@@ -2760,7 +2760,7 @@ var system = {
 			height: 100,
 			resizable: false,
 			cache: true,
-			content: "loading...",
+			content: system.lang.dialog["system-config"].loading,
 			modal: true
 		};
 		options = $.extend(true, defaultOptions, options);

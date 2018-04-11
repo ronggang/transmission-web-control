@@ -47,7 +47,7 @@ system.lang = {
 		,"ui-computer":"Desktop UI"
 		,"plugin":"Rozszerzenia/wtyczki"
 		,"rename":"Zmień nazwę"
-		,"copy-path-to-clipboard": "Skopiuj lokalizację pobierania do schowka"
+		,"copy-path-to-clipboard": "Skopiuj katalog pobierania do schowka"
 		,"tip":{
 			"start":"Pobieraj wybrane torrenty"
 			,"pause":"Wstrzymaj wybrane torrenty"
@@ -72,7 +72,7 @@ system.lang = {
 			,"ui-original":"Oryginalne UI"
 			,"more-peers":"Zapytaj tracker o więcej peerów"
 			,"rename":"Zmiana nazwy katalogu"
-			,"copy-path-to-clipboard":"Kopiuj lokalizację pobierania do schowka"
+			,"copy-path-to-clipboard":"Kopiuj katalog pobierania do schowka"
 		}
 	}
 	,"menus":{
@@ -207,6 +207,7 @@ system.lang = {
 			,"show-bt-servers":"Pokazuj serwery BT na liście Trackerów"
 			,"restore-default-settings":"Przywróć ustawienia domyślne"
 			,"language":"Język:"
+			,"loading":"Ładowanie..."
 		}
 		,"public":{
 			"button-ok":"OK"
@@ -255,7 +256,7 @@ system.lang = {
 			,"time-now":"Teraz:"
 			,"status":"Stan:"
 			,"ignore":"Ignoruj"
-			,"working-close-confirm":"Operacja w trakcie, czy na pewno chcesz zamknąć?"
+			,"working-close-confirm":"Operacja pobierania w trakcie, czy na pewno chcesz ją zatrzymać?"
 			,"time-interval":"Odstęp czasu (sekundy):"
 			,"work-mode-title":"Tryb:"
 			,"work-mode":{
@@ -370,7 +371,7 @@ system.lang = {
 				,"uploadLimited":"Maksymalna prędkość wysyłania："
 				,"peer-limit":"Maksymalna ilość peerów na torrent："
 				,"seedRatioMode":"Ratio do wyseedowania dla tego torrenta："
-				,"seedIdleMode":"Wysyłanie zatrzymanego torrenta, będzie zatrzymane, jeżeli nie będzie wysyłany przez (minut): "
+				,"seedIdleMode":"Wysyłanie torrenta zostanie zatrzymane, jeżeli nie będzie wysyłany przez (minut): "
 			}
 			,"tip":{
 				"button-allow":"Pobierz sprawdzone pliki"
@@ -399,6 +400,6 @@ system.lang = {
 		,"text-confirm":"Jesteś pewny?"
 		,"text-browsers-not-support-features":"Ta przeglądarka nie obsługuje tej funkcji!"
 		,"text-download-update":"Pobierz tę aktualizację"
-		,"text-have-update":"Aktualizacja jest dostępna"
+		,"text-have-update":"Dostępna jest aktualizacja"
 	}
 };
