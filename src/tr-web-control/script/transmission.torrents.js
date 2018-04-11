@@ -192,6 +192,7 @@ transmission.torrents = {
 
 			if (transmission.options.getFolders) {
 				if (item.downloadDir) {
+					// 统一使用 / 来分隔目录
 					var folder = item.downloadDir.replace(/\\/g,"/").split("/");
 					var folderkey = "folders-";
 					for (var i in folder) {
@@ -200,6 +201,7 @@ transmission.torrents = {
 							continue;
 						}
 						var key = B64.encode(text);
+						// 去除特殊字符
 						folderkey += key.replace(/[+|\/|=]/g,"0");
 						var node = this.folders[folderkey];
 						if (!node) {

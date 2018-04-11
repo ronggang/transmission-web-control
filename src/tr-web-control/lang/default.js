@@ -207,7 +207,8 @@ system.defaultLang = {
 			"show-bt-servers": "Show 'BT servers' on Trackers.",
 			"restore-default-settings": "Restore UI Default Settings",
 			"language": "Language:",
-			"loading": "Loading..."
+			"loading": "Loading...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list."
 		},
 		"public": {
 			"button-ok": "OK",

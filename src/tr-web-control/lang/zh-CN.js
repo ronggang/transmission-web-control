@@ -206,7 +206,8 @@ system.lang = {
 			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。",
 			"restore-default-settings": "恢复界面默认设置（含主题）",
 			"language": "界面语言：",
-			"loading": "正在加载..."
+			"loading": "正在加载...",
+			"hide-subfolders": "点击数据目录时，在列表中不显示子目录下的种子。"
 		},
 		"public": {
 			"button-ok": "确定",

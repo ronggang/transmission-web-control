@@ -247,7 +247,8 @@
 				</table>
 			</div>
 			<div title="More" style="padding:10px;" class="dialog">
-				<input id="show-bt-servers" type="checkbox" style="width:16px;" config-type="1"/><label for="show-bt-servers" system-lang="dialog['system-config']['show-bt-servers']"></label>
+				<input id="show-bt-servers" type="checkbox" style="width:16px;" config-type="1"/><label for="show-bt-servers" system-lang="dialog['system-config']['show-bt-servers']"></label><br/>
+				<input id="hide-subfolders" type="checkbox" style="width:16px;" config-type="1"/><label for="hide-subfolders" system-lang="dialog['system-config']['hide-subfolders']"></label>
 				<hr/>
 			</div>
 		</div>
@@ -418,6 +419,7 @@
 		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 
 		thisDialog.find("#show-bt-servers").prop("checked", system.config.showBTServers);
+		thisDialog.find("#hide-subfolders").prop("checked", system.config.hideSubfolders);
 
 		// Cancel
 		thisDialog.find("#system-config-button-cancel").click(function () {
@@ -545,6 +547,7 @@
 			}
 
 			system.config.showBTServers = thisDialog.find("#show-bt-servers").prop("checked");
+			system.config.hideSubfolders = thisDialog.find("#hide-subfolders").prop("checked");
 
 			var cuslang = thisDialog.find("#system-config-lang").val();
 

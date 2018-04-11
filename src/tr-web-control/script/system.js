@@ -33,7 +33,8 @@ var system = {
 					attribute: {}
 				}
 			}
-		}
+		},
+		hideSubfolders: false
 	},
 	storageKeys: {
 		dictionary: {
@@ -1873,7 +1874,17 @@ var system = {
 						if (config.node.id.indexOf("folders-") != -1) {
 							var folder = transmission.torrents.folders[config.node.id];
 							if (folder) {
-								torrents = folder.torrents;
+								if (!this.config.hideSubfolders) {
+									torrents = folder.torrents;
+								} else {
+									torrents = [];
+									for (var index = 0; index < folder.torrents.length; index++) {
+										var element = folder.torrents[index];
+										if (element.downloadDir.replace(/[\\|\/]/g,"")==config.node.path) {
+											torrents.push(element);
+										}
+									}
+								}
 							}
 						}
 						break;
@@ -2610,12 +2621,14 @@ var system = {
 		var parentkey = rootkey;
 		var folder = fullkey.replace(/\\/g,"/").split("/");
 		var key = rootkey + "-";
+		var path = "";
 		for (var i in folder) {
 			var name = folder[i];
 			if (name == "") {
 				continue;
 			}
 			//key += "--" + text.replace(/\./g,"。") + "--";
+			path += name;
 			var _key = this.B64.encode(name);
 			key += _key.replace(/[+|\/|=]/g,"0");
 			var node = this.panel.left.tree("find", key);
@@ -2626,6 +2639,7 @@ var system = {
 				if (!node) {
 					this.appendTreeNode(parentkey, [{
 						id: key,
+						path: path,
 						text: text,
 						iconCls: "iconfont tr-icon-file"
 					}]);
