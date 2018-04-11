@@ -205,7 +205,8 @@ system.lang = {
 			"saving": "儲存中...",
 			"show-bt-servers": "在『伺服器分佈』中顯示『BT』伺服器列表。",
 			"restore-default-settings": "恢復界面默認設置（含主題）",
-			"language": "界面語言："
+			"language": "界面語言：",
+			"loading": "加載中..."
 		},
 		"public": {
 			"button-ok": "確定",
