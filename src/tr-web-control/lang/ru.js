@@ -208,7 +208,7 @@ system.lang = {
 			"restore-default-settings": "Настойки по-умолчанию",
 			"language": "Язык:",
 			"loading": "Загрузка...",
-			"hide-subfolders": "Клик на 'Торренты' -> 'Папка загрузки' скрывает подпапки в окне 'Атрибуты', вкладка 'Файлы'.",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
 			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:"
 		},
 		"public":{
