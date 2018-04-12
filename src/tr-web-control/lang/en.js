@@ -207,7 +207,9 @@ system.lang = {
 			"show-bt-servers":"Show 'BT servers' on Trackers.",
 			"restore-default-settings":"Restore UI Default Settings",
 			"language":"Language:",
-			"loading":"Loading..."
+			"loading":"Loading...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list: ",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list: "
 		},
 		"public":{
 			"button-ok":"OK",
@@ -400,6 +402,8 @@ system.lang = {
 		"text-confirm":"Are you sure?",
 		"text-browsers-not-support-features":"The current browser does not support this feature!",
 		"text-download-update":"Download this update",
-		"text-have-update":"An update is available"
+		"text-have-update":"An update is available",
+		"text-on": "ON",
+		"text-off": "OFF"
 	}
 };
