@@ -208,7 +208,8 @@ system.lang = {
 			"restore-default-settings": "Настойки по-умолчанию",
 			"language": "Язык:",
 			"loading": "Загрузка...",
-			"hide-subfolders": "Клик на 'Торренты' -> 'Папка загрузки' скрывает подпапки в окне 'Атрибуты', вкладка 'Файлы'."
+			"hide-subfolders": "Клик на 'Торренты' -> 'Папка загрузки' скрывает подпапки в окне 'Атрибуты', вкладка 'Файлы'.",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:"
 		},
 		"public":{
 			"button-ok":"OK",
@@ -401,6 +402,8 @@ system.lang = {
 		"text-confirm":"Вы уверены?",
 		"text-browsers-not-support-features":"Текущий браузер не поддерживает этот функционал!",
 		"text-download-update":"Загрузить это обновление",
-		"text-have-update":"Доступно новое обновление"
+		"text-have-update":"Доступно новое обновление",
+		"text-on": "ON",
+		"text-off": "OFF"
 	}
 };
