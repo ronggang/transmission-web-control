@@ -403,7 +403,7 @@ system.lang = {
 		"text-browsers-not-support-features":"Текущий браузер не поддерживает этот функционал!",
 		"text-download-update":"Загрузить это обновление",
 		"text-have-update":"Доступно новое обновление",
-		"text-on": "ON",
-		"text-off": "OFF"
+		"text-on": "Вкл",
+		"text-off": "Выкл"
 	}
 };
