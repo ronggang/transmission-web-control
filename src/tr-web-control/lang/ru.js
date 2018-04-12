@@ -204,9 +204,12 @@ system.lang = {
 			"minutes":"Минут",
 			"nochange":"Без изменений",
 			"saving":"Сохранение...",
-			"show-bt-servers": "Показать 'BT-серверы' на Трекерах.",
+			"show-bt-servers": "Показать 'BT-серверы' в окне 'Навигация' -> 'Трекеры'.",
 			"restore-default-settings": "Настойки по-умолчанию",
-			"language": "Язык:"
+			"language": "Язык:",
+			"loading": "Загрузка...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:"
 		},
 		"public":{
 			"button-ok":"OK",
@@ -399,6 +402,8 @@ system.lang = {
 		"text-confirm":"Вы уверены?",
 		"text-browsers-not-support-features":"Текущий браузер не поддерживает этот функционал!",
 		"text-download-update":"Загрузить это обновление",
-		"text-have-update":"Доступно новое обновление"
+		"text-have-update":"Доступно новое обновление",
+		"text-on": "Вкл",
+		"text-off": "Выкл"
 	}
 };
