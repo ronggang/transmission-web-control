@@ -34,7 +34,8 @@ var system = {
 				}
 			}
 		},
-		hideSubfolders: false
+		hideSubfolders: false,
+		simpleCheckMode: false
 	},
 	storageKeys: {
 		dictionary: {
@@ -186,6 +187,9 @@ var system = {
 	initdata: function () {
 		//this.panel.title.text(this.lang.system.title+" "+this.version+" ("+this.codeupdate+")");
 		$(document).attr("title", this.lang.system.title + " " + this.version);
+
+		$.fn.switchbutton.defaults.onText = this.lang["public"]["text-on"];
+		$.fn.switchbutton.defaults.offText = this.lang["public"]["text-off"];
 
 		// The initial navigation bar
 		var buttons = new Array();
@@ -769,7 +773,9 @@ var system = {
 				},
 				onRowContextMenu: function (e, rowIndex, rowData) {
 					//console.log("onRowContextMenu");
-					// system.control.torrentlist.datagrid("uncheckAll");
+					if (system.config.simpleCheckMode) {
+						system.control.torrentlist.datagrid("uncheckAll");
+					}
 
 					// 当没有种子被选中时，选中当前行
 					if (system.checkedRows.length==0) {
@@ -2704,7 +2710,7 @@ var system = {
 				transmission.addTorrentFromFile(file, savePath, paused, callback, files.length);
 			});
 		} else {
-			alert(system.lang["publit"]["text-browsers-not-support-features"]);
+			alert(system.lang["public"]["text-browsers-not-support-features"]);
 		}
 	},
 	checkUpdate: function () {

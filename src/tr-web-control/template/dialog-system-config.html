@@ -247,9 +247,32 @@
 				</table>
 			</div>
 			<div title="More" style="padding:10px;" class="dialog">
-				<input id="show-bt-servers" type="checkbox" style="width:16px;" config-type="1"/><label for="show-bt-servers" system-lang="dialog['system-config']['show-bt-servers']"></label><br/>
-				<input id="hide-subfolders" type="checkbox" style="width:16px;" config-type="1"/><label for="hide-subfolders" system-lang="dialog['system-config']['hide-subfolders']"></label>
-				<hr/>
+				<table style="width:100%;">
+					<tr>
+						<td width="80%">
+							<label for="show-bt-servers" system-lang="dialog['system-config']['show-bt-servers']"></label>
+						</td>
+						<td>
+							<input id="show-bt-servers" class="easyui-switchbutton" type="checkbox" config-type="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="hide-subfolders" system-lang="dialog['system-config']['hide-subfolders']"></label>
+						</td>
+						<td>
+							<input id="hide-subfolders" class="easyui-switchbutton" type="checkbox" config-type="1"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="simpleCheckMode" system-lang="dialog['system-config']['simple-check-mode']"></label>
+						</td>
+						<td>
+							<input id="simpleCheckMode" class="easyui-switchbutton" type="checkbox" config-type="1"/>
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>  
@@ -418,8 +441,16 @@
 
 		//thisDialog.find("#local-storage-dictionary-folders").val(transmission.downloadDirs);
 
-		thisDialog.find("#show-bt-servers").prop("checked", system.config.showBTServers);
-		thisDialog.find("#hide-subfolders").prop("checked", system.config.hideSubfolders);
+		thisDialog.find("#show-bt-servers").switchbutton({
+			checked: system.config.showBTServers
+		});
+		thisDialog.find("#hide-subfolders").switchbutton({
+			checked: system.config.hideSubfolders
+		});
+		thisDialog.find("#simpleCheckMode").switchbutton({
+			checked: system.config.simpleCheckMode
+		});
+		
 
 		// Cancel
 		thisDialog.find("#system-config-button-cancel").click(function () {
@@ -548,6 +579,7 @@
 
 			system.config.showBTServers = thisDialog.find("#show-bt-servers").prop("checked");
 			system.config.hideSubfolders = thisDialog.find("#hide-subfolders").prop("checked");
+			system.config.simpleCheckMode = thisDialog.find("#simpleCheckMode").prop("checked");
 
 			var cuslang = thisDialog.find("#system-config-lang").val();
 

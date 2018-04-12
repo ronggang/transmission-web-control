@@ -203,11 +203,12 @@ system.lang = {
 			"minutes": "分钟",
 			"nochange": "参数未改变",
 			"saving": "正在保存...",
-			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表。",
+			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表：",
 			"restore-default-settings": "恢复界面默认设置（含主题）",
 			"language": "界面语言：",
 			"loading": "正在加载...",
-			"hide-subfolders": "点击数据目录时，在列表中不显示子目录下的种子。"
+			"hide-subfolders": "点击数据目录时，在列表中不显示子目录下的种子：",
+			"simple-check-mode": "在种子列表上单击鼠标右键时，仅选中一个种子："
 		},
 		"public": {
 			"button-ok": "确定",
@@ -401,6 +402,8 @@ system.lang = {
 		"text-confirm": "确认要这样做吗？",
 		"text-browsers-not-support-features": "当前浏览器不支持该功能！",
 		"text-download-update": "下载这个更新",
-		"text-have-update": "有可用的更新"
+		"text-have-update": "有可用的更新",
+		"text-on": "开",
+		"text-off": "关"
 	}
 };

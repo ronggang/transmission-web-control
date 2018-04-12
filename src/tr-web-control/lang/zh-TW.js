@@ -203,10 +203,12 @@ system.lang = {
 			"minutes": "分鐘",
 			"nochange": "參數未改變",
 			"saving": "儲存中...",
-			"show-bt-servers": "在『伺服器分佈』中顯示『BT』伺服器列表。",
+			"show-bt-servers": "在『伺服器分佈』中顯示『BT』伺服器列表：",
 			"restore-default-settings": "恢復界面默認設置（含主題）",
 			"language": "界面語言：",
-			"loading": "加載中..."
+			"loading": "加載中...",
+			"hide-subfolders": "點擊數據目錄時，在列表中不顯示子目錄下的種子：",
+			"simple-check-mode": "在種子列表上單擊滑鼠右鍵時，僅選中一個種子："
 		},
 		"public": {
 			"button-ok": "確定",
@@ -400,6 +402,8 @@ system.lang = {
 		"text-confirm": "確認要這樣做嗎？",
 		"text-browsers-not-support-features": "目前瀏覽器不支援該功能！",
 		"text-download-update": "下載這個更新",
-		"text-have-update": "有可用的更新"
+		"text-have-update": "有可用的更新",
+		"text-on": "開",
+		"text-off": "關"
 	}
 };
