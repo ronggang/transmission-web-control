@@ -33,10 +33,15 @@ system.themes = [{
 		value: 'gray',
 		text: 'Gray',
 		group: 'Base'
-	},
+	},	
 	{
 		value: 'metro',
 		text: 'Metro',
+		group: 'Base'
+	},
+	{
+		value: 'material',
+		text: 'Material',
 		group: 'Base'
 	},
 	{

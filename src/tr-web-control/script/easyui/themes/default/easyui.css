@@ -455,6 +455,11 @@
 .window-thinborder .window-body {
   border-width: 0px;
 }
+.window-thinborder .window-footer {
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: transparent;
+}
 .window-thinborder .window-header .panel-icon,
 .window-thinborder .window-header .panel-tool {
   margin-top: -9px;
@@ -2352,7 +2357,6 @@
   color: #444;
 }
 .spinner-arrow {
-  background-color: #E0ECFF;
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
@@ -2361,6 +2365,12 @@
   opacity: 1.0;
   filter: alpha(opacity=100);
   width: 18px;
+}
+.spinner-arrow.spinner-button-top,
+.spinner-arrow.spinner-button-bottom,
+.spinner-arrow.spinner-button-left,
+.spinner-arrow.spinner-button-right {
+  background-color: #E0ECFF;
 }
 .spinner-arrow-up,
 .spinner-arrow-down {
@@ -2374,18 +2384,27 @@
   height: 50%;
   color: #444;
   outline-style: none;
+  background-color: #E0ECFF;
 }
 .spinner-arrow-hover {
   background-color: #eaf2ff;
   opacity: 1.0;
   filter: alpha(opacity=100);
 }
+.spinner-button-top:hover,
+.spinner-button-bottom:hover,
+.spinner-button-left:hover,
+.spinner-button-right:hover,
 .spinner-arrow-up:hover,
 .spinner-arrow-down:hover {
   opacity: 1.0;
   filter: alpha(opacity=100);
   background-color: #eaf2ff;
 }
+.textbox-disabled .spinner-button-top:hover,
+.textbox-disabled .spinner-button-bottom:hover,
+.textbox-disabled .spinner-button-left:hover,
+.textbox-disabled .spinner-button-right:hover,
 .textbox-icon-disabled .spinner-arrow-up:hover,
 .textbox-icon-disabled .spinner-arrow-down:hover {
   opacity: 0.6;
@@ -2399,9 +2418,11 @@
 }
 .spinner-arrow-up {
   background: url('images/spinner_arrows.png') no-repeat 1px center;
+  background-color: #E0ECFF;
 }
 .spinner-arrow-down {
   background: url('images/spinner_arrows.png') no-repeat -15px center;
+  background-color: #E0ECFF;
 }
 .spinner-button-up {
   background: url('images/spinner_arrows.png') no-repeat -32px center;
@@ -2437,6 +2458,7 @@
   color: #000000;
   font-size: 12px;
 }
+.progressbar-value,
 .progressbar-value .progressbar-text {
   background-color: #ffe48d;
   color: #000000;
@@ -3217,4 +3239,60 @@
 .switchbutton-disabled,
 .switchbutton-readonly {
   cursor: default;
+}
+.radiobutton {
+  position: relative;
+  border: 2px solid #ffab3f;
+  border-radius: 50%;
+}
+.radiobutton-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffab3f;
+  border-radius: 50%;
+  transform: scale(.6);
+}
+.radiobutton-disabled {
+  opacity: 0.6;
+}
+.radiobutton-value {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  left: -999px;
+}
+.checkbox {
+  position: relative;
+  border: 2px solid #ffab3f;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+.checkbox-checked {
+  border: 0;
+  background: #ffab3f;
+}
+.checkbox-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.checkbox path {
+  stroke-width: 2px;
+}
+.checkbox-disabled {
+  opacity: 0.6;
+}
+.checkbox-value {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  left: -999px;
 }
