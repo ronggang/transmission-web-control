@@ -1,4 +1,4 @@
-// lang file
+﻿// lang file
 system.lang = {
 	"name":"en",
 	"system":{
@@ -9,7 +9,7 @@ system.lang = {
 			"queue":"Queue:",
 			"queuefinish":"The queue(s) has finished.",
 			"notfinal":"Not finalized",
-			"checked":"%n data checked: "
+			"checked":"%n data checked:"
 		}
 	},
 	"error":{
@@ -112,11 +112,11 @@ system.lang = {
 			"title":"Statistics",
 			"cumulative":"Cumulative",
 			"current":"Current",
-			"uploadedBytes":"UploadedBytes: ",
-			"downloadedBytes":"DownloadedBytes: ",
-			"filesAdded":"FilesAdded: ",
-			"sessionCount":"SessionCount: ",
-			"secondsActive":"SecondsActive: "
+			"uploadedBytes":"UploadedBytes:",
+			"downloadedBytes":"DownloadedBytes:",
+			"filesAdded":"FilesAdded:",
+			"sessionCount":"SessionCount:",
+			"secondsActive":"SecondsActive:"
 		},
 		"servers":"Trackers",
 		"folders":"Folders",
@@ -155,7 +155,7 @@ system.lang = {
 			},
 			"config-dir":"Location of transmission's configuration directory:",
 			"download-dir":"Default path to download torrents:",
-			"download-dir-free-space":"Free space: ",
+			"download-dir-free-space":"Free space:",
 			"incomplete-dir-enabled":"Use incomplete directory",
 			"cache-size-mb":"Disk cache size:",
 			"rename-partial-files":"Append '.part' to incomplete files",
@@ -204,12 +204,12 @@ system.lang = {
 			"minutes":"Minutes",
 			"nochange":"No change",
 			"saving":"Saving...",
-			"show-bt-servers":"Show 'BT servers' on Trackers.",
+			"show-bt-servers":"Show 'BT servers' on Trackers:",
 			"restore-default-settings":"Restore UI Default Settings",
 			"language":"Language:",
 			"loading":"Loading...",
-			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list: ",
-			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list: "
+			"hide-subfolders":"When clicking on the data directory, hide subfolders content in the list:",
+			"simple-check-mode":"Checked only one torrent when you right-click on the torrent list:"
 		},
 		"public":{
 			"button-ok":"OK",
@@ -403,7 +403,7 @@ system.lang = {
 		"text-browsers-not-support-features":"The current browser does not support this feature!",
 		"text-download-update":"Download this update",
 		"text-have-update":"An update is available",
-		"text-on": "ON",
-		"text-off": "OFF"
+		"text-on":"ON",
+		"text-off":"OFF"
 	}
 };
