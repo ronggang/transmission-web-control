@@ -650,7 +650,7 @@ var system = {
 
 		// 恢复尺寸
 		if (this.lastUIStatus.size.nav && this.lastUIStatus.size.nav.width) {
-			this.panel.main.layout('panel', 'west').panel('resize', { width: this.lastUIStatus.size.nav.width });
+			this.panel.main.layout('panel', 'west').panel('resize', { width: this.lastUIStatus.size.nav.width + 5 });
 			this.panel.main.layout("resize");
 		}
 
