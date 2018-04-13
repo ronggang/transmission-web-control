@@ -43,13 +43,13 @@ html, body {
 
 .dropArea{
 	background-color: #ccffff;
-    border: 2px dashed #000000;
+   border: 2px dashed #000000;
 	position:absolute;
-	width:99%;
-	height:99%;
 	z-index:100;
-	top:0px;
-	left:0px;
+	top: 20px;
+	left: 20px;
+	right: 20px;
+	bottom: 20px;
 	filter:alpha(opacity=40);
 	opacity:0.40;
 	margin:4px;

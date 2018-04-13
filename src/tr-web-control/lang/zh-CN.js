@@ -395,7 +395,7 @@ system.lang = {
 	},
 	"public": {
 		"text-unknown": "未知",
-		"text-drop-title": "将文件拖放在该区域内即可添加到 Transmission。",
+		"text-drop-title": "快放开，让我看看你是不是拖的种子文件！",
 		"text-nochange": "参数未改变",
 		"text-saved": "已保存",
 		"text-info": "信息",
