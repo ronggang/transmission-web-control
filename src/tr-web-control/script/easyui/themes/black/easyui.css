@@ -3201,7 +3201,7 @@
   color: #fff;
 }
 .switchbutton-off {
-  background-color: #666;
+  background-color: #8a8a8a;
   color: #fff;
 }
 .switchbutton-on,
@@ -3220,7 +3220,7 @@
   position: absolute;
   top: 0;
   left: 50%;
-  background-color: #666;
+  background-color: #434343;
   color: #fff;
   border: 1px solid #555;
   -moz-box-shadow: 0 0 3px 0 #555;
