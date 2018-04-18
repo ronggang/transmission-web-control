@@ -390,13 +390,13 @@ system.defaultLang = {
 				"dateCreated":"Date created:",
 				"comment":"Comment:",
 				"errorString":"Error string:",
-				"downloadLimited":"Max global download speed：",
-				"uploadLimited":"Max global upload speed：",
-				"peer-limit":"Maximum peers for this torrent：",
-				"seedRatioMode":"Seed ratio for torrents to use：",
-				"seedIdleMode":"Torrents we're seeding will be stopped if they're idle for this long：",
-				"doneDate":"Finish Time: ",
-				"seedTime":"Seed Time: "
+				"downloadLimited":"Max global download speed:",
+				"uploadLimited":"Max global upload speed:",
+				"peer-limit":"Maximum peers for this torrent:",
+				"seedRatioMode":"Seed ratio for torrents to use:",
+				"seedIdleMode":"Torrents we're seeding will be stopped if they're idle for this long:",
+				"doneDate":"Finish Time:",
+				"seedTime":"Seed Time:"
 			},
 			"tip":{
 				"button-allow":"Download checked file(s)",

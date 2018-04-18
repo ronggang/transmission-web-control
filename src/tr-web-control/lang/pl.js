@@ -157,7 +157,7 @@ system.lang = {
 			},
 			"config-dir":"Lokalizacja katalogu z konfiguracją Transmission:",
 			"download-dir":"Domyślny katalog pobierania torrentów:",
-			"download-dir-free-space":"Wolne miejsce na dysku: ",
+			"download-dir-free-space":"Wolne miejsce na dysku:",
 			"incomplete-dir-enabled":"Użyj katalogu dla niedokończonych pobrań",
 			"cache-size-mb":"Wielkość cache'u dysku:",
 			"rename-partial-files":"Dodaj rozszerzenie '.part' do nieukończonych pobrań",
@@ -341,7 +341,7 @@ system.lang = {
 				"length":"Rozmiar",
 				"percentDone":"Ukończono",
 				"bytesCompleted":"Pobrano",
-				"wanted":"Status",
+				"wanted":"Pobierać?",
 				"priority":"Priorytet"
 			},
 			"servers-fields":{
@@ -363,7 +363,7 @@ system.lang = {
 				"rateToPeer":"Prędkość wysyłania"
 			},
 			"status":{
-				"true":"OK",
+				"true":"Tak",
 				"false":" - "
 			},
 			"priority":{
@@ -395,8 +395,8 @@ system.lang = {
 				"peer-limit":"Maksymalna ilość peerów na torrent:",
 				"seedRatioMode":"Ratio do wyseedowania dla tego torrenta:",
 				"seedIdleMode":"Wysyłanie torrenta zostanie zatrzymane, jeżeli nie będzie wysyłany przez (minut):",
-				"doneDate":"Finish Time: ",
-				"seedTime":"Seed Time: "
+				"doneDate":"Czas zakończenia:",
+				"seedTime":"Czas 'wysiewu':"
 			},
 			"tip":{
 				"button-allow":"Pobierz sprawdzone pliki",
