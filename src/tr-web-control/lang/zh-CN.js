@@ -84,7 +84,8 @@ system.lang = {
 		},
 		"plugin": {
 			"auto-match-data-folder": "自动匹配数据目录"
-		}
+		},
+		"setLabels": "设置用户标签"
 	},
 	"title": {
 		"left": "导航",
@@ -123,7 +124,8 @@ system.lang = {
 			"nav": {
 				"folders": "数据目录"
 			}
-		}
+		},
+		"labels": "用户标签"
 	},
 	"statusbar": {
 		"downloadspeed": "下载速度：",
@@ -150,7 +152,8 @@ system.lang = {
 				"limit": "带宽限制",
 				"alt-speed": "时段限制",
 				"dictionary-folders": "目录字典",
-				"more": "额外设置"
+				"more": "额外设置",
+				"labels": "用户标签"
 			},
 			"config-dir": "Transmission 配置文件目录（只读）：",
 			"download-dir": "默认保存目录：",
@@ -208,7 +211,15 @@ system.lang = {
 			"language": "界面语言：",
 			"loading": "正在加载...",
 			"hide-subfolders": "点击数据目录时，在列表中不显示子目录下的种子：",
-			"simple-check-mode": "在种子列表上单击鼠标右键时，仅选中一个种子："
+			"simple-check-mode": "在种子列表上单击鼠标右键时，仅选中一个种子：",
+			"nav-contents": "导航栏显示内容：",
+			"labels-manage": {
+				"name": "标签名称",
+				"description": "描述",
+				"color": "颜色",
+				"actions": "操作",
+				"import-confirm": "是否确认导入标签信息？这将覆盖当前配置。"
+			}
 		},
 		"public": {
 			"button-ok": "确定",
@@ -217,7 +228,12 @@ system.lang = {
 			"button-save": "保存",
 			"button-close": "关闭",
 			"button-update": "更新",
-			"button-config": "设置"
+			"button-config": "设置",
+			"button-addnew": "新增",
+			"button-edit": "修改",
+			"button-delete": "删除",
+			"button-export": "导出",
+			"button-import": "导入"
 		},
 		"about": {
 			"infos": "程序设计：栽培者<br/>使用帮助：<a href='https://github.com/ronggang/transmission-web-control/wiki/Home-CN'>查看</a><br/>QQ群：723130968 <a target='_blank' href='https://shang.qq.com/wpa/qunwpa?idkey=353d3f247de2b78c071e28a31777022424660c97c9fdd6f25640a4a51c6b9d65' ><img border='0' src='https://pub.idqqimg.com/wpa/images/group.png' alt='Transmission Web Control' title='Transmission Web Control (723130968)'></a>",
@@ -273,6 +289,11 @@ system.lang = {
 		"torrent-attribute-add-tracker": {
 			"title": "增加 Tracker",
 			"tip": "每行表示一个Tracker"
+		},
+		"torrent-setLabels": {
+			"title": "设置用户标签",
+			"available": "可用标签：",
+			"selected": "已选择："
 		}
 	},
 	"torrent": {
@@ -294,7 +315,9 @@ system.lang = {
 			"uploadedEver": "已上传",
 			"uploadRatio": "分享率",
 			"queuePosition": "队列",
-			"activityDate": "最后活动于"
+			"activityDate": "最后活动于",
+			"trackers": "服务器",
+			"labels": "用户标签"
 		},
 		"status-text": {
 			"0": "已暂停",

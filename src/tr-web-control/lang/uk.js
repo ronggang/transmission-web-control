@@ -101,7 +101,6 @@ system.lang = {
 		,"status":{
 			"loading":"Завантаження..."
 		}
-		,"statistics":"Статистика"
 		,"statistics":{
 			"title":"Статистика"
 			,"cumulative":"Загальна"

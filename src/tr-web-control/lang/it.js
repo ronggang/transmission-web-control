@@ -87,7 +87,6 @@ system.lang = {
 		,"status":{
 			"loading":"Caricamento in corso..."
 		}
-		,"statistics":"Statistiche"
 		,"statistics":{
 			"title":"Statistiche"
 			,"cumulative":"Complessive"

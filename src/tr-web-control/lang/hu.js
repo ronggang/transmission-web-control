@@ -104,7 +104,6 @@ system.lang = {
 		,"status":{
 			"loading":"Betöltés..."
 		}
-		,"statistics":"Statisztika"
 		,"statistics":{
 			"title":"Statisztika"
 			,"cumulative":"Összes"

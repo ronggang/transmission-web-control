@@ -326,3 +326,42 @@ html, body {
     cursor:move;
     width:95%;
 }
+
+.user-label {
+	display: inline-block;
+   padding: 0px 2px;
+	margin-right: 2px;
+	border-radius: 2px;
+	box-shadow: inset 0 -1px 0 rgba(27,31,35,0.12);
+}
+
+.user-label-big {
+	display: inline-block;
+   padding: 5px;
+	margin: 0 3px 3px 0;
+	border-radius: 2px;
+	box-shadow: inset 0 -1px 0 rgba(27,31,35,0.12);
+	text-decoration: none;
+}
+
+.user-label-set {
+	position: absolute;
+	right: 0;
+}
+
+.user-label-set .l-btn-text {
+	line-height: 16px;
+	margin: 0 3px;
+}
+
+.tree-title {
+	display: inline;
+}
+
+.iconfont {
+	background: url("") no-repeat;
+}
+
+.combobox-item {
+	cursor: pointer;
+}

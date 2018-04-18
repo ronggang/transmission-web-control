@@ -107,7 +107,6 @@ system.lang = {
 		"status":{
 			"loading":"Ładowanie..."
 		},
-		"statistics":"Statystyki",
 		"statistics":{
 			"title":"Statystyki",
 			"cumulative":"Ogólne",

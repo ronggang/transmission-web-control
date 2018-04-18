@@ -8,30 +8,33 @@
 	<link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
 	<title>Transmission Web Control</title>
 	<!-- Style sheet -->
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20180330" />
-	<link id="styleEasyui" rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20180330"/>  
-	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20180330"/>
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20180330"/>
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/iconfont/iconfont.css?v=20180330"/>
-	<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_l92psha4vsk5u3di.css"/> -->
+	<link id="styleEasyui" rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/default/easyui.css?v=20180417"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/plugins/jquery.webui-popover.css" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20180417" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20180417"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20180417"/>
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/iconfont/iconfont.css?v=20180417"/>
+	<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_g4d8d6qr58nnrk9.css"/> -->
 
 	<!-- Base class library -->
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/jquery.form.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/json2.min.js"></script>
 	<script type="text/javascript" src="tr-web-control/script/jquery/Base64.js"></script>
-	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20180330"></script>
+	<script type="text/javascript" src="tr-web-control/script/easyui/jquery.easyui.min.js?v=20180417"></script>
 	<script type="text/javascript" src="tr-web-control/script/easyui/plugins/jquery.datagrid.drophead.js"></script>
+	<script type="text/javascript" src="tr-web-control/script/plugins/jquery.webui-popover.min.js"></script>
 	<!-- -->
 	<!-- System class library -->
+	<script type="text/javascript" src="tr-web-control/script/min/FileSaver.min.js?v=20180417"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/clipboard.min.js"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20180330"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/ua-parser.min.js?v=20180330"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20180330"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20180417"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/ua-parser.min.js?v=20180417"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20180417"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20171027"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20180330"></script>
-	<script type="text/javascript" src="tr-web-control/config.js?v=20180330"></script>
-	<script type="text/javascript" src="tr-web-control/plugin.js?v=20180330"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20180417"></script>
+	<script type="text/javascript" src="tr-web-control/config.js?v=20180417"></script>
+	<script type="text/javascript" src="tr-web-control/plugin.js?v=20180417"></script>
 	<script type="text/javascript">
 		 var nonpc = [ "console", "mobile", "tablet", "smarttv", "wearable", "embedded" ]
 		 if ((nonpc.indexOf($.ua.device.type) != -1 )&&location.search.getQueryString("devicetype")!="computer") 
@@ -40,15 +43,6 @@
 		 }
 	</script>
 </head>
-<style type="text/css">
-	.tree-title {
-		display: inline;
-	}
-
-	.iconfont {
-		background: url("") no-repeat;
-	}
-</style>
 <body>
 	<div id="main" class="easyui-layout">
 		<div id="m_top" data-options="region:'north'">
@@ -64,10 +58,10 @@
 						<!-- 切换主题 -->
 						<select id="select-themes" style="width:120px;height:25px"></select>
 						<!-- 切换到移动版 -->
-						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"><label system-lang="toolbar['ui-mobile']"></label></a>
+						<a id="toolbar_mobile" href="javascript:location.href = 'index.mobile.html';" class="easyui-linkbutton" data-options="iconCls:'icon-mobile',plain:true" system-tip-lang="toolbar.tip['ui-mobile']"><span system-lang="toolbar['ui-mobile']"></span></a>
 						<span class="button-split">|</span>
 						<!-- 切换到原版 -->
-						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><label system-lang="toolbar['ui-original']"></label></a>
+						<a id="" href="javascript:location.href = 'index.original.html';" class="easyui-linkbutton" data-options="iconCls:'icon-transmission',plain:true" system-tip-lang="toolbar.tip['ui-original']"><span system-lang="toolbar['ui-original']"></span></a>
 						<span class="button-split">|</span>
 						<!-- 关于 -->
 						<a id="toolbar_about" href="javascript:void(0);" onclick="javascript:system.openDialogFromTemplate({id: 'dialog-about',options: {title: system.lang.toolbar['about'],width: 420,height: 370}});" class="easyui-linkbutton" data-options="iconCls:'icon-about',plain:true" system-tip-lang="toolbar.about"><span system-lang="toolbar.about"></span></a>

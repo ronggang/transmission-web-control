@@ -101,7 +101,6 @@ system.lang = {
 		,"status":{
 			"loading":"로딩 중..."
 		}
-		,"statistics":"통계"
 		,"statistics":{
 			"title":"통계"
 			,"cumulative":"누적"

@@ -85,7 +85,6 @@ system.lang = {
 		,"status":{
 			"loading":"Încărcare..."
 		}
-		,"statistics":"Statistici"
 		,"statistics":{
 			"title":"Statistici"
 			,"cumulative":"Cumulat"

@@ -85,7 +85,6 @@ system.lang = {
 		,"status":{
 			"loading":"Bezig met laden..."
 		}
-		,"statistics":"Statistieken"
 		,"statistics":{
 			"title":"Statistieken"
 			,"cumulative":"Cumulatief"

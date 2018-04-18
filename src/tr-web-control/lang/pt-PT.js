@@ -101,7 +101,6 @@ system.lang = {
 		,"status":{
 			"loading":"A carregar..."
 		}
-		,"statistics":"Estatísticas"
 		,"statistics":{
 			"title":"Estatísticas"
 			,"cumulative":"Acumuladas"

@@ -100,6 +100,53 @@ Number.prototype.formatNumber = function(f)
 	return f.length > 1 ? this.fStr(n[0], f[0]) + "." + this.fStr(n[1], f[1], 1) : this.fStr(n[0], f[0]);
 };
 
+/**
+ * 根据指定的十六进制颜色值，返回RGB颜色数值
+ */
+String.prototype.getRGB = function(){
+	var reg = /^#([0-9a-f]{3}|[0-9a-f]{6})$/;
+	var color = this.toLowerCase();
+	if (color && reg.test(color)) {
+		if (color.length === 4) {
+			var sColorNew = "#";
+			for (var i = 1; i < 4; i += 1) {
+				sColorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
+			}
+			color = sColorNew;
+		}
+		//处理六位的颜色值
+		var result = [];
+		for (var i = 1; i < 7; i += 2) {
+			result.push(parseInt("0x" + color.slice(i, i + 2)));
+		}
+
+		return {
+			R: result[0],
+			G: result[1],
+			B: result[2]
+		}
+
+	} else {
+		return this;
+	}
+}
+
+/**
+ * 获取一个颜色的人眼感知亮度，并以 0~1 之间的小数表示。
+ * @param {*} color 
+ */
+function getGrayLevel(color)
+{
+	if (!color) {
+		color = {
+			R:0,G:0,B:0
+		};
+	}
+	if (typeof(color)==="string") {
+		color=color.getRGB()
+	}
+   return (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+}
 
 function getLocalTime(time)
 {
