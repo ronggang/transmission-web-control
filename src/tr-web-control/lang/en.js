@@ -1,4 +1,4 @@
-﻿// lang file
+// lang file
 system.lang = {
 	"name":"en",
 	"system":{
@@ -84,7 +84,8 @@ system.lang = {
 		},
 		"plugin":{
 			"auto-match-data-folder":"Automatically matches data directory"
-		}
+		},
+		"setLabels":"Set User Labels"
 	},
 	"title":{
 		"left":"Navigation",
@@ -123,7 +124,8 @@ system.lang = {
 			"nav":{
 				"folders":"Folders"
 			}
-		}
+		},
+		"labels":"User Labels"
 	},
 	"statusbar":{
 		"downloadspeed":"Download speed:",
@@ -150,7 +152,8 @@ system.lang = {
 				"limit":"Limit",
 				"alt-speed":"Alternative speeds",
 				"dictionary-folders":"Folders Dictionary",
-				"more":"More"
+				"more":"More",
+				"labels":"Labels"
 			},
 			"config-dir":"Location of transmission's configuration directory:",
 			"download-dir":"Default path to download torrents:",
@@ -208,7 +211,15 @@ system.lang = {
 			"language":"Language:",
 			"loading":"Loading...",
 			"hide-subfolders":"When clicking on the data directory, hide subfolders content in the list:",
-			"simple-check-mode":"Checked only one torrent when you right-click on the torrent list:"
+			"simple-check-mode":"Checked only one torrent when you right-click on the torrent list:",
+			"nav-contents":"Navigation bar Display content:",
+			"labels-manage":{
+				"name":"Label Name",
+				"description":"Description",
+				"color":"Color",
+				"actions":"Actions",
+				"import-confirm":"Do you want to import labels? This overrides the current configuration."
+			}
 		},
 		"public":{
 			"button-ok":"OK",
@@ -217,7 +228,12 @@ system.lang = {
 			"button-save":"Save",
 			"button-close":"Close",
 			"button-update":"Update",
-			"button-config":"Config"
+			"button-config":"Config",
+			"button-addnew":"Add",
+			"button-edit":"Edit",
+			"button-delete":"Delete",
+			"button-export":"Export",
+			"button-import":"Import"
 		},
 		"about":{
 			"infos":"Author：culturist<br/>Statement：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete.",
@@ -273,6 +289,11 @@ system.lang = {
 		"torrent-attribute-add-tracker":{
 			"title":"Add Trackers",
 			"tip":"One Line, One Tracker"
+		},
+		"torrent-setLabels":{
+			"title":"Set User Labels",
+			"available":"Available:",
+			"selected":"Selected:"
 		}
 	},
 	"torrent":{
@@ -295,7 +316,8 @@ system.lang = {
 			"uploadRatio":"Ratio",
 			"queuePosition":"Queue",
 			"activityDate":"Activity Date",
-			"trackers":"Trackers"
+			"trackers":"Trackers",
+			"labels":"User Labels"
 		},
 		"status-text":{
 			"0":"Paused",
@@ -372,7 +394,9 @@ system.lang = {
 				"uploadLimited":"Max global upload speed：",
 				"peer-limit":"Maximum peers for this torrent：",
 				"seedRatioMode":"Seed ratio for torrents to use：",
-				"seedIdleMode":"Torrents we're seeding will be stopped if they're idle for this long："
+				"seedIdleMode":"Torrents we're seeding will be stopped if they're idle for this long：",
+				"doneDate":"Finish Time: ",
+				"seedTime":"Seed Time: "
 			},
 			"tip":{
 				"button-allow":"Download checked file(s)",
