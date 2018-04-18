@@ -1825,16 +1825,16 @@ var system = {
 			switch (item) {
 				case "uploadedBytes":
 				case "downloadedBytes":
-					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + formatSize(system.serverSessionStats["cumulative-stats"][item]));
-					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + formatSize(system.serverSessionStats["current-stats"][item]));
+					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + " " + formatSize(system.serverSessionStats["cumulative-stats"][item]));
+					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + " " + formatSize(system.serverSessionStats["current-stats"][item]));
 					break;
 				case "secondsActive":
-					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + getTotalTime(system.serverSessionStats["cumulative-stats"][item] * 1000));
-					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + getTotalTime(system.serverSessionStats["current-stats"][item] * 1000));
+					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + " " + getTotalTime(system.serverSessionStats["cumulative-stats"][item] * 1000));
+					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + " " + getTotalTime(system.serverSessionStats["current-stats"][item] * 1000));
 					break;
 				default:
-					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + system.serverSessionStats["cumulative-stats"][item]);
-					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + system.serverSessionStats["current-stats"][item]);
+					system.updateTreeNodeText(item, system.lang.tree.statistics[item] + " " + system.serverSessionStats["cumulative-stats"][item]);
+					system.updateTreeNodeText("current-" + item, system.lang.tree.statistics[item] + " " + system.serverSessionStats["current-stats"][item]);
 					break;
 			}
 		});
