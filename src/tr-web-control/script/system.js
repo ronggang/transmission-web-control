@@ -736,6 +736,12 @@ var system = {
 				} else if (item["formatter"]) {
 					delete item["formatter"];
 				}
+
+				if (_field && _field["sortable"]) {
+					item["sortable"] = _field["sortable"];
+				} else if (item["sortable"]) {
+					delete item["sortable"];
+				}
 				
 				item.title = system.lang.torrent.fields[item.field] || item.field;
 				system.setFieldFormat(item);
