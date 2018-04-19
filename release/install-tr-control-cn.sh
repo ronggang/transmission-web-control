@@ -3,7 +3,7 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.1"
+SCRIPT_VERSION="1.2.2-beta"
 VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
@@ -106,9 +106,10 @@ initValues() {
 
 	# 判断是否指定了版本
 	if [ "$VERSION" != "" ]; then
-		# 是否指定了 v
-		if [ "$VERSION" = "master" ]; then
+		# master 或 hash
+		if [ "$VERSION" = "master" -o ${#VERSION} = 40 ]; then
 			PACK_NAME="$VERSION.tar.gz"
+		# 是否指定了 v
 		elif [ ${VERSION:0:1} = "v" ]; then
 			PACK_NAME="$VERSION.tar.gz"
 			VERSION=${VERSION:1}
@@ -339,6 +340,7 @@ showMainMenu() {
 	echo ""
 	case $flag in
 		1)
+			getLatestReleases
 			main
 			;;
 
@@ -417,6 +419,12 @@ getTransmissionPath() {
 	fi
 }
 
+# 获取最后的发布版本号
+# 因在源码库里提交二进制文件不便于管理，以后将使用这种方式获取最新发布的版本
+getLatestReleases() {
+	VERSION=`curl -s https://api.github.com/repos/ronggang/transmission-web-control/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4`
+}
+
 # 检测 Transmission 进程是否存在
 checkTransmissionDaemon() {
 	showLog "$MSG_CHECK_TR_DAEMON"
@@ -484,6 +492,7 @@ if [ "$USER" != 'root' ]; then
 fi
 
 if [ $AUTOINSTALL = 1 ]; then
+	getLatestReleases
 	main
 else
 	# 执行
