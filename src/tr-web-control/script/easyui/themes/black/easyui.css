@@ -3297,7 +3297,7 @@
   left: -999px;
 }
 .nav-torrents-number, .nav-total-size {
-  color: #c0c0c0;
+  color: #c0c0c0 !important;
 }
 input, select, textarea {
   background-color: #e5e5e5;

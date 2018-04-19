@@ -1,4 +1,4 @@
-﻿// lang file
+// lang file
 system.lang = {
 	"name":"pl",
 	"system":{
@@ -84,7 +84,8 @@ system.lang = {
 		},
 		"plugin":{
 			"auto-match-data-folder":"Automatyczne dopasowanie katalogu"
-		}
+		},
+		"setLabels":"Ustaw własne etykiety"
 	},
 	"title":{
 		"left":"Nawigacja",
@@ -123,7 +124,8 @@ system.lang = {
 			"nav":{
 				"folders":"Katalogi"
 			}
-		}
+		},
+		"labels":"Własne etykiety"
 	},
 	"statusbar":{
 		"downloadspeed":"Prędkość pobierania:",
@@ -150,11 +152,12 @@ system.lang = {
 				"limit":"Limitowanie prędkości",
 				"alt-speed":"Harmonogram",
 				"dictionary-folders":"Słownik folderów",
-				"more":"Więcej"
+				"more":"Więcej",
+				"labels":"Etykiety"
 			},
 			"config-dir":"Lokalizacja katalogu z konfiguracją Transmission:",
 			"download-dir":"Domyślny katalog pobierania torrentów:",
-			"download-dir-free-space":"Wolne miejsce na dysku: ",
+			"download-dir-free-space":"Wolne miejsce na dysku:",
 			"incomplete-dir-enabled":"Użyj katalogu dla niedokończonych pobrań",
 			"cache-size-mb":"Wielkość cache'u dysku:",
 			"rename-partial-files":"Dodaj rozszerzenie '.part' do nieukończonych pobrań",
@@ -208,7 +211,15 @@ system.lang = {
 			"language":"Język:",
 			"loading":"Ładowanie...",
 			"hide-subfolders":"Ukrywaj zawartość folderów nadrzędnych podczas klikania w katalogu z danymi:",
-			"simple-check-mode":"Podczas prawo-kliku na liście torrentów zaznaczaj tylko jedną pozycję:"
+			"simple-check-mode":"Podczas prawo-kliku na liście torrentów zaznaczaj tylko jedną pozycję:",
+			"nav-contents":"Wyświetlane elementy pasków nawigacji:",
+			"labels-manage":{
+				"name":"Nazwa etykiety",
+				"description":"Opis",
+				"color":"Kolor",
+				"actions":"Akcje",
+				"import-confirm":"Czy na pewno chcesz zaimportować etykiety? Spowoduje to nadpisanie istniejącej konfiguracji."
+			}
 		},
 		"public":{
 			"button-ok":"OK",
@@ -217,7 +228,12 @@ system.lang = {
 			"button-save":"Zapisz",
 			"button-close":"Zamknij",
 			"button-update":"Aktualizuj",
-			"button-config":"Konfiguracja"
+			"button-config":"Konfiguracja",
+			"button-addnew":"Dodaj",
+			"button-edit":"Edytuj",
+			"button-delete":"Usuń",
+			"button-export":"Eksportuj",
+			"button-import":"Importuj"
 		},
 		"about":{
 			"infos":"Autor: culturist, Tłumaczenie: Simplydan<br/>Poprawki + nowe tłumaczenia: vipKoza<br/>Oświadczenie: Jeżeli któraś ikona narusza twoje prawa, skontaktuj się z autorem.",
@@ -273,6 +289,11 @@ system.lang = {
 		"torrent-attribute-add-tracker":{
 			"title":"Dodaj trackery",
 			"tip":"Jedna linia - jeden Tracker"
+		},
+		"torrent-setLabels":{
+			"title":"Ustaw własne etykiety",
+			"available":"Dostępne:",
+			"selected":"Wybrane:"
 		}
 	},
 	"torrent":{
@@ -295,7 +316,8 @@ system.lang = {
 			"uploadRatio":"Ratio",
 			"queuePosition":"Kolejka",
 			"activityDate":"Ostatnia aktywność",
-			"trackers":"Trackery"
+			"trackers":"Trackery",
+			"labels":"Własne etykiety"
 		},
 		"status-text":{
 			"0":"Wstrzymano",
@@ -319,7 +341,7 @@ system.lang = {
 				"length":"Rozmiar",
 				"percentDone":"Ukończono",
 				"bytesCompleted":"Pobrano",
-				"wanted":"Status",
+				"wanted":"Pobierać?",
 				"priority":"Priorytet"
 			},
 			"servers-fields":{
@@ -341,7 +363,7 @@ system.lang = {
 				"rateToPeer":"Prędkość wysyłania"
 			},
 			"status":{
-				"true":"OK",
+				"true":"Tak",
 				"false":" - "
 			},
 			"priority":{
@@ -372,7 +394,9 @@ system.lang = {
 				"uploadLimited":"Maksymalna prędkość wysyłania:",
 				"peer-limit":"Maksymalna ilość peerów na torrent:",
 				"seedRatioMode":"Ratio do wyseedowania dla tego torrenta:",
-				"seedIdleMode":"Wysyłanie torrenta zostanie zatrzymane, jeżeli nie będzie wysyłany przez (minut):"
+				"seedIdleMode":"Wysyłanie torrenta zostanie zatrzymane, jeżeli nie będzie wysyłany przez (minut):",
+				"doneDate":"Czas zakończenia:",
+				"seedTime":"Czas 'wysiewu':"
 			},
 			"tip":{
 				"button-allow":"Pobierz sprawdzone pliki",
