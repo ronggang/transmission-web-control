@@ -427,6 +427,8 @@ system.defaultLang = {
 		"text-download-update":"Download this update",
 		"text-have-update":"An update is available",
 		"text-on":"ON",
-		"text-off":"OFF"
+		"text-off":"OFF",
+		"text-how-to-update":"How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 };
