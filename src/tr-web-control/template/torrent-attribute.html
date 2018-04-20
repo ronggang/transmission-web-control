@@ -245,14 +245,14 @@
 			var buttons = [{
 					id:"pager-button-allow",
 					iconCls:'icon-allow',
-					title: system.lang.torrent.attribute["tip"]["button-deny"],
+					title: system.lang.torrent.attribute["tip"]["button-allow"],
 					handler:function(){
 						changeSelectedFilesWanted(true,$(this));
 					}
 				},'-',{
 					id:"pager-button-deny",
 					iconCls:'icon-deny',
-					title: system.lang.torrent.attribute["tip"]["button-allow"],
+					title: system.lang.torrent.attribute["tip"]["button-deny"],
 					handler:function(){
 						changeSelectedFilesWanted(false,$(this));
 					}
