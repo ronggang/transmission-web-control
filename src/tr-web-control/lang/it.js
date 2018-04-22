@@ -8,7 +8,7 @@ system.lang = {
 			"connected":"Connesso",
 			"queue":"Coda:",
 			"queuefinish":"La coda di download è completata.",
-			"notfinal":"Not completato",
+			"notfinal":"Non completato",
 			"checked":"%n dati verificati:"
 		}
 	},
