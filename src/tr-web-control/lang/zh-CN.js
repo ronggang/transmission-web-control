@@ -425,8 +425,10 @@ system.lang = {
 		"text-confirm": "确认要这样做吗？",
 		"text-browsers-not-support-features": "当前浏览器不支持该功能！",
 		"text-download-update": "下载这个更新",
-		"text-have-update": "有可用的更新",
+		"text-have-update": "点击查看更新内容",
 		"text-on": "开",
-		"text-off": "关"
+		"text-off": "关",
+		"text-how-to-update": "如何更新？",
+		"text-ignore-this-version": "忽略这个版本"
 	}
 };
