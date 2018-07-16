@@ -12,7 +12,7 @@ system.languages = {
 	,"it":"Italiano (Italian)"
 	,"pt-BR":"Brazilian Portuguese"
 	,"nl":"Dutch"
-	,"fr":"French"
+	,"fr":"Français (French)"
 	,"ko":"한국어 (Korean)"
 	,"pt-PT":"European Portuguese"
 };
