@@ -160,14 +160,6 @@ html, body {
 	background-color: #808040;
 }
 
-.nav-total-size{
-	color:#757575;float:right;padding-right:2px;font-family:arial,sans-serif;
-}
-
-.nav-torrents-number{
-	color:#757575;font-family:arial,sans-serif;padding-top:2px;
-}
-
 .tree-title-toolbar{
 	float:right;padding-right:24px;margin-top:-5px;
 }

@@ -2,7 +2,7 @@
 var system = {
 	version: "1.6.0 alpha",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180420",
+	codeupdate: "20180422",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
