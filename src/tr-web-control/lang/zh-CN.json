@@ -1,6 +1,6 @@
-//语言文件
-system.lang = {
+{
 	"name": "zh-CN",
+	"author": "栽培者, vodek3",
 	"system": {
 		"title": "Transmission WEB 控制器",
 		"status": {
@@ -72,7 +72,7 @@ system.lang = {
 			"ui-original": "切换到原版界面",
 			"more-peers": "获取更多Peer",
 			"rename": "修改种子文件或目录名称",
-			"copy-path-to-clipboard": "复制保存目录到剪切板",
+			"copy-path-to-clipboard": "复制保存目录到剪切板"
 		}
 	},
 	"menus": {
@@ -431,4 +431,4 @@ system.lang = {
 		"text-how-to-update": "如何更新？",
 		"text-ignore-this-version": "忽略这个版本"
 	}
-};
+}

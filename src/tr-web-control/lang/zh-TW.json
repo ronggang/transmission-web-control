@@ -1,6 +1,6 @@
-﻿//語言檔
-system.lang = {
+{
 	"name": "zh-TW",
+	"author": "Sean, vodek3",
 	"system": {
 		"title": "Transmission WEB 控制台",
 		"status": {
@@ -72,7 +72,7 @@ system.lang = {
 			"ui-original": "切換到原版界面",
 			"more-peers": "取得更多Peer",
 			"rename": "修改種子文件或目錄名稱",
-			"copy-path-to-clipboard": "複製保存目錄到剪切板",
+			"copy-path-to-clipboard": "複製保存目錄到剪切板"
 		}
 	},
 	"menus": {
@@ -406,4 +406,4 @@ system.lang = {
 		"text-on": "開",
 		"text-off": "關"
 	}
-};
+}

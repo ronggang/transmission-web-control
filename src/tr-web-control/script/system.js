@@ -110,8 +110,11 @@ var system = {
 			lang = "en";
 		}
 
-		$.getScript(system.rootPath + "lang/" + lang + ".js", function () {
-			system.lang = $.extend(true, system.defaultLang, system.lang);
+		$.getJSON(system.rootPath + "lang/" + lang + ".json", function (result) {
+			if (result) {
+				system.lang = $.extend(true, system.defaultLang, result);
+			}
+			
 			system.resetLangText();
 			// Set the easyui language
 			$.getScript(system.rootPath + "script/easyui/locale/easyui-lang-" + lang.replace("-", "_") + ".js")
@@ -3178,9 +3181,13 @@ var system = {
 
 $(document).ready(function () {
 	// Loads the default language content
-	$.getScript(system.rootPath + "lang/default.js");
+	$.getJSON(system.rootPath + "lang/en.json").done(function(result){
+		system.defaultLang = result;
+	});
+
 	// Loads a list of available languages
-	$.getScript(system.rootPath + "lang/_languages.js", function () {
+	$.getJSON(system.rootPath + "lang/_languages.json").done(function(result){
+		system.languages = result;
 		system.init(location.search.getQueryString("lang"), location.search.getQueryString("local"));
 	});
 });
