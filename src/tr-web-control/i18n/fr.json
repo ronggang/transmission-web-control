@@ -138,7 +138,6 @@
 			"torrent-url": "URL du torrent:",
 			"tip-torrent-url": "Astuce：Séparer les URLs avec une virgule \",\"",
 			"autostart": "Démarrage auto:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Définir comme dossier de téléchargement par défaut",
 			"upload-file": "Fichier(s) torrents:",
 			"nosource": "Aucun torrent ou URL.",
@@ -427,6 +426,8 @@
 		"text-download-update": "Télécharger cette mise à jour",
 		"text-have-update": "Une mise à jour est disponible",
 		"text-on": "ON",
-		"text-off": "OFF"
+		"text-off": "OFF",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

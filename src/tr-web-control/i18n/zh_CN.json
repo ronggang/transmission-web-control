@@ -138,7 +138,6 @@
 			"torrent-url": "种子地址：",
 			"tip-torrent-url": "注：复制种子链接到列表中，多个种子用“回车”分隔。",
 			"autostart": "自动开始：",
-			"tip-autostart": "选中时，新添加的种子将自动开始下载（如不选择，则为暂停状态）",
 			"set-default-download-dir": "设为默认保存目录",
 			"upload-file": "种子文件：",
 			"nosource": "没有选择种子或没有输入URL地址",
@@ -419,8 +418,8 @@
 	"public": {
 		"text-unknown": "未知",
 		"text-drop-title": "快放开，让我看看你是不是拖的种子文件！",
-		"text-nochange": "参数未改变",
 		"text-saved": "已保存",
+		"text-nochange": "参数未改变",
 		"text-info": "信息",
 		"text-confirm": "确认要这样做吗？",
 		"text-browsers-not-support-features": "当前浏览器不支持该功能！",

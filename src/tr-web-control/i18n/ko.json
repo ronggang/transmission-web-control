@@ -1,4 +1,4 @@
-﻿{
+{
 	"name": "ko",
 	"author": "kdsz330, vodek3",
 	"system": {
@@ -8,12 +8,14 @@
 			"connected": "연결 완료",
 			"queue": "대기 목록:",
 			"queuefinish": "대기 목록 처리 완료.",
-			"notfinal": "끝나지 않음."
+			"notfinal": "끝나지 않음.",
+			"checked": "%n data checked:"
 		}
 	},
 	"error": {
 		"data-error": "데이터 오류.",
-		"data-post-error": "데이터 포스트 오류."
+		"data-post-error": "데이터 포스트 오류.",
+		"rename-error": "Error renaming file/folder!"
 	},
 	"config": {
 		"save-path": "다운로드 폴더"
@@ -44,6 +46,8 @@
 		"ui-original": "기본 UI",
 		"ui-computer": "데스크탑 UI",
 		"plugin": "확장/플러그인",
+		"rename": "Rename",
+		"copy-path-to-clipboard": "Copy download location to clipboard",
 		"tip": {
 			"start": "선택한 토렌트 시작",
 			"pause": "선택한 토렌트 정지",
@@ -66,7 +70,9 @@
 			"change-download-dir": "위치 설정",
 			"ui-mobile": "모바일 UI",
 			"ui-original": "원래 UI",
-			"more-peers": "더 많은 피어 탐색"
+			"more-peers": "더 많은 피어 탐색",
+			"rename": "Renaming a Torrent's Path",
+			"copy-path-to-clipboard": "Copy download location to clipboard"
 		}
 	},
 	"menus": {
@@ -78,7 +84,8 @@
 		},
 		"plugin": {
 			"auto-match-data-folder": "자동으로 데이터 폴더 일치시키기"
-		}
+		},
+		"setLabels": "Set User Labels"
 	},
 	"title": {
 		"left": "안내",
@@ -117,7 +124,8 @@
 			"nav": {
 				"folders": "폴더"
 			}
-		}
+		},
+		"labels": "User Labels"
 	},
 	"statusbar": {
 		"downloadspeed": "다운로드 속도:",
@@ -130,7 +138,6 @@
 			"torrent-url": "토렌트 URL:",
 			"tip-torrent-url": "Tip：여러개 입력시 줄로 구분하세요",
 			"autostart": "자동 시작:",
-			"tip-autostart": "",
 			"set-default-download-dir": "기본 폴더 지정",
 			"upload-file": "토렌트 파일:",
 			"nosource": "토렌트 파일이나 URL이 없음.",
@@ -143,7 +150,9 @@
 				"network": "네트워크",
 				"limit": "제한",
 				"alt-speed": "예약",
-				"dictionary-folders": "폴더 사전"
+				"dictionary-folders": "폴더 사전",
+				"more": "More",
+				"labels": "Labels"
 			},
 			"config-dir": "트랜스미션 구성 디텍토리:",
 			"download-dir": "토렌트 다운로드 기본 경로:",
@@ -195,7 +204,21 @@
 			"idle-seeding-limit-enabled": "토렌트가 오래동안 유휴상태이면, 정지합니다:",
 			"minutes": "분",
 			"nochange": "변경 안됨",
-			"saving": "저장 중..."
+			"saving": "저장 중...",
+			"show-bt-servers": "Show 'BT servers' on Trackers:",
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:",
+			"loading": "Loading...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
+			"nav-contents": "Navigation bar Display content:",
+			"labels-manage": {
+				"name": "Label Name",
+				"description": "Description",
+				"color": "Color",
+				"actions": "Actions",
+				"import-confirm": "Do you want to import labels? This overrides the current configuration."
+			}
 		},
 		"public": {
 			"button-ok": "확인",
@@ -204,11 +227,20 @@
 			"button-save": "저장",
 			"button-close": "닫기",
 			"button-update": "업데이트",
-			"button-config": "설정"
+			"button-config": "설정",
+			"button-addnew": "Add",
+			"button-edit": "Edit",
+			"button-delete": "Delete",
+			"button-export": "Export",
+			"button-import": "Import"
 		},
 		"about": {
 			"infos": "제작자：culturist<br/>서명：이 프로그램에 사용되는 아이콘들은 대부분은 네트워크에서 응용된다 만약 이것이 당신의 권리를 침해하는 어떤것이라도 발생시킨다면 나에게 그걸 삭제해달라고 말해라.",
-			"check-update": "업데이트 확인"
+			"check-update": "업데이트 확인",
+			"home": "Project Home",
+			"help": "Wiki",
+			"donate": "Donate",
+			"pt-plugin": "PT Plugin"
 		},
 		"torrent-remove": {
 			"title": "제거 확인",
@@ -247,6 +279,20 @@
 				"1": "개별 토렌트 일치",
 				"2": "개별 폴더 일치"
 			}
+		},
+		"torrent-rename": {
+			"title": "Renaming a Torrent's Path",
+			"oldname": "Old",
+			"newname": "New"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line, One Tracker"
+		},
+		"torrent-setLabels": {
+			"title": "Set User Labels",
+			"available": "Available:",
+			"selected": "Selected:"
 		}
 	},
 	"torrent": {
@@ -266,7 +312,11 @@
 			"leecherCount": "리처",
 			"seederCount": "시더",
 			"uploadedEver": "업로드 한 크기",
-			"uploadRatio": "비율"
+			"uploadRatio": "비율",
+			"queuePosition": "Queue",
+			"activityDate": "Activity Date",
+			"trackers": "Trackers",
+			"labels": "User Labels"
 		},
 		"status-text": {
 			"0": "정지",
@@ -343,12 +393,17 @@
 				"uploadLimited": "업로드 속도：",
 				"peer-limit": "피어 수 제한：",
 				"seedRatioMode": "토렌트 시드 비율：",
-				"seedIdleMode": "토렌트가 오래동안 유휴상태이면, 정지합니다 ："
+				"seedIdleMode": "토렌트가 오래동안 유휴상태이면, 정지합니다 ：",
+				"doneDate": "Finish Time:",
+				"seedTime": "Seed Time:"
 			},
 			"tip": {
 				"button-allow": "다운로드 확인한 파일",
 				"button-deny": "확인 생략한 파일",
-				"button-priority": "우선도 지정"
+				"button-priority": "우선도 지정",
+				"button-tracker-add": "Add New Tracker",
+				"button-tracker-edit": "Edit Tracker",
+				"button-tracker-remove": "Remove Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "이 트래커를 제거 하시겠습니까?"
@@ -369,6 +424,10 @@
 		"text-confirm": "확실합니까?",
 		"text-browsers-not-support-features": "현재 브라우저는이 기능을 지원하지 않습니다!",
 		"text-download-update": "이 업데이트를 다운로드",
-		"text-have-update": "업데이트를 사용할 수 있습니다"
+		"text-have-update": "업데이트를 사용할 수 있습니다",
+		"text-on": "ON",
+		"text-off": "OFF",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

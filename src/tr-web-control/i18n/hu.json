@@ -8,7 +8,8 @@
 			"connected": "Kapcsolódva",
 			"queue": "Sorban áll:",
 			"queuefinish": "Sorban állás befejezve.",
-			"notfinal": "Nincs kész"
+			"notfinal": "Nincs kész",
+			"checked": "%n data checked:"
 		}
 	},
 	"error": {
@@ -46,6 +47,7 @@
 		"ui-computer": "Asztali UI",
 		"plugin": "Bővítmények/pluginok",
 		"rename": "Átnevezés",
+		"copy-path-to-clipboard": "Copy download location to clipboard",
 		"tip": {
 			"start": "Kijelölt torrentek indítása",
 			"pause": "Kijelölt torrentek szüneteltetése",
@@ -69,7 +71,8 @@
 			"ui-mobile": "Mobil UI",
 			"ui-original": "Eredeti UI",
 			"more-peers": "Több peer kérése a trackertől",
-			"rename": "Egy torrent elérési útjának átnevezése"
+			"rename": "Egy torrent elérési útjának átnevezése",
+			"copy-path-to-clipboard": "Copy download location to clipboard"
 		}
 	},
 	"menus": {
@@ -81,7 +84,8 @@
 		},
 		"plugin": {
 			"auto-match-data-folder": "Könyvtárak automatikus felismerése"
-		}
+		},
+		"setLabels": "Set User Labels"
 	},
 	"title": {
 		"left": "Navigáció",
@@ -120,7 +124,8 @@
 			"nav": {
 				"folders": "Könyvtárak"
 			}
-		}
+		},
+		"labels": "User Labels"
 	},
 	"statusbar": {
 		"downloadspeed": "Letöltési sebesség:",
@@ -133,7 +138,6 @@
 			"torrent-url": "Torrent URL:",
 			"tip-torrent-url": "Tipp： Több URL hozzáadásakor 'Enter'-rel válaszd el őket",
 			"autostart": "Auto indítás:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Beállítás alpértelmezett letöltési mappaként",
 			"upload-file": "Torrent fájl(ok):",
 			"nosource": "Nincs torrent fájl vagy URL.",
@@ -146,7 +150,9 @@
 				"network": "Hálózat",
 				"limit": "Korlátozás",
 				"alt-speed": "Ütemezés",
-				"dictionary-folders": "Könyvtárak"
+				"dictionary-folders": "Könyvtárak",
+				"more": "More",
+				"labels": "Labels"
 			},
 			"config-dir": "Transmission konfigurációs fájl helye:",
 			"download-dir": "Letöltött torrentek alapértelmezett helye:",
@@ -198,7 +204,21 @@
 			"idle-seeding-limit-enabled": "Inaktív torrentek leállítása ennyi tétlenség után:",
 			"minutes": "Perc",
 			"nochange": "Nincs változás",
-			"saving": "Mentés..."
+			"saving": "Mentés...",
+			"show-bt-servers": "Show 'BT servers' on Trackers:",
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:",
+			"loading": "Loading...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
+			"nav-contents": "Navigation bar Display content:",
+			"labels-manage": {
+				"name": "Label Name",
+				"description": "Description",
+				"color": "Color",
+				"actions": "Actions",
+				"import-confirm": "Do you want to import labels? This overrides the current configuration."
+			}
 		},
 		"public": {
 			"button-ok": "OK",
@@ -207,11 +227,20 @@
 			"button-save": "Mentés",
 			"button-close": "Bezárás",
 			"button-update": "Frissítés",
-			"button-config": "Beállítás"
+			"button-config": "Beállítás",
+			"button-addnew": "Add",
+			"button-edit": "Edit",
+			"button-delete": "Delete",
+			"button-export": "Export",
+			"button-import": "Import"
 		},
 		"about": {
 			"infos": "Szerző：culturist<br/>Nyilatkozat：A programban használt ikonok nagy része az internetről származik. Ha bármelyik sérti a jogaidat, kérlek vedd fel a kapcsolatot velem.",
-			"check-update": "Frissítés keresése"
+			"check-update": "Frissítés keresése",
+			"home": "Project Home",
+			"help": "Wiki",
+			"donate": "Donate",
+			"pt-plugin": "PT Plugin"
 		},
 		"torrent-remove": {
 			"title": "Törlés megerősítése",
@@ -255,6 +284,15 @@
 			"title": "Egy torrent elérési útjának átnevezése",
 			"oldname": "Régi",
 			"newname": "Új"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line, One Tracker"
+		},
+		"torrent-setLabels": {
+			"title": "Set User Labels",
+			"available": "Available:",
+			"selected": "Selected:"
 		}
 	},
 	"torrent": {
@@ -275,7 +313,10 @@
 			"seederCount": "Seeder",
 			"uploadedEver": "Feltöltve",
 			"uploadRatio": "Arány",
-			"queuePosition": "Sor"
+			"queuePosition": "Sor",
+			"activityDate": "Activity Date",
+			"trackers": "Trackers",
+			"labels": "User Labels"
 		},
 		"status-text": {
 			"0": "Szünetel",
@@ -352,12 +393,17 @@
 				"uploadLimited": "Max feltöltési sebesség：",
 				"peer-limit": "Max peer torrentenként：",
 				"seedRatioMode": "Seed a következő arány eléréséig：",
-				"seedIdleMode": "Seed leállítása ha a torrent ennyi ideig tétlen："
+				"seedIdleMode": "Seed leállítása ha a torrent ennyi ideig tétlen：",
+				"doneDate": "Finish Time:",
+				"seedTime": "Seed Time:"
 			},
 			"tip": {
 				"button-allow": "Kijelölt fájl(ok) letöltése",
 				"button-deny": "Kijelölt fájl(ok) kihagyása",
-				"button-priority": "Prioritás beállítása"
+				"button-priority": "Prioritás beállítása",
+				"button-tracker-add": "Add New Tracker",
+				"button-tracker-edit": "Edit Tracker",
+				"button-tracker-remove": "Remove Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "Biztosan ki akarod törölni ezt a trackert?"
@@ -378,6 +424,10 @@
 		"text-confirm": "Biztos vagy benne?",
 		"text-browsers-not-support-features": "Ezt a funkciót a jelenlegi böngésző nem támogatja!",
 		"text-download-update": "Frissítés letöltése",
-		"text-have-update": "Frissítés elérhető"
+		"text-have-update": "Frissítés elérhető",
+		"text-on": "ON",
+		"text-off": "OFF",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

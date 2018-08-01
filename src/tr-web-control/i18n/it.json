@@ -138,7 +138,6 @@
 			"torrent-url": "URL Torrent:",
 			"tip-torrent-url": "È possibile inserire più URL separati da 'Invio'",
 			"autostart": "Avvia automaticamente:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Imposta come cartella predefinita",
 			"upload-file": "File Torrent:",
 			"nosource": "Nessun file torrent o URL.",
@@ -427,6 +426,8 @@
 		"text-download-update": "Scarica l'aggiornamento",
 		"text-have-update": "È disponibile un aggiornamento",
 		"text-on": "ON",
-		"text-off": "OFF"
+		"text-off": "OFF",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

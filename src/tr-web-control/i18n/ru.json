@@ -84,7 +84,8 @@
 		},
 		"plugin": {
 			"auto-match-data-folder": "Автосопоставление путей"
-		}
+		},
+		"setLabels": "Set User Labels"
 	},
 	"title": {
 		"left": "Навигация",
@@ -123,7 +124,8 @@
 			"nav": {
 				"folders": "Папки"
 			}
-		}
+		},
+		"labels": "User Labels"
 	},
 	"statusbar": {
 		"downloadspeed": "Скорость загрузки:",
@@ -136,7 +138,6 @@
 			"torrent-url": "Ссылка на .torrent или magnet:",
 			"tip-torrent-url": "Новая ссылка с новой строки",
 			"autostart": "Начать загрузку:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Выбрать как папку по умолчанию",
 			"upload-file": "Файлы .torrent:",
 			"nosource": "Указанный источник не является файлом .torrent.",
@@ -150,7 +151,8 @@
 				"limit": "Ограничения",
 				"alt-speed": "Планировщик",
 				"dictionary-folders": "Список путей",
-				"more": "Дополнительно"
+				"more": "Дополнительно",
+				"labels": "Labels"
 			},
 			"config-dir": "Папка конфигурации Transmission (settings.json):",
 			"download-dir": "Папка для загрузки по умолчанию:",
@@ -208,7 +210,15 @@
 			"language": "Язык:",
 			"loading": "Загрузка...",
 			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
-			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:"
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
+			"nav-contents": "Navigation bar Display content:",
+			"labels-manage": {
+				"name": "Label Name",
+				"description": "Description",
+				"color": "Color",
+				"actions": "Actions",
+				"import-confirm": "Do you want to import labels? This overrides the current configuration."
+			}
 		},
 		"public": {
 			"button-ok": "OK",
@@ -217,7 +227,12 @@
 			"button-save": "Сохранить",
 			"button-close": "Закрыть",
 			"button-update": "Обновить",
-			"button-config": "Настройка"
+			"button-config": "Настройка",
+			"button-addnew": "Add",
+			"button-edit": "Edit",
+			"button-delete": "Delete",
+			"button-export": "Export",
+			"button-import": "Import"
 		},
 		"about": {
 			"infos": "Автор: culturist<br/>Дисклеймер: Большинство используемых изображений найдены в сети, если они нарушают Ваши авторские права, сообщите автору для удаления.",
@@ -273,6 +288,11 @@
 		"torrent-attribute-add-tracker": {
 			"title": "Добавить трекеры",
 			"tip": "Одна строка, один трекер"
+		},
+		"torrent-setLabels": {
+			"title": "Set User Labels",
+			"available": "Available:",
+			"selected": "Selected:"
 		}
 	},
 	"torrent": {
@@ -295,7 +315,8 @@
 			"uploadRatio": "Рейтинг",
 			"queuePosition": "Очередь",
 			"activityDate": "Последняя активность",
-			"trackers": "Трекеры"
+			"trackers": "Трекеры",
+			"labels": "User Labels"
 		},
 		"status-text": {
 			"0": "Пауза",
@@ -372,7 +393,9 @@
 				"uploadLimited": "Максимальная скорость отдачи: ",
 				"peer-limit": "Максимум пиров на торрент: ",
 				"seedRatioMode": "Раздача будет остановлена на рейтинге: ",
-				"seedIdleMode": "Раздача будет остановлена если нет активности: "
+				"seedIdleMode": "Раздача будет остановлена если нет активности: ",
+				"doneDate": "Finish Time:",
+				"seedTime": "Seed Time:"
 			},
 			"tip": {
 				"button-allow": "Загрузить выбранные файлы",
@@ -403,6 +426,8 @@
 		"text-download-update": "Загрузить это обновление",
 		"text-have-update": "Доступно новое обновление",
 		"text-on": "Вкл",
-		"text-off": "Выкл"
+		"text-off": "Выкл",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

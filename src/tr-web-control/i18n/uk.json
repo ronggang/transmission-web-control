@@ -8,12 +8,14 @@
 			"connected": "З&#39;єднане",
 			"queue": "Чергу:",
 			"queuefinish": "Черга завантаження завершена.",
-			"notfinal": "Не завершена"
+			"notfinal": "Не завершена",
+			"checked": "%n data checked:"
 		}
 	},
 	"error": {
 		"data-error": "Помилка даних.",
-		"data-post-error": "Помилка відсилання даних."
+		"data-post-error": "Помилка відсилання даних.",
+		"rename-error": "Error renaming file/folder!"
 	},
 	"config": {
 		"save-path": "Директорія для завантаження"
@@ -44,6 +46,8 @@
 		"ui-original": "Оригінальний UI",
 		"ui-computer": "Стандартний UI",
 		"plugin": "Плагіни",
+		"rename": "Rename",
+		"copy-path-to-clipboard": "Copy download location to clipboard",
 		"tip": {
 			"start": "Запустити вибрані торренти",
 			"pause": "Призупинити вибрані торренти",
@@ -66,7 +70,9 @@
 			"change-download-dir": "Змінити директорію завантаження",
 			"ui-mobile": "Мобільний UI",
 			"ui-original": "Оригінальний UI",
-			"more-peers": "Запитати у трекера більше бенкетів"
+			"more-peers": "Запитати у трекера більше бенкетів",
+			"rename": "Renaming a Torrent's Path",
+			"copy-path-to-clipboard": "Copy download location to clipboard"
 		}
 	},
 	"menus": {
@@ -78,7 +84,8 @@
 		},
 		"plugin": {
 			"auto-match-data-folder": "Авто-зіставлення шляхів"
-		}
+		},
+		"setLabels": "Set User Labels"
 	},
 	"title": {
 		"left": "Навігація",
@@ -117,7 +124,8 @@
 			"nav": {
 				"folders": "Директорії"
 			}
-		}
+		},
+		"labels": "User Labels"
 	},
 	"statusbar": {
 		"downloadspeed": "Швидкість завантаження:",
@@ -130,7 +138,6 @@
 			"torrent-url": "Посилання на .torrent або magnet:",
 			"tip-torrent-url": "Нове посилання з нового рядка",
 			"autostart": "Розпочати завантаження:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Вибрати як директорію за замовчуванням",
 			"upload-file": "Файли .torrent:",
 			"nosource": "Вказане джерело не є файлом .torrent.",
@@ -143,7 +150,9 @@
 				"network": "Мережа",
 				"limit": "Обмеження",
 				"alt-speed": "Планувальник",
-				"dictionary-folders": "Список шляхів"
+				"dictionary-folders": "Список шляхів",
+				"more": "More",
+				"labels": "Labels"
 			},
 			"config-dir": "Директорія конфігурації transmission:",
 			"download-dir": "Директорія для завантаження за замовчуванням:",
@@ -195,7 +204,21 @@
 			"idle-seeding-limit-enabled": "Роздача буде зупинена якщо немає активності:",
 			"minutes": "Хвилин",
 			"nochange": "Без змін",
-			"saving": "Збереження..."
+			"saving": "Збереження...",
+			"show-bt-servers": "Show 'BT servers' on Trackers:",
+			"restore-default-settings": "Restore UI Default Settings",
+			"language": "Language:",
+			"loading": "Loading...",
+			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
+			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
+			"nav-contents": "Navigation bar Display content:",
+			"labels-manage": {
+				"name": "Label Name",
+				"description": "Description",
+				"color": "Color",
+				"actions": "Actions",
+				"import-confirm": "Do you want to import labels? This overrides the current configuration."
+			}
 		},
 		"public": {
 			"button-ok": "OK",
@@ -204,11 +227,20 @@
 			"button-save": "Зберегти",
 			"button-close": "Закрити",
 			"button-update": "Оновити",
-			"button-config": "Налаштування"
+			"button-config": "Налаштування",
+			"button-addnew": "Add",
+			"button-edit": "Edit",
+			"button-delete": "Delete",
+			"button-export": "Export",
+			"button-import": "Import"
 		},
 		"about": {
 			"infos": "Автор: culturist<br/>Дискеймер: Більшість використовуваних зображень знайдені в мережі, якщо вони порушують ваші авторські права, повідомте автора для видалення.",
-			"check-update": "Перевірити оновлення"
+			"check-update": "Перевірити оновлення",
+			"home": "Project Home",
+			"help": "Wiki",
+			"donate": "Donate",
+			"pt-plugin": "PT Plugin"
 		},
 		"torrent-remove": {
 			"title": "Видалити торрент",
@@ -247,6 +279,20 @@
 				"1": "Збіг по торренту",
 				"2": "Збіг за директорією"
 			}
+		},
+		"torrent-rename": {
+			"title": "Renaming a Torrent's Path",
+			"oldname": "Old",
+			"newname": "New"
+		},
+		"torrent-attribute-add-tracker": {
+			"title": "Add Trackers",
+			"tip": "One Line, One Tracker"
+		},
+		"torrent-setLabels": {
+			"title": "Set User Labels",
+			"available": "Available:",
+			"selected": "Selected:"
 		}
 	},
 	"torrent": {
@@ -266,7 +312,11 @@
 			"leecherCount": "Лічі",
 			"seederCount": "Сіди",
 			"uploadedEver": "Віддано",
-			"uploadRatio": "Рейтинг"
+			"uploadRatio": "Рейтинг",
+			"queuePosition": "Queue",
+			"activityDate": "Activity Date",
+			"trackers": "Trackers",
+			"labels": "User Labels"
 		},
 		"status-text": {
 			"0": "Пауза",
@@ -343,12 +393,17 @@
 				"uploadLimited": "Максимальна швидкість віддачі: ",
 				"peer-limit": "Максимум пірів на торрент: ",
 				"seedRatioMode": "Роздача буде зупинена на рейтингу: ",
-				"seedIdleMode": "Роздача буде зупинена якщо немає активності: "
+				"seedIdleMode": "Роздача буде зупинена якщо немає активності: ",
+				"doneDate": "Finish Time:",
+				"seedTime": "Seed Time:"
 			},
 			"tip": {
 				"button-allow": "Завантажити вибрані файли",
 				"button-deny": "Пропустити вибрані файли",
-				"button-priority": "Встановити пріоритет"
+				"button-priority": "Встановити пріоритет",
+				"button-tracker-add": "Add New Tracker",
+				"button-tracker-edit": "Edit Tracker",
+				"button-tracker-remove": "Remove Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "Ви впевнені, що хочете видалити цей трекер?"
@@ -369,6 +424,10 @@
 		"text-confirm": "Ви впевнені?",
 		"text-browsers-not-support-features": "Поточний браузер не підтримує цей функціонал!",
 		"text-download-update": "Завантажити це оновлення",
-		"text-have-update": "Доступно нове оновлення"
+		"text-have-update": "Доступно нове оновлення",
+		"text-on": "ON",
+		"text-off": "OFF",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }

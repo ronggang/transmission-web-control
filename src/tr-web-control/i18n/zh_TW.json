@@ -84,7 +84,8 @@
 		},
 		"plugin": {
 			"auto-match-data-folder": "自動配對資料夾"
-		}
+		},
+		"setLabels": "設置使用者標籤"
 	},
 	"title": {
 		"left": "分類資料夾",
@@ -123,7 +124,8 @@
 			"nav": {
 				"folders": "資料夾"
 			}
-		}
+		},
+		"labels": "使用者標籤"
 	},
 	"statusbar": {
 		"downloadspeed": "下載速度：",
@@ -136,7 +138,6 @@
 			"torrent-url": "種子地址：",
 			"tip-torrent-url": "註：貼上種子連結到清單中，多個種子用「換行」分隔。",
 			"autostart": "自動開始：",
-			"tip-autostart": "若選取，新增種子將自動開始下載（如不選取，則為暫停狀態）",
 			"set-default-download-dir": "設為預設儲存資料夾",
 			"upload-file": "種子檔案：",
 			"nosource": "沒有選擇種子或沒有輸入URL位址",
@@ -150,7 +151,8 @@
 				"limit": "頻寬限制",
 				"alt-speed": "時段限制",
 				"dictionary-folders": "資料夾字典",
-				"more": "額外設置"
+				"more": "額外設置",
+				"labels": "使用者標籤"
 			},
 			"config-dir": "Transmission 組態檔資料夾（唯讀）：",
 			"download-dir": "預設儲存資料夾：",
@@ -208,7 +210,15 @@
 			"language": "界面語言：",
 			"loading": "加載中...",
 			"hide-subfolders": "點擊數據目錄時，在列表中不顯示子目錄下的種子：",
-			"simple-check-mode": "在種子列表上單擊滑鼠右鍵時，僅選中一個種子："
+			"simple-check-mode": "在種子列表上單擊滑鼠右鍵時，僅選中一個種子：",
+			"nav-contents": "巡覽列顯示內容：",
+			"labels-manage": {
+				"name": "標籤名稱",
+				"description": "描述",
+				"color": "顏色",
+				"actions": "操作",
+				"import-confirm": "是否確認導入標籤資訊？ 這將覆蓋當前配置。"
+			}
 		},
 		"public": {
 			"button-ok": "確定",
@@ -217,7 +227,12 @@
 			"button-save": "儲存",
 			"button-close": "關閉",
 			"button-update": "更新",
-			"button-config": "設定"
+			"button-config": "設定",
+			"button-addnew": "新增",
+			"button-edit": "編輯",
+			"button-delete": "刪除",
+			"button-export": "匯出",
+			"button-import": "導入"
 		},
 		"about": {
 			"infos": "程式設計、製作：栽培者<br/>聲明：本程式使用的大部分圖示來自網路，如有侵犯您的權益，請與本人聯繫刪除。<br/>如您有什麼意見建議，也歡迎與我聯繫。",
@@ -273,6 +288,11 @@
 		"torrent-attribute-add-tracker": {
 			"title": "增加 Tracker",
 			"tip": "每行表示一個 Tracker"
+		},
+		"torrent-setLabels": {
+			"title": "設置使用者標籤",
+			"available": "可用標籤：",
+			"selected": "已選擇："
 		}
 	},
 	"torrent": {
@@ -294,7 +314,9 @@
 			"uploadedEver": "已上傳",
 			"uploadRatio": "分享率",
 			"queuePosition": "佇列",
-			"activityDate": "最後活動於"
+			"activityDate": "最後活動於",
+			"trackers": "伺服器",
+			"labels": "使用者標籤"
 		},
 		"status-text": {
 			"0": "已暫停",
@@ -396,14 +418,16 @@
 	"public": {
 		"text-unknown": "未知",
 		"text-drop-title": "將檔拖放在該區域內即可加到 Transmission。",
-		"text-nochange": "參數未改變",
 		"text-saved": "已儲存",
+		"text-nochange": "參數未改變",
 		"text-info": "資息",
 		"text-confirm": "確認要這樣做嗎？",
 		"text-browsers-not-support-features": "目前瀏覽器不支援該功能！",
 		"text-download-update": "下載這個更新",
 		"text-have-update": "有可用的更新",
 		"text-on": "開",
-		"text-off": "關"
+		"text-off": "關",
+		"text-how-to-update": "如何更新？",
+		"text-ignore-this-version": "忽略這個版本"
 	}
 }

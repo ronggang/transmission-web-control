@@ -138,7 +138,6 @@
 			"torrent-url": "Link do torrenta:",
 			"tip-torrent-url": "Wskazówka: każdy w nowej linii (oddziel klawiszem ENTER)",
 			"autostart": "Uruchom pobieranie:",
-			"tip-autostart": "",
 			"set-default-download-dir": "Zapisz jako katalog domyślny",
 			"upload-file": "Pliki torrent:",
 			"nosource": "Brak pliku torrent bądź linka.",
@@ -427,6 +426,8 @@
 		"text-download-update": "Pobierz tę aktualizację",
 		"text-have-update": "Dostępna jest aktualizacja",
 		"text-on": "WŁ",
-		"text-off": "WYŁ"
+		"text-off": "WYŁ",
+		"text-how-to-update": "How to update?",
+		"text-ignore-this-version": "Ignore this version"
 	}
 }
