@@ -232,13 +232,13 @@ transmission.torrents = {
 	},
 	addTracker: function(item) {
 		var trackerStats = item.trackerStats;
-		var haveWarning = false;
 		var trackers = [];
 
 		item.leecherCount = 0;
 		item.seederCount = 0;
 
 		if (trackerStats.length > 0) {
+			var warnings = [];
 			for (var index in trackerStats) {
 				var trackerInfo = trackerStats[index];
 				var lastResult = trackerInfo.lastAnnounceResult.toLowerCase();
@@ -268,8 +268,7 @@ transmission.torrents = {
 
 				// 判断当前tracker状态
 				if (!trackerInfo.lastAnnounceSucceeded && trackerInfo.announceState != transmission._trackerStatus.inactive) {
-					haveWarning = true;
-					item["warning"] = trackerInfo.lastAnnounceResult;
+					warnings.push(trackerInfo.lastAnnounceResult);
 
 					if (lastResult == "could not connect to tracker") {
 						tracker.connected = false;
@@ -293,7 +292,8 @@ transmission.torrents = {
 				this.btItems.push(item);
 			}
 
-			if (haveWarning) {
+			if (warnings.length == trackerStats.length) {
+				item["warning"] = warnings.join(";");
 				// 设置下次更新时间
 				if (!item["nextAnnounceTime"])
 					item["nextAnnounceTime"] = trackerInfo.nextAnnounceTime;
