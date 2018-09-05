@@ -2,7 +2,7 @@
 var system = {
 	version: "1.6.0 alpha",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180422",
+	codeupdate: "20180905",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -2533,7 +2533,7 @@ var system = {
 			datas = datas.sort(arrayObjectSort(orderField, _options.sortOrder));
 		}
 
-		if (rows.length == 0 || (datas.length != sourceTable.datagrid("getData").total) && datas.length > _options.pageSize) {
+		if (rows.length == 0 || (datas.length != sourceTable.datagrid("getData").total)) {
 			sourceTable.datagrid({
 				loadFilter: pagerFilter,
 				pageNumber: 1,
