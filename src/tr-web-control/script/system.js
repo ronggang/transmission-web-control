@@ -1772,6 +1772,18 @@ var system = {
 		var datas = new Array();
 		var BTServersNode = this.panel.left.tree("find", "btservers");
 		var BTServersNodeState = (BTServersNode?BTServersNode.state:"close");
+
+		// 先添加一个“BT”目录节点，用于增加BT服务器列表
+		if (!BTServersNode && system.config.showBTServers) {
+			this.appendTreeNode(serversNode, [{
+				id: "btservers",
+				text: "BT",
+				state: "open",
+				iconCls: "iconfont tr-icon-bt"
+			}]);
+			BTServersNode = this.panel.left.tree("find", "btservers");
+		}
+
 		// 加载服务器列表
 		for (var index in transmission.trackers) {
 			var tracker = transmission.trackers[index];
@@ -1779,15 +1791,6 @@ var system = {
 				// 是否显示BT服务器
 				if (!system.config.showBTServers) {
 					continue;
-				}
-				if (!BTServersNode) {
-					this.appendTreeNode(serversNode, [{
-						id: "btservers",
-						text: "BT",
-						state: "open",
-						iconCls: "iconfont tr-icon-bt"
-					}]);
-					BTServersNode = this.panel.left.tree("find", "btservers");
 				}
 			}
 			var node = system.panel.left.tree("find", tracker.nodeid);
