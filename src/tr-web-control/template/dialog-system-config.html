@@ -601,6 +601,10 @@
 					var days = new Array();
 					var value = null;
 					var reloadPage = false;
+					// 提交标签列表的变更
+					if (page.endEditing()) {
+						page.userLabelsTable.datagrid("acceptChanges");
+					}
 					for (var i=0;i<inputs.length;i++) {
 						var input = inputs[i];
 						var configType = input.getAttribute("config-type")||0;
@@ -927,7 +931,6 @@
 								}
 							},
 							onEndEdit: function(index, row, changes){
-								console.log(index, row);
 								if (row.name) {
 									if (row.ck!==undefined) {
 										delete row.ck;
