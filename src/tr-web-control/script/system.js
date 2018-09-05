@@ -928,9 +928,14 @@ var system = {
 				menus = new Array("start", "pause", "-", 
 										"rename", "remove", "recheck", "-", 
 										"morepeers", "changeDownloadDir", "copyPath", "-", 
-										"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom", "-",
-										"setLabels"
+										"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom"
 										);
+
+				// 是否显示标签菜单
+				if (this.config.nav.labels) {
+					menus.push("-");
+					menus.push("setLabels");
+				}
 				var toolbar = this.panel.toolbar;
 				for (var item in menus) {
 					var key = menus[item];
@@ -1021,7 +1026,6 @@ var system = {
 						});
 					}
 				};
-				break;
 		}
 	},
 	/**
