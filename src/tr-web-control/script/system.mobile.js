@@ -2,9 +2,9 @@
 	移动版
 */
 var system = {
-	version: "1.4.0",
+	version: "1.6.0 beta",
 	rootPath: "tr-web-control/",
-	codeupdate: "20171108",
+	codeupdate: "20180906",
 	configHead: "transmission-web-control",
 	config: {
 		autoReload: true,
@@ -59,8 +59,14 @@ var system = {
 			lang = "en";
 		}
 
-		$.getScript(system.rootPath + "lang/" + lang + ".js", function () {
-			system.lang = $.extend(true, system.defaultLang, system.lang);
+		// 统一使用 _ 替代 -
+		lang = lang.replace("-", "_");
+
+		$.getJSON(system.rootPath + "i18n/" + lang + ".json", function (result) {
+			if (result) {
+				system.lang = $.extend(true, system.defaultLang, result);
+			}
+			
 			system.resetLangText();
 			if (callback)
 				callback();
@@ -759,10 +765,14 @@ var system = {
 };
 
 $(document).ready(function () {
-	// 加载默认语言内容
-	$.getScript(system.rootPath+"lang/default.js");
-	// 加载可用的语言列表
-	$.getScript(system.rootPath+"lang/_languages.js",function(){
-		system.init(location.search.getQueryString("lang"));
+	// Loads the default language content
+	$.getJSON(system.rootPath + "i18n/en.json").done(function (result) {
+		system.defaultLang = result;
+	});
+
+	// Loads a list of available languages
+	$.getJSON(system.rootPath + "i18n.json").done(function (result) {
+		system.languages = result;
+		system.init(location.search.getQueryString("lang"), location.search.getQueryString("local"));
 	});
 });
