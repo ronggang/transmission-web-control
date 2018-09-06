@@ -55,7 +55,7 @@ html, body {
 	margin:4px;
 }
 
-.dialog input,.dialog select,.dialog textarea{
+.dialog input[type=text],.dialog select,.dialog textarea{
 	width:99%;
 }
 .dialog td.title{
