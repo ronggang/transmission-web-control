@@ -326,7 +326,10 @@
 	</div>  
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<a id="system-config-button-reload" href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-reload'" style="float:left;display:none;"></a>
-		<button id="restore-default-settings" style="float:left;" system-lang="dialog['system-config']['restore-default-settings']" data-options="iconCls:'iconfont tr-icon-restore'"  class="easyui-linkbutton"></button>
+		<button id="restore-default-settings" style="float:left;" system-lang="dialog['system-config']['restore-default-settings']" data-options="iconCls:'iconfont tr-icon-restore',plain:true"  class="easyui-linkbutton"></button>
+		<span style="float:left;margin-top: 4px;height: auto;" class="button-split">|</span>
+		<button id="btn-import-config" style="float:left;" system-lang="dialog['public']['button-import']" system-tip-lang="dialog['system-config']['import-config']" data-options="iconCls:'iconfont tr-icon-download',plain:true" class="easyui-linkbutton"></button>
+		<button id="btn-export-config" style="float:left;" system-lang="dialog['public']['button-export']" system-tip-lang="dialog['system-config']['export-config']" data-options="iconCls:'iconfont tr-icon-upload',plain:true" class="easyui-linkbutton"></button>
 		<span id="system-config-nochange" style="display:none;"></span>
 		<span id="system-config-saved" style="display:none;"></span>
 		<a id="system-config-button-save" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" href="javascript:void(0);">Ok</a>
@@ -843,18 +846,18 @@
 					}
 					var exportData = JSON.parse(JSON.stringify(data));
 
-					page.saveFileAs("tr-web-contorl-labels.json", JSON.stringify(exportData));
+					saveFileAs("tr-web-contorl-labels.json", JSON.stringify(exportData));
 				});
 
 				// 导入
-				$("#btn-UserLabel-import").on("click", function () {
-					page.loadFileContent("json", function (content) {
+				$("#btn-UserLabel-import", thisDialog).on("click", function () {
+					loadFileContent("json", function (content) {
 						var item = content;
 						if (typeof (content) === "string") {
 							try {
 								item = JSON.parse(content);
 							} catch (error) {
-								alert("JSON文件解析失败！");
+								alert(system.lang["public"]["text-json-file-parsing-failed"]);
 								return;
 							}
 						}
@@ -946,6 +949,14 @@
 				};
 				
 				reloadData();
+
+				$("#btn-export-config", thisDialog).on("click.cus", function() {
+					page.exportConfig(this);
+				});
+
+				$("#btn-import-config", thisDialog).on("click", function() {
+					page.importConfig(this);
+				})
 			},
 			endEditing: function(){
 				if (page.editIndex == undefined){return true}
@@ -957,91 +968,63 @@
 					return false;
 				}
 			},
-			/**
-			* 加载指定的文件内容
-			*/
-			loadFileContent: function (fileType, callback) {
-				$("<input id='file-loadContent' type='file' style='display:none;' multiple='true'/>").on("change", function () {
-					var fileSelector = this;
-					if (fileSelector.files.length > 0 && fileSelector.files[0].name.length > 0) {
-						var files = fileSelector.files;
-						var count = files.length;
-						var index = 0;
-						var r = new FileReader();
-						r.onload = function (e) {
-							callback && callback.call(system, e.target.result);
-							readFile();
-						};
-						r.onerror = function () {
-							alert("文件加载失败");
-							console.log("文件加载失败");
-							readFile();
-						};
-
-						function readFile(file) {
-
-							if (index == count) {
-								$(fileSelector).remove();
-								fileSelector.value = "";
-								return;
-							}
-							var file = files[index];
-							var lastIndex = file.name.lastIndexOf(".");
-							var fix = file.name.substr(lastIndex + 1);
-
-							index++;
-
-							if (fileType) {
-								if (fix != fileType) {
-									alert("文件类型错误");
-									return;
-								}
-							}
-
-							r.readAsText(file);
-						}
-						readFile();
-					}
-				}).click();
-			},
-			/**
-			* 将指定的内容保存为文件
-			* @param fileName 文件名
-			* @param fileData 文件内容
-			*/
-			saveFileAs: function (fileName, fileData) {
-				try {
-					var Blob = window.Blob || window.WebKitBlob;
-
-					// Detect availability of the Blob constructor.
-					var constructor_supported = false;
-					if (Blob) {
+			importConfig: function(button) {
+				loadFileContent("json", function (content) {
+					var item = content;
+					if (typeof (content) === "string") {
 						try {
-							new Blob([], {
-								"type": "text/plain"
-							});
-							constructor_supported = true;
-						} catch (_) {}
+							item = JSON.parse(content);
+						} catch (error) {
+							alert(system.lang["public"]["text-json-file-parsing-failed"]);
+							return;
+						}
 					}
 
-					var b = null;
-					if (constructor_supported) {
-						b = new Blob([fileData], {
-							"type": "text/plain"
+					if (item.system || item.user || item.server || item.dictionary) {
+						system.openDialogFromTemplate({
+							id: "dialog-import-config",
+							options: {
+								title: system.lang.dialog["import-config"].title,
+								width: 500,
+								height: 120
+							},
+							datas: {
+								config: item
+							},
+							type: 1,
+							source: $(button),
+							onClose: function() {
+								$(button).on("click", function(){
+									page.importConfig(this);
+								});
+							}
 						});
 					} else {
-						// Deprecated BlobBuilder API
-						var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
-						var bb = new BlobBuilder();
-						bb.append(fileData);
-						b = bb.getBlob("text/plain");
+						alert(system.lang.dialog["import-config"]["invalid-file"]);
+						// thisDialog.find("#system-config-nochange").html(system.lang.dialog["import-config"]["invalid-file"]).fadeInAndOut();
 					}
-
-					saveAs(b, fileName);
-				} catch (e) {
-					console.log(e.toString());
-				}
+				});
 			},
+			/**
+			 * 导出当前配置到文件
+			 */
+			exportConfig: function(button) {
+				system.openDialogFromTemplate({
+					id: "dialog-export-config",
+					options: {
+						title: system.lang.dialog["export-config"].title,
+						width: 500,
+						height: 120
+					},
+					type: 1,
+					source: $(button),
+					onClose: function() {
+						$(button).on("click", function(){
+							page.exportConfig(this);
+						});
+					}
+				});
+			}
 		};
 		page.init();
 	})($("#dialog-system-config"));

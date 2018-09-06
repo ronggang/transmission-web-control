@@ -218,7 +218,10 @@
 				"color": "颜色",
 				"actions": "操作",
 				"import-confirm": "是否确认导入标签信息？这将覆盖当前配置。"
-			}
+			},
+			"import-config": "从备份文件中导入配置",
+			"export-config": "导出当前配置到配置文件（内容包括：Transmission 参数、WebUI 配置）",
+			"import-config-confirm": "是否确认导入这些配置信息？这将覆盖当前配置。"
 		},
 		"public": {
 			"button-ok": "确定",
@@ -293,6 +296,17 @@
 			"title": "设置用户标签",
 			"available": "可用标签：",
 			"selected": "已选择："
+		},
+		"export-config": {
+			"title": "请选择需要导出的配置",
+			"option-all": "所有配置",
+			"option-system": "Web Control 参数配置（包含用户标签）",
+			"option-dictionary": "用户定义的目录字典",
+			"option-server": "Transmission 服务端配置（如下载目录、缓存、限速等所有可配置参数）"
+		},
+		"import-config": {
+			"title": "请选择需要导入的配置",
+			"invalid-file": "无效的配置文件"
 		}
 	},
 	"torrent": {
@@ -428,6 +442,7 @@
 		"text-on": "开",
 		"text-off": "关",
 		"text-how-to-update": "如何更新？",
-		"text-ignore-this-version": "忽略这个版本"
+		"text-ignore-this-version": "忽略这个版本",
+		"text-json-file-parsing-failed": "JSON文件解析失败！"
 	}
 }

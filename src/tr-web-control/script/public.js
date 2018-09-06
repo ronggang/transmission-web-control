@@ -406,3 +406,89 @@ function uniq(a) {
         return seen.hasOwnProperty(item) ? false : (seen[item] = true);
     });
 }
+
+/**
+* 加载指定的文件内容
+*/
+function loadFileContent(fileType, callback) {
+	$("<input id='file-loadContent' type='file' style='display:none;' multiple='true'/>").on("change", function () {
+		var fileSelector = this;
+		if (fileSelector.files.length > 0 && fileSelector.files[0].name.length > 0) {
+			var files = fileSelector.files;
+			var count = files.length;
+			var index = 0;
+			var r = new FileReader();
+			r.onload = function (e) {
+				callback && callback.call(system, e.target.result);
+				readFile();
+			};
+			r.onerror = function () {
+				alert("文件加载失败");
+				console.log("文件加载失败");
+				readFile();
+			};
+
+			function readFile(file) {
+
+				if (index == count) {
+					$(fileSelector).remove();
+					fileSelector.value = "";
+					return;
+				}
+				var file = files[index];
+				var lastIndex = file.name.lastIndexOf(".");
+				var fix = file.name.substr(lastIndex + 1);
+
+				index++;
+
+				if (fileType) {
+					if (fix != fileType) {
+						alert("文件类型错误");
+						return;
+					}
+				}
+
+				r.readAsText(file);
+			}
+			readFile();
+		}
+	}).click();
+}
+/**
+* 将指定的内容保存为文件
+* @param fileName 文件名
+* @param fileData 文件内容
+*/
+function saveFileAs(fileName, fileData) {
+	try {
+		var Blob = window.Blob || window.WebKitBlob;
+
+		// Detect availability of the Blob constructor.
+		var constructor_supported = false;
+		if (Blob) {
+			try {
+				new Blob([], {
+					"type": "text/plain"
+				});
+				constructor_supported = true;
+			} catch (_) {}
+		}
+
+		var b = null;
+		if (constructor_supported) {
+			b = new Blob([fileData], {
+				"type": "text/plain"
+			});
+		} else {
+			// Deprecated BlobBuilder API
+			var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
+			var bb = new BlobBuilder();
+			bb.append(fileData);
+			b = bb.getBlob("text/plain");
+		}
+
+		saveAs(b, fileName);
+	} catch (e) {
+		console.log(e.toString());
+	}
+}

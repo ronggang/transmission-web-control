@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.6.0 alpha",
+	version: "1.6.0 beta",
 	rootPath: "tr-web-control/",
-	codeupdate: "20180905",
+	codeupdate: "20180906",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -3111,7 +3111,8 @@ var system = {
 			}).data("popoverSource", config.source);
 
 			$(config.source).webuiPopover({
-				url: '#' + dialogId, 
+				url: '#' + dialogId,
+				title: options.title,
 				width: options.width, 
 				height: options.height -18,
 				padding: false,
@@ -3120,6 +3121,9 @@ var system = {
 					$("#" + dialogId).remove();
 					$(e).remove();
 					system.popoverCount--;
+					if (config.onClose) {
+						config.onClose(config.source);
+					}
 				},
 				onShow: function() {
 					system.popoverCount++;

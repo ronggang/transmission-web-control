@@ -219,7 +219,10 @@
 				"color": "Color",
 				"actions": "Actions",
 				"import-confirm": "Do you want to import labels? This overrides the current configuration."
-			}
+			},
+			"import-config": "Import configuration from file",
+			"export-config": "Export current configuration",
+			"import-config-confirm": "Do you want to import these configurations? This overrides the current configuration."
 		},
 		"public": {
 			"button-ok": "OK",
@@ -294,6 +297,17 @@
 			"title": "Set User Labels",
 			"available": "Available:",
 			"selected": "Selected:"
+		},
+		"export-config": {
+			"title": "Please select the details need to be exported",
+			"option-all": "All configuration",
+			"option-system": "Web Control configuration",
+			"option-dictionary": "Defined Folders Dictionary",
+			"option-server": "Transmission configuration (Download directory, cache, speed limit, etc.)"
+		},
+		"import-config": {
+			"title": "Please select the details need to be import",
+			"invalid-file": "Invalid profile"
 		}
 	},
 	"torrent": {
@@ -429,6 +443,7 @@
 		"text-on": "ON",
 		"text-off": "OFF",
 		"text-how-to-update": "How to update?",
-		"text-ignore-this-version": "Ignore this version"
+		"text-ignore-this-version": "Ignore this version",
+		"text-json-file-parsing-failed": "JSON file parsing failed!"
 	}
 }
