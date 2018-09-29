@@ -398,8 +398,8 @@
 				"seedTime": "Czas 'wysiewu':"
 			},
 			"tip": {
-				"button-allow": "Pobierz sprawdzone pliki",
-				"button-deny": "Pomiń sprawdzone pliki",
+				"button-allow": "Pobierz zaznaczone pliki",
+				"button-deny": "Pomiń zaznaczone pliki",
 				"button-priority": "Ustaw priorytet",
 				"button-tracker-add": "Dodaj nowy tracker",
 				"button-tracker-edit": "Edytuj tracker",
