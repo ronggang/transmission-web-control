@@ -210,8 +210,8 @@
 			"restore-default-settings": "Настойки по-умолчанию",
 			"language": "Язык:",
 			"loading": "Загрузка...",
-			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
-			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
+			"hide-subfolders": "При перемещению по дереву папок (Окно 'Навигация', раздел 'Папки') в окне 'Торренты' раздачи из подпапок не отображаются:",
+			"simple-check-mode": "Правый клик по торренту в списке (Окно 'Торренты') выделяет только один торрент:",
 			"nav-contents": "Содержание окна 'Навигация'",
 			"labels-manage": {
 				"name": "Имя метки",
