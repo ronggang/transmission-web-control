@@ -1,6 +1,6 @@
 {
 	"name": "it",
-	"author": "Daniele Buccilli, vodek3, Oliver Cervera",
+	"author": "Oliver Cervera, Daniele Buccilli, vodek3",
 	"system": {
 		"title": "Transmission WEB Control",
 		"status": {
@@ -293,6 +293,17 @@
 			"title": "Imposta Etichette Utente",
 			"available": "Disponibile:",
 			"selected": "Selezione:"
+			},
+		"export-config": {
+			"title": "Seleziona le categorie da esportare",
+			"option-all": "Tutte le configurazioni",
+			"option-system": "Configurazione di Web Control",
+			"option-dictionary": "Raccolta Cartelle",
+			"option-server": "Configurazione di Transmission (Cartella di download, limiti di velocità, ecc.)"
+		},
+		"import-config": {
+			"title": "Seleziona le categorie da importare",
+			"invalid-file": "Profilo non valido"
 		}
 	},
 	"torrent": {
@@ -427,7 +438,7 @@
 		"text-have-update": "È disponibile un aggiornamento",
 		"text-on": "ON",
 		"text-off": "OFF",
-		"text-how-to-update": "How to update?",
-		"text-ignore-this-version": "Ignore this version"
+		"text-how-to-update": "Come aggiornare?",
+		"text-ignore-this-version": "Ignora questa versione"
 	}
 }
