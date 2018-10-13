@@ -3,14 +3,14 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.2-beta"
+SCRIPT_VERSION="1.2.2-beta2"
 VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
 INDEX_FILE="index.html"
 TMP_FOLDER="/tmp/tr-web-control"
-PACK_NAME="src.tar.gz"
-WEB_HOST="https://github.com/ronggang/twc-release/raw/master/"
+PACK_NAME="master.tar.gz"
+WEB_HOST="https://github.com/ronggang/transmission-web-control/archive/"
 DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 安装类型
 # 1 安装至当前 Transmission Web 所在目录
@@ -19,8 +19,10 @@ DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 3 用户指定参数做为目录，如 sh install-tr-control.sh /usr/local/transmission/share/transmission
 INSTALL_TYPE=-1
 SKIP_SEARCH=0
-USER=`whoami`
 AUTOINSTALL=0
+if which whoami 2>/dev/null; then
+	USER=`whoami`
+fi
 
 #==========================================================
 MSG_TR_WORK_FOLDER="Transmission Web Path: "
@@ -77,7 +79,7 @@ MSG_ORIGINAL_UI_IS_MISSING="The official UI does not exist."
 MSG_DOWNLOADING_INSTALL_SCRIPT="Re-downloading the installation script..."
 MSG_INSTALL_SCRIPT_DOWNLOAD_COMPLETE="The download is complete. Please re-run the installation script."
 MSG_INSTALL_SCRIPT_DOWNLOAD_FAILED="Installation Script Download failed!"
-MSG_NON_ROOT_USER="Please use the root user to install."
+MSG_NON_ROOT_USER="Unable to confirm if it is currently root, the installation may not be possible. Do you want to continue? (y/n)"
 #==========================================================
 
 # 是否自动安装
@@ -422,7 +424,7 @@ getTransmissionPath() {
 # 获取最后的发布版本号
 # 因在源码库里提交二进制文件不便于管理，以后将使用这种方式获取最新发布的版本
 getLatestReleases() {
-	VERSION=`curl -s https://api.github.com/repos/ronggang/transmission-web-control/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4`
+	VERSION=`wget -O - https://api.github.com/repos/ronggang/transmission-web-control/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4`
 }
 
 # 检测 Transmission 进程是否存在
@@ -487,8 +489,11 @@ downloadInstallScript() {
 }
 
 if [ "$USER" != 'root' ]; then
-	showLog "$MSG_NON_ROOT_USER"
-	exit -1
+	showLog "$MSG_NON_ROOT_USER" "n"
+	read input
+	if [ "$input" = "n" -o "$input" = "N" ]; then
+		exit -1
+	fi
 fi
 
 if [ $AUTOINSTALL = 1 ]; then
