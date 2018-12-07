@@ -85,7 +85,7 @@
 		"plugin": {
 			"auto-match-data-folder": "Combinar automaticamente diretório de dados"
 		},
-		"setLabels": "Set User Labels"
+		"setLabels": "Definir Rótulos do Usuário"
 	},
 	"title": {
 		"left": "Navegação",
@@ -125,7 +125,7 @@
 				"folders": "Pastas"
 			}
 		},
-		"labels": "User Labels"
+		"labels": "Rótulos do Usuário"
 	},
 	"statusbar": {
 		"downloadspeed": "Velocidade de download:",
@@ -151,8 +151,8 @@
 				"limit": "Limite",
 				"alt-speed": "Agendamento",
 				"dictionary-folders": "Dicionário de pastas",
-				"more": "More",
-				"labels": "Labels"
+				"more": "Mais",
+				"labels": "Rótulos"
 			},
 			"config-dir": "Local do arquivo de configuração do Transmission:",
 			"download-dir": "Diretório padrão de download:",
@@ -205,41 +205,41 @@
 			"minutes": "Minutos",
 			"nochange": "Sem mudanças",
 			"saving": "Salvando...",
-			"show-bt-servers": "Show 'BT servers' on Trackers:",
-			"restore-default-settings": "Restore UI Default Settings",
-			"language": "Language:",
-			"loading": "Loading...",
-			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
-			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
-			"nav-contents": "Navigation bar Display content:",
+			"show-bt-servers": "Mostrar 'servidores BT' nos Trackers:",
+			"restore-default-settings": "Restaurar Configurações Padrões da UI",
+			"language": "Língua:",
+			"loading": "Carregando...",
+			"hide-subfolders": "Quando clicar no diretório de dados, ocultar conteúdo dos subdiretórios na lista:",
+			"simple-check-mode": "Marcado somente um torrent quando você clicar com o direito na lista de torrent:",
+			"nav-contents": "Mostrar Conteúdo na Barra de Navegação:",
 			"labels-manage": {
-				"name": "Label Name",
-				"description": "Description",
-				"color": "Color",
-				"actions": "Actions",
-				"import-confirm": "Do you want to import labels? This overrides the current configuration."
+				"name": "Rótulo",
+				"description": "Descrição",
+				"color": "Cor",
+				"actions": "Ações",
+				"import-confirm": "Você deseja importar os rótulos? isso vai sobrecarregar a configuração atual."
 			}
 		},
 		"public": {
-			"button-ok": "Aceptar",
+			"button-ok": "Aceitar",
 			"button-cancel": "Cancelar",
 			"button-reload": "Recarregar",
 			"button-save": "Salvar",
 			"button-close": "Fechar",
 			"button-update": "Atualizar",
 			"button-config": "Configurações",
-			"button-addnew": "Add",
-			"button-edit": "Edit",
-			"button-delete": "Delete",
-			"button-export": "Export",
-			"button-import": "Import"
+			"button-addnew": "Adicionar",
+			"button-edit": "Editar",
+			"button-delete": "Apagar",
+			"button-export": "Exportar",
+			"button-import": "Importar"
 		},
 		"about": {
 			"infos": "Autor: culturist<br/>Aviso: A maioria dos icones usados foram encontrados pela net. Para retirar algum conteúdo, por favor contate o autor.",
 			"check-update": "Comprovar atualizações",
 			"home": "Project Home",
 			"help": "Wiki",
-			"donate": "Donate",
+			"donate": "Doar",
 			"pt-plugin": "PT Plugin"
 		},
 		"torrent-remove": {
@@ -281,18 +281,18 @@
 			}
 		},
 		"torrent-rename": {
-			"title": "Renaming a Torrent's Path",
-			"oldname": "Old",
-			"newname": "New"
+			"title": "Renomear o Caminho do Torrent",
+			"oldname": "Antigo",
+			"newname": "Novo"
 		},
 		"torrent-attribute-add-tracker": {
-			"title": "Add Trackers",
-			"tip": "One Line, One Tracker"
+			"title": "Adicionar Trackers",
+			"tip": "Uma Linha, Um Tracker"
 		},
 		"torrent-setLabels": {
-			"title": "Set User Labels",
-			"available": "Available:",
-			"selected": "Selected:"
+			"title": "Definir Labels de Usuários",
+			"available": "Disponível:",
+			"selected": "Selecionado:"
 		}
 	},
 	"torrent": {
@@ -316,7 +316,7 @@
 			"queuePosition": "Queue",
 			"activityDate": "Activity Date",
 			"trackers": "Trackers",
-			"labels": "User Labels"
+			"labels": "Rótulos do Usuário"
 		},
 		"status-text": {
 			"0": "Pausado",
@@ -401,9 +401,9 @@
 				"button-allow": "Baixar arquivos selecionados",
 				"button-deny": "Ignorar arquivos selecionados",
 				"button-priority": "Definir prioridade",
-				"button-tracker-add": "Add New Tracker",
-				"button-tracker-edit": "Edit Tracker",
-				"button-tracker-remove": "Remove Tracker"
+				"button-tracker-add": "Adicionar Novo Tracker",
+				"button-tracker-edit": "Editar Tracker",
+				"button-tracker-remove": "Remover Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "Tem certeza que deseja eliminar este tracker?"
@@ -427,7 +427,7 @@
 		"text-have-update": "Há uma atualização disponível",
 		"text-on": "ON",
 		"text-off": "OFF",
-		"text-how-to-update": "How to update?",
-		"text-ignore-this-version": "Ignore this version"
+		"text-how-to-update": "Como atualizar?",
+		"text-ignore-this-version": "Ignorar essa versão"
 	}
 }
