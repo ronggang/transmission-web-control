@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "自动匹配数据目录"
 		},
-		"setLabels": "设置用户标签"
+		"setLabels": "设置用户标签",
+		"copyMagnetLink": "复制磁力链接到剪切板"
 	},
 	"title": {
 		"left": "导航",

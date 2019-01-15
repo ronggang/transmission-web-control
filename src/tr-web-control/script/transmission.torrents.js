@@ -483,5 +483,49 @@ transmission.torrents = {
 				}
 			}, result[index].ids);
 		}
+	},
+	
+	// 获取磁力链接
+	getMagnetLink: function(ids, callback){
+		var result = "";
+		// is single number
+		if(ids.constructor.name != "Array")
+			ids = [ids];
+		if(ids.length == 0) {
+			if(callback) callback(result);
+			return;
+		}
+		// 跳过己获取的
+		var req_list = [];
+		for(var id in ids){
+			id = ids[id];
+			if (!this.all[id]) continue;
+			if (!this.all[id].magnetLink)
+				req_list.push(id)
+			else
+				result += this.all[id].magnetLink + "\n";
+		}
+		
+		if(req_list.length == 0){
+			if(callback) callback(result.trim());
+			return;
+		}
+
+		transmission.exec({
+			method: "torrent-get",
+			arguments: {
+				fields: [ "id", "magnetLink" ],
+				ids: req_list
+			}
+		}, function(data) {
+			if (data.result == "success") {
+				for(var item in data.arguments.torrents){
+					item = data.arguments.torrents[item];
+					transmission.torrents.all[item.id].magnetLink = item.magnetLink;
+					result += item.magnetLink + "\n";
+				}
+				if(callback) callback(result.trim());
+			}
+		});
 	}
 };

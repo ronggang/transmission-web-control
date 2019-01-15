@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Automatically matches data directory"
 		},
-		"setLabels": "Set User Labels"
+		"setLabels": "Set User Labels",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Navigatie",

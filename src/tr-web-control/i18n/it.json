@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Associa automaticamente cartella dati"
 		},
-		"setLabels": "Imposta Etichette Utente"
+		"setLabels": "Imposta Etichette Utente",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Navigazione",

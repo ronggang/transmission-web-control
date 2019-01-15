@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Correspondance auto des dossiers de données"
 		},
-		"setLabels": "Personnaliser les étiquettes"
+		"setLabels": "Personnaliser les étiquettes",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Navigation",
