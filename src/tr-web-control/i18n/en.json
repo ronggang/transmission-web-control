@@ -333,7 +333,8 @@
 			"queuePosition": "Queue",
 			"activityDate": "Activity Date",
 			"trackers": "Trackers",
-			"labels": "User Labels"
+			"labels": "User Labels",
+			"doneDate": "Completed Date"
 		},
 		"status-text": {
 			"0": "Paused",

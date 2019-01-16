@@ -332,7 +332,8 @@
 			"queuePosition": "队列",
 			"activityDate": "最后活动于",
 			"trackers": "服务器",
-			"labels": "用户标签"
+			"labels": "用户标签",
+			"doneDate": "完成时间"
 		},
 		"status-text": {
 			"0": "已暂停",

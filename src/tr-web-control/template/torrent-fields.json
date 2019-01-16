@@ -21,5 +21,6 @@
 		,{"field":"downloadDir","width":200,"align":"left","sortable":true}
 		,{"field":"activityDate","width":130,"align":"center","sortable":true,"formatter":"longtime"}
 		,{"field":"labels","width":130,"align":"left", "formatter": "labels"}
+		,{"field":"doneDate","width":130,"align":"center","sortable":"true","formatter":"longtime"}
 	]
 }
