@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Автосопоставление путей"
 		},
-		"setLabels": "Присвоить метки"
+		"setLabels": "Присвоить метки",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Навигация",

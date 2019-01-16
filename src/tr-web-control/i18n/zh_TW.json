@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "自動配對資料夾"
 		},
-		"setLabels": "設置使用者標籤"
+		"setLabels": "設置使用者標籤",
+		"copyMagnetLink": "复制磁力链接到剪切板"
 	},
 	"title": {
 		"left": "分類資料夾",

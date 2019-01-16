@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "자동으로 데이터 폴더 일치시키기"
 		},
-		"setLabels": "Set User Labels"
+		"setLabels": "Set User Labels",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "안내",
