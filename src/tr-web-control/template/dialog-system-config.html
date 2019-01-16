@@ -35,6 +35,15 @@
 						<td colspan="2"><hr/></td>
 					</tr>
 					<tr>
+						<td colspan="2"><input id="script-torrent-done-enabled" type="checkbox" style="width:16px;"/><label for="script-torrent-done-enabled"  system-lang="dialog['system-config']['script-torrent-done-enabled']"></label></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input id="script-torrent-done-filename" value="" type="text" enabledof="script-torrent-done-enabled" style="width:100%;"/></td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr/></td>
+					</tr>
+					<tr>
 						<td colspan="2">
 							<span id="system-config-config-dir"></span>
 						</td>
@@ -435,7 +444,7 @@
 				var title = ("incomplete-dir-enabled,rename-partial-files,start-added-torrents,download-queue-enabled,seed-queue-enabled" +
 					",peer-port-random-on-start,speed-limit-down-enabled,speed-limit-up-enabled,alt-speed-enabled,idle-seeding-limit-enabled" +
 					",port-forwarding-enabled,utp-enabled,dht-enabled,lpd-enabled,pex-enabled,blocklist-enabled,seedRatioLimited,queue-stalled-enabled" +
-					",alt-speed-time-enabled"
+					",alt-speed-time-enabled,script-torrent-done-enabled"
 				).split(",");
 				$.each(title, function (i, item) {
 					thisDialog.find("#" + item).prop("checked", system.serverConfig[item])
@@ -497,6 +506,8 @@
 				thisDialog.find("#seedRatioLimit").val(system.serverConfig["seedRatioLimit"]).prop("disabled", !system.serverConfig["seedRatioLimited"]);
 				thisDialog.find("#queue-stalled-minutes").val(system.serverConfig["queue-stalled-minutes"]).prop("disabled", !system.serverConfig["queue-stalled-enabled"]);
 				thisDialog.find("#idle-seeding-limit").val(system.serverConfig["idle-seeding-limit"]).prop("disabled", !system.serverConfig["idle-seeding-limit-enabled"]);
+
+				thisDialog.find("#script-torrent-done-filename").val(system.serverConfig["script-torrent-done-filename"]).prop("disabled", !system.serverConfig["script-torrent-done-enabled"]);
 
 				var etype = system.lang.dialog["system-config"]["encryption-type"];
 				for (var key in etype) {

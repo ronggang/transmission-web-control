@@ -221,7 +221,8 @@
 			},
 			"import-config": "从备份文件中导入配置",
 			"export-config": "导出当前配置到配置文件（内容包括：Transmission 参数、WebUI 配置）",
-			"import-config-confirm": "是否确认导入这些配置信息？这将覆盖当前配置。"
+			"import-config-confirm": "是否确认导入这些配置信息？这将覆盖当前配置。",
+			"script-torrent-done-enabled": "种子下载完成后执行以下脚本："
 		},
 		"public": {
 			"button-ok": "确定",

@@ -1486,7 +1486,7 @@ var system = {
 					options: {
 						title: system.lang.toolbar["system-config"],
 						width: 680,
-						height: 450,
+						height: 500,
 						resizable: true
 					}
 				});
