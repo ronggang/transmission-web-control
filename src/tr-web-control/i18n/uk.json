@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Авто-зіставлення шляхів"
 		},
-		"setLabels": "Set User Labels"
+		"setLabels": "Set User Labels",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Навігація",

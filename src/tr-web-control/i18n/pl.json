@@ -85,7 +85,8 @@
 		"plugin": {
 			"auto-match-data-folder": "Automatyczne dopasowanie katalogu"
 		},
-		"setLabels": "Ustaw własne etykiety"
+		"setLabels": "Ustaw własne etykiety",
+		"copyMagnetLink": "Copy magnetLink to clipboard"
 	},
 	"title": {
 		"left": "Nawigacja",

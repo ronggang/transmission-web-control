@@ -928,7 +928,8 @@ var system = {
 				menus = new Array("start", "pause", "-", 
 										"rename", "remove", "recheck", "-", 
 										"morepeers", "changeDownloadDir", "copyPath", "-", 
-										"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom"
+										"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom",
+										"magnetLink"
 										);
 
 				// 是否显示标签菜单
@@ -1026,6 +1027,18 @@ var system = {
 						});
 					}
 				};
+			case "magnetLink":
+				return{
+					id: "magnetLink",
+					text: system.lang.menus.copyMagnetLink,
+					iconCls: "iconfont tr-icon-labels",
+					disabled: this.checkedRows.length==0,
+					onclick: function() {
+						system.getTorrentMagnetLink(function(data){
+							system.copyToClipboard(data);
+						});
+					}
+				}
 		}
 	},
 	/**
@@ -1197,6 +1210,21 @@ var system = {
 			this.panel.status_text.empty();
 			$("#clipboard-source").val("");
 		}
+	},
+	// by https://stackoverflow.com/questions/22581345/click-button-copy-to-clipboard-using-jquery?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+	copyToClipboard: function (text) {
+		// Create a "hidden" input
+		var aux = document.createElement("input");
+		// Assign it the value of the specified element
+		aux.setAttribute("value", text);
+		// Append it to the body
+		document.body.appendChild(aux);
+		// Highlight its content
+		aux.select();
+		// Copy the highlighted text
+		document.execCommand("copy");
+		// Remove it from the body
+		document.body.removeChild(aux);
 	},
 	// Initialize the System Toolbar
 	initToolbar: function () {
@@ -2451,6 +2479,15 @@ var system = {
 				system.reloadTorrentBaseInfos();
 			});
 		}
+	},
+	// get the magnetlink of torrent
+	getTorrentMagnetLink: function (callback) {
+		var rows = this.control.torrentlist.datagrid("getChecked");
+		var ids = new Array();
+		for (var i in rows) {
+			ids.push(rows[i].id);
+		}
+		transmission.torrents.getMagnetLink(ids, callback);
 	},
 	// Looks for the specified torrent from the torrent list
 	searchTorrents: function (key) {
