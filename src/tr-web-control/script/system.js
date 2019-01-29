@@ -2097,6 +2097,7 @@ var system = {
 				switch (config.node.id) {
 					case "torrent-all":
 					case "servers":
+					case "labels":
 						torrents = transmission.torrents.all;
 						break;
 					case "paused":
