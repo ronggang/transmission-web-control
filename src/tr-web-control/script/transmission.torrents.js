@@ -137,9 +137,12 @@ transmission.torrents = {
 				this.newIds.push(item.id);
 			}
 			item = $.extend(this.all[item.id], item);
+			// 没有活动数据时，将分享率标记为 -1
 			if (item.uploadedEver == 0 && item.downloadedEver == 0) {
-				item.uploadRatio = "∞";
+				item.uploadRatio = -1;
 			}
+			// 转为数值
+			item.uploadRatio = parseFloat(item.uploadRatio);
 			item.infoIsLoading = false;
 			var type = this.status[item.status];
 			this.addTracker(item);

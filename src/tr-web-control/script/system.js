@@ -2843,10 +2843,10 @@ var system = {
 				case "ratio":
 					field.formatter = function (value, row, index) {
 						var className = '';
-						if (parseFloat(value) < 1) {
+						if (parseFloat(value) < 1 && value!=-1) {
 							className = 'text-status-warning';
 						}
-						return '<span class="' + className + '">' + value + '</span>';
+						return '<span class="' + className + '">' + (value==-1?"∞":value) + '</span>';
 					};
 					break;
 
