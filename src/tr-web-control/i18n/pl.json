@@ -86,7 +86,7 @@
 			"auto-match-data-folder": "Automatyczne dopasowanie katalogu"
 		},
 		"setLabels": "Ustaw własne etykiety",
-		"copyMagnetLink": "Copy magnetLink to clipboard"
+		"copyMagnetLink": "Skopiuj magnetLink do schowka"
 	},
 	"title": {
 		"left": "Nawigacja",
@@ -200,7 +200,7 @@
 			},
 			"blocklist-enabled": "Używaj blocklist'y (czarna lista z adresami IP organizacji antypirackich)",
 			"blocklist-size": "Na czarnej liście jest %n reguł",
-			"seedRatioLimited": "Domyślne ratio dla torrentów:",
+			"seedRatioLimited": "Domyślne proporcje dla torrentów:",
 			"queue-stalled-enabled": "Bezczynne torrenty będą blokowane po czasie:",
 			"idle-seeding-limit-enabled": "Wysyłanie pobranych torrentów zostanie zatrzymane, jeżeli nikt nie będzie ich pobierał przez:",
 			"minutes": "Minut",
@@ -313,7 +313,7 @@
 			"leecherCount": "Peerów",
 			"seederCount": "Seedów",
 			"uploadedEver": "Wysłano",
-			"uploadRatio": "Ratio",
+			"uploadRatio": "Proporcje",
 			"queuePosition": "Kolejka",
 			"activityDate": "Ostatnia aktywność",
 			"trackers": "Trackery",
@@ -385,7 +385,7 @@
 				"leecherCount": "Ilość peerów:",
 				"seederCount": "Ilość seedów:",
 				"uploadedEver": "Wysłano:",
-				"uploadRatio": "Ratio:",
+				"uploadRatio": "Proporcje:",
 				"creator": "Autor:",
 				"dateCreated": "Data utworzenia:",
 				"comment": "Komentarz:",
@@ -393,7 +393,7 @@
 				"downloadLimited": "Maksymalna prędkość pobierania:",
 				"uploadLimited": "Maksymalna prędkość wysyłania:",
 				"peer-limit": "Maksymalna ilość peerów na torrent:",
-				"seedRatioMode": "Ratio do wyseedowania dla tego torrenta:",
+				"seedRatioMode": "Proporcje do wyseedowania dla tego torrenta:",
 				"seedIdleMode": "Wysyłanie torrenta zostanie zatrzymane, jeżeli nie będzie wysyłany przez (minut):",
 				"doneDate": "Czas zakończenia:",
 				"seedTime": "Czas 'wysiewu':"
@@ -424,11 +424,11 @@
 		"text-info": "Informacje",
 		"text-confirm": "Jesteś pewny?",
 		"text-browsers-not-support-features": "Ta przeglądarka nie obsługuje tej funkcji!",
-		"text-download-update": "Pobierz tę aktualizację",
+		"text-download-update": "Pobierz aktualizację",
 		"text-have-update": "Dostępna jest aktualizacja",
 		"text-on": "WŁ",
 		"text-off": "WYŁ",
 		"text-how-to-update": "Jak wykonać aktualizację?",
-		"text-ignore-this-version": "Ignoruj tą wersję"
+		"text-ignore-this-version": "Ignoruj tę wersję"
 	}
 }

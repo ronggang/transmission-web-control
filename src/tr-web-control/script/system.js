@@ -967,7 +967,7 @@ var system = {
 									}
 								});
 							} else {
-								menu = this.getContentMenuWithKey(key);
+								menu = this.getContentMenuWithKey(key, parent);
 								if (menu) {
 									parent.menu("appendItem", menu);
 								}
@@ -996,9 +996,10 @@ var system = {
 	/**
 	 * 根据指定的key获取右键菜单
 	 * @param key
+	 * @param parent 父节点
 	 * @return 菜单对象
 	 */
-	getContentMenuWithKey: function(key) {
+	getContentMenuWithKey: function(key, parent) {
 		switch (key) {
 			case "setLabels":
 				return {
@@ -1036,6 +1037,7 @@ var system = {
 					onclick: function() {
 						system.getTorrentMagnetLink(function(data){
 							system.copyToClipboard(data);
+							parent.css("display","block"); // 防止第一次复制碰链失败
 						});
 					}
 				}
@@ -1214,9 +1216,13 @@ var system = {
 	// by https://stackoverflow.com/questions/22581345/click-button-copy-to-clipboard-using-jquery?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 	copyToClipboard: function (text) {
 		// Create a "hidden" input
-		var aux = document.createElement("input");
+		var id = "copy_to_clipboard_textarea";
+		var aux = document.getElementById(id);
+		if(!aux) aux = document.createElement("textarea"); // <input/> 不接受换行
+		aux.id = id;
+		aux.style.display = "block";
 		// Assign it the value of the specified element
-		aux.setAttribute("value", text);
+		aux.value = text; // <textarea/> 不能使用 setAttribute
 		// Append it to the body
 		document.body.appendChild(aux);
 		// Highlight its content
@@ -1224,7 +1230,7 @@ var system = {
 		// Copy the highlighted text
 		document.execCommand("copy");
 		// Remove it from the body
-		document.body.removeChild(aux);
+		aux.style.display = "none";
 	},
 	// Initialize the System Toolbar
 	initToolbar: function () {

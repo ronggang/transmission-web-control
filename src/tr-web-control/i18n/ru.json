@@ -86,7 +86,7 @@
 			"auto-match-data-folder": "Автосопоставление путей"
 		},
 		"setLabels": "Присвоить метки",
-		"copyMagnetLink": "Copy magnetLink to clipboard"
+		"copyMagnetLink": "Скопировать magnet-ссылку в буфер обмена"
 	},
 	"title": {
 		"left": "Навигация",
@@ -223,7 +223,8 @@
 			},
 			"import-config": "Импорт настроек из файла",
 			"export-config": "Экспорт текущих настроек ",
-			"import-config-confirm": "Вы действительно хотите импортировать настройки? Данное действие перезапишет текущие настройки."			   
+			"import-config-confirm": "Вы действительно хотите импортировать настройки? Данное действие перезапишет текущие настройки.",
+			"script-torrent-done-enabled": "Выполнить скрипт после завершения загрузки торрента:"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -332,7 +333,8 @@
 			"queuePosition": "Очередь",
 			"activityDate": "Последняя активность",
 			"trackers": "Трекеры",
-			"labels": "Метки"
+			"labels": "Метки",
+			"doneDate": "Completed Date"
 		},
 		"status-text": {
 			"0": "Пауза",
