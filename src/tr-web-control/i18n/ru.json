@@ -334,7 +334,7 @@
 			"activityDate": "Последняя активность",
 			"trackers": "Трекеры",
 			"labels": "Метки",
-			"doneDate": "Completed Date"
+			"doneDate": "Загрузка завершена"
 		},
 		"status-text": {
 			"0": "Пауза",
