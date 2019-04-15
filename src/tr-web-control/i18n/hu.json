@@ -86,7 +86,7 @@
 			"auto-match-data-folder": "Könyvtárak automatikus felismerése"
 		},
 		"setLabels": "Set User Labels",
-		"copyMagnetLink": "Copy magnetLink to clipboard"
+		"copyMagnetLink": "Copy magnet link to clipboard"
 	},
 	"title": {
 		"left": "Navigáció",
