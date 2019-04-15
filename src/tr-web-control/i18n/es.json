@@ -86,7 +86,7 @@
 			"auto-match-data-folder": "Elegir automáticamente directorio de datos"
 		},
 		"setLabels": "Set User Labels",
-		"copyMagnetLink": "Copy magnetLink to clipboard"
+		"copyMagnetLink": "Copy magnet link to clipboard"
 	},
 	"title": {
 		"left": "Navegación",
