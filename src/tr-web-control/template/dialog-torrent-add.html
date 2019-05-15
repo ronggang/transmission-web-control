@@ -38,7 +38,21 @@
 				</tr>
 			</table>
 		</div>
-	</div>  
+
+		<!-- label -->
+		<div data-options="region:'center'" style="padding:3px;border:0px;overflow: hidden;">
+			<div id="label_page" class="dialog" style="width:100%;padding:0px;height:50%;border-bottom: 1px dotted #ccc;">
+				<div style="position: absolute;width:50%;height: 100%;">
+					<div system-lang="dialog['torrent-setLabels']['available']"></div>
+					<div id="divAvailableList" style="padding-top: 5px;"></div>
+				</div>
+				<div style="position: absolute;left:50%;width:50%;height: 50%;border-left: 1px dotted #ccc;padding-left: 5px;">
+					<div system-lang="dialog['torrent-setLabels']['selected']"></div>
+					<div id="divSelectedList" style="padding-top: 5px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<span id="dialog-torrent-add-nosource" style="display:none;"></span>
 		<span id="dialog-torrent-add-queue" style="display:none;"></span>
@@ -77,6 +91,64 @@
 
 		thisDialog.find("#chkautostart").prop("checked", system.serverConfig["start-added-torrents"]);
 		thisDialog.find("#download-dir").combobox();
+
+		// label 
+		var labelPage = {
+			divSelectedList: $("#divSelectedList", thisDialog),
+			init: function() {
+				if(system.config.nav.labels){
+					system.resetLangText(thisDialog);
+					this.initLabels();
+				}
+				else{
+					$("#label_page").css("display", "none");
+				}
+			},
+			// 初始化标签列表
+			initLabels: function() {
+				var box = $("#divAvailableList", thisDialog);
+				for (var index = 0; index < system.config.labels.length; index++) {
+					var item = system.config.labels[index];
+					if (item) {
+						item.index = index;
+						var label = this.createLabel(item);
+						label.on("click", function(){
+							labelPage.setLabel("#divAvailableList", "#divSelectedList", $(this).data("label"));
+							$(this).remove();
+						}).appendTo(box);
+					}
+				}
+			},
+			createLabel: function(label) {
+				return $("<a href='javascript:void(0);' class='user-label-big label-index-"+label.index+"'/>").data("label", label).html(label.name).css({
+							"background-color": label.color,
+							"color": (getGrayLevel(label.color) > 0.5 ? "#000" : "#fff")
+						});
+			},
+			setLabel: function(from, to, item) {
+				var box = $(to, thisDialog);
+				var label = this.createLabel(item);
+				label.on("click", function(){
+					labelPage.setLabel(to, from, $(this).data("label"));
+					$(this).remove();
+				}).appendTo(box);
+			},
+			getLabels: function() {
+				if(!system.config.nav.labels)
+					return null;
+				var items = $(".user-label-big", this.divSelectedList);
+				var labels = [];
+
+				for (var index = 0; index < items.length; index++) {
+					var item = $(items[index]);
+					var label = item.data("label");
+					labels.push(label.index);
+				}
+				return labels;
+			}
+		};
+		labelPage.init();
+
 		// Confirm
 		thisDialog.find("#torrent-button-ok").click(function()
 		{
@@ -133,7 +205,10 @@
 							thisDialog.find("#dialog-torrent-add-queue").html("").hide();
 							thisDialog.dialog("close");
 						}
-						
+						if(system.config.nav.labels && data.hashString != null){
+							system.saveLabelsConfig(data.hashString, labelPage.getLabels());
+							system.saveConfig();
+						}
 						system.reloadData();
 					});
 					return;
@@ -161,7 +236,7 @@
 			else if (url!="")
 			{
 				var urls = url.split("\n");
-				system.addTorrentsToServer(urls,urls.length,autostart,dir);
+				system.addTorrentsToServer(urls,urls.length,autostart,dir,labelPage.getLabels());
 				urls = null;
 				thisDialog.dialog("close");
 			}
@@ -213,6 +288,10 @@
 					//alert(data);
 					if (callback)
 						callback();
+					if(system.config.nav.labels && data.hashString != null){
+						system.saveLabelsConfig(data.hashString, labelPage.getLabels());
+						system.saveConfig();
+					}
 					thisDialog.dialog("close");
 					system.reloadData();
 				}

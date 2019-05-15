@@ -224,7 +224,15 @@ var transmission = {
 					// 添加成功
 					case "success":
 						if (callback) {
-							callback(data.arguments["torrent-added"], filecount);
+							if(data.arguments["torrent-added"] != null)
+								callback(data.arguments["torrent-added"], filecount);
+							else if (data.arguments["torrent-duplicate"] != null)
+								callback({
+									status: "duplicate",
+									torrent: data.arguments["torrent-duplicate"]
+									}, filecount);
+							else
+								callback("error");
 						}
 						break;
 						// 重复的种子
