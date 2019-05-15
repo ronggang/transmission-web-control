@@ -487,7 +487,7 @@ var system = {
 				options: {
 					title: system.lang.toolbar["add-torrent"],
 					width: 620,
-					height: 300,
+					height: system.config.nav.labels ? 500 : 300,
 					resizable: true
 				},
 				datas: {
@@ -1289,7 +1289,7 @@ var system = {
 					options: {
 						title: system.lang.toolbar["add-torrent"],
 						width: 620,
-						height: 400,
+						height: system.config.nav.labels ? 600 : 400,
 						resizable: true
 					}
 				});
@@ -2433,7 +2433,7 @@ var system = {
 		return '<div class="torrent-progress" title="' + progress + '"><div class="torrent-progress-text">' + progress + '</div><div class="torrent-progress-bar ' + className + '" style="width:' + progress + ';"></div></div>';
 	},
 	// Add torrent
-	addTorrentsToServer: function (urls, count, autostart, savepath) {
+	addTorrentsToServer: function (urls, count, autostart, savepath, labels) {
 		//this.config.autoReload = false;
 		var index = count - urls.length;
 		var url = urls.shift();
@@ -2441,11 +2441,15 @@ var system = {
 			this.showStatus(this.lang.system.status.queuefinish);
 			//this.config.autoReload = true;
 			this.getServerStatus();
+			if(labels != null)
+				system.saveConfig();
 			return;
 		}
 		this.showStatus(this.lang.system.status.queue + (index + 1) + "/" + (count) + "<br/>" + url, 0);
 		transmission.addTorrentFromUrl(url, savepath, autostart, function (data) {
-			system.addTorrentsToServer(urls, count, autostart, savepath);
+			system.addTorrentsToServer(urls, count, autostart, savepath, labels);
+			if(labels != null && data.hashString != null)
+				system.saveLabelsConfig(data.hashString, labels);
 		});
 	},
 	// Starts / pauses the selected torrent
@@ -3002,6 +3006,16 @@ var system = {
 			this.setStorageData(this.storageKeys.dictionary[key], this.dictionary[key]);
 		}
 		this.saveUserConfig();
+	},
+	// Save labels config for torrent if need
+	saveLabelsConfig: function(hash, labels){
+		if(system.config.nav.labels){
+			if (labels.length==0) {
+				delete system.config.labelMaps[hash];
+			} else {
+				system.config.labelMaps[hash] = labels;
+			}
+		}
 	},
 	readUserConfig: function () {
 		var local = window.localStorage[this.configHead];
