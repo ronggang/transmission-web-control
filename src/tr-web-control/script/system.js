@@ -2,7 +2,7 @@
 var system = {
 	version: "1.6.0",
 	rootPath: "tr-web-control/",
-	codeupdate: "20190408",
+	codeupdate: "20190612",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -988,7 +988,8 @@ var system = {
 		}
 		parent.menu("show", {
 			left: e.pageX,
-			top: e.pageY
+			top: e.pageY,
+			hideOnUnhover: false
 		});
 		parent = null;
 		menus = null;
@@ -2920,7 +2921,8 @@ var system = {
 
 		timedChunk(transmission.downloadDirs, this.appendFolder, this, 10, function () {
 			// FF browser displays the total size, will be moved down a row, so a separate treatment
-			if (navigator.userAgent.indexOf("Firefox") > 0) {
+			// 新版本已无此问题
+			if ($.ua.browser.name == "Firefox" && $.ua.browser.major < 60) {
 				system.panel.left.find("span.nav-total-size").css({
 					"margin-top": "-19px"
 				});
