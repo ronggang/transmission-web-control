@@ -46,7 +46,7 @@
 		"ui-original": "原版UI",
 		"ui-computer": "桌面UI",
 		"plugin": "擴充功能/外掛",
-		"rename": "改名",
+		"rename": "重新命名",
 		"copy-path-to-clipboard": "複製保存目錄到剪貼簿",
 		"tip": {
 			"start": "重新開始已經選取的種子",
@@ -169,7 +169,7 @@
 			"test-port": "測試連接埠",
 			"port-is-open-true": "連接埠可連接",
 			"port-is-open-false": "連接埠不可連接",
-			"testing": "測試中...",
+			"testing": "正在測試...",
 			"encryption": "資料傳輸加密方式：",
 			"encryption-type": {
 				"required": "強制(required)",
@@ -307,7 +307,7 @@
 			"percentDone": "進度",
 			"remainingTime": "剩餘時間",
 			"addedDate": "加入時間",
-			"completeSize": "完整大小",
+			"completeSize": "已完成大小",
 			"rateDownload": "下載速度",
 			"rateUpload": "上傳速度",
 			"leecherCount": "下載|活躍",
@@ -321,12 +321,12 @@
 		},
 		"status-text": {
 			"0": "已暫停",
-			"1": "正在等待檢查",
+			"1": "等待檢查",
 			"2": "正在檢查",
-			"3": "正在等待下載",
-			"4": "下載中",
+			"3": "等待下載",
+			"4": "正在下載",
 			"5": "等待做種",
-			"6": "做種中"
+			"6": "正在做種"
 		},
 		"attribute": {
 			"tabs": {
