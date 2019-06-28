@@ -4,7 +4,7 @@
 	"system": {
 		"title": "Transmission WEB 控制台",
 		"status": {
-			"connect": "正在連接伺服器…",
+			"connect": "正在連接伺服器...",
 			"connected": "已連接至伺服器",
 			"queue": "佇列：",
 			"queuefinish": "本次佇列完成。",
@@ -420,7 +420,7 @@
 		"text-unknown": "未知",
 		"text-drop-title": "將檔拖放在該區域內即可加到 Transmission。",
 		"text-saved": "已儲存",
-		"text-nochange": "未變更",
+		"text-nochange": "未更改",
 		"text-info": "資訊",
 		"text-confirm": "確定要這樣做嗎？",
 		"text-browsers-not-support-features": "目前瀏覽器不支援該功能！",
