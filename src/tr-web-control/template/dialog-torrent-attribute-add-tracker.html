@@ -7,6 +7,8 @@
 	</div>
 	<div data-options="region:'south',border:false" style="text-align:right;padding:6px;">
 		<span id="text-nochange" style="display:none;"></span>
+		<a id="torrent-attribute-add-tracker-button-search-best-ip" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" href="javascript:void(0);">Best Trackers</a>
+		<a id="torrent-attribute-add-tracker-button-search-all-ip" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" href="javascript:void(0);">All Trackers</a>
 		<a id="torrent-attribute-add-tracker-button-ok" class="easyui-linkbutton" data-options="iconCls:'icon-ok',plain:true" href="javascript:void(0);">Ok</a>
 		<a id="torrent-attribute-add-tracker-button-cancel" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true"
 		   href="javascript:void(0);">Cancel</a>
@@ -78,6 +80,20 @@
 
 		});
 
+        thisDialog.find("#torrent-attribute-add-tracker-button-search-best-ip").click(function () {
+            var trackersURL = "https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best_ip.txt"
+            $.get(trackersURL,function(data){
+                $("#txtTrackers").html(data);
+            });
+        });
+
+        thisDialog.find("#torrent-attribute-add-tracker-button-search-all-ip").click(function () {
+            var trackersURL="https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_all_ip.txt"
+            $.get(trackersURL,function(data){
+                $("#txtTrackers").html(data);
+            });
+        });
+        
 		thisDialog.find("#torrent-attribute-add-tracker-button-cancel").click(function () {
 			thisDialog.dialog("close");
 		});
