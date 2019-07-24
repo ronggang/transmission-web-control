@@ -2,7 +2,7 @@
 var system = {
 	version: "1.6.0",
 	rootPath: "tr-web-control/",
-	codeupdate: "20190612",
+	codeupdate: "20190724",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -2248,6 +2248,40 @@ var system = {
 		*/
 
 		this.updateTorrentCurrentPageDatas(datas);
+		this.initShiftCheck();
+	},
+	/**
+	 * shift 键选择
+	 */
+	initShiftCheck: function() {
+		var items = $('#m_list div.datagrid-cell-check input:checkbox');
+		var eventName = "click.Shift";
+		items.off(eventName);
+		var lastChecked = null;
+		var torrentlist = this.control.torrentlist;
+		items.on(eventName, function(e) {
+      if (!lastChecked) {
+        lastChecked = this;
+        return;
+      }
+
+      if (e.shiftKey) {
+        var start = items.index(this);
+        var end = items.index(lastChecked);
+        var checked = lastChecked.checked;
+        var startIndex = Math.min(start, end);
+        var endIndex = Math.max(start, end) + 1;
+				for (var index = startIndex; index < endIndex; index++) {
+					if (checked) {
+						torrentlist.datagrid("checkRow", index);
+					} else {
+						torrentlist.datagrid("uncheckRow", index);
+					}
+				}
+      }
+
+      lastChecked = this;
+    });
 	},
 	// Update torrent list current page data
 	updateTorrentCurrentPageDatas: function (currentTypeDatas) {
