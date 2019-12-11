@@ -4,8 +4,8 @@
 	"system": {
 		"title": "Transmission WEB 控制台",
 		"status": {
-			"connect": "正在連接伺服器...",
-			"connected": "已連接至伺服器",
+			"connect": "正在連線伺服器...",
+			"connected": "已連線至伺服器",
 			"queue": "佇列：",
 			"queuefinish": "本次佇列完成。",
 			"notfinal": "未完成",
@@ -47,17 +47,17 @@
 		"ui-computer": "桌面介面",
 		"plugin": "擴充功能/外掛",
 		"rename": "重新命名",
-		"copy-path-to-clipboard": "複製保存目錄至剪貼簿",
+		"copy-path-to-clipboard": "複製儲存資料夾至剪貼簿",
 		"tip": {
-			"start": "重新開始已經選取的種子",
-			"pause": "暫停已經選取的種子",
-			"recheck": "重新檢查已經選取的種子",
+			"start": "重新開始已選取的種子",
+			"pause": "暫停已選取的種子",
+			"recheck": "重新檢查已選取的種子",
 			"recheck-confirm": "確定要重新檢查選取的種子嗎？這可能需要些時間！",
 			"start-all": "全部開始",
 			"pause-all": "全部暫停",
-			"remove": "刪除已經選取的任務",
-			"delete-all": "刪除所有任務（不刪除檔案）",
-			"delete-data": "刪除選取的種子任務和檔案",
+			"remove": "刪除已選取的任務",
+			"delete-all": "刪除全部任務（不刪除檔案）",
+			"delete-data": "刪除已選取的種子任務和檔案",
 			"add-torrent": "新增種子",
 			"attribute": "屬性",
 			"alt-speed": "以系統設定的速度限制上傳和下載",
@@ -71,8 +71,8 @@
 			"ui-mobile": "切換至行動介面",
 			"ui-original": "切換至原版介面",
 			"more-peers": "取得更多 Peer",
-			"rename": "修改種子文件或目錄名稱",
-			"copy-path-to-clipboard": "複製目錄路徑至剪貼簿"
+			"rename": "修改種子文件或資料夾名稱",
+			"copy-path-to-clipboard": "複製資料夾路徑至剪貼簿"
 		}
 	},
 	"menus": {
@@ -91,7 +91,7 @@
 	"title": {
 		"left": "分類資料夾",
 		"list": "種子清單",
-		"attribute": "目前種子屬性",
+		"attribute": "種子屬性",
 		"status": "狀態"
 	},
 	"tree": {
@@ -104,7 +104,7 @@
 		"warning": "警告",
 		"actively": "正在使用",
 		"check": "正在檢查",
-		"wait": "等待",
+		"wait": "正在等待",
 		"search-result": "搜尋結果",
 		"status": {
 			"loading": "正在載入..."
@@ -161,7 +161,7 @@
 			"incomplete-dir-enabled": "啟用臨時資料夾",
 			"cache-size-mb": "磁碟快取大小：",
 			"rename-partial-files": "在未完成的檔案名後加上「.part」副檔名",
-			"start-added-torrents": "自動開始新加的種子",
+			"start-added-torrents": "自動開始新增的種子",
 			"download-queue-enabled": "啟用下載佇列，最大同時下載數：",
 			"seed-queue-enabled": "啟用上傳佇列，最大同時上傳數：",
 			"peer-port-random-on-start": "隨機選擇連接埠，或使用固定連接埠：",
@@ -261,34 +261,34 @@
 			"title": "取代 Tracker 地址",
 			"old-tracker": "原 Tracker：",
 			"new-tracker": "新 Tracker：",
-			"tip": "此功能將搜尋<b>所有種子</b>的 Tracker，如果找到相等的，則取代。",
+			"tip": "此功能將搜尋<b>全部種子</b>的 Tracker，如果找到相等的，則取代。",
 			"not-found": "未找到符合條件的 Tracker。"
 		},
 		"auto-match-data-folder": {
-			"title": "自動配對目錄",
+			"title": "自動配對資料夾",
 			"torrent-count": "將被操作的種子數量：",
-			"folder-count": "目錄字典數量：",
-			"dictionary": "目錄字典",
-			"time-begin": "開始始時間：",
+			"folder-count": "資料夾字典數量：",
+			"dictionary": "資料夾字典",
+			"time-begin": "開始時間：",
 			"time-now": "目前時間：",
 			"status": "狀態：",
 			"ignore": "忽略",
-			"working-close-confirm": "系統正在進行目錄配對，確定要終止並關閉嗎？",
+			"working-close-confirm": "系統正在進行資料夾配對，確定要終止並關閉嗎？",
 			"time-interval": "時間間隔（秒）：",
 			"work-mode-title": "處理方式：",
 			"work-mode": {
-				"1": "按種子逐一配對目錄",
+				"1": "按種子逐一配對資料夾",
 				"2": "按目錄逐一配對種子"
 			}
 		},
 		"torrent-rename": {
-			"title": "修改種子檔或目錄名稱",
+			"title": "修改種子檔或資料夾名稱",
 			"oldname": "原名稱",
 			"newname": "新名稱"
 		},
 		"torrent-attribute-add-tracker": {
 			"title": "增加 Tracker",
-			"tip": "每行表示一個 Tracker"
+			"tip": "每行一個 Tracker"
 		},
 		"torrent-setLabels": {
 			"title": "設定使用者標籤",
@@ -298,7 +298,7 @@
 	},
 	"torrent": {
 		"fields": {
-			"id": "#",
+			"id": "序號",
 			"name": "名稱",
 			"hashString": "雜湊值",
 			"downloadDir": "下載資料夾",
@@ -307,7 +307,7 @@
 			"percentDone": "進度",
 			"remainingTime": "剩餘時間",
 			"addedDate": "加入時間",
-			"completeSize": "已完成大小",
+			"completeSize": "已完成",
 			"rateDownload": "下載速度",
 			"rateUpload": "上傳速度",
 			"leecherCount": "下載|活躍",
@@ -315,9 +315,10 @@
 			"uploadedEver": "已上傳",
 			"uploadRatio": "分享率",
 			"queuePosition": "佇列",
-			"activityDate": "最後活動於",
+			"activityDate": "最後活動時間",
 			"trackers": "伺服器",
-			"labels": "使用者標籤"
+			"labels": "使用者標籤",
+			"doneDate": "完成時間"
 		},
 		"status-text": {
 			"0": "已暫停",
@@ -355,7 +356,7 @@
 				"nextAnnounceTime": "下次更新時間"
 			},
 			"peers-fields": {
-				"address": "IP地址",
+				"address": "IP 地址",
 				"clientName": "用戶端",
 				"flagStr": "標記",
 				"progress": "完成進度",
@@ -375,7 +376,7 @@
 				"name": "名稱：",
 				"addedDate": "新增時間：",
 				"totalSize": "大小：",
-				"completeSize": "已完成大小：",
+				"completeSize": "已完成：",
 				"leftUntilDone": "剩餘：",
 				"hashString": "雜湊：",
 				"downloadDir": "下載資料夾：",
@@ -400,11 +401,11 @@
 			},
 			"tip": {
 				"button-allow": "下載已選擇的檔案",
-				"button-deny": "忽略已選擇的檔",
-				"button-priority": "設定優先順序別",
-				"button-tracker-add": "增加新的 Tracker",
-				"button-tracker-edit": "修改已選中的 Tracker 地址",
-				"button-tracker-remove": "刪除已選中的 Tracker 地址"
+				"button-deny": "忽略已選擇的檔案",
+				"button-priority": "設定優先順序",
+				"button-tracker-add": "新增 Tracker",
+				"button-tracker-edit": "修改已選中的 Tracker",
+				"button-tracker-remove": "刪除已選中的 Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "確認要刪除這個 Tracker 嗎？"
@@ -418,7 +419,7 @@
 	},
 	"public": {
 		"text-unknown": "未知",
-		"text-drop-title": "將檔拖放在該區域內即可加到 Transmission。",
+		"text-drop-title": "將檔案拖放在該區域內即可新增到 Transmission。",
 		"text-saved": "已儲存",
 		"text-nochange": "未更改",
 		"text-info": "資訊",
