@@ -224,3 +224,7 @@
 .torrent-list-infos{
 	font-size:12px;font-family:arial,sans-serif;
 }
+
+.ui-select span{
+	text-align:left !important;
+}

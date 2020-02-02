@@ -104,6 +104,8 @@
 				<textarea id="torrent-url" style="height:130px;"></textarea>
 				<label for="download-dir" system-lang="dialog['torrent-add']['download-dir']"></label>
 				<input id="download-dir"/>
+                <label for="used-download-dir" system-lang="dialog['torrent-add']['used-download-dir']"></label>
+                <select id="used-download-dir" data-mini="true"></select>
 				<div data-role="fieldcontain">
 					<label for="autostart" system-lang="dialog['torrent-add']['autostart']"></label>
 					<select name="autostart" id="autostart" data-role="slider">
@@ -172,6 +174,15 @@
 		$('#download-dir').val(system.downloadDir);
 		system.showContent('add-torrent');
 		$("#navPanel").panel("close");
+
+        //将常用目录初始化,并设置默认目录
+        var $usedDownloadDir = $("#used-download-dir");
+        $usedDownloadDir.empty();
+        $.each(transmission.downloadDirs, function( index, dir ) {
+            $usedDownloadDir.append(new Option(dir, dir));
+        });
+        $usedDownloadDir.val(system.downloadDir).selectmenu('refresh', true);
+
 	}
 	function addUrl()
 	{
@@ -228,6 +239,10 @@
 			system.control.torrentlist.find("input[type='checkbox']").prop("checked",checked).checkboxradio("refresh");
 			system.changeTorrentToolbar();
 		});
+
+        $("#used-download-dir").change(function(){
+            $('#download-dir').val($(this).val());
+        });
 
 		function saveConfig()
 		{
