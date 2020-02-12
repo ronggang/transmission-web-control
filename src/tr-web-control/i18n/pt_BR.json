@@ -15,7 +15,7 @@
 	"error": {
 		"data-error": "Erro de dados.",
 		"data-post-error": "Erro de dados Post.",
-		"rename-error": "Error renaming file/folder!"
+		"rename-error": "Erro ao renomear arquivo ou pasta!"
 	},
 	"config": {
 		"save-path": "Dir de download"
@@ -42,12 +42,12 @@
 		"search-prompt": "Procurar Torrents locais",
 		"tracker-replace": "Repor trackers",
 		"queue": "Fila",
-		"ui-mobile": "IU Mobile",
-		"ui-original": "IU Original",
-		"ui-computer": "IU Escritório",
-		"plugin": "Extensions/plugins",
-		"rename": "Rename",
-		"copy-path-to-clipboard": "Copy download location to clipboard",
+		"ui-mobile": "UI Mobile",
+		"ui-original": "UI Original",
+		"ui-computer": "UI Destop",
+		"plugin": "Extensões/plugins",
+		"rename": "Renomear",
+		"copy-path-to-clipboard": "Copiar para a área de transferência",
 		"tip": {
 			"start": "Iniciar Torrents marcados",
 			"pause": "Pausar Torrents marcados",
@@ -72,7 +72,7 @@
 			"ui-original": "Interface Web",
 			"more-peers": "Pedir mais peers ao Traker",
 			"rename": "Renaming a Torrent's Path",
-			"copy-path-to-clipboard": "Copy download location to clipboard"
+			"copy-path-to-clipboard": "Copiar para a área de transferência"
 		}
 	},
 	"menus": {
@@ -86,7 +86,7 @@
 			"auto-match-data-folder": "Combinar automaticamente diretório de dados"
 		},
 		"setLabels": "Definir Rótulos do Usuário",
-		"copyMagnetLink": "Copy magnetLink to clipboard"
+		"copyMagnetLink": "Copiar lin magnético para a área de transferência"
 	},
 	"title": {
 		"left": "Navegação",
@@ -208,7 +208,7 @@
 			"saving": "Salvando...",
 			"show-bt-servers": "Mostrar 'servidores BT' nos Trackers:",
 			"restore-default-settings": "Restaurar Configurações Padrões da UI",
-			"language": "Língua:",
+			"language": "Idioma:",
 			"loading": "Carregando...",
 			"hide-subfolders": "Quando clicar no diretório de dados, ocultar conteúdo dos subdiretórios na lista:",
 			"simple-check-mode": "Marcado somente um torrent quando você clicar com o direito na lista de torrent:",
@@ -355,12 +355,12 @@
 				"nextAnnounceTime": "Próximo anúncio"
 			},
 			"peers-fields": {
-				"address": "IP address",
+				"address": "IP",
 				"clientName": "Cliente",
 				"flagStr": "Flag",
 				"progress": "Progresso",
-				"rateToClient": "Vel de download",
-				"rateToPeer": "Vel de envio"
+				"rateToClient": "Vel. de download",
+				"rateToPeer": "Vel. de envio"
 			},
 			"status": {
 				"true": "Verdadeiro",
@@ -380,8 +380,8 @@
 				"hashString": "HASH:",
 				"downloadDir": "Dir download:",
 				"status": "Estado:",
-				"rateDownload": "Vel de download:",
-				"rateUpload": "Vel de envio:",
+				"rateDownload": "Vel. de download:",
+				"rateUpload": "Vel. de envio:",
 				"leecherCount": "Leechers:",
 				"seederCount": "Seeds:",
 				"uploadedEver": "Total enviado:",
