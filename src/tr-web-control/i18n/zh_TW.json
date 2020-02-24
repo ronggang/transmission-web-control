@@ -136,6 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "下載資料夾：",
+            "used-download-dir": "常用資料夾：",
 			"torrent-url": "磁力連結：",
 			"tip-torrent-url": "註：貼上磁力連結，多個磁力連結用「換行」分隔。",
 			"autostart": "自動開始：",

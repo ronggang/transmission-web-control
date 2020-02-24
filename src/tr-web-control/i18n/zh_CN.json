@@ -136,6 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "保存目录：",
+		    "used-download-dir": "常用目录：",
 			"torrent-url": "种子地址：",
 			"tip-torrent-url": "注：复制种子链接到列表中，多个种子用“回车”分隔。",
 			"autostart": "自动开始：",
