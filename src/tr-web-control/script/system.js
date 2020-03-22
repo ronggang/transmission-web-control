@@ -2595,7 +2595,9 @@ var system = {
 				}
 
 				torrent.completeSize = (torrent.totalSize - torrent.leftUntilDone);
-				torrent.moreInfosTag = true;
+				if (("files" in torrent) && torrent.files.length > 0) {
+					torrent.moreInfosTag = true;
+				}
 				system.fillTorrentBaseInfos(torrent);
 				system.fillTorrentFileList(torrent);
 				system.fillTorrentServerList(torrent);
