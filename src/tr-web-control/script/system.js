@@ -85,6 +85,8 @@ var system = {
 	checkedRows: [],
 	uiIsInitialized: false,
 	popoverCount: 0,
+	// 当前数据目录，用于添加任务的快速保存路径选择
+	currentListDir: "",
 	/**
 	 * 设置语言
 	 */
@@ -636,6 +638,7 @@ var system = {
 				system.loadTorrentToList({
 					node: node
 				});
+				system.currentListDir = node.downDir;
 			},
 			lines: true
 		});
@@ -3000,6 +3003,7 @@ var system = {
 					this.appendTreeNode(parentkey, [{
 						id: key,
 						path: path,
+						downDir: fullkey,
 						text: text,
 						iconCls: "iconfont tr-icon-file"
 					}]);
