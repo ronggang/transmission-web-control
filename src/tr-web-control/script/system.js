@@ -85,6 +85,8 @@ var system = {
 	checkedRows: [],
 	uiIsInitialized: false,
 	popoverCount: 0,
+	// 当前数据目录，用于添加任务的快速保存路径选择
+	currentListDir: "",
 	/**
 	 * 设置语言
 	 */
@@ -636,6 +638,7 @@ var system = {
 				system.loadTorrentToList({
 					node: node
 				});
+				system.currentListDir = node.downDir;
 			},
 			lines: true
 		});
@@ -2595,7 +2598,9 @@ var system = {
 				}
 
 				torrent.completeSize = (torrent.totalSize - torrent.leftUntilDone);
-				torrent.moreInfosTag = true;
+				if (("files" in torrent) && torrent.files.length > 0) {
+					torrent.moreInfosTag = true;
+				}
 				system.fillTorrentBaseInfos(torrent);
 				system.fillTorrentFileList(torrent);
 				system.fillTorrentServerList(torrent);
@@ -2998,6 +3003,7 @@ var system = {
 					this.appendTreeNode(parentkey, [{
 						id: key,
 						path: path,
+						downDir: fullkey,
 						text: text,
 						iconCls: "iconfont tr-icon-file"
 					}]);

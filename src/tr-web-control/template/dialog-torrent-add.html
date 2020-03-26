@@ -80,6 +80,12 @@
 			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
 		}
 		downloadDirs = uniq(downloadDirs);
+
+		if (system.config.hideSubfolders == false && system.currentListDir != null && system.currentListDir != "") {
+			// 增加 当前数据目录为第一候选
+			downloadDirs.unshift(system.currentListDir);
+		}
+
 		if (downloadDirs == null)
 		{
 			$("<option/>").text(system.downloadDir).val(system.downloadDir).attr("selected",true).appendTo(thisDialog.find("#download-dir"));
