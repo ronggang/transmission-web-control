@@ -2760,6 +2760,16 @@ var system = {
 			var rowdata = {};
 			for (var key in stats) {
 				switch (key) {
+					case "downloadCount":
+					case "leecherCount":
+					case "seederCount":
+						rowdata[key] = (stats[key] == -1 ? system.lang["public"]["text-unknown"] : stats[key]);
+						break;
+
+					// state
+					case "announceState":
+						rowdata[key] = system.lang.torrent.attribute["servers-fields"]["announceStateText"][stats[key]];
+						break;
 					// Dates
 					case "lastAnnounceTime":
 					case "nextAnnounceTime":

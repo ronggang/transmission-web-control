@@ -288,6 +288,8 @@
 			"newname": "新名稱"
 		},
 		"torrent-attribute-add-tracker": {
+			"button-search-best-ip": "精選(IP)",
+			"button-search-all-ip": "全部(IP)",
 			"title": "新增 Tracker",
 			"tip": "每行一個 Tracker"
 		},
@@ -354,7 +356,15 @@
 				"lastAnnounceTime": "更新時間",
 				"lastAnnounceTimedOut": "超時",
 				"downloadCount": "下載數",
-				"nextAnnounceTime": "下次更新時間"
+				"leecherCount": "吸血數",
+				"seederCount": "種子數",
+				"nextAnnounceTime": "下次更新時間",
+				"announceStateText": {
+					"0": "非活動",
+					"1": "待機",
+					"2": "佇列中",
+					"3": "活動中"
+				}
 			},
 			"peers-fields": {
 				"address": "IP 地址",
