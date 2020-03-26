@@ -373,6 +373,8 @@
 			},
 			"peers-fields": {
 				"address": "IP地址",
+				"port": "端口",
+				"isUTP": "UTP连接",
 				"clientName": "客户端",
 				"flagStr": "标记",
 				"progress": "完成进度",

@@ -2797,6 +2797,8 @@ var system = {
 			for (var key in item) {
 				rowdata[key] = item[key];
 			}
+			// 使用同类已有的翻译文本
+			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
 			var percentDone = parseFloat(item.progress * 100).toFixed(2);
 			rowdata.progress = system.getTorrentProgressBar(percentDone, transmission._status.download)
 			datas.push(rowdata);

@@ -358,6 +358,8 @@
 			},
 			"peers-fields": {
 				"address": "IP 地址",
+				"port": "連接埠",
+				"isUTP": "UTP連接",
 				"clientName": "用戶端",
 				"flagStr": "標記",
 				"progress": "進度",
