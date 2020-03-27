@@ -370,10 +370,20 @@
 				"lastAnnounceTime": "AnnounceTime",
 				"lastAnnounceTimedOut": "TimedOut",
 				"downloadCount": "Download count",
-				"nextAnnounceTime": "Next announce"
+				"nextAnnounceTime": "Next announce",
+				"leecherCount": "Leecher count",
+				"seederCount": "Seeder count",
+				"announceStateText": {
+					"0": "Inactive",
+					"1": "Waiting",
+					"2": "Queued",
+					"3": "Active"
+				}
 			},
 			"peers-fields": {
 				"address": "IP address",
+				"port": "Port",
+				"isUTP": "UTP enabled",
 				"clientName": "Client",
 				"flagStr": "Flag",
 				"progress": "Progress",
