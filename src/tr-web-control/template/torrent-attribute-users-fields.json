@@ -7,6 +7,8 @@
 	}
 	,"fields":[
 		{"field":"address","width":"260"}
+		,{"field":"port","width":"60"}
+		,{"field":"isUTP","width":"60","align":"center"}
 		,{"field":"clientName","width":"120"}
 		,{"field":"flagStr","width":"60"}
 		,{"field":"progress","width":"70","align":"center"}

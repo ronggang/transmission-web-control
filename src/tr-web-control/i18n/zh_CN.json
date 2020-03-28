@@ -292,6 +292,8 @@
 			"newname": "新名称"
 		},
 		"torrent-attribute-add-tracker": {
+			"button-search-best-ip": "精选(IP)",
+			"button-search-all-ip": "全部(IP)",
 			"title": "增加 Tracker",
 			"tip": "每行表示一个Tracker"
 		},
@@ -368,11 +370,21 @@
 				"lastAnnounceSucceeded": "已连接",
 				"lastAnnounceTime": "更新时间",
 				"lastAnnounceTimedOut": "超时",
-				"downloadCount": "总下载数",
-				"nextAnnounceTime": "下次更新时间"
+				"downloadCount": "下载数",
+				"leecherCount": "吸血数",
+				"seederCount": "种子数",
+				"nextAnnounceTime": "下次更新时间",
+				"announceStateText": {
+					"0": "非活动",
+					"1": "待机",
+					"2": "队列中",
+					"3": "活动中"
+				}
 			},
 			"peers-fields": {
 				"address": "IP地址",
+				"port": "端口",
+				"isUTP": "UTP连接",
 				"clientName": "客户端",
 				"flagStr": "标记",
 				"progress": "完成进度",

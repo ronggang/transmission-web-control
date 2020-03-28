@@ -2760,6 +2760,16 @@ var system = {
 			var rowdata = {};
 			for (var key in stats) {
 				switch (key) {
+					case "downloadCount":
+					case "leecherCount":
+					case "seederCount":
+						rowdata[key] = (stats[key] == -1 ? system.lang["public"]["text-unknown"] : stats[key]);
+						break;
+
+					// state
+					case "announceState":
+						rowdata[key] = system.lang.torrent.attribute["servers-fields"]["announceStateText"][stats[key]];
+						break;
 					// Dates
 					case "lastAnnounceTime":
 					case "nextAnnounceTime":
@@ -2797,6 +2807,8 @@ var system = {
 			for (var key in item) {
 				rowdata[key] = item[key];
 			}
+			// 使用同类已有的翻译文本
+			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
 			var percentDone = parseFloat(item.progress * 100).toFixed(2);
 			rowdata.progress = system.getTorrentProgressBar(percentDone, transmission._status.download)
 			datas.push(rowdata);
