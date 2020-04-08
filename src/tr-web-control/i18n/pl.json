@@ -136,6 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Katalog pobierania:",
+			"used-download-dir": "Używany katalog pobierania:",
 			"torrent-url": "Link do torrenta:",
 			"tip-torrent-url": "Wskazówka: każdy w nowej linii (oddziel klawiszem ENTER)",
 			"autostart": "Uruchom pobieranie:",
@@ -369,10 +370,20 @@
 				"lastAnnounceTime": "Godzina połączenia",
 				"lastAnnounceTimedOut": "Timeout",
 				"downloadCount": "Ilość pobrań",
-				"nextAnnounceTime": "Następne połączenie"
+				"nextAnnounceTime": "Następne połączenie",
+				"leecherCount": "Liczba pobierających",
+				"seederCount": "Liczba seedujących",
+				"announceStateText": {
+					"0": "Nieaktywny",
+					"1": "Oczekujący",
+					"2": "W kolejce",
+					"3": "Aktywny"
+				}
 			},
 			"peers-fields": {
 				"address": "Adres IP",
+				"port": "Port",
+				"isUTP": "Włączone UTP",
 				"clientName": "Klient",
 				"flagStr": "Flaga",
 				"progress": "%",
