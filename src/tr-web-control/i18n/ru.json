@@ -136,6 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Папка загрузки:",
+            "used-download-dir": "Используемая папка загрузки:",
 			"torrent-url": "Ссылка на .torrent или magnet:",
 			"tip-torrent-url": "Новая ссылка с новой строки",
 			"autostart": "Начать загрузку:",
@@ -369,10 +370,20 @@
 				"lastAnnounceTime": "Время анонса",
 				"lastAnnounceTimedOut": "Тайм-аут",
 				"downloadCount": "Количество загрузок",
-				"nextAnnounceTime": "Следующий анонс"
+				"nextAnnounceTime": "Следующий анонс",
+				"leecherCount": "Количество личеров",
+				"seederCount": "Количество сидеров",
+				"announceStateText": {
+					"0": "Неактивны",
+					"1": "Ожидают",
+					"2": "В очереди",
+					"3": "Активны"
+				}
 			},
 			"peers-fields": {
 				"address": "IP адрес",
+				"port": "Порт",
+				"isUTP": "UTP включен",
 				"clientName": "Клиент",
 				"flagStr": "Страна",
 				"progress": "Прогресс",
