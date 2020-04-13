@@ -3375,9 +3375,7 @@ function pagerFilter(data) {
 		}
 	}
 
-	isFileData = (data.rows.length>0 && data.rows && "wanted" in data.rows[0]) ||
-				 (data.originalRows && data.originalRows[0] && "wanted" in data.originalRows[0]) ||
-				 (data.unfilteredRows && data.unfilteredRows[0] && "wanted" in data.unfilteredRows[0]);
+	isFileData = this.id=="torrent-files-table";
 	if (isFileData) {
 		var fileFilterString = $("#torrent-files-filter-string").val();
 		filterChanged = ( (data.filterString!==fileFilterString) || 
