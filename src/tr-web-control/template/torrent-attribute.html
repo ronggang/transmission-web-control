@@ -263,6 +263,11 @@
 					handler:function(){
 						priorityMenu.menu("show",$(this).offset());
 					}
+				},'-',{
+					id:"torrent-files-filter",
+					iconCls:"icon-filter",
+					title: system.lang.torrent.attribute["tip"]["button-filter"],
+					disabled:'true'
 				}];
 			var priorityMenu = $("<div/>").attr("id","priorityMenu").appendTo(thisLayout.find("#torrent-attribute-files"));
 			priorityMenu.menu({

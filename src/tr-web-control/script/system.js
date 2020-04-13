@@ -2628,7 +2628,14 @@ var system = {
 			datas = datas.sort(arrayObjectSort(orderField, _options.sortOrder));
 		}
 
-		if (rows.length == 0 || (datas.length != sourceTable.datagrid("getData").total)) {
+		var isFileTable = (sourceTable.selector.indexOf("#torrent-files-table")!=-1);
+		var tableData = sourceTable.datagrid("getData");
+		var isFileFilterMode = isFileTable && !!tableData.filterString && tableData.torrentId==system.currentTorrentId;
+		if (isFileFilterMode){
+			datas = fileFilter(datas, tableData.filterString);
+		}
+
+		if (isFileFilterMode==false && (rows.length == 0 || (datas.length != tableData.total))) {
 			sourceTable.datagrid({
 				loadFilter: pagerFilter,
 				pageNumber: 1,
@@ -3318,13 +3325,77 @@ $(document).ready(function () {
 	});
 });
 
+function fileFilter(dataRows, filterString) {
+	var filter = new RegExp(filterString || ".*");
+	var rawDataFiltered = new Array;
+	for (var j=0;j<dataRows.length;++j){
+		if (filter.test(dataRows[j].name)){
+			rawDataFiltered.push(dataRows[j]);
+		}
+	}
+	return rawDataFiltered;
+}
+
+function restoreFileFilterInputbox(defaultFilter) {
+	var langText = system.lang.torrent.attribute["filter-template-text"];
+	var filterTemplate =[{
+							"id":1,
+							"text": langText ? langText["1"] : "All",
+							"desc":".*"
+						},{
+							"id":2,
+							"text": langText ? langText["2"] : "BitComet padding file",
+							"desc":"____padding_file"
+						},{
+							"id":3,
+							"text": langText ? langText["3"] : "Unnecessary files",
+							"desc":"(.*\\.(url|lnk)$)|(RARBG_DO_NOT_MIRROR\\.exe)|(____padding_file)"
+						}];
+	$('<input id="torrent-files-filter-string" style="width:300px;">').insertAfter("#torrent-files-filter").combobox({
+		valueField: 'desc',
+		textField: 'desc',
+		panelWidth: 400,
+		panelHeight: 'auto',
+		formatter: function(row){
+			var s = '<span style="font-weight:bold; padding:3px;">'+row.text+'</span><br/>'+
+					'<span style="padding-left:10px;">'+row.desc+'</span>';
+			return s;
+		}
+	}).combobox("loadData", filterTemplate).combobox("setValue", defaultFilter);
+}
+
 function pagerFilter(data) {
+	var isFileData = false;
+	var filterChanged = false;
+
 	if (typeof data.length == 'number' && typeof data.splice == 'function') { // is array
 		data = {
 			total: data.length,
 			rows: data
 		}
 	}
+
+	isFileData = (data.rows.length>0 && data.rows && "wanted" in data.rows[0]) ||
+				 (data.originalRows && data.originalRows[0] && "wanted" in data.originalRows[0]) ||
+				 (data.unfilteredRows && data.unfilteredRows[0] && "wanted" in data.unfilteredRows[0]);
+	if (isFileData) {
+		var fileFilterString = $("#torrent-files-filter-string").val();
+		filterChanged = ( (data.filterString!==fileFilterString) || 
+						  (data.filterString && data.originalRows.length==data.unfilteredRows.length)
+						);
+		if (filterChanged) {
+			data.torrentId = system.currentTorrentId;
+			var rawData = (data.unfilteredRows) || (data.originalRows) || (data.rows);
+			var rawDataFiltered = fileFilter(rawData, fileFilterString);
+			data.originalRows = rawDataFiltered;
+			data.total = rawDataFiltered.length;
+			if (!data.unfilteredRows) {
+				data.unfilteredRows = (rawData);
+			}
+			data.filterString = fileFilterString;
+		}
+	}
+	
 	var dg = $(this);
 	var opts = dg.datagrid('options');
 	var pager = dg.datagrid('getPager');
@@ -3345,7 +3416,7 @@ function pagerFilter(data) {
 	if (!data.originalRows) {
 		data.originalRows = (data.rows);
 	}
-	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+	var start = filterChanged ? 0 : (opts.pageNumber - 1) * parseInt(opts.pageSize);
 	var end = start + parseInt(opts.pageSize);
 	data.rows = (data.originalRows.slice(start, end));
 
@@ -3356,6 +3427,10 @@ function pagerFilter(data) {
 				$("#"+button.id, pager).attr("title", button.title);
 			}
 		}
+	}
+
+	if (isFileData) {
+		restoreFileFilterInputbox(fileFilterString);
 	}
 
 	return data;

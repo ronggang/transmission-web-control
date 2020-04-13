@@ -399,6 +399,11 @@
 				"1": "High",
 				"-1": "Low"
 			},
+			"filter-template-text": {
+				"1": "All",
+				"2": "BitComet padding file",
+				"3": "Unnecessary files"
+			},
 			"label": {
 				"name": "Name:",
 				"addedDate": "Added date:",
@@ -430,6 +435,7 @@
 				"button-allow": "Download checked file(s)",
 				"button-deny": "Skip checked file(s)",
 				"button-priority": "Set priority",
+				"button-filter": "Type in regular expressions and click the paging button to refresh",
 				"button-tracker-add": "Add New Tracker",
 				"button-tracker-edit": "Edit Tracker",
 				"button-tracker-remove": "Remove Tracker"

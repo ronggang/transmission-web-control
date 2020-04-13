@@ -385,6 +385,11 @@
 				"1": "高",
 				"-1": "低"
 			},
+			"filter-template-text": {
+				"1": "全部",
+				"2": "BitComet 填充檔案",
+				"3": "不需要的檔案"
+			},
 			"label": {
 				"name": "名稱：",
 				"addedDate": "新增時間：",
@@ -416,6 +421,7 @@
 				"button-allow": "下載已選取的檔案",
 				"button-deny": "忽略已選取的檔案",
 				"button-priority": "設定優先順序",
+				"button-filter": "輸入規則運算式後點左側分頁工具按鈕以刷新",
 				"button-tracker-add": "新增 Tracker",
 				"button-tracker-edit": "修改已選取的 Tracker",
 				"button-tracker-remove": "刪除已選取的 Tracker"
