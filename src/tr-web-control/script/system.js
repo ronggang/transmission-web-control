@@ -2194,11 +2194,11 @@ var system = {
 				return;
 			}
 			var status = this.lang.torrent["status-text"][torrents[index].status];
-			var percentDone = parseFloat(torrents[index].percentDone * 100).toFixed(2);
-			// Checksum, the use of verification progress
-			if (status == transmission._status.check) {
-				percentDone = parseFloat(torrents[index].recheckProgress * 100).toFixed(2);
-			}
+			// var percentDone = parseFloat(torrents[index].percentDone * 100).toFixed(2);
+			// // Checksum, the use of verification progress
+			// if (status == transmission._status.check) {
+			// 	percentDone = parseFloat(torrents[index].recheckProgress * 100).toFixed(2);
+			// }
 
 			if (torrents[index].error != 0) {
 				status = "<span class='text-status-error'>" + status + "</span>";
@@ -2433,10 +2433,12 @@ var system = {
 	// Gets the progress bar for the specified torrent
 	getTorrentProgressBar: function (progress, torrent) {
 		progress = progress + "%";
+		var percentCheck = "0%";
 		var className = "";
 		var status = 0;
 		if (typeof (torrent) == "object") {
 			status = torrent.status;
+			percentCheck = parseFloat(torrent.recheckProgress * 100).toFixed(2) + "%";
 		} else {
 			status = torrent;
 		}
@@ -2467,6 +2469,13 @@ var system = {
 			if (torrent.error != 0) {
 				className = "torrent-progress-error";
 			}
+		}
+		if (status==transmission._status.check) {
+			return	'<div class="torrent-progress" title="' + progress + '">'+
+						'<div class="torrent-progress-text" style="z-index:2;">' + percentCheck + '</div>'+
+						'<div class="torrent-progress-bar torrent-progress-seed" style="width:' + percentCheck + ';z-index:1;opacity: 0.8;"></div>'+
+						'<div class="torrent-progress-bar ' + className +     '" style="width:' + progress +     ';"></div>'+
+					'</div>';
 		}
 		return '<div class="torrent-progress" title="' + progress + '"><div class="torrent-progress-text">' + progress + '</div><div class="torrent-progress-bar ' + className + '" style="width:' + progress + ';"></div></div>';
 	},

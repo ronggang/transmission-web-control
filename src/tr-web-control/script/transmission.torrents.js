@@ -16,7 +16,7 @@ transmission.torrents = {
 	pausedTorrentCount: 0,
 	fields: {
 		base: "id,name,status,hashString,totalSize,percentDone,addedDate,trackerStats,leftUntilDone,rateDownload,rateUpload,recheckProgress" + ",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,downloadDir,error,errorString,doneDate,queuePosition,activityDate",
-		status: "id,name,status,totalSize,percentDone,trackerStats,leftUntilDone,rateDownload,rateUpload" + ",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,error,errorString,doneDate,queuePosition,activityDate",
+		status: "id,name,status,totalSize,percentDone,trackerStats,leftUntilDone,rateDownload,rateUpload,recheckProgress" + ",rateDownload,rateUpload,peersGettingFromUs,peersSendingToUs,uploadRatio,uploadedEver,downloadedEver,error,errorString,doneDate,queuePosition,activityDate",
 		config: "downloadLimit,downloadLimited,peer-limit,seedIdleLimit,seedIdleMode,seedRatioLimit,seedRatioMode,uploadLimit,uploadLimited"
 	},
 	// List of all the torrents that have been acquired
