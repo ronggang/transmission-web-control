@@ -10,7 +10,7 @@ var system = {
 		reloadStep: 5000,
 		pageSize: 30,
 		pagination: true,
-		pageList: [10, 20, 30, 40, 50, 100, 150, 200, 250, 300],
+		pageList: [10, 20, 30, 40, 50, 100, 150, 200, 250, 300, 5000],
 		defaultSelectNode: null,
 		autoExpandAttribute: false,
 		defaultLang: "",
