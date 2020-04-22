@@ -2471,7 +2471,7 @@ var system = {
 			// 目前只有status==_status.download时 torrent 不是对象
 			// 检查进度条长度保持在已完成的范围内
 			var percentCheckText = parseFloat(torrent.recheckProgress * 100).toFixed(2);
-			var percentCheckView = parseFloat(progress * 100 * torrent.recheckProgress).toFixed(2);
+			var percentCheckView = parseFloat(progress * torrent.recheckProgress).toFixed(2);
 			return	'<div class="torrent-progress" title="' + progress + '%">'+
 						'<div class="torrent-progress-text" style="z-index:2;">' + percentCheckText + '%</div>'+
 						'<div class="torrent-progress-bar torrent-progress-seed" style="width:' + percentCheckView + '%;z-index:1;opacity:0.7;"></div>'+
