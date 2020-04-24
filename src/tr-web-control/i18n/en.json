@@ -136,7 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Download Dir:",
-            "used-download-dir": "Used Download Dir:",
+			"used-download-dir": "Used Download Dir:",
 			"torrent-url": "Torrent URL:",
 			"tip-torrent-url": "Tip: Please add multiple content with an 'Enter' key press to separate",
 			"autostart": "Auto Start:",

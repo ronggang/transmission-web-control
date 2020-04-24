@@ -399,6 +399,11 @@
 				"1": "Wysoki",
 				"-1": "Niski"
 			},
+			"filter-template-text": {
+				"1": "Wszystkie",
+				"2": "Plik 'padding' BitComet",
+				"3": "Niepotrzebne pliki"
+			},
 			"label": {
 				"name": "Nazwa:",
 				"addedDate": "Data dodania:",
@@ -430,6 +435,7 @@
 				"button-allow": "Pobierz zaznaczone pliki",
 				"button-deny": "Pomiń zaznaczone pliki",
 				"button-priority": "Ustaw priorytet",
+				"button-filter": "Wpisz wyrażenia regularne i kliknij przycisk stronicowania, aby odświeżyć",
 				"button-tracker-add": "Dodaj nowy tracker",
 				"button-tracker-edit": "Edytuj tracker",
 				"button-tracker-remove": "Usuń tracker"
