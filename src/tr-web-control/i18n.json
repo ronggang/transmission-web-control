@@ -1,8 +1,8 @@
-﻿{
-	"zh-CN": "简体中文|Chinese(Simplified)",
-	"zh-TW": "正體中文|Chinese(Traditional)",
+{
+	"zh-CN": "简体中文|Chinese (Simplified)",
+	"zh-TW": "正體中文|Chinese (Traditional)",
 	"en": "English",
-	"de": "Deutsch",
+	"de": "Deutsch (German)",
 	"uk": "Українська (Ukrainian)",
 	"ru": "Русский (Russian)",
 	"es": "Español (Spanish)",
@@ -10,9 +10,9 @@
 	"hu": "Magyar (Hungarian)",
 	"ro": "Română (Romanian)",
 	"it": "Italiano (Italian)",
-	"pt-BR": "Brazilian Portuguese",
-	"nl": "Dutch",
+	"pt-PT": "Portuguese (European)",
+	"pt-BR": "Portuguese (Brazilian)",
+	"nl": "Nederlands (Dutch)",
 	"fr": "Français (French)",
-	"ko": "한국어 (Korean)",
-	"pt-PT": "European Portuguese"
+	"ko": "한국어 (Korean)"
 }
