@@ -435,7 +435,7 @@
 				"button-allow": "Download checked file(s)",
 				"button-deny": "Skip checked file(s)",
 				"button-priority": "Set priority",
-				"button-filter": "Type in regular expressions and click the paging button to refresh",
+				"button-filter": "Search files by regular expression",
 				"button-tracker-add": "Add New Tracker",
 				"button-tracker-edit": "Edit Tracker",
 				"button-tracker-remove": "Remove Tracker"
