@@ -267,7 +267,9 @@
 					id:"torrent-files-filter",
 					iconCls:"icon-filter",
 					title: system.lang.torrent.attribute["tip"]["button-filter"],
-					disabled:'true'
+					handler:function(){
+						filelist.datagrid("getPager").find(".pagination-load").click();
+					}
 				}];
 			var priorityMenu = $("<div/>").attr("id","priorityMenu").appendTo(thisLayout.find("#torrent-attribute-files"));
 			priorityMenu.menu({
