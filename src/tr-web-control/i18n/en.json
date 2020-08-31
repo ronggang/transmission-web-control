@@ -225,7 +225,8 @@
 			"import-config": "Import configuration from file",
 			"export-config": "Export current configuration",
 			"import-config-confirm": "Do you want to import these configurations? This overrides the current configuration.",
-			"script-torrent-done-enabled": "Execute the following script when the torrent download is complete:"
+			"script-torrent-done-enabled": "Execute the following script when the torrent download is complete:",
+                        "ipinfo": "ipinfo.io Token"
 		},
 		"public": {
 			"button-ok": "OK",
