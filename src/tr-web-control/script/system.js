@@ -2590,7 +2590,7 @@ var system = {
 			//this.panel.attribute.panel({iconCls:"icon-loading"});
 			var torrent = transmission.torrents.all[id];
 			torrent.infoIsLoading = true;
-			var fields = "fileStats,trackerStats,peers,leftUntilDone,status,rateDownload,rateUpload,uploadedEver,uploadRatio,error,errorString";
+			var fields = "fileStats,trackerStats,peers,leftUntilDone,status,rateDownload,rateUpload,uploadedEver,uploadRatio,error,errorString,pieces,pieceCount,pieceSize";
 			// If this is the first time to load this torrent information, load more information
 			if (!torrent.moreInfosTag) {
 				fields += ",files,trackers,comment,dateCreated,creator,downloadDir";
@@ -2744,6 +2744,35 @@ var system = {
 			}
 			system.panel.attribute.find("#torrent-attribute-value-" + key).html(value);
 		});
+		var pieces = new Base64().decode_bytes(torrent.pieces);
+		var piece = 0;
+		var pieceCount = torrent.pieceCount;
+		var pieceSize = torrent.pieceSize;
+		var piecesFlag = []; //inverted
+		while(piece < pieceCount) {
+			var bset = pieces.codePointAt(piece >> 3);
+			for (var test=0x80; test > 0 && piece < pieceCount; test=test>>1, ++piece) {
+				piecesFlag.push((bset & test)?false:true);
+			}
+		}
+		var MAXCELLS = 500;
+		
+		var piecePerCell = parseInt((MAXCELLS-1+pieceCount)/MAXCELLS);
+		var cellSize = formatSize(pieceSize * piecePerCell);
+		var cellCount = parseInt((piecePerCell-1+pieceCount)/piecePerCell);
+		var cell = 0;
+		var cells = '';
+		for (var cell = 0, piece = 0; cell < cellCount; ++ cell) {
+			var done = piecePerCell;
+			for (var i=0; i<piecePerCell; ++i,++piece) {
+				if (piecesFlag[piece]) --done;
+			}
+			var percent = parseInt(done*100/piecePerCell);
+			var rate = percent/100;
+			var ramp = parseInt((Math.pow(128, rate)-1)*100/127)/100;
+			cells += ('<i style="filter:saturate(' + ramp + ')" title="'+cellSize+' x '+percent+'%"></i>');
+		}
+		system.panel.attribute.find("#torrent-attribute-pieces").html(cells);
 	},
 	// Fill the torrent with a list of files
 	fillTorrentFileList: function (torrent) {

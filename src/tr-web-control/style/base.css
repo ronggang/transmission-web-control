@@ -357,3 +357,16 @@ html, body {
 .combobox-item {
 	cursor: pointer;
 }
+
+#torrent-attribute-pieces {
+	line-height: 10px;
+}
+
+#torrent-attribute-pieces>i {
+	background-color: mediumseagreen;
+	border: 1px solid white;
+	display: inline-block !important;
+    height: 10px !important;
+    width: 10px !important;
+	margin: 1px;
+}

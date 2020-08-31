@@ -40,7 +40,7 @@ function Base64() {
 	}
  
 	// public method for decoding
-	this.decode = function (input) {
+	var decode_bytes = this.decode_bytes = function (input) {
 		var output = "";
 		var chr1, chr2, chr3;
 		var enc1, enc2, enc3, enc4;
@@ -62,12 +62,15 @@ function Base64() {
 				output = output + String.fromCharCode(chr3);
 			}
 		}
-		output = _utf8_decode(output);
 		return output;
+	}
+
+	this.decode = function (input) {
+		return _utf8_decode(decode_bytes(input));
 	}
  
 	// private method for UTF-8 encoding
-	_utf8_encode = function (string) {
+	var _utf8_encode = function (string) {
 		string = string.replace(/\r\n/g,"\n");
 		var utftext = "";
 		for (var n = 0; n < string.length; n++) {
@@ -88,7 +91,7 @@ function Base64() {
 	}
  
 	// private method for UTF-8 decoding
-	_utf8_decode = function (utftext) {
+	var _utf8_decode = function (utftext) {
 		var string = "";
 		var i = 0;
 		var c = c1 = c2 = 0;
