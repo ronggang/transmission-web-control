@@ -19,6 +19,8 @@ var system = {
 		theme: "default",
 		// 是否显示BT服务器
 		showBTServers: false,
+		// ipinfo.io token
+		ipInfoToken: '',
 		ui: {
 			status: {
 				tree: {},
@@ -2848,12 +2850,37 @@ var system = {
 	fillTorrentPeersList: function (torrent) {
 		var peers = torrent.peers;
 		var datas = new Array();
+		let flag;
 		for (var index in peers) {
 			var item = peers[index];
 			var rowdata = {};
 			for (var key in item) {
 				rowdata[key] = item[key];
 			}
+
+			if (system.config.ipInfoToken !== '') {
+			let flag = '';
+			let ip = rowdata['address'];
+
+			if (this.flags[ip] === undefined) {
+			        let settings = {
+			                'url': 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken,
+			                'method': 'GET',
+                			'async': false
+			        };
+
+			        $.ajax(settings).done(function (response) {
+			                flag = response.toLowerCase().trim();
+			        });
+
+			        this.flags[ip] = flag;
+			} else {
+			        flag = this.flags[ip];
+			}
+
+			rowdata['address'] += ' <img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '">';
+      }
+
 			// 使用同类已有的翻译文本
 			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
 			var percentDone = parseFloat(item.progress * 100).toFixed(2);
