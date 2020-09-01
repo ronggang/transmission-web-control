@@ -406,7 +406,7 @@ getTransmissionPath() {
 
 	if [ ! -d "$ROOT_FOLDER" ]; then
 		showLog "$MSG_FIND_WEB_FOLDER_FROM_PROCESS" "n"
-		infos=`ps -ef | awk '/[t]ransmission-da/{print $8}'`
+		infos=`ps -Aww -o command= | sed -r -e '/[t]ransmission-da/!d' -e 's/ .+//'`
 		if [ "$infos" != "" ]; then
 			echo " √"
 			search="bin/transmission-daemon"
