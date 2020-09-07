@@ -225,7 +225,8 @@
 			"import-config": "Import konfiguracji z pliku",
 			"export-config": "Eksport aktualnej konfiguracji",
 			"import-config-confirm": "Czy na pewno chcesz importować nowe ustawienia? Spowoduje to nieodwracalne nadpisanie aktualnej konfiguracji.",
-			"script-torrent-done-enabled": "Gdy pobieranie torrenta zostanie ukończone uruchamiaj następujący skrypt:"
+			"script-torrent-done-enabled": "Gdy pobieranie torrenta zostanie ukończone uruchamiaj następujący skrypt:",
+			"ipinfo": "Token ipinfo.io"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -435,7 +436,7 @@
 				"button-allow": "Pobierz zaznaczone pliki",
 				"button-deny": "Pomiń zaznaczone pliki",
 				"button-priority": "Ustaw priorytet",
-				"button-filter": "Wpisz wyrażenia regularne i kliknij przycisk stronicowania, aby odświeżyć",
+				"button-filter": "Wyszukaj pliki według wyrażeń regularnych",
 				"button-tracker-add": "Dodaj nowy tracker",
 				"button-tracker-edit": "Edytuj tracker",
 				"button-tracker-remove": "Usuń tracker"
