@@ -68,6 +68,7 @@ var system = {
 	B64: new Base64(),
 	// The currently selected torrent number
 	currentTorrentId: 0,
+	flags: [],
 	control: {
 		tree: null,
 		torrentlist: null
