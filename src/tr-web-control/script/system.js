@@ -2879,7 +2879,7 @@ var system = {
 			        flag = this.flags[ip];
 			}
 
-			rowdata['address'] += ' <img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '">';
+			rowdata['address'] = '<img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ' + ip;
       }
 
 			// 使用同类已有的翻译文本
