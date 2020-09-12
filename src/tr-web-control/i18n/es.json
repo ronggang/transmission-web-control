@@ -371,7 +371,7 @@
 				"lastAnnounceTime": "Hora",
 				"lastAnnounceTimedOut": "T. agotado",
 				"downloadCount": "Descargas",
-				"nextAnnounceTime": "Próximo anuncio"
+				"nextAnnounceTime": "Próximo anuncio",
 				"leecherCount": "Recuento Leecher",
 				"seederCount": "Recuento Seeder",
 				"announceStateText": {
