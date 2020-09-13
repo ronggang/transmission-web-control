@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.6.0",
+	version: "1.6.1",
 	rootPath: "tr-web-control/",
-	codeupdate: "20190724",
+	codeupdate: "20200913",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
