@@ -2851,7 +2851,7 @@ var system = {
 	fillTorrentPeersList: function (torrent) {
 		var peers = torrent.peers;
 		var datas = new Array();
-		let flag;
+
 		for (var index in peers) {
 			var item = peers[index];
 			var rowdata = {};
@@ -2859,27 +2859,36 @@ var system = {
 				rowdata[key] = item[key];
 			}
 
-			if (system.config.ipInfoToken !== '') {
-			let flag = '';
-			let ip = rowdata['address'];
+      if (system.config.ipInfoToken !== '') {
+        let flag = '';
+        let ip = rowdata['address'];
 
-			if (this.flags[ip] === undefined) {
-			        let settings = {
-			                'url': 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken,
-			                'method': 'GET',
-                			'async': false
-			        };
-
-			        $.ajax(settings).done(function (response) {
-			                flag = response.toLowerCase().trim();
-			        });
-
-			        this.flags[ip] = flag;
-			} else {
-			        flag = this.flags[ip];
-			}
-
-			rowdata['address'] = '<img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ' + ip;
+        if (this.flags[ip] === undefined) {
+          let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
+          $.ajax({
+            type: "GET",
+            url: url
+          }).done((data) => {
+            if (data) {
+              flag = data.toLowerCase().trim();
+              this.flags[ip] = flag;
+              $("img.img_ip-"+ip).attr({
+                src: this.rootPath + 'style/flags/' + flag + '.png',
+                alt: flag,
+                title: flag
+              }).show();
+            }
+          });
+        } else {
+          flag = this.flags[ip];
+        }
+        let img = "";
+        if (flag) {
+          img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ';
+        } else {
+          img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
+        }
+        rowdata['address'] = img + ip;
       }
 
 			// 使用同类已有的翻译文本
