@@ -2864,14 +2864,21 @@ var system = {
 			let ip = rowdata['address'];
 
 			if (this.flags[ip] === undefined) {
-					let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken,
-					$.get("https://ipinfo.io?token=$TOKEN", function(response) {
-						flag = response.toLowerCase().trim();
-					}, "jsonp")
+			        let settings = {
+			                'url': 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken,
+			                'method': 'GET',
+                			'async': false
+			        };
+
+			        $.ajax(settings).done(function (response) {
+			                flag = response.toLowerCase().trim();
+			        });
+
 			        this.flags[ip] = flag;
 			} else {
 			        flag = this.flags[ip];
 			}
+
 			rowdata['address'] = '<img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ' + ip;
       }
 
