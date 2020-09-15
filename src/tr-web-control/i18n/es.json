@@ -136,6 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Carpeta descarga:",
+			"used-download-dir": "Carpeta de descarga usada:",
 			"torrent-url": "URL(s):",
 			"tip-torrent-url": "Consejo：Puedes introducir más de un archivo usando varias líneas",
 			"autostart": "Iniciar descarga:",
@@ -152,8 +153,8 @@
 				"limit": "Límites",
 				"alt-speed": "Vel. alternativa",
 				"dictionary-folders": "Diccionario de carpetas",
-				"more": "More",
-				"labels": "Labels"
+				"more": "Más",
+				"labels": "Etiquetas"
 			},
 			"config-dir": "Carpeta de configuración de Transmission:",
 			"download-dir": "Carpeta de descarga por defecto:",
@@ -206,20 +207,25 @@
 			"minutes": "Minutos",
 			"nochange": "Sin cambio",
 			"saving": "Guardando...",
-			"show-bt-servers": "Show 'BT servers' on Trackers:",
-			"restore-default-settings": "Restore UI Default Settings",
-			"language": "Language:",
-			"loading": "Loading...",
-			"hide-subfolders": "When clicking on the data directory, hide subfolders content in the list:",
-			"simple-check-mode": "Checked only one torrent when you right-click on the torrent list:",
-			"nav-contents": "Navigation bar Display content:",
+			"show-bt-servers": "Mostrar 'servidores BT' en Trackers:",
+			"restore-default-settings": "Restaurar configuración UI",
+			"language": "Idioma:",
+			"loading": "Cargando...",
+			"hide-subfolders": "Al hace click en el directorio de datos, ocultará la subcarpetas de la lista:",
+			"simple-check-mode": "Se marca un solo torrent cuando se hace click derecho en la lista:",
+			"nav-contents": "Mostrar barra de navegación de contenido:",
 			"labels-manage": {
-				"name": "Label Name",
-				"description": "Description",
+				"name": "Nombre de etiqueta",
+				"description": "Descripción",
 				"color": "Color",
-				"actions": "Actions",
-				"import-confirm": "Do you want to import labels? This overrides the current configuration."
-			}
+				"actions": "Acciones",
+				"import-confirm": "¿Quieres importar las etiquetas? Esto cambiará la configuración actual."
+			},
+			"import-config": "Importar fichero de configuración",
+			"export-config": "Exportar configuración actual",
+			"import-config-confirm": "¿Quieres importar estas configuraciones? Esto cambiará la configuración actual.",
+			"script-torrent-done-enabled": "Ejecutar el siguiente script al completar una descarga:",
+                        "ipinfo": "ipinfo.io Token"
 		},
 		"public": {
 			"button-ok": "Aceptar",
@@ -229,11 +235,11 @@
 			"button-close": "Cerrar",
 			"button-update": "Actualizar",
 			"button-config": "Configurar",
-			"button-addnew": "Add",
-			"button-edit": "Edit",
-			"button-delete": "Delete",
-			"button-export": "Export",
-			"button-import": "Import"
+			"button-addnew": "Añadir",
+			"button-edit": "Editar",
+			"button-delete": "Borrar",
+			"button-export": "Exportar",
+			"button-import": "Importar"
 		},
 		"about": {
 			"infos": "Autor：culturist<br/>Declaración：Most of the icons used in this program from the network, if any violation of your rights, please contact me delete.",
@@ -287,14 +293,26 @@
 			"newname": "Nueva"
 		},
 		"torrent-attribute-add-tracker": {
-			"title": "Add Trackers",
-			"tip": "One Line, One Tracker"
+			"title": "Añadir Trackers",
+			"tip": "Una lina, Un Tracker"
 		},
 		"torrent-setLabels": {
-			"title": "Set User Labels",
-			"available": "Available:",
-			"selected": "Selected:"
+			"title": "Etiquetas de Usuario",
+			"available": "Disponible:",
+			"selected": "Seleccionada:"
+		},
+		"export-config": {
+			"title": "Selecciona los datos a exportar",
+			"option-all": "Toda la configuración",
+			"option-system": "Configuración de Web Control",
+			"option-dictionary": "Diccionario de carpetas definidas",
+			"option-server": "Configuración de Transmission (Directorio de descarga, cache, limites de velocidad, etc.)"
+		},
+		"import-config": {
+			"title": "Selecciona los datos a importar",
+			"invalid-file": "Perfil no válido"
 		}
+
 	},
 	"torrent": {
 		"fields": {
@@ -315,9 +333,10 @@
 			"uploadedEver": "Subido",
 			"uploadRatio": "Proporción",
 			"queuePosition": "Cola",
-			"activityDate": "Activity Date",
+			"activityDate": "Fecha de Actividad",
 			"trackers": "Trackers",
-			"labels": "User Labels"
+			"labels": "User Labels",
+			"doneDate": "Completed Date"
 		},
 		"status-text": {
 			"0": "Pausado",
@@ -352,10 +371,20 @@
 				"lastAnnounceTime": "Hora",
 				"lastAnnounceTimedOut": "T. agotado",
 				"downloadCount": "Descargas",
-				"nextAnnounceTime": "Próximo anuncio"
+				"nextAnnounceTime": "Próximo anuncio",
+				"leecherCount": "Recuento Leecher",
+				"seederCount": "Recuento Seeder",
+				"announceStateText": {
+					"0": "Inactivo",
+					"1": "Esperando",
+					"2": "En cola",
+					"3": "Activo"
+                                }
 			},
 			"peers-fields": {
 				"address": "Dirección IP",
+				"port": "Puerto",
+				"isUTP": "UTP activado",
 				"clientName": "Cliente",
 				"flagStr": "Bandera",
 				"progress": "Progreso",
@@ -370,6 +399,11 @@
 				"0": "Normal",
 				"1": "Alta",
 				"-1": "Baja"
+			},
+			"filter-template-text": {
+				"1": "Todo",
+				"2": "fichero de relleno BitComet",
+				"3": "Archivo innecesario"
 			},
 			"label": {
 				"name": "Nombre:",
@@ -402,9 +436,10 @@
 				"button-allow": "Descargar archivos(s) marcados",
 				"button-deny": "Omitir archivo(s) marcados",
 				"button-priority": "Establecer prioridad",
-				"button-tracker-add": "Add New Tracker",
-				"button-tracker-edit": "Edit Tracker",
-				"button-tracker-remove": "Remove Tracker"
+				"button-filter": "Buscar archivos con una expresion regular",
+				"button-tracker-add": "Añadir nuevo Tracker",
+				"button-tracker-edit": "Editar Tracker",
+				"button-tracker-remove": "Eliminar Tracker"
 			},
 			"other": {
 				"tracker-remove-confim": "¿Está seguro de que desea eliminar este tracker?"
@@ -429,6 +464,7 @@
 		"text-on": "ON",
 		"text-off": "OFF",
 		"text-how-to-update": "How to update?",
-		"text-ignore-this-version": "Ignore this version"
+		"text-ignore-this-version": "Ignore this version",
+		"text-json-file-parsing-failed": "JSON file parsing failed!"
 	}
 }

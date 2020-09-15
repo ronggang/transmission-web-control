@@ -3,7 +3,7 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.2-beta2"
+SCRIPT_VERSION="1.2.3"
 VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
@@ -402,6 +402,15 @@ getTransmissionPath() {
 	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
 	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ]; then
 		ROOT_FOLDER="/usr/share/transmission"
+	fi
+
+	if [ -f "/bin/freebsd-version" ]; then
+		ROOT_FOLDER="/usr/local/share/transmission"
+	fi
+
+	# 群晖
+	if [ -f "/etc/synoinfo.conf" ]; then
+		ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
 	fi
 
 	if [ ! -d "$ROOT_FOLDER" ]; then

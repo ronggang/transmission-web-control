@@ -226,7 +226,7 @@
 			"export-config": "Экспорт текущих настроек ",
 			"import-config-confirm": "Вы действительно хотите импортировать настройки? Данное действие перезапишет текущие настройки.",
 			"script-torrent-done-enabled": "Выполнить скрипт после завершения загрузки торрента:",
-			"ipinfo": "Token ipinfo.io"
+			"ipinfo": "Маркер доступа IPinfo.io (IPinfo.io access token):"
 		},
 		"public": {
 			"button-ok": "OK",

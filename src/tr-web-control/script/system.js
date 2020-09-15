@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.6.0",
+	version: "1.6.1",
 	rootPath: "tr-web-control/",
-	codeupdate: "20190724",
+	codeupdate: "20200913",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -68,6 +68,7 @@ var system = {
 	B64: new Base64(),
 	// The currently selected torrent number
 	currentTorrentId: 0,
+	flags: [],
 	control: {
 		tree: null,
 		torrentlist: null
@@ -2878,7 +2879,7 @@ var system = {
 			        flag = this.flags[ip];
 			}
 
-			rowdata['address'] += ' <img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '">';
+			rowdata['address'] = '<img src="' + this.rootPath + '/style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ' + ip;
       }
 
 			// 使用同类已有的翻译文本
