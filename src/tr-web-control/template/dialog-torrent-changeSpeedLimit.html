@@ -168,6 +168,7 @@
         return;
       }
 
+      //获取界面设置值，并写入config
       var torrent = transmission.torrents.all[ids[0]];
       var inputs = thisDialog.find("#torrent-speed-limit").find("input");
       var config = {};
@@ -207,21 +208,19 @@
       //debugger;
       //设置为同步
       $.ajaxSettings.async = false;
-
       for (var i = 0; i < ids.length; i++) {
-        const e = ids[i];
-        config["ids"] = e;
-        var index = i + 1;
-        $(this).linkbutton({
-          text:
-            system.lang.dialog["system-config"].saving +
-            "(" +
-            index +
-            "/" +
-            ids.length +
-            ")",
-          disabled: true,
-        });
+        config["ids"] = ids[i];;
+        // var index = i + 1;
+        // $(this).linkbutton({
+        //   text:
+        //     system.lang.dialog["system-config"].saving +
+        //     "(" +
+        //     index +
+        //     "/" +
+        //     ids.length +
+        //     ")",
+        //   disabled: true,
+        // });
 
         // 开始设置参数
         transmission.exec(
@@ -245,10 +244,10 @@
       $.ajaxSettings.async = true; //变回异步
 
       //修改按钮文本
-      thisDialog.find("#torrent-attribute-config-button-save").linkbutton({
-        text: system.lang.dialog["public"]["button-save"],
-        disabled: false,
-      });
+      // thisDialog.find("#torrent-attribute-config-button-save").linkbutton({
+      //   text: system.lang.dialog["public"]["button-save"],
+      //   disabled: false,
+      // });
 
       //清空种子选择状态
       system.control.torrentlist.datagrid("uncheckAll");
