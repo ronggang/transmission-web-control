@@ -20,7 +20,9 @@ system.config = $.extend(system.config, {
 	// theme
 	theme: "default",
 	// 是否显示BT服务器
-	showBTServers: false
+	showBTServers: false,
+        // ipinfo.io token
+        ipInfoToken: ''
 });
 
 // 主题样式

@@ -136,11 +136,11 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Папка загрузки:",
-            "used-download-dir": "Используемая папка загрузки:",
+			"used-download-dir": "Используемая папка загрузки:",
 			"torrent-url": "Ссылка на .torrent или magnet:",
 			"tip-torrent-url": "Новая ссылка с новой строки",
 			"autostart": "Начать загрузку:",
-			"tip-autostart": "",					   
+			"tip-autostart": "",
 			"set-default-download-dir": "Выбрать как папку по умолчанию",
 			"upload-file": "Файлы .torrent:",
 			"nosource": "Указанный источник не является файлом .torrent.",
@@ -225,7 +225,8 @@
 			"import-config": "Импорт настроек из файла",
 			"export-config": "Экспорт текущих настроек ",
 			"import-config-confirm": "Вы действительно хотите импортировать настройки? Данное действие перезапишет текущие настройки.",
-			"script-torrent-done-enabled": "Выполнить скрипт после завершения загрузки торрента:"
+			"script-torrent-done-enabled": "Выполнить скрипт после завершения загрузки торрента:",
+			"ipinfo": "Маркер доступа IPinfo.io (IPinfo.io access token):"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -399,6 +400,11 @@
 				"1": "Высокий",
 				"-1": "Низкий"
 			},
+			"filter-template-text": {
+				"1": "Все",
+				"2": "Мусорные файлы (паддинги) BitComet",
+				"3": "Ненужные файлы"
+			},
 			"label": {
 				"name": "Название:",
 				"addedDate": "Добавлено:",
@@ -430,6 +436,7 @@
 				"button-allow": "Загрузить выбранные файлы",
 				"button-deny": "Пропустить выбранные файлы",
 				"button-priority": "Установить приоритет",
+				"button-filter": "Введите регулярные выражения и нажмите кнопку paging, чтобы обновить",
 				"button-tracker-add": "Добавить новый трекер",
 				"button-tracker-edit": "Редактировать трекер",
 				"button-tracker-remove": "Удалить трекер"

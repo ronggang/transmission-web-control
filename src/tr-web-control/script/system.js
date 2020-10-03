@@ -1,8 +1,8 @@
 // Current system global object
 var system = {
-	version: "1.6.0",
+	version: "1.6.1",
 	rootPath: "tr-web-control/",
-	codeupdate: "20190724",
+	codeupdate: "20200913",
 	configHead: "transmission-web-control",
 	// default config, can be customized in config.js
 	config: {
@@ -19,6 +19,8 @@ var system = {
 		theme: "default",
 		// 是否显示BT服务器
 		showBTServers: false,
+		// ipinfo.io token
+		ipInfoToken: '',
 		ui: {
 			status: {
 				tree: {},
@@ -66,6 +68,7 @@ var system = {
 	B64: new Base64(),
 	// The currently selected torrent number
 	currentTorrentId: 0,
+	flags: [],
 	control: {
 		tree: null,
 		torrentlist: null
@@ -2471,7 +2474,7 @@ var system = {
 			// 目前只有status==_status.download时 torrent 不是对象
 			// 检查进度条长度保持在已完成的范围内
 			var percentCheckText = parseFloat(torrent.recheckProgress * 100).toFixed(2);
-			var percentCheckView = parseFloat(progress * 100 * torrent.recheckProgress).toFixed(2);
+			var percentCheckView = parseFloat(progress * torrent.recheckProgress).toFixed(2);
 			return	'<div class="torrent-progress" title="' + progress + '%">'+
 						'<div class="torrent-progress-text" style="z-index:2;">' + percentCheckText + '%</div>'+
 						'<div class="torrent-progress-bar torrent-progress-seed" style="width:' + percentCheckView + '%;z-index:1;opacity:0.7;"></div>'+
@@ -2590,7 +2593,7 @@ var system = {
 			//this.panel.attribute.panel({iconCls:"icon-loading"});
 			var torrent = transmission.torrents.all[id];
 			torrent.infoIsLoading = true;
-			var fields = "fileStats,trackerStats,peers,leftUntilDone,status,rateDownload,rateUpload,uploadedEver,uploadRatio,error,errorString";
+			var fields = "fileStats,trackerStats,peers,leftUntilDone,status,rateDownload,rateUpload,uploadedEver,uploadRatio,error,errorString,pieces,pieceCount,pieceSize";
 			// If this is the first time to load this torrent information, load more information
 			if (!torrent.moreInfosTag) {
 				fields += ",files,trackers,comment,dateCreated,creator,downloadDir";
@@ -2744,6 +2747,35 @@ var system = {
 			}
 			system.panel.attribute.find("#torrent-attribute-value-" + key).html(value);
 		});
+		var pieces = new Base64().decode_bytes(torrent.pieces);
+		var piece = 0;
+		var pieceCount = torrent.pieceCount;
+		var pieceSize = torrent.pieceSize;
+		var piecesFlag = []; //inverted
+		while(piece < pieceCount) {
+			var bset = pieces.codePointAt(piece >> 3);
+			for (var test=0x80; test > 0 && piece < pieceCount; test=test>>1, ++piece) {
+				piecesFlag.push((bset & test)?false:true);
+			}
+		}
+		var MAXCELLS = 500;
+		
+		var piecePerCell = parseInt((MAXCELLS-1+pieceCount)/MAXCELLS);
+		var cellSize = formatSize(pieceSize * piecePerCell);
+		var cellCount = parseInt((piecePerCell-1+pieceCount)/piecePerCell);
+		var cell = 0;
+		var cells = '';
+		for (var cell = 0, piece = 0; cell < cellCount; ++ cell) {
+			var done = piecePerCell;
+			for (var i=0; i<piecePerCell; ++i,++piece) {
+				if (piecesFlag[piece]) --done;
+			}
+			var percent = parseInt(done*100/piecePerCell);
+			var rate = percent/100;
+			var ramp = parseInt((Math.pow(128, rate)-1)*100/127)/100;
+			cells += ('<i style="filter:saturate(' + ramp + ')" title="'+cellSize+' x '+percent+'%"></i>');
+		}
+		system.panel.attribute.find("#torrent-attribute-pieces").html(cells);
 	},
 	// Fill the torrent with a list of files
 	fillTorrentFileList: function (torrent) {
@@ -2819,12 +2851,46 @@ var system = {
 	fillTorrentPeersList: function (torrent) {
 		var peers = torrent.peers;
 		var datas = new Array();
+
 		for (var index in peers) {
 			var item = peers[index];
 			var rowdata = {};
 			for (var key in item) {
 				rowdata[key] = item[key];
 			}
+
+      if (system.config.ipInfoToken !== '') {
+        let flag = '';
+        let ip = rowdata['address'];
+
+        if (this.flags[ip] === undefined) {
+          let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
+          $.ajax({
+            type: "GET",
+            url: url
+          }).done((data) => {
+            if (data) {
+              flag = data.toLowerCase().trim();
+              this.flags[ip] = flag;
+              $("img.img_ip-"+ip).attr({
+                src: this.rootPath + 'style/flags/' + flag + '.png',
+                alt: flag,
+                title: flag
+              }).show();
+            }
+          });
+        } else {
+          flag = this.flags[ip];
+        }
+        let img = "";
+        if (flag) {
+          img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ';
+        } else {
+          img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
+        }
+        rowdata['address'] = img + ip;
+      }
+
 			// 使用同类已有的翻译文本
 			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
 			var percentDone = parseFloat(item.progress * 100).toFixed(2);

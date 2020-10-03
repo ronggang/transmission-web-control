@@ -136,7 +136,7 @@
 	"dialog": {
 		"torrent-add": {
 			"download-dir": "Download Dir:",
-            "used-download-dir": "Used Download Dir:",
+			"used-download-dir": "Used Download Dir:",
 			"torrent-url": "Torrent URL:",
 			"tip-torrent-url": "Tip: Please add multiple content with an 'Enter' key press to separate",
 			"autostart": "Auto Start:",
@@ -225,7 +225,8 @@
 			"import-config": "Import configuration from file",
 			"export-config": "Export current configuration",
 			"import-config-confirm": "Do you want to import these configurations? This overrides the current configuration.",
-			"script-torrent-done-enabled": "Execute the following script when the torrent download is complete:"
+			"script-torrent-done-enabled": "Execute the following script when the torrent download is complete:",
+			"ipinfo": "IPinfo.io access token:"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -435,7 +436,7 @@
 				"button-allow": "Download checked file(s)",
 				"button-deny": "Skip checked file(s)",
 				"button-priority": "Set priority",
-				"button-filter": "Type in regular expressions and click the paging button to refresh",
+				"button-filter": "Search files by regular expression",
 				"button-tracker-add": "Add New Tracker",
 				"button-tracker-edit": "Edit Tracker",
 				"button-tracker-remove": "Remove Tracker"

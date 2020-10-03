@@ -436,7 +436,7 @@
 				"button-allow": "下载已选择的文件",
 				"button-deny": "忽略已选择的文件",
 				"button-priority": "设置优先级别",
-				"button-filter": "输入正则表达式后点左侧分页工具按钮以刷新",
+				"button-filter": "按输入的正则表达式筛选文件",
 				"button-tracker-add": "增加新的 Tracker",
 				"button-tracker-edit": "修改已选中的 Tracker 地址",
 				"button-tracker-remove": "删除已选中的 Tracker 地址"

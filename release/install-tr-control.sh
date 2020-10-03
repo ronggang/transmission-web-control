@@ -3,7 +3,7 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.2-beta2"
+SCRIPT_VERSION="1.2.3"
 VERSION=""
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
@@ -400,13 +400,22 @@ getTransmissionPath() {
 	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
 	# ROOT_FOLDER="/usr/local/transmission/share/transmission"
 	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
-	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ]; then
+	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ] || [ -f "/etc/openwrt_release" ]; then
 		ROOT_FOLDER="/usr/share/transmission"
+	fi
+
+	if [ -f "/bin/freebsd-version" ]; then
+		ROOT_FOLDER="/usr/local/share/transmission"
+	fi
+
+	# 群晖
+	if [ -f "/etc/synoinfo.conf" ]; then
+		ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
 	fi
 
 	if [ ! -d "$ROOT_FOLDER" ]; then
 		showLog "$MSG_FIND_WEB_FOLDER_FROM_PROCESS" "n"
-		infos=`ps -ef | awk '/[t]ransmission-da/{print $8}'`
+		infos=`ps -Aww -o command= | sed -r -e '/[t]ransmission-da/!d' -e 's/ .+//'`
 		if [ "$infos" != "" ]; then
 			echo " √"
 			search="bin/transmission-daemon"

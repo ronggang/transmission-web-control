@@ -225,7 +225,8 @@
 			"import-config": "Import konfiguracji z pliku",
 			"export-config": "Eksport aktualnej konfiguracji",
 			"import-config-confirm": "Czy na pewno chcesz importować nowe ustawienia? Spowoduje to nieodwracalne nadpisanie aktualnej konfiguracji.",
-			"script-torrent-done-enabled": "Gdy pobieranie torrenta zostanie ukończone uruchamiaj następujący skrypt:"
+			"script-torrent-done-enabled": "Gdy pobieranie torrenta zostanie ukończone uruchamiaj następujący skrypt:",
+			"ipinfo": "Token ipinfo.io"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -399,6 +400,11 @@
 				"1": "Wysoki",
 				"-1": "Niski"
 			},
+			"filter-template-text": {
+				"1": "Wszystkie",
+				"2": "Plik 'padding' BitComet",
+				"3": "Niepotrzebne pliki"
+			},
 			"label": {
 				"name": "Nazwa:",
 				"addedDate": "Data dodania:",
@@ -430,6 +436,7 @@
 				"button-allow": "Pobierz zaznaczone pliki",
 				"button-deny": "Pomiń zaznaczone pliki",
 				"button-priority": "Ustaw priorytet",
+				"button-filter": "Wyszukaj pliki według wyrażeń regularnych",
 				"button-tracker-add": "Dodaj nowy tracker",
 				"button-tracker-edit": "Edytuj tracker",
 				"button-tracker-remove": "Usuń tracker"
