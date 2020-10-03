@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="tr-web-control/style/base.css?v=20200914" />
 	<link rel="stylesheet" type="text/css" href="tr-web-control/script/easyui/themes/icon.css?v=20200914" />
 	<link rel="stylesheet" type="text/css" href="tr-web-control/style/icon.custom.css?v=20200914" />
-	<link rel="stylesheet" type="text/css" href="tr-web-control/style/iconfont/iconfont.css?v=20200914" />
+	<link rel="stylesheet" type="text/css" href="tr-web-control/style/iconfont/iconfont.css?v=20201001" />
 	<!-- <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_584244_g4d8d6qr58nnrk9.css"/> -->
 
 	<!-- Base class library -->
@@ -34,8 +34,8 @@
 	<script type="text/javascript" src="tr-web-control/script/min/public.min.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/script/other/ua-parser.min.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/script/min/transmission.min.js?v=20200914"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20200914"></script>
-	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20200914"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/transmission.torrents.min.js?v=20201001"></script>
+	<script type="text/javascript" src="tr-web-control/script/min/system.min.js?v=20201001"></script>
 	<script type="text/javascript" src="tr-web-control/config.js?v=20200914"></script>
 	<script type="text/javascript" src="tr-web-control/plugin.js?v=20200914"></script>
 	<script type="text/javascript">
@@ -125,6 +125,10 @@
 					<!-- 设置下载目录 -->
 					<a id="toolbar_changeDownloadDir" href="javascript:void(0);" class="easyui-linkbutton"
 						data-options="iconCls:'iconfont tr-icon-folder-change',plain:true,disabled:true"></a>
+					<!-- 设置上传下载限制 -->
+					<a id="toolbar_changeSpeedLimit" href="javascript:void(0);" class="easyui-linkbutton"
+					data-options="iconCls:'iconfont tr-icon-speedlimit',plain:true,disabled:true"></a>
+					
 					<!-- 复制下载目录 -->
 					<a id="toolbar_copyPath" href="javascript:void(0);" class="easyui-linkbutton"
 						data-options="iconCls:'iconfont tr-icon-clippy',plain:true,disabled:true" data-clipboard-action="copy"

@@ -122,7 +122,7 @@ var system = {
 			if (result) {
 				system.lang = $.extend(true, system.defaultLang, result);
 			}
-			
+
 			system.resetLangText();
 			// Set the easyui language
 			$.getScript(system.rootPath + "script/easyui/locale/easyui-lang-" + lang + ".js")
@@ -367,17 +367,17 @@ var system = {
 		// End
 
 		// 取消选择所有已选中的种子
-		$("#button-cancel-checked").on("click", function(){
+		$("#button-cancel-checked").on("click", function () {
 			system.control.torrentlist.datagrid("uncheckAll");
 		});
 
 		// 树型目录事件
 		this.panel.left.tree({
-			onExpand: function(node) {
+			onExpand: function (node) {
 				system.config.ui.status.tree[node.id] = node.state;
 				system.saveConfig();
 			},
-			onCollapse: function(node) {
+			onCollapse: function (node) {
 				system.config.ui.status.tree[node.id] = node.state;
 				system.saveConfig();
 			}
@@ -389,7 +389,7 @@ var system = {
 				system.config.ui.status.layout.body[region] = "open";
 				system.saveConfig();
 			},
-			onCollapse: function(region) {
+			onCollapse: function (region) {
 				system.config.ui.status.layout.body[region] = "closed";
 				system.saveConfig();
 			}
@@ -400,7 +400,7 @@ var system = {
 				system.config.ui.status.layout.left[region] = "open";
 				system.saveConfig();
 			},
-			onCollapse: function(region) {
+			onCollapse: function (region) {
 				system.config.ui.status.layout.left[region] = "closed";
 				system.saveConfig();
 			}
@@ -411,13 +411,13 @@ var system = {
 				system.config.ui.status.layout.main[region] = "open";
 				system.saveConfig();
 			},
-			onCollapse: function(region) {
+			onCollapse: function (region) {
 				system.config.ui.status.layout.main[region] = "closed";
 				system.saveConfig();
 			}
 		});
 	},
-	layoutResize: function(target, size) {
+	layoutResize: function (target, size) {
 		if (!system.uiIsInitialized) return;
 		if (system.config.ui.status.size[target]) {
 			system.config.ui.status.size[target] = size;
@@ -535,7 +535,8 @@ var system = {
 				id: "warning",
 				text: this.lang.tree.warning,
 				iconCls: "iconfont tr-icon-warning"
-			}]}
+			}]
+		}
 		];
 
 		var navContents = {
@@ -560,7 +561,7 @@ var system = {
 					text: this.lang.tree.status.loading,
 					iconCls: "tree-loading"
 				}]
-			}, 
+			},
 			"statistics": {
 				id: "statistics",
 				text: this.lang.tree.statistics.title,
@@ -634,7 +635,7 @@ var system = {
 				}
 			}
 		}
-		
+
 		this.panel.left.tree({
 			data: items,
 			onSelect: function (node) {
@@ -649,14 +650,14 @@ var system = {
 	/**
 	 * 初始化界面状态
 	 */
-	initUIStatus: function() {
+	initUIStatus: function () {
 		if (this.uiIsInitialized) return;
 		system.uiIsInitialized = true;
 		var status = this.lastUIStatus.tree;
 		for (var key in status) {
 			var node = this.panel.left.tree("find", key);
 			if (node && node.target) {
-				if (status[key]=="open") {
+				if (status[key] == "open") {
 					this.panel.left.tree("expand", node.target);
 				} else {
 					this.panel.left.tree("collapse", node.target);
@@ -674,7 +675,7 @@ var system = {
 		if (this.config.defaultSelectNode) {
 			var node = this.panel.left.tree("find", this.config.defaultSelectNode);
 			// 当不显示目录时，如果最后选择的为目录，则显示所有种子；
-			if (node && (this.config.foldersShow || this.config.defaultSelectNode.indexOf("folders")==-1)) {
+			if (node && (this.config.foldersShow || this.config.defaultSelectNode.indexOf("folders") == -1)) {
 				this.panel.left.tree("select", node.target);
 			} else {
 				node = this.panel.left.tree("find", "torrent-all");
@@ -696,7 +697,7 @@ var system = {
 		// 恢复展开状态
 		status = this.lastUIStatus.layout.body;
 		for (var key in status) {
-			if (status[key]=="open") {
+			if (status[key] == "open") {
 				this.panel.layout_body.layout("expand", key);
 			} else {
 				this.panel.layout_body.layout("collapse", key);
@@ -705,7 +706,7 @@ var system = {
 
 		status = this.lastUIStatus.layout.left;
 		for (var key in status) {
-			if (status[key]=="open") {
+			if (status[key] == "open") {
 				this.panel.layout_left.layout("expand", key);
 			} else {
 				this.panel.layout_left.layout("collapse", key);
@@ -714,7 +715,7 @@ var system = {
 
 		status = this.lastUIStatus.layout.main;
 		for (var key in status) {
-			if (status[key]=="open") {
+			if (status[key] == "open") {
 				this.panel.main.layout("expand", key);
 			} else {
 				this.panel.main.layout("collapse", key);
@@ -729,7 +730,7 @@ var system = {
 		$.get(system.rootPath + "template/torrent-fields.json?time=" + (new Date()), function (data) {
 			var fields = data.fields;
 			var _fields = {}
-			for (var i=0;i<fields.length;i++) {
+			for (var i = 0; i < fields.length; i++) {
 				var item = fields[i];
 				_fields[item.field] = item;
 			}
@@ -755,7 +756,7 @@ var system = {
 				} else if (item["sortable"]) {
 					delete item["sortable"];
 				}
-				
+
 				item.title = system.lang.torrent.fields[item.field] || item.field;
 				system.setFieldFormat(item);
 			}
@@ -821,7 +822,7 @@ var system = {
 					}
 
 					// 当没有种子被选中时，选中当前行
-					if (system.checkedRows.length==0) {
+					if (system.checkedRows.length == 0) {
 						system.control.torrentlist.datagrid("checkRow", rowIndex);
 					}
 					e.preventDefault();
@@ -852,7 +853,7 @@ var system = {
 		}, "json");
 
 		// 刷新当前页数据
-		this.control.torrentlist.refresh = function() {
+		this.control.torrentlist.refresh = function () {
 			system.control.torrentlist.datagrid("getPager").find(".pagination-load").click();
 		};
 
@@ -931,12 +932,12 @@ var system = {
 
 		switch (type) {
 			case "torrent-list":
-				menus = new Array("start", "pause", "-", 
-										"rename", "remove", "recheck", "-", 
-										"morepeers", "changeDownloadDir", "copyPath", "-", 
-										"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom",
-										"magnetLink"
-										);
+				menus = new Array("start", "pause", "-",
+					"rename", "remove", "recheck", "-",
+					"morepeers", "changeDownloadDir", "copyPath", "-",
+					"menu-queue-move-top", "menu-queue-move-up", "menu-queue-move-down", "menu-queue-move-bottom",
+					"magnetLink"
+				);
 
 				// 是否显示标签菜单
 				if (this.config.nav.labels) {
@@ -988,7 +989,7 @@ var system = {
 					"data-clipboard-action": "copy",
 					"data-clipboard-target": "#clipboard-source"
 				});
-    			var clipboard = new ClipboardJS(btn.get(0));
+				var clipboard = new ClipboardJS(btn.get(0));
 
 				break;
 		}
@@ -1006,15 +1007,15 @@ var system = {
 	 * @param parent 父节点
 	 * @return 菜单对象
 	 */
-	getContentMenuWithKey: function(key, parent) {
+	getContentMenuWithKey: function (key, parent) {
 		switch (key) {
 			case "setLabels":
 				return {
 					id: "setLabels",
 					text: system.lang.menus.setLabels,
 					iconCls: "iconfont tr-icon-labels",
-					disabled: this.checkedRows.length==0,
-					onclick: function() {
+					disabled: this.checkedRows.length == 0,
+					onclick: function () {
 						var rows = system.checkedRows;
 						var values = new Array();
 						for (var i in rows) {
@@ -1036,15 +1037,15 @@ var system = {
 					}
 				};
 			case "magnetLink":
-				return{
+				return {
 					id: "magnetLink",
 					text: system.lang.menus.copyMagnetLink,
 					iconCls: "iconfont tr-icon-labels",
-					disabled: this.checkedRows.length==0,
-					onclick: function() {
-						system.getTorrentMagnetLink(function(data){
+					disabled: this.checkedRows.length == 0,
+					onclick: function () {
+						system.getTorrentMagnetLink(function (data) {
 							system.copyToClipboard(data);
-							parent.css("display","block"); // 防止第一次复制碰链失败
+							parent.css("display", "block"); // 防止第一次复制碰链失败
 						});
 					}
 				}
@@ -1056,10 +1057,10 @@ var system = {
 	 * @param hashString 种子的hash值
 	 * @return 返回一组标签内容
 	 */
-	formetTorrentLabels: function(ids, hashString) {
+	formetTorrentLabels: function (ids, hashString) {
 		var box = $("<div style='position: relative;'/>");
 		if (ids) {
-			if (typeof(ids)=="string") {
+			if (typeof (ids) == "string") {
 				ids = ids.split(",");
 			}
 
@@ -1074,8 +1075,8 @@ var system = {
 				}
 			}
 		}
-		
-		var button = $("<button onclick='javascript:system.setTorrentLabels(this,\""+hashString+"\");' data-options=\"iconCls:'iconfont tr-icon-labels',plain:true\" class=\"easyui-linkbutton user-label-set\"/>").appendTo(box);
+
+		var button = $("<button onclick='javascript:system.setTorrentLabels(this,\"" + hashString + "\");' data-options=\"iconCls:'iconfont tr-icon-labels',plain:true\" class=\"easyui-linkbutton user-label-set\"/>").appendTo(box);
 		button.linkbutton();
 		button.find("span").first().attr({
 			"title": system.lang.dialog["torrent-setLabels"].title
@@ -1085,7 +1086,7 @@ var system = {
 	/**
 	 * 快速设置当前种子标签
 	 */
-	setTorrentLabels: function(button, hashString) {
+	setTorrentLabels: function (button, hashString) {
 		system.openDialogFromTemplate({
 			id: "dialog-torrent-setLabels",
 			options: {
@@ -1112,10 +1113,10 @@ var system = {
 		this.showCheckedInStatus();
 		// 是否全选或反选
 		if (rowIndex == "all") {
-			if (this.control.torrentlist.datagrid("getRows").length==0) {
+			if (this.control.torrentlist.datagrid("getRows").length == 0) {
 				return;
 			}
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: rowData
 			});
 
@@ -1125,20 +1126,20 @@ var system = {
 			this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
 			return;
 		}
-		
+
 		// 如果没有被选中的数据时
 		if (this.checkedRows.length == 0) {
 			// 禁用所有菜单
-			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: true
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
 			return;
 
-		// 当仅有一条数据被选中时
+			// 当仅有一条数据被选中时
 		} else if (this.checkedRows.length == 1) {
 			// 设置 删除、改名、变更保存目录、移动队列功能可用
-			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
@@ -1175,9 +1176,9 @@ var system = {
 					break;
 			}
 
-		// 多条数据被选中时
+			// 多条数据被选中时
 		} else {
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			$("#toolbar_rename, #toolbar_morepeers", this.panel.toolbar).linkbutton({
@@ -1189,8 +1190,8 @@ var system = {
 	/**
 	 * 显示已选中的内容
 	 */
-	showCheckedInStatus: function() {
-		if (this.checkedRows.length>0) {
+	showCheckedInStatus: function () {
+		if (this.checkedRows.length > 0) {
 			this.panel.status_text.empty();
 			this.showStatus(undefined, 0);
 			var items = [];
@@ -1199,8 +1200,8 @@ var system = {
 			$("<div style='padding: 5px;'/>").html(text).appendTo(this.panel.status_text);
 			for (var index = 0; index < this.checkedRows.length; index++) {
 				var item = this.checkedRows[index];
-				items.push({value: index, text: (index+1)+". "+item.name});
-				if ($.inArray(item.downloadDir, paths)===-1) {
+				items.push({ value: index, text: (index + 1) + ". " + item.name });
+				if ($.inArray(item.downloadDir, paths) === -1) {
 					paths.push(item.downloadDir);
 				}
 			}
@@ -1225,7 +1226,7 @@ var system = {
 		// Create a "hidden" input
 		var id = "copy_to_clipboard_textarea";
 		var aux = document.getElementById(id);
-		if(!aux) aux = document.createElement("textarea"); // <input/> 不接受换行
+		if (!aux) aux = document.createElement("textarea"); // <input/> 不接受换行
 		aux.id = id;
 		aux.style.display = "block";
 		// Assign it the value of the specified element
@@ -1277,9 +1278,9 @@ var system = {
 				system.saveConfig();
 
 				$(this).linkbutton({
-						text: (system.config.autoReload ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
-						iconCls: (system.config.autoReload ? "icon-enabled" : "icon-disabled")
-					})
+					text: (system.config.autoReload ? system.lang.toolbar["autoreload-enabled"] : system.lang.toolbar["autoreload-disabled"]),
+					iconCls: (system.config.autoReload ? "icon-enabled" : "icon-disabled")
+				})
 					.attr("title", (system.config.autoReload ? system.lang.toolbar.tip["autoreload-disabled"] : system.lang.toolbar.tip["autoreload-enabled"]));
 			});
 
@@ -1482,6 +1483,35 @@ var system = {
 				});
 			});
 
+		this.panel.toolbar
+			.find("#toolbar_changeSpeedLimit")
+			.linkbutton({
+				disabled: true,
+			})
+			.attr("title", this.lang.toolbar.tip["change-speedlimit"])
+			.click(function () {
+				var rows = system.control.torrentlist.datagrid("getChecked");
+				var ids = new Array();
+				for (var i in rows) {
+					ids.push(rows[i].id);
+				}
+				if (ids.length == 0) return;
+
+				system.openDialogFromTemplate({
+					id: "dialog-torrent-changeSpeedLimit",
+					options: {
+						title: system.lang.dialog["torrent-changeSpeedLimit"].title,
+						width: 600,
+						height: 200,
+						resizable: true,
+					},
+					datas: {
+						ids: ids,
+					},
+					type: 0,
+				});
+			});
+
 		// Speed limit
 		this.panel.toolbar.find("#toolbar_alt_speed")
 			.linkbutton()
@@ -1502,7 +1532,7 @@ var system = {
 					if (data.result == "success") {
 						system.serverConfig["alt-speed-enabled"] = enabled;
 						button.linkbutton({
-							iconCls: "iconfont tr-icon-" + (enabled?"woniu":"rocket")//"icon-alt-speed-" + enabled.toString()
+							iconCls: "iconfont tr-icon-" + (enabled ? "woniu" : "rocket")//"icon-alt-speed-" + enabled.toString()
 						});
 						if (enabled) {
 							$("#status_alt_speed").show();
@@ -1677,7 +1707,7 @@ var system = {
 	/**
 	 * 重置导航栏种子状态信息
 	 */
-	resetNavTorrentStatus: function() {
+	resetNavTorrentStatus: function () {
 		var currentTorrentId = this.currentTorrentId;
 		// Paused
 		if (transmission.torrents.status[transmission._status.stopped]) {
@@ -1792,7 +1822,7 @@ var system = {
 	/**
 	 * 重置导航栏服务器信息
 	 */
-	resetNavServers: function(oldInfos) {
+	resetNavServers: function (oldInfos) {
 		// 获取服务器分布主节点
 		var serversNode = this.panel.left.tree("find", "servers");
 		if (!this.config.nav.servers) {
@@ -1801,7 +1831,7 @@ var system = {
 			}
 			return;
 		}
-		
+
 		if (serversNode) {
 			var serversNode_collapsed = serversNode.state;
 			this.removeTreeNode("servers-loading");
@@ -1817,7 +1847,7 @@ var system = {
 
 		var datas = new Array();
 		var BTServersNode = this.panel.left.tree("find", "btservers");
-		var BTServersNodeState = (BTServersNode?BTServersNode.state:"close");
+		var BTServersNodeState = (BTServersNode ? BTServersNode.state : "close");
 
 		// 先添加一个“BT”目录节点，用于增加BT服务器列表
 		if (!BTServersNode && system.config.showBTServers) {
@@ -1844,7 +1874,7 @@ var system = {
 			if (node) {
 				system.updateTreeNodeText(tracker.nodeid, text, (tracker.connected ? "iconfont tr-icon-server" : "iconfont tr-icon-server-error"));
 			} else {
-				system.appendTreeNode((tracker.isBT? BTServersNode: serversNode), [{
+				system.appendTreeNode((tracker.isBT ? BTServersNode : serversNode), [{
 					id: tracker.nodeid,
 					text: text,
 					iconCls: (tracker.connected ? "iconfont tr-icon-server" : "iconfont tr-icon-server-error")
@@ -1873,7 +1903,7 @@ var system = {
 	/**
 	 * 重置导航栏数据统计信息
 	 */
-	resetNavStatistics: function() {
+	resetNavStatistics: function () {
 		if (!this.config.nav.statistics) {
 			var node = this.panel.left.tree("find", "statistics");
 			if (node) {
@@ -1904,7 +1934,7 @@ var system = {
 	/**
 	 * 重置导航栏数据目录信息
 	 */
-	resetNavFolders: function(oldInfos) {
+	resetNavFolders: function (oldInfos) {
 		if (!this.config.nav.folders) {
 			this.initUIStatus();
 			var node = this.panel.left.tree("find", "folders");
@@ -1924,7 +1954,7 @@ var system = {
 	/**
 	 * 重置导航栏用户标签信息
 	 */
-	resetNavLabels: function(clear) {
+	resetNavLabels: function (clear) {
 		if (!this.config.nav.labels) {
 			var node = this.panel.left.tree("find", "labels");
 			if (node) {
@@ -1934,7 +1964,7 @@ var system = {
 		}
 
 		if (clear) {
-			var items = this.panel.left.tree("getChildren", this.panel.left.tree("find","labels").target);
+			var items = this.panel.left.tree("getChildren", this.panel.left.tree("find", "labels").target);
 			for (var index = 0; index < items.length; index++) {
 				this.panel.left.tree("remove", items[index].target);
 			}
@@ -2095,7 +2125,7 @@ var system = {
 		switch (parent.id) {
 			case "servers":
 			case "btservers":
-				if (config.node.id=="btservers") {
+				if (config.node.id == "btservers") {
 					torrents = transmission.torrents.btItems;
 				} else {
 					torrents = transmission.trackers[config.node.id].torrents;
@@ -2163,7 +2193,7 @@ var system = {
 									torrents = [];
 									for (var index = 0; index < folder.torrents.length; index++) {
 										var element = folder.torrents[index];
-										if (element.downloadDir.replace(/[\\|\/]/g,"")==config.node.path) {
+										if (element.downloadDir.replace(/[\\|\/]/g, "") == config.node.path) {
 											torrents.push(element);
 										}
 									}
@@ -2175,7 +2205,7 @@ var system = {
 							for (var key in transmission.torrents.all) {
 								var item = transmission.torrents.all[key];
 								var labels = this.config.labelMaps[item.hashString];
-								if (labels && $.inArray(labelIndex, labels)!=-1) {
+								if (labels && $.inArray(labelIndex, labels) != -1) {
 									torrents.push(item);
 								}
 							}
@@ -2219,7 +2249,7 @@ var system = {
 			if (labels) {
 				data.labels = labels;
 			}
-			
+
 			//data.leecherCount = torrents[index].leecher;
 			/*
 			datas.push({
@@ -2249,7 +2279,8 @@ var system = {
 		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
+	this.panel.toolbar.find("#toolbar_changeSpeedLimit").linkbutton({disabled:true});
+	this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
 		this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
 		*/
 
@@ -2259,24 +2290,24 @@ var system = {
 	/**
 	 * shift 键选择
 	 */
-	initShiftCheck: function() {
+	initShiftCheck: function () {
 		var items = $('#m_list div.datagrid-cell-check input:checkbox');
 		var eventName = "click.Shift";
 		items.off(eventName);
 		var lastChecked = null;
 		var torrentlist = this.control.torrentlist;
-		items.on(eventName, function(e) {
-      if (!lastChecked) {
-        lastChecked = this;
-        return;
-      }
+		items.on(eventName, function (e) {
+			if (!lastChecked) {
+				lastChecked = this;
+				return;
+			}
 
-      if (e.shiftKey) {
-        var start = items.index(this);
-        var end = items.index(lastChecked);
-        var checked = lastChecked.checked;
-        var startIndex = Math.min(start, end);
-        var endIndex = Math.max(start, end) + 1;
+			if (e.shiftKey) {
+				var start = items.index(this);
+				var end = items.index(lastChecked);
+				var checked = lastChecked.checked;
+				var startIndex = Math.min(start, end);
+				var endIndex = Math.max(start, end) + 1;
 				for (var index = startIndex; index < endIndex; index++) {
 					if (checked) {
 						torrentlist.datagrid("checkRow", index);
@@ -2284,10 +2315,10 @@ var system = {
 						torrentlist.datagrid("uncheckRow", index);
 					}
 				}
-      }
+			}
 
-      lastChecked = this;
-    });
+			lastChecked = this;
+		});
 	},
 	// Update torrent list current page data
 	updateTorrentCurrentPageDatas: function (currentTypeDatas) {
@@ -2470,16 +2501,16 @@ var system = {
 				className = "torrent-progress-error";
 			}
 		}
-		if (status==transmission._status.check) {
+		if (status == transmission._status.check) {
 			// 目前只有status==_status.download时 torrent 不是对象
 			// 检查进度条长度保持在已完成的范围内
 			var percentCheckText = parseFloat(torrent.recheckProgress * 100).toFixed(2);
 			var percentCheckView = parseFloat(progress * torrent.recheckProgress).toFixed(2);
-			return	'<div class="torrent-progress" title="' + progress + '%">'+
-						'<div class="torrent-progress-text" style="z-index:2;">' + percentCheckText + '%</div>'+
-						'<div class="torrent-progress-bar torrent-progress-seed" style="width:' + percentCheckView + '%;z-index:1;opacity:0.7;"></div>'+
-						'<div class="torrent-progress-bar ' + className +     '" style="width:' + progress +     '%;"></div>'+
-					'</div>';
+			return '<div class="torrent-progress" title="' + progress + '%">' +
+				'<div class="torrent-progress-text" style="z-index:2;">' + percentCheckText + '%</div>' +
+				'<div class="torrent-progress-bar torrent-progress-seed" style="width:' + percentCheckView + '%;z-index:1;opacity:0.7;"></div>' +
+				'<div class="torrent-progress-bar ' + className + '" style="width:' + progress + '%;"></div>' +
+				'</div>';
 		}
 		progress = progress + "%";
 		return '<div class="torrent-progress" title="' + progress + '"><div class="torrent-progress-text">' + progress + '</div><div class="torrent-progress-bar ' + className + '" style="width:' + progress + ';"></div></div>';
@@ -2493,14 +2524,14 @@ var system = {
 			this.showStatus(this.lang.system.status.queuefinish);
 			//this.config.autoReload = true;
 			this.getServerStatus();
-			if(labels != null)
+			if (labels != null)
 				system.saveConfig();
 			return;
 		}
 		this.showStatus(this.lang.system.status.queue + (index + 1) + "/" + (count) + "<br/>" + url, 0);
 		transmission.addTorrentFromUrl(url, savepath, autostart, function (data) {
 			system.addTorrentsToServer(urls, count, autostart, savepath, labels);
-			if(labels != null && data.hashString != null)
+			if (labels != null && data.hashString != null)
 				system.saveLabelsConfig(data.hashString, labels);
 		});
 	},
@@ -2642,14 +2673,14 @@ var system = {
 			datas = datas.sort(arrayObjectSort(orderField, _options.sortOrder));
 		}
 
-		var isFileTable = (sourceTable.selector.indexOf("#torrent-files-table")!=-1);
+		var isFileTable = (sourceTable.selector.indexOf("#torrent-files-table") != -1);
 		var tableData = sourceTable.datagrid("getData");
-		var isFileFilterMode = isFileTable && !!tableData.filterString && tableData.torrentId==system.currentTorrentId;
-		if (isFileFilterMode){
+		var isFileFilterMode = isFileTable && !!tableData.filterString && tableData.torrentId == system.currentTorrentId;
+		if (isFileFilterMode) {
 			datas = fileFilter(datas, tableData.filterString);
 		}
 
-		if (isFileFilterMode==false && (rows.length == 0 || (datas.length != tableData.total))) {
+		if (isFileFilterMode == false && (rows.length == 0 || (datas.length != tableData.total))) {
 			sourceTable.datagrid({
 				loadFilter: pagerFilter,
 				pageNumber: 1,
@@ -2702,7 +2733,7 @@ var system = {
 					value = formatSize(value, true, "speed");
 					break;
 
-					// Size
+				// Size
 				case "totalSize":
 				case "uploadedEver":
 				case "leftUntilDone":
@@ -2710,18 +2741,18 @@ var system = {
 					value = formatSize(value);
 					break;
 
-					// Dates
+				// Dates
 				case "addedDate":
 				case "dateCreated":
 				case "doneDate":
 					value = formatLongTime(value);
 					break;
 
-					// status
+				// status
 				case "status":
 					value = system.lang.torrent["status-text"][value];
 					break;
-					// error
+				// error
 				case "error":
 					if (value == 0) {
 						system.panel.attribute.find("#torrent-attribute-tr-error").hide();
@@ -2731,15 +2762,15 @@ var system = {
 					break;
 
 				case "remainingTime":
-					if (value>=3153600000000) {
+					if (value >= 3153600000000) {
 						value = "∞";
 					} else {
 						value = getTotalTime(value);
 					}
-					
+
 					break;
 
-					// description
+				// description
 				case "comment":
 					value = system.replaceURI(value);
 					break;
@@ -2752,28 +2783,28 @@ var system = {
 		var pieceCount = torrent.pieceCount;
 		var pieceSize = torrent.pieceSize;
 		var piecesFlag = []; //inverted
-		while(piece < pieceCount) {
+		while (piece < pieceCount) {
 			var bset = pieces.codePointAt(piece >> 3);
-			for (var test=0x80; test > 0 && piece < pieceCount; test=test>>1, ++piece) {
-				piecesFlag.push((bset & test)?false:true);
+			for (var test = 0x80; test > 0 && piece < pieceCount; test = test >> 1, ++piece) {
+				piecesFlag.push((bset & test) ? false : true);
 			}
 		}
 		var MAXCELLS = 500;
-		
-		var piecePerCell = parseInt((MAXCELLS-1+pieceCount)/MAXCELLS);
+
+		var piecePerCell = parseInt((MAXCELLS - 1 + pieceCount) / MAXCELLS);
 		var cellSize = formatSize(pieceSize * piecePerCell);
-		var cellCount = parseInt((piecePerCell-1+pieceCount)/piecePerCell);
+		var cellCount = parseInt((piecePerCell - 1 + pieceCount) / piecePerCell);
 		var cell = 0;
 		var cells = '';
-		for (var cell = 0, piece = 0; cell < cellCount; ++ cell) {
+		for (var cell = 0, piece = 0; cell < cellCount; ++cell) {
 			var done = piecePerCell;
-			for (var i=0; i<piecePerCell; ++i,++piece) {
+			for (var i = 0; i < piecePerCell; ++i, ++piece) {
 				if (piecesFlag[piece]) --done;
 			}
-			var percent = parseInt(done*100/piecePerCell);
-			var rate = percent/100;
-			var ramp = parseInt((Math.pow(128, rate)-1)*100/127)/100;
-			cells += ('<i style="filter:saturate(' + ramp + ')" title="'+cellSize+' x '+percent+'%"></i>');
+			var percent = parseInt(done * 100 / piecePerCell);
+			var rate = percent / 100;
+			var ramp = parseInt((Math.pow(128, rate) - 1) * 100 / 127) / 100;
+			cells += ('<i style="filter:saturate(' + ramp + ')" title="' + cellSize + ' x ' + percent + '%"></i>');
 		}
 		system.panel.attribute.find("#torrent-attribute-pieces").html(cells);
 	},
@@ -2826,7 +2857,7 @@ var system = {
 						rowdata[key] = formatLongTime(stats[key]);
 						break;
 
-						// true/false
+					// true/false
 					case "lastAnnounceSucceeded":
 					case "lastAnnounceTimedOut":
 						rowdata[key] = system.lang.torrent.attribute["status"][stats[key]];
@@ -2859,37 +2890,37 @@ var system = {
 				rowdata[key] = item[key];
 			}
 
-      if (system.config.ipInfoToken !== '') {
-        let flag = '';
-        let ip = rowdata['address'];
+			if (system.config.ipInfoToken !== '') {
+				let flag = '';
+				let ip = rowdata['address'];
 
-        if (this.flags[ip] === undefined) {
-          let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
-          $.ajax({
-            type: "GET",
-            url: url
-          }).done((data) => {
-            if (data) {
-              flag = data.toLowerCase().trim();
-              this.flags[ip] = flag;
-              $("img.img_ip-"+ip).attr({
-                src: this.rootPath + 'style/flags/' + flag + '.png',
-                alt: flag,
-                title: flag
-              }).show();
-            }
-          });
-        } else {
-          flag = this.flags[ip];
-        }
-        let img = "";
-        if (flag) {
-          img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ';
-        } else {
-          img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
-        }
-        rowdata['address'] = img + ip;
-      }
+				if (this.flags[ip] === undefined) {
+					let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
+					$.ajax({
+						type: "GET",
+						url: url
+					}).done((data) => {
+						if (data) {
+							flag = data.toLowerCase().trim();
+							this.flags[ip] = flag;
+							$("img.img_ip-" + ip).attr({
+								src: this.rootPath + 'style/flags/' + flag + '.png',
+								alt: flag,
+								title: flag
+							}).show();
+						}
+					});
+				} else {
+					flag = this.flags[ip];
+				}
+				let img = "";
+				if (flag) {
+					img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ';
+				} else {
+					img = '<img src="" class="img_ip-' + ip + '" style="display:none;"> ';
+				}
+				rowdata['address'] = img + ip;
+			}
 
 			// 使用同类已有的翻译文本
 			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
@@ -2990,16 +3021,16 @@ var system = {
 				case "ratio":
 					field.formatter = function (value, row, index) {
 						var className = '';
-						if (parseFloat(value) < 1 && value!=-1) {
+						if (parseFloat(value) < 1 && value != -1) {
 							className = 'text-status-warning';
 						}
-						return '<span class="' + className + '">' + (value==-1?"∞":value) + '</span>';
+						return '<span class="' + className + '">' + (value == -1 ? "∞" : value) + '</span>';
 					};
 					break;
 
 				case "remainingTime":
 					field.formatter = function (value, row, index) {
-						if (value>=3153600000000) {
+						if (value >= 3153600000000) {
 							return "∞";
 						}
 						return getTotalTime(value);
@@ -3007,13 +3038,13 @@ var system = {
 					break;
 
 				case "labels":
-					field.formatter = function(value, row, index) {
+					field.formatter = function (value, row, index) {
 						return system.formetTorrentLabels(value, row.hashString);
 					}
 					break;
-				
+
 				case "color":
-					field.formatter = function(value, row, index) {
+					field.formatter = function (value, row, index) {
 						var box = $("<span class='user-label'/>").html(value).css({
 							"background-color": value,
 							"color": (getGrayLevel(value) > 0.5 ? "#000" : "#fff")
@@ -3026,8 +3057,8 @@ var system = {
 	},
 	// Reload the data		
 	reloadData: function () {
-		if (this.popoverCount>0) {
-			setTimeout(function(){
+		if (this.popoverCount > 0) {
+			setTimeout(function () {
 				system.reloadData();
 			}, 2000);
 			return;
@@ -3078,7 +3109,7 @@ var system = {
 
 		var rootkey = "folders";
 		var parentkey = rootkey;
-		var folder = fullkey.replace(/\\/g,"/").split("/");
+		var folder = fullkey.replace(/\\/g, "/").split("/");
 		var key = rootkey + "-";
 		var path = "";
 		for (var i in folder) {
@@ -3089,7 +3120,7 @@ var system = {
 			//key += "--" + text.replace(/\./g,"。") + "--";
 			path += name;
 			var _key = this.B64.encode(name);
-			key += _key.replace(/[+|\/|=]/g,"0");
+			key += _key.replace(/[+|\/|=]/g, "0");
 			var node = this.panel.left.tree("find", key);
 			var folderinfos = transmission.torrents.folders[key];
 			if (folderinfos) {
@@ -3146,9 +3177,9 @@ var system = {
 		this.saveUserConfig();
 	},
 	// Save labels config for torrent if need
-	saveLabelsConfig: function(hash, labels){
-		if(system.config.nav.labels){
-			if (labels.length==0) {
+	saveLabelsConfig: function (hash, labels) {
+		if (system.config.nav.labels) {
+			if (labels.length == 0) {
 				delete system.config.labelMaps[hash];
 			} else {
 				system.config.labelMaps[hash] = labels;
@@ -3183,23 +3214,23 @@ var system = {
 			dataType: "json",
 			success: function (result) {
 				if (result && result.tag_name) {
-					var update = result.created_at.substr(0,10).replace(/-/g,"");
+					var update = result.created_at.substr(0, 10).replace(/-/g, "");
 					var version = result.tag_name;
-					if ($.inArray(version, system.config.ignoreVersion)!=-1) {
+					if ($.inArray(version, system.config.ignoreVersion) != -1) {
 						return;
 					}
 					if (system.codeupdate < update) {
 						$("#area-update-infos").show();
 						$("#msg-updateInfos").html(update + " -> " + result.name);
 						var content = $("<div/>");
-						var html = result.body.replace(/\r\n/g,"<br/>");
+						var html = result.body.replace(/\r\n/g, "<br/>");
 
 						var toolbar = $("<div style='text-align:right;'/>").appendTo(content);
-						$('<a href="https://github.com/ronggang/transmission-web-control/releases/latest" target="_blank" class="easyui-linkbutton" data-options="iconCls:\'iconfont tr-icon-github\'"/>').html(result.name + " ("+update+")").appendTo(toolbar).linkbutton();
+						$('<a href="https://github.com/ronggang/transmission-web-control/releases/latest" target="_blank" class="easyui-linkbutton" data-options="iconCls:\'iconfont tr-icon-github\'"/>').html(result.name + " (" + update + ")").appendTo(toolbar).linkbutton();
 						$("<span/>").html(" ").appendTo(toolbar);
 						$('<a href="https://github.com/ronggang/transmission-web-control/wiki" target="_blank" class="easyui-linkbutton" data-options="iconCls:\'iconfont tr-icon-help\'"/>').html(system.lang["public"]["text-how-to-update"]).appendTo(toolbar).linkbutton();
 						$("<span/>").html(" ").appendTo(toolbar);
-						$('<button onclick="javascript:system.addIgnoreVersion(\''+version+'\');" class="easyui-linkbutton" data-options="iconCls:\'iconfont tr-icon-cancel-checked\'"/>').html(system.lang["public"]["text-ignore-this-version"]).appendTo(toolbar).linkbutton();
+						$('<button onclick="javascript:system.addIgnoreVersion(\'' + version + '\');" class="easyui-linkbutton" data-options="iconCls:\'iconfont tr-icon-cancel-checked\'"/>').html(system.lang["public"]["text-ignore-this-version"]).appendTo(toolbar).linkbutton();
 						$("<hr/>").appendTo(content);
 						$("<div/>").html(html).appendTo(content);
 
@@ -3214,8 +3245,8 @@ var system = {
 			}
 		});
 	},
-	addIgnoreVersion: function(version) {
-		if ($.inArray(version, system.config.ignoreVersion)==-1) {
+	addIgnoreVersion: function (version) {
+		if ($.inArray(version, system.config.ignoreVersion) == -1) {
 			this.config.ignoreVersion.push(version);
 			this.saveConfig();
 		}
@@ -3266,15 +3297,15 @@ var system = {
 				});
 			}
 
-			if (config.type==0 && dialog.attr("type")==config.type) {
+			if (config.type == 0 && dialog.attr("type") == config.type) {
 				dialog.dialog("open");
 				dialog.dialog({
 					content: system.templates[dialogId]
 				});
 				return;
 			} else {
-				if (system.popoverCount!=0) {
-					setTimeout(function(){
+				if (system.popoverCount != 0) {
+					setTimeout(function () {
 						system.openDialogFromTemplate(config);
 					}, 350);
 					return;
@@ -3298,7 +3329,7 @@ var system = {
 			"id": dialogId,
 			"type": config.type
 		}).appendTo(document.body);
-		if (config.type==0) {
+		if (config.type == 0) {
 			dialog.dialog(options);
 		} else {
 			dialog.css({
@@ -3309,10 +3340,10 @@ var system = {
 			$(config.source).webuiPopover({
 				url: '#' + dialogId,
 				title: options.title,
-				width: options.width, 
-				height: options.height -18,
+				width: options.width,
+				height: options.height - 18,
 				padding: false,
-				onHide: function(e) {
+				onHide: function (e) {
 					$(config.source).webuiPopover("destroy");
 					$("#" + dialogId).remove();
 					$(e).remove();
@@ -3321,7 +3352,7 @@ var system = {
 						config.onClose(config.source);
 					}
 				},
-				onShow: function() {
+				onShow: function () {
 					system.popoverCount++;
 				}
 			});
@@ -3335,7 +3366,7 @@ var system = {
 				});
 			}
 
-			if (config.type==0) {
+			if (config.type == 0) {
 				$("#" + dialogId).dialog({
 					content: data
 				});
@@ -3382,21 +3413,21 @@ var system = {
 	/**
 	 * 根据指定的文本获取有效的树形目录Key
 	 */
-	getValidTreeKey: function(text) {
+	getValidTreeKey: function (text) {
 		if (!text) return "";
 		var _key = this.B64.encode(text);
-		return _key.replace(/[+|\/|=]/g,"0");
+		return _key.replace(/[+|\/|=]/g, "0");
 	}
 };
 
 $(document).ready(function () {
 	// Loads the default language content
-	$.getJSON(system.rootPath + "i18n/en.json").done(function(result){
+	$.getJSON(system.rootPath + "i18n/en.json").done(function (result) {
 		system.defaultLang = result;
 	});
 
 	// Loads a list of available languages
-	$.getJSON(system.rootPath + "i18n.json").done(function(result){
+	$.getJSON(system.rootPath + "i18n.json").done(function (result) {
 		system.languages = result;
 		system.init(location.search.getQueryString("lang"), location.search.getQueryString("local"));
 	});
@@ -3405,8 +3436,8 @@ $(document).ready(function () {
 function fileFilter(dataRows, filterString) {
 	var filter = new RegExp(filterString || ".*");
 	var rawDataFiltered = new Array;
-	for (var j=0;j<dataRows.length;++j){
-		if (filter.test(dataRows[j].name)){
+	for (var j = 0; j < dataRows.length; ++j) {
+		if (filter.test(dataRows[j].name)) {
 			rawDataFiltered.push(dataRows[j]);
 		}
 	}
@@ -3415,27 +3446,27 @@ function fileFilter(dataRows, filterString) {
 
 function restoreFileFilterInputbox(defaultFilter) {
 	var langText = system.lang.torrent.attribute["filter-template-text"];
-	var filterTemplate =[{
-							"id":1,
-							"text": langText ? langText["1"] : "All",
-							"desc":".*"
-						},{
-							"id":2,
-							"text": langText ? langText["2"] : "BitComet padding file",
-							"desc":"____padding_file"
-						},{
-							"id":3,
-							"text": langText ? langText["3"] : "Unnecessary files",
-							"desc":"(.*\\.(url|lnk)$)|(RARBG_DO_NOT_MIRROR\\.exe)|(____padding_file)"
-						}];
+	var filterTemplate = [{
+		"id": 1,
+		"text": langText ? langText["1"] : "All",
+		"desc": ".*"
+	}, {
+		"id": 2,
+		"text": langText ? langText["2"] : "BitComet padding file",
+		"desc": "____padding_file"
+	}, {
+		"id": 3,
+		"text": langText ? langText["3"] : "Unnecessary files",
+		"desc": "(.*\\.(url|lnk)$)|(RARBG_DO_NOT_MIRROR\\.exe)|(____padding_file)"
+	}];
 	$('<input id="torrent-files-filter-string" style="width:300px;">').insertAfter("#torrent-files-filter").combobox({
 		valueField: 'desc',
 		textField: 'desc',
 		panelWidth: 400,
 		panelHeight: 'auto',
-		formatter: function(row){
-			var s = '<span style="font-weight:bold; padding:3px;">'+row.text+'</span><br/>'+
-					'<span style="padding-left:10px;">'+row.desc+'</span>';
+		formatter: function (row) {
+			var s = '<span style="font-weight:bold; padding:3px;">' + row.text + '</span><br/>' +
+				'<span style="padding-left:10px;">' + row.desc + '</span>';
 			return s;
 		}
 	}).combobox("loadData", filterTemplate).combobox("setValue", defaultFilter);
@@ -3452,12 +3483,12 @@ function pagerFilter(data) {
 		}
 	}
 
-	isFileData = this.id=="torrent-files-table";
+	isFileData = this.id == "torrent-files-table";
 	if (isFileData) {
 		var fileFilterString = $("#torrent-files-filter-string").val();
-		filterChanged = ( (data.filterString!==fileFilterString) || 
-						  (data.filterString && data.originalRows.length==data.unfilteredRows.length)
-						);
+		filterChanged = ((data.filterString !== fileFilterString) ||
+			(data.filterString && data.originalRows.length == data.unfilteredRows.length)
+		);
 		if (filterChanged) {
 			data.torrentId = system.currentTorrentId;
 			var rawData = (data.unfilteredRows) || (data.originalRows) || (data.rows);
@@ -3470,7 +3501,7 @@ function pagerFilter(data) {
 			data.filterString = fileFilterString;
 		}
 	}
-	
+
 	var dg = $(this);
 	var opts = dg.datagrid('options');
 	var pager = dg.datagrid('getPager');
@@ -3496,10 +3527,10 @@ function pagerFilter(data) {
 	data.rows = (data.originalRows.slice(start, end));
 
 	if (buttons && buttons.length) {
-		for (var i=0;i<buttons.length;i++) {
+		for (var i = 0; i < buttons.length; i++) {
 			var button = buttons[i];
 			if (button.id && button.title) {
-				$("#"+button.id, pager).attr("title", button.title);
+				$("#" + button.id, pager).attr("title", button.title);
 			}
 		}
 	}
