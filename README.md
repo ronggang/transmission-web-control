@@ -10,6 +10,9 @@
 ----
 ## [English Introduction](https://github.com/ronggang/transmission-web-control/wiki)
 
+## 国内镜像源
+- https://gitee.com/culturist/transmission-web-control
+
 ## 关于
 本项目主要目的是想加强[Transmission](https://www.transmissionbt.com/) Web的操作能力，本项目原本在[Google Code](https://code.google.com/p/transmission-control/)托管，现迁移至GitHub。
 本项目设计之初仅针对PT站，因此增加了 Tracker 服务器分组及状态，但这不并适用于普通BT种子。
