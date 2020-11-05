@@ -264,6 +264,16 @@
 			"set-error": "set error!",
 			"recheck-data": "Recheck data."
 		},
+		"torrent-changeSpeedLimit": {
+	      		"title": "Set torrents Max download speed and Max upload speed",		  
+		  	"downloadLimited": "Max global download speed:",
+		  	"uploadLimited": "Max global upload speed:",
+	      		"peer-limit": "Maximum peers for this torrent:",
+		  	"seedRatioMode": "Seed ratio for torrents to use:",
+		  	"seedIdleMode": "Torrents we're seeding will be stopped if they're idle for this long:",
+		  	"doneDate": "Finish Time:",
+		  	"seedTime": "Seed Time:"
+	    	},
 		"system-replaceTracker": {
 			"title": "Replace Trackers",
 			"old-tracker": "Old tracker:",
