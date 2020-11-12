@@ -1,0 +1,266 @@
+<div
+  class="easyui-layout"
+  data-options="fit:true"
+  style="width: 100%; height: 100%"
+>
+  <div data-options="region:'left'" style="padding: 3px; border: 0px">
+    <div
+      id="torrent-speed-limit"
+      class="dialog"
+      style="width: 100%; padding: 0px"
+    >
+      <table style="width: 100%">
+        <tr>
+          <td class="title">
+            <input
+              id="checkbox-downloadLimited"
+              type="checkbox"
+              style="width: 16px"
+            />
+            <label
+              id="dialog-torrent-changeSpeedLimit-downloadLimited"
+              for="downloadLimited"
+            ></label>
+          </td>
+          <td>
+            <input
+              id="text-downloadLimit"
+              type="text"
+              class="easyui-numberspinner"
+              enabledof="downloadLimited"
+              style="width: 200px"
+            />
+            KB/s
+          </td>
+        </tr>
+        <tr>
+          <td class="title">
+            <input
+              id="checkbox-uploadLimited"
+              type="checkbox"
+              style="width: 16px"
+            />
+            <label
+              id="dialog-torrent-changeSpeedLimit-uploadLimited"
+              for="uploadLimited"
+            ></label>
+          </td>
+          <td>
+            <input
+              id="text-uploadLimit"
+              type="text"
+              class="easyui-numberspinner"
+              enabledof="uploadLimited"
+              style="width: 200px"
+            />
+            KB/s
+          </td>
+        </tr>
+        <tr>
+          <td class="title">
+            <span id="dialog-torrent-changeSpeedLimit-peer-limit"></span>
+          </td>
+          <td>
+            <input
+              id="text-peer-limit"
+              value=""
+              type="text"
+              class="easyui-numberspinner"
+              style="width: 200px"
+            />
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td colspan="2"><hr /></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div
+    data-options="region:'south',border:false"
+    style="text-align: right; padding: 6px"
+  >
+    <a
+      id="torrent-button-ok"
+      class="easyui-linkbutton"
+      data-options="iconCls:'icon-ok',plain:true"
+      href="javascript:void(0);"
+      >Ok</a
+    >
+    <a
+      id="torrent-button-cancel"
+      class="easyui-linkbutton"
+      data-options="iconCls:'icon-cancel',plain:true"
+      href="javascript:void(0);"
+      >Cancel</a
+    >
+  </div>
+</div>
+
+<script type="text/javascript">
+  (function (thisDialog) {
+    var title = "downloadLimited,uploadLimited,peer-limit,seedRatioMode,seedIdleMode,doneDate,seedTime".split(
+      ","
+    );
+
+    var ids = thisDialog.data("ids");
+
+    var allIds = new Array();
+    var issimple = false;
+    var torrent = null;
+    var recheck = false;
+    if (typeof ids == "object") {
+      torrent = transmission.torrents.all[ids[0]];
+    } else {
+      torrent = transmission.torrents.all[ids];
+      issimple = true;
+    }
+
+    if (!torrent) {
+      thisDialog.dialog("close");
+      return;
+    }
+
+    //初始化label
+    $.each(title, function (i, item) {
+      thisDialog
+        .find("#dialog-torrent-changeSpeedLimit-" + item)
+        .html(system.lang.dialog["torrent-changeSpeedLimit"][item]);
+    });
+
+    //初始化按钮
+    title = "button-ok,button-cancel".split(",");
+    $.each(title, function (i, item) {
+      thisDialog
+        .find("#torrent-" + item)
+        .html(system.lang.dialog["public"][item]);
+    });
+
+    $.ajaxSettings.async = false;
+    //初始化界面数据，获取第一个种子的信息
+    transmission.torrents.getConfig(ids[0], function (result) {
+      //debugger;
+
+      if (result == null) return;
+
+      var cur_torrent = result[0];
+      thisDialog
+        .find("#checkbox-downloadLimited")
+        .prop("checked", cur_torrent.downloadLimited);
+      thisDialog
+        .find("#checkbox-uploadLimited")
+        .prop("checked", cur_torrent.uploadLimited);
+      thisDialog.find("#text-downloadLimit").val(cur_torrent.downloadLimit);
+      thisDialog.find("#text-uploadLimit").val(cur_torrent.uploadLimit);
+      thisDialog.find("#text-peer-limit").val(cur_torrent["peer-limit"]);
+    });
+
+    //debugger;
+
+    $.ajaxSettings.async = true;
+    // 确认
+
+    thisDialog.find("#torrent-button-ok").click(function () {
+      var ids = thisDialog.data("ids");
+      if (ids.length == 0) {
+        return;
+      }
+
+      //获取界面设置值，并写入config
+      var torrent = transmission.torrents.all[ids[0]];
+      var inputs = thisDialog.find("#torrent-speed-limit").find("input");
+      var config = {};
+      var value = null;
+      for (var key in inputs) {
+        var input = inputs[key];
+        value = null;
+        if (input.id != undefined && input.id != "") {
+          switch (input.type) {
+            case "checkbox":
+              switch (input.id) {
+                //
+                case "seedIdleMode":
+                case "seedRatioMode":
+                  value = $(input).data("_tag");
+                  break;
+                default:
+                  value = input.checked;
+                  break;
+              }
+              break;
+            default:
+              value = $.isNumeric(input.value)
+                ? parseFloat(input.value)
+                : input.value;
+              break;
+          }
+
+          if (value != torrent[input.id] && value != null) {
+            config[
+              input.id.replace("text-", "").replace("checkbox-", "")
+            ] = value;
+          }
+        }
+      }
+
+      //debugger;
+      //设置为同步
+      $.ajaxSettings.async = false;
+      for (var i = 0; i < ids.length; i++) {
+        config["ids"] = ids[i];;
+        // var index = i + 1;
+        // $(this).linkbutton({
+        //   text:
+        //     system.lang.dialog["system-config"].saving +
+        //     "(" +
+        //     index +
+        //     "/" +
+        //     ids.length +
+        //     ")",
+        //   disabled: true,
+        // });
+
+        // 开始设置参数
+        transmission.exec(
+          {
+            method: "torrent-set",
+            arguments: config,
+          },
+          function (data) {
+            if (data.result == "success") {
+            } else {
+              button.linkbutton({ iconCls: icon, disabled: false });
+              $.messager.alert(
+                "",
+                system.lang.error["data-post-error"] + ": " + data.result,
+                "error"
+              );
+            }
+          }
+        );
+      }
+      $.ajaxSettings.async = true; //变回异步
+
+      //修改按钮文本
+      // thisDialog.find("#torrent-attribute-config-button-save").linkbutton({
+      //   text: system.lang.dialog["public"]["button-save"],
+      //   disabled: false,
+      // });
+
+      //清空种子选择状态
+      system.control.torrentlist.datagrid("uncheckAll");
+
+      //刷新种子
+      //system.reloadTorrentBaseInfos();
+
+      //关闭弹窗
+      thisDialog.dialog("close");
+    });
+
+    thisDialog.find("#torrent-button-cancel").click(function () {
+      thisDialog.dialog("close");
+    });
+  })($("#dialog-torrent-changeSpeedLimit"));
+</script>

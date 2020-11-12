@@ -68,6 +68,7 @@
 			"autoreload-enabled": "启用自动刷新",
 			"tracker-replace": "替换 Tracker",
 			"change-download-dir": "变更数据保存目录",
+      			"change-speedlimit": "变更上传和下载速度",
 			"ui-mobile": "切换到移动设备界面",
 			"ui-original": "切换到原版界面",
 			"more-peers": "获取更多Peer",
@@ -262,6 +263,16 @@
 			"set-error": "设置目录失败！",
 			"recheck-data": "设置完成后重新校验。"
 		},
+	    "torrent-changeSpeedLimit": {
+	      "title": "设置上传和下载",
+	      "downloadLimited": "启用最大下载速度限制：",
+	      "uploadLimited": "启用最大上传速度限制：",
+	      "peer-limit": "最大链接数：",
+	      "seedRatioMode": "当种子的分享率达到这个数时，自动停止做种：",
+	      "seedIdleMode": "当种子超过这个时间没有流量时，自动停止做种：",
+	      "doneDate": "完成时间：",
+	      "seedTime": "做种时间："
+	    },
 		"system-replaceTracker": {
 			"title": "替换 Tracker 地址",
 			"old-tracker": "原 Tracker：",

@@ -1115,7 +1115,7 @@ var system = {
 			if (this.control.torrentlist.datagrid("getRows").length==0) {
 				return;
 			}
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: rowData
 			});
 
@@ -1129,16 +1129,16 @@ var system = {
 		// 如果没有被选中的数据时
 		if (this.checkedRows.length == 0) {
 			// 禁用所有菜单
-			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_rename, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_morepeers,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: true
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
 			return;
 
-		// 当仅有一条数据被选中时
+			// 当仅有一条数据被选中时
 		} else if (this.checkedRows.length == 1) {
 			// 设置 删除、改名、变更保存目录、移动队列功能可用
-			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_remove, #toolbar_rename, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			this.panel.toolbar.find("#toolbar_queue").menubutton("enable");
@@ -1177,7 +1177,7 @@ var system = {
 
 		// 多条数据被选中时
 		} else {
-			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_copyPath", this.panel.toolbar).linkbutton({
+			$("#toolbar_start, #toolbar_pause, #toolbar_remove, #toolbar_recheck, #toolbar_changeDownloadDir,#toolbar_changeSpeedLimit,#toolbar_copyPath", this.panel.toolbar).linkbutton({
 				disabled: false
 			});
 			$("#toolbar_rename, #toolbar_morepeers", this.panel.toolbar).linkbutton({
@@ -1479,6 +1479,35 @@ var system = {
 					datas: {
 						"ids": ids
 					}
+				});
+			});
+
+		this.panel.toolbar
+			.find("#toolbar_changeSpeedLimit")
+			.linkbutton({
+				disabled: true,
+			})
+			.attr("title", this.lang.toolbar.tip["change-speedlimit"])
+			.click(function () {
+				var rows = system.control.torrentlist.datagrid("getChecked");
+				var ids = new Array();
+				for (var i in rows) {
+					ids.push(rows[i].id);
+				}
+				if (ids.length == 0) return;
+
+				system.openDialogFromTemplate({
+					id: "dialog-torrent-changeSpeedLimit",
+					options: {
+						title: system.lang.dialog["torrent-changeSpeedLimit"].title,
+						width: 600,
+						height: 200,
+						resizable: true,
+					},
+					datas: {
+						ids: ids,
+					},
+					type: 0,
 				});
 			});
 
