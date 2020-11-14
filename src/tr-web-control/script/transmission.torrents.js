@@ -91,7 +91,9 @@ transmission.torrents = {
 		this.warning = new Array();
 		this.btItems = new Array();
 		// All download directories used by current torrents
-		transmission.downloadDirs = new Array();
+		if (transmission.downloadDirs == undefined){
+			transmission.downloadDirs = new Array();
+		}
 
 		var _Status = transmission._status;
 		this.status = {};
