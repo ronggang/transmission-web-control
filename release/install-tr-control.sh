@@ -160,7 +160,7 @@ findWebFolder() {
 			showLog "$ROOT_FOLDER/web $MSG_AVAILABLE."
 		else
 			showLog "$MSG_THE_SPECIFIED_DIRECTORY_DOES_NOT_EXIST"
-			ROOT_FOLDER=`find / -name 'web' -type d 2>/dev/null| grep 'transmission/web' | sed 's/\/web$//g'`
+			ROOT_FOLDER=`find /usr /etc /home /root -name 'web' -type d 2>/dev/null| grep 'transmission/web' | sed 's/\/web$//g'`
 
 			if [ -d "$ROOT_FOLDER/web" ]; then
 				WEB_FOLDER="$ROOT_FOLDER/web"
