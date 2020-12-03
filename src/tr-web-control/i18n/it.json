@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Abilita coda di download, numero massimo di torrent:",
 			"seed-queue-enabled": "Abilita coda di upload, numero massimo di torrent:",
 			"peer-port-random-on-start": "Imposta porta casuale all'avvio",
-			"port-forwarding-enabled": "Abilita port forwarding",
+			"port-forwarding-enabled": "Abilita port forwarding(UPnP)",
 			"test-port": "Testa porta",
 			"port-is-open-true": "La porta è aperta",
 			"port-is-open-false": "La porta è chiusa",
@@ -176,7 +176,7 @@
 				"preferred": "Preferita",
 				"tolerated": "Permessa"
 			},
-			"utp-enabled": "Abilita µTP (UPnP)",
+			"utp-enabled": "Abilita µTP",
 			"dht-enabled": "Abilita DHT",
 			"lpd-enabled": "Abilita LPD",
 			"pex-enabled": "Abilita PEX",

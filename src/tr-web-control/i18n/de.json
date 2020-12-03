@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Download Warteschlage benutzen, max Länge:",
 			"seed-queue-enabled": "Seed Warteschlange benutzen, max Länge:",
 			"peer-port-random-on-start": "Benutze zufälligen Port",
-			"port-forwarding-enabled": "Port-Weiterleitung aktivieren",
+			"port-forwarding-enabled": "Port-Weiterleitung aktivieren(UPnP)",
 			"test-port": "Port testen",
 			"port-is-open-true": "Port offen",
 			"port-is-open-false": "Port geschlossen",
@@ -176,7 +176,7 @@
 				"preferred": "Bevorzugt",
 				"tolerated": "Akzeptiert"
 			},
-			"utp-enabled": "µTP (UPnP) aktiv",
+			"utp-enabled": "µTP aktiv",
 			"dht-enabled": "DHT aktiv",
 			"lpd-enabled": "LPD aktiv",
 			"pex-enabled": "PEX aktiv",

@@ -165,7 +165,7 @@
 			"download-queue-enabled": "다운로드 대기열, 최대 대기열 수 사용:",
 			"seed-queue-enabled": "시딩 대기열, 최대 대기열 수 사용:",
 			"peer-port-random-on-start": "시작시 랜덤 포트 사용",
-			"port-forwarding-enabled": "포워딩 활성화",
+			"port-forwarding-enabled": "포워딩 활성화(UPnP)",
 			"test-port": "포트 시험",
 			"port-is-open-true": "열린 포트",
 			"port-is-open-false": "닫힌 포트",
@@ -176,7 +176,7 @@
 				"preferred": "Preferred",
 				"tolerated": "Tolerated"
 			},
-			"utp-enabled": "µTP (UPnP) 활성화",
+			"utp-enabled": "µTP 활성화",
 			"dht-enabled": "DHT 활성화",
 			"lpd-enabled": "LPD 활성화",
 			"pex-enabled": "PEX 활성화",

@@ -178,7 +178,7 @@
 				"preferred": "Включено",
 				"tolerated": "Отключено"
 			},
-			"utp-enabled": "Включить µTP (UPnP)",
+			"utp-enabled": "Включить µTP",
 			"dht-enabled": "Включить DHT",
 			"lpd-enabled": "Включить Local Peer Discovery",
 			"pex-enabled": "Включить обмен пирами",

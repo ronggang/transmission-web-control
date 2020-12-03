@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Activer la file d'attente \"téléchargement\", nombre max de fichiers en file d'attente:",
 			"seed-queue-enabled": "Activer la file d'attente \"seed\", nombre max de fichiers en file d'attente:",
 			"peer-port-random-on-start": "Utiliser un port aléatoire au démarrage",
-			"port-forwarding-enabled": "Activer la redirection de port",
+			"port-forwarding-enabled": "Activer la redirection de port(UPnP)",
 			"test-port": "Tester le port",
 			"port-is-open-true": "Le port est ouvert",
 			"port-is-open-false": "Le port est fermé",
@@ -176,7 +176,7 @@
 				"preferred": "Préféré",
 				"tolerated": "Toléré"
 			},
-			"utp-enabled": "Activer µTP (UPnP)",
+			"utp-enabled": "Activer µTP",
 			"dht-enabled": "Activer DHT",
 			"lpd-enabled": "Activer LPD",
 			"pex-enabled": "Activer PEX",

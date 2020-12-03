@@ -166,7 +166,7 @@
 			"download-queue-enabled":"Usar fila de downloads, total simultâneos:",
 			"seed-queue-enabled":"Usar fila de envio, total simultâneos:",
 			"peer-port-random-on-start":"Usar porta aleatória ao iniciar",
-			"port-forwarding-enabled":"Usar redirecionamento",
+			"port-forwarding-enabled":"Usar redirecionamento(UPnP)",
 			"test-port":"Verificar",
 			"port-is-open-true":"A porta está aberta",
 			"port-is-open-false":"A porta está fechada",
@@ -177,7 +177,7 @@
 				"preferred":"Preferencial",
 				"tolerated":"Permitir todas"
 			},
-			"utp-enabled":"Usar µTP (UPnP)",
+			"utp-enabled":"Usar µTP",
 			"dht-enabled":"Usar DHT",
 			"lpd-enabled":"Usar LPD",
 			"pex-enabled":"Usar PEX",

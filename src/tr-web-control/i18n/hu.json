@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Letöltési sorban állás engedélyezve, maximum:",
 			"seed-queue-enabled": "Feltöltési sorban állás engedélyezve, maximum:",
 			"peer-port-random-on-start": "Véletlenszerű port indításnál",
-			"port-forwarding-enabled": "Port átirányítás engedélyezése",
+			"port-forwarding-enabled": "Port átirányítás engedélyezése(UPnP)",
 			"test-port": "Port tesztelése",
 			"port-is-open-true": "Port nyitva",
 			"port-is-open-false": "Port zárva",
@@ -176,7 +176,7 @@
 				"preferred": "Preferált",
 				"tolerated": "Megtűrt"
 			},
-			"utp-enabled": "µTP (UPnP) engedélyezése",
+			"utp-enabled": "µTP engedélyezése",
 			"dht-enabled": "DHT engedélyezése",
 			"lpd-enabled": "LPD engedélyezése",
 			"pex-enabled": "PEX engedélyezése",

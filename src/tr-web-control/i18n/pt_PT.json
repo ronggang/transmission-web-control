@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Numero máximo de descargas na fila:",
 			"seed-queue-enabled": "Número máximo de seeds na fila:",
 			"peer-port-random-on-start": "Usar porta aleatória ao iniciar",
-			"port-forwarding-enabled": "Habilitar o redirecionamento de portas",
+			"port-forwarding-enabled": "Habilitar o redirecionamento de portas (UPnP)",
 			"test-port": "Verificar a porta",
 			"port-is-open-true": "A porta está aberta",
 			"port-is-open-false": "A porta está fechada",
@@ -176,7 +176,7 @@
 				"preferred": "Prefencialmente encriptada",
 				"tolerated": "Qualquer conexão"
 			},
-			"utp-enabled": "µTP (UPnP) habilitado",
+			"utp-enabled": "µTP habilitado",
 			"dht-enabled": "DHT habilitado",
 			"lpd-enabled": "LPD habilitado",
 			"pex-enabled": "PEX habilitado",
