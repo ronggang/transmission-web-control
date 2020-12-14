@@ -166,7 +166,7 @@
 			"download-queue-enabled": "Cola de descarga activada, elementos máximos:",
 			"seed-queue-enabled": "Cola de subida activada, elementos máximos:",
 			"peer-port-random-on-start": "Usar puerto aleatorio al iniciar",
-			"port-forwarding-enabled": "Forwarding activado",
+			"port-forwarding-enabled": "Forwarding activado(UPnP)",
 			"test-port": "Comprobar",
 			"port-is-open-true": "El puerto está abierto",
 			"port-is-open-false": "El puerto está cerrado",
@@ -177,7 +177,7 @@
 				"preferred": "Preferido",
 				"tolerated": "Aceptado"
 			},
-			"utp-enabled": "µTP (UPnP) activado",
+			"utp-enabled": "µTP activado",
 			"dht-enabled": "DHT activado",
 			"lpd-enabled": "LPD activado",
 			"pex-enabled": "PEX activado",

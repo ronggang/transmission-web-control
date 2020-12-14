@@ -56,7 +56,7 @@
 			"start-all": "全部开始",
 			"pause-all": "全部暂停",
 			"remove": "删除已经选中的任务",
-			"delete-all": "删除所有任务（不删除数据）",
+			"delete-all": "删除所有任务(不删除数据)",
 			"delete-data": "删除已经选中的种子任务和数据",
 			"add-torrent": "添加种子",
 			"attribute": "属性",
@@ -157,7 +157,7 @@
 				"more": "额外设置",
 				"labels": "用户标签"
 			},
-			"config-dir": "Transmission 配置文件目录（只读）：",
+			"config-dir": "Transmission 配置文件目录(只读)：",
 			"download-dir": "默认保存目录：",
 			"download-dir-free-space": "可用空间：",
 			"incomplete-dir-enabled": "启用临时目录",
@@ -167,7 +167,7 @@
 			"download-queue-enabled": "启用下载队列，最大同时下载数：",
 			"seed-queue-enabled": "启用上传队列，最大同时上传数：",
 			"peer-port-random-on-start": "启用随机端口，或使用固定端口：",
-			"port-forwarding-enabled": "启用端口转发",
+			"port-forwarding-enabled": "启用端口转发(UPnP)",
 			"test-port": "测试端口",
 			"port-is-open-true": "端口可连接",
 			"port-is-open-false": "端口不可连接",
@@ -178,7 +178,7 @@
 				"preferred": "优先(preferred)",
 				"tolerated": "允许(tolerated)"
 			},
-			"utp-enabled": "启用 µTP(UPnP)",
+			"utp-enabled": "启用带宽管理(µTP)",
 			"dht-enabled": "启用分布式哈希表(DHT)",
 			"lpd-enabled": "启用本地用户发现(LPD)",
 			"pex-enabled": "启用用户交换",
@@ -209,7 +209,7 @@
 			"nochange": "参数未改变",
 			"saving": "正在保存...",
 			"show-bt-servers": "在『服务器分布』中显示『BT』服务器列表：",
-			"restore-default-settings": "恢复界面默认设置（含主题）",
+			"restore-default-settings": "恢复界面默认设置(含主题)",
 			"language": "界面语言：",
 			"loading": "正在加载...",
 			"hide-subfolders": "点击数据目录时，在列表中不显示子目录下的种子：",
@@ -223,7 +223,7 @@
 				"import-confirm": "是否确认导入标签信息？这将覆盖当前配置。"
 			},
 			"import-config": "从备份文件中导入配置",
-			"export-config": "导出当前配置到配置文件（内容包括：Transmission 参数、WebUI 配置）",
+			"export-config": "导出当前配置到配置文件(内容包括：Transmission 参数、WebUI 配置)",
 			"import-config-confirm": "是否确认导入这些配置信息？这将覆盖当前配置。",
 			"script-torrent-done-enabled": "种子下载完成后执行以下脚本："
 		},
@@ -259,7 +259,7 @@
 			"title": "设置新目录",
 			"old-download-dir": "原目录：",
 			"new-download-dir": "新目录：",
-			"move-data": "同时移动数据（如果不钩选，则从新目录下查找文件）",
+			"move-data": "同时移动数据(如果不钩选，则从新目录下查找文件)",
 			"set-error": "设置目录失败！",
 			"recheck-data": "设置完成后重新校验。"
 		},
@@ -290,7 +290,7 @@
 			"status": "状态：",
 			"ignore": "忽略这个",
 			"working-close-confirm": "系统正在进行目录匹配，确定要终止并关闭吗？",
-			"time-interval": "时间间隔（秒）：",
+			"time-interval": "时间间隔(秒)：",
 			"work-mode-title": "处理方式：",
 			"work-mode": {
 				"1": "按种子逐个匹配目录",
@@ -316,9 +316,9 @@
 		"export-config": {
 			"title": "请选择需要导出的配置",
 			"option-all": "所有配置",
-			"option-system": "Web Control 参数配置（包含用户标签）",
+			"option-system": "Web Control 参数配置(包含用户标签)",
 			"option-dictionary": "用户定义的目录字典",
-			"option-server": "Transmission 服务端配置（如下载目录、缓存、限速等所有可配置参数）"
+			"option-server": "Transmission 服务端配置(如下载目录、缓存、限速等所有可配置参数)"
 		},
 		"import-config": {
 			"title": "请选择需要导入的配置",

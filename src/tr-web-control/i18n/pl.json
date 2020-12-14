@@ -167,7 +167,7 @@
 			"download-queue-enabled": "Włącz kolejkę pobierania, maksymalna ilość kolejek:",
 			"seed-queue-enabled": "Włącz kolejkę wysyłania, maksymalna ilość kolejek:",
 			"peer-port-random-on-start": "Użyj losowego portu podczas uruchamiania",
-			"port-forwarding-enabled": "Włącz przekierowywanie portów",
+			"port-forwarding-enabled": "Włącz przekierowywanie portów(UPnP)",
 			"test-port": "Testuj port",
 			"port-is-open-true": "Port jest otwarty",
 			"port-is-open-false": "Port jest zamknięty",
@@ -178,7 +178,7 @@
 				"preferred": "Preferowane",
 				"tolerated": "Tolerowane"
 			},
-			"utp-enabled": "Włącz µTP (UPnP)",
+			"utp-enabled": "Włącz µTP",
 			"dht-enabled": "Włącz DHT",
 			"lpd-enabled": "Włącz LPD",
 			"pex-enabled": "Włącz PEX",

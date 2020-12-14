@@ -165,7 +165,7 @@
 			"download-queue-enabled": "Număr maxim descărcari simultane:",
 			"seed-queue-enabled": "Număr maxim încărcări simultane:",
 			"peer-port-random-on-start": "Folosește port aleator de conectare la pornire",
-			"port-forwarding-enabled": "Activează forwarding",
+			"port-forwarding-enabled": "Activează forwarding(UPnP)",
 			"test-port": "Testează port",
 			"port-is-open-true": "Portul este deschis",
 			"port-is-open-false": "Portul este închis",
@@ -176,7 +176,7 @@
 				"preferred": "Preferată",
 				"tolerated": "Tolerată"
 			},
-			"utp-enabled": "Activează µTP (UPnP)",
+			"utp-enabled": "Activează µTP",
 			"dht-enabled": "Activează DHT",
 			"lpd-enabled": "Activează LPD",
 			"pex-enabled": "Activează PEX",
