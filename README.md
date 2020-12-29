@@ -3,8 +3,8 @@
 <img src="https://github.com/ronggang/transmission-web-control/raw/master/src/tr-web-control/logo.png"><br/>
 <a href="https://github.com/ronggang/transmission-web-control/releases" title="GitHub Releases"><img src="https://img.shields.io/github/release/ronggang/transmission-web-control.svg"></a>
 <img src="https://img.shields.io/badge/transmission-%3E=2.40%20(RPC%20%3E14)-green.svg" title="Support Transmission Version">
-<a href="https://www.transifex.com/ronggang/transmission-web-control" title="Translation Status"><img src="https://img.shields.io/badge/dynamic/json.svg?label=translated&url=http%3A%2F%2Ftwc-translation-status.jimufans.com&query=%24.status&colorB=1081c2&suffix=%25"></a>
 <a href="https://github.com/ronggang/transmission-web-control/LICENSE" title="GitHub license"><img src="https://img.shields.io/github/license/ronggang/transmission-web-control.svg"></a>
+<a href="https://t.me/transmission_web_control"><img src="https://img.shields.io/badge/Telegram-Chat-blue.svg?logo=telegram" alt="Telegram"/></a>
 </p>
 
 ----
