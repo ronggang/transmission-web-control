@@ -21,6 +21,8 @@ var system = {
 		showBTServers: false,
 		// ipinfo.io token
 		ipInfoToken: '',
+		ipInfoFlagUrl: '',
+		ipInfoDetailUrl: '',
 		ui: {
 			status: {
 				tree: {},
@@ -2888,37 +2890,57 @@ var system = {
 				rowdata[key] = item[key];
 			}
 
-      if (system.config.ipInfoToken !== '') {
-        let flag = '';
-        let ip = rowdata['address'];
+			if (system.config.ipInfoToken !== '' || system.config.ipInfoFlagUrl !== '') {
+				let flag = '';
+				let ip = rowdata['address'];
+				let detail = '';
 
-        if (this.flags[ip] === undefined) {
-          let url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
-          $.ajax({
-            type: "GET",
-            url: url
-          }).done((data) => {
-            if (data) {
-              flag = data.toLowerCase().trim();
-              this.flags[ip] = flag;
-              $("img.img_ip-"+ip).attr({
-                src: this.rootPath + 'style/flags/' + flag + '.png',
-                alt: flag,
-                title: flag
-              }).show();
-            }
-          });
-        } else {
-          flag = this.flags[ip];
-        }
-        let img = "";
-        if (flag) {
-          img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + flag + '"> ';
-        } else {
-          img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
-        }
-        rowdata['address'] = img + ip;
-      }
+				if (this.flags[ip] === undefined) {
+					if (system.config.ipInfoDetailUrl !== '') {
+						$.ajax({
+							type: 'GET',
+							url: this.expandIpInfoUrl(system.config.ipInfoDetailUrl, ip)
+						}).done((data) => {
+							if (data) {
+								detail = data.trim();
+							}
+						});
+					}
+					let url = ''
+					if (system.config.ipInfoFlagUrl !== '') {
+						url = this.expandIpInfoUrl(system.config.ipInfoFlagUrl, ip);
+					} else {
+						url = 'https://ipinfo.io/' + ip + '/country?token=' + system.config.ipInfoToken;
+					}
+					$.ajax({
+						type: "GET",
+						url: url
+					}).done((data) => {
+						if (data) {
+							flag = data.toLowerCase().trim();
+							this.flags[ip] = {
+								flag: flag,
+								detail: detail
+							};
+							$("img.img_ip-"+ip).attr({
+								src: this.rootPath + 'style/flags/' + flag + '.png',
+								alt: detail!==''? detail : flag,
+								title: flag
+							}).show();
+						}
+					});
+				} else {
+					flag = this.flags[ip].flag;
+					detail = this.flags[ip].detail;
+				}
+				let img = "";
+				if (flag) {
+					img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + (detail!==''? detail : flag) + '"> ';
+				} else {
+					img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
+				}
+				rowdata['address'] = img + ip;
+			}
 
 			// 使用同类已有的翻译文本
 			rowdata.isUTP = system.lang.torrent.attribute["status"][item.isUTP];
@@ -3415,6 +3437,18 @@ var system = {
 		if (!text) return "";
 		var _key = this.B64.encode(text);
 		return _key.replace(/[+|\/|=]/g,"0");
+	},
+
+	expandIpInfoUrl: function (url, ip) {
+		if (url=='' || url==undefined) {
+			return '';
+		}
+		return url.replace("%ip", ip)
+				  .replace("%lang", system.lang.name)
+				  .replace("%hostname", document.location.hostname)
+				  .replace("%host", document.location.host)
+				  .replace("%protocol", document.location.protocol)
+				  .replace("%navlang", navigator.language);
 	}
 };
 

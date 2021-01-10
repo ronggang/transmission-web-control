@@ -225,7 +225,12 @@
 			"import-config": "从备份文件中导入配置",
 			"export-config": "导出当前配置到配置文件(内容包括：Transmission 参数、WebUI 配置)",
 			"import-config-confirm": "是否确认导入这些配置信息？这将覆盖当前配置。",
-			"script-torrent-done-enabled": "种子下载完成后执行以下脚本："
+			"script-torrent-done-enabled": "种子下载完成后执行以下脚本：",
+			"ipinfo": "IPinfo.io 访问令牌:",
+			"ipInfoCustom": "额外的IP查询服务设置，可使用自定义URL，适合使用本地架设的查询服务",
+			"ipInfoCustomTips": "可用变量: <b>%ip</b>: 查询的用户IP(必需), <b>%lang</b>: tr-web-control 使用的语言代号<br/>&nbsp;&nbsp;<b>%host</b>: 域名，含端口号, <b>%hostname</b>: 域名, <b>%protocol</b>: 协议, <b>%navlang</b>: 浏览器首选的语言代号",
+			"ipInfoCountryCodeUrl": "自定义IP国家代码URL:",
+			"ipInfoDetailUrl": "自定义IP详情URL:"
 		},
 		"public": {
 			"button-ok": "确定",

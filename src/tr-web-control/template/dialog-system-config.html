@@ -405,15 +405,36 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <label system-lang="dialog['system-config']['ipinfo']"></label>
-                            <a id="system-config-test-port" href="http://ipinfo.io" target="_blank"
-                                                            class="easyui-linkbutton"
-                                                            data-options="plain:true,iconCls:'icon-about'"></a>
+                            <hr/>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input id="ipInfoToken" value="" type="text" style="width:100%;"/>
+                            <label system-lang="dialog['system-config']['ipinfo']"></label>
+                            <a id="system-config-test-port" href="http://ipinfo.io" target="_blank"
+                                                            class="easyui-linkbutton"
+                                                            data-options="plain:true,iconCls:'icon-about'"></a>
+                            <input id="ipInfoToken" value="" class="easyui-textbox" type="text" style="width: 100%;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label system-lang="dialog['system-config']['ipInfoCustom']"></label><br>
+
+                            <label system-lang="dialog['system-config']['ipInfoCountryCodeUrl']"></label>
+                            <input id="ipInfoFlagUrl" value="" class="easyui-textbox" 
+                                data-options="prompt:'%protocol//%hostname:5000/code/%ip'" type="text" style="width: 100%"/><br>
+
+                            <label system-lang="dialog['system-config']['ipInfoDetailUrl']"></label>
+                            <input id="ipInfoDetailUrl" value="" class="easyui-textbox" 
+                                data-options="prompt:'%protocol//%hostname:5000/detail/%ip/%navlang'" type="text" style="width: 100%"/><br>
+
+                            <label system-lang="dialog['system-config']['ipInfoCustomTips']"></label>
                         </td>
                     </tr>
                 </table>
@@ -657,6 +678,9 @@
 
         thisDialog.find('#ipInfoToken').val(system.config.ipInfoToken);
 
+        thisDialog.find('#ipInfoFlagUrl').val(system.config.ipInfoFlagUrl);
+        thisDialog.find('#ipInfoDetailUrl').val(system.config.ipInfoDetailUrl);
+
         for (var key in system.config.nav) {
           var value = system.config.nav[key];
           thisDialog.find('#nav-' + key).switchbutton({
@@ -800,6 +824,8 @@
           system.config.hideSubfolders = thisDialog.find('#hide-subfolders').prop('checked');
           system.config.simpleCheckMode = thisDialog.find('#simpleCheckMode').prop('checked');
           system.config.ipInfoToken = thisDialog.find('#ipInfoToken').val();
+          system.config.ipInfoFlagUrl = thisDialog.find('#ipInfoFlagUrl').val();
+          system.config.ipInfoDetailUrl = thisDialog.find('#ipInfoDetailUrl').val();
 
           var _temp = JSON.stringify(system.config.nav);
           for (var key in system.config.nav) {
