@@ -428,11 +428,11 @@
 
                             <label system-lang="dialog['system-config']['ipInfoCountryCodeUrl']"></label>
                             <input id="ipInfoFlagUrl" value="" class="easyui-textbox" 
-                                data-options="prompt:'%protocol//%hostname:5000/code/%ip'" type="text" style="width: 100%"/><br>
+                                data-options="prompt:'%protocol//%hostname:5000/code/%ip',buttonText:'Test'" type="text" style="width: 100%"/><br>
 
                             <label system-lang="dialog['system-config']['ipInfoDetailUrl']"></label>
                             <input id="ipInfoDetailUrl" value="" class="easyui-textbox" 
-                                data-options="prompt:'%protocol//%hostname:5000/detail/%ip/%navlang'" type="text" style="width: 100%"/><br>
+                                data-options="prompt:'%protocol//%hostname:5000/detail/%ip/%navlang',buttonText:'Test'" type="text" style="width: 100%"/><br>
 
                             <label system-lang="dialog['system-config']['ipInfoCustomTips']"></label>
                         </td>
@@ -920,6 +920,19 @@
             button.prop('disabled', false);
           });
         });
+
+        thisDialog.find('#ipInfoFlagUrl').textbox({onClickButton: function (){
+            if (this.value !== '' && this.value !== undefined) {
+                alert(system.expandIpInfoUrl(this.value, '8.8.8.8'));
+            }
+        }});
+
+        thisDialog.find('#ipInfoDetailUrl').textbox({onClickButton: function (){
+            if (this.value !== '' && this.value !== undefined) {
+                alert(system.expandIpInfoUrl(this.value, '8.8.8.8'));
+            }
+        }});
+        
 
         // 恢复界面默认设置
         $('#restore-default-settings', thisDialog).click(function () {
