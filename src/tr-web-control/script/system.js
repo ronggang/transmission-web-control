@@ -2924,8 +2924,8 @@ var system = {
 							};
 							$("img.img_ip-"+ip).attr({
 								src: this.rootPath + 'style/flags/' + flag + '.png',
-								alt: detail!==''? detail : flag,
-								title: flag
+								alt: flag,
+								title: detail!==''? detail : flag
 							}).show();
 						}
 					});
