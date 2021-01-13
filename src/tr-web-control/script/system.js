@@ -71,6 +71,7 @@ var system = {
 	// The currently selected torrent number
 	currentTorrentId: 0,
 	flags: [],
+	ipdetail: [],
 	control: {
 		tree: null,
 		torrentlist: null
@@ -2892,20 +2893,26 @@ var system = {
 
 			if (system.config.ipInfoToken !== '' || system.config.ipInfoFlagUrl !== '') {
 				let flag = '';
-				let ip = rowdata['address'];
 				let detail = '';
+				let ip = rowdata['address'];
+
+				if (system.config.ipInfoDetailUrl !== '') {
+					if (this.ipdetail[ip] === undefined ){
+							$.ajax({
+								type: 'GET',
+								url: this.expandIpInfoUrl(system.config.ipInfoDetailUrl, ip)
+							}).done((data) => {
+								if (data) {
+									detail = data.trim();
+									this.ipdetail[ip] = detail;
+								}
+							});
+					} else {
+						detail = this.ipdetail[ip];
+					}
+				}
 
 				if (this.flags[ip] === undefined) {
-					if (system.config.ipInfoDetailUrl !== '') {
-						$.ajax({
-							type: 'GET',
-							url: this.expandIpInfoUrl(system.config.ipInfoDetailUrl, ip)
-						}).done((data) => {
-							if (data) {
-								detail = data.trim();
-							}
-						});
-					}
 					let url = ''
 					if (system.config.ipInfoFlagUrl !== '') {
 						url = this.expandIpInfoUrl(system.config.ipInfoFlagUrl, ip);
@@ -2918,11 +2925,8 @@ var system = {
 					}).done((data) => {
 						if (data) {
 							flag = data.toLowerCase().trim();
-							this.flags[ip] = {
-								flag: flag,
-								detail: detail
-							};
-							$("img.img_ip-"+ip).attr({
+							this.flags[ip] = flag;
+							$("img.img_ip-"+ip.replaceAll(/[:.]+/g,'_')).attr({
 								src: this.rootPath + 'style/flags/' + flag + '.png',
 								alt: flag,
 								title: detail!==''? detail : flag
@@ -2930,14 +2934,14 @@ var system = {
 						}
 					});
 				} else {
-					flag = this.flags[ip].flag;
-					detail = this.flags[ip].detail;
+					flag = this.flags[ip];
 				}
+
 				let img = "";
 				if (flag) {
 					img = '<img src="' + this.rootPath + 'style/flags/' + flag + '.png" alt="' + flag + '" title="' + (detail!==''? detail : flag) + '"> ';
 				} else {
-					img = '<img src="" class="img_ip-'+ip+'" style="display:none;"> ';
+					img = '<img src="" class="img_ip-'+ip.replaceAll(/[:.]+/g,'_')+'" style="display:none;"> ';
 				}
 				rowdata['address'] = img + ip;
 			}
