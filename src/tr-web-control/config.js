@@ -21,8 +21,12 @@ system.config = $.extend(system.config, {
 	theme: "default",
 	// 是否显示BT服务器
 	showBTServers: false,
-        // ipinfo.io token
-        ipInfoToken: ''
+	// ipinfo.io token
+	ipInfoToken: '',
+	// custom ip information server url
+	ipInfoFlagUrl: '',
+	ipInfoDetailUrl: ''
+
 });
 
 // 主题样式
