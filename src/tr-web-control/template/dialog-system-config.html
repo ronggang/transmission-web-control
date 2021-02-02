@@ -698,34 +698,44 @@
         // 测试端口
         thisDialog.find('#system-config-test-port').click(function () {
           var button = $(this);
-          button.linkbutton({
-            text: system.lang.dialog['system-config'].testing,
-            disabled: true
-          });
+          var newPort = parseInt(thisDialog.find('#peer-port').val());
+
+          function buttonPortTestStatus(enabled) {
+            button.linkbutton({
+              text: system.lang.dialog['system-config'][enabled?'test-port':'testing'],
+              disabled: !enabled
+            });
+          }
+          function labelPortOpenStatus(opened) {
+            if (opened) {
+              thisDialog.find('#system-config-port-is-open-true').fadeInAndOut();
+            } else {
+              thisDialog.find('#system-config-port-is-open-false').fadeInAndOut();
+            }
+          }
+
+          buttonPortTestStatus(false);
+
           // 如果端口有变更，则先保存
-          if (parseInt(thisDialog.find('#peer-port').val()) != system.serverConfig['peer-port']) {
+          if (newPort != system.serverConfig['peer-port']) {
             transmission.exec({
               method: 'session-set',
               arguments: {
-                'peer-port': true
+                'peer-port': newPort
               }
             }, function (data) {
               if (data.result == 'success') {
+                system.serverConfig['peer-port'] = newPort;
                 transmission.exec({
                   method: 'port-test'
                 }, function (data) {
                   if (data.result == 'success') {
-                    if (data.arguments['port-is-open']) {
-                      thisDialog.find('#system-config-port-is-open-true').fadeInAndOut();
-                    } else {
-                      thisDialog.find('#system-config-port-is-open-false').fadeInAndOut();
-                    }
+                    labelPortOpenStatus(data.arguments['port-is-open']==true);
                   }
-                  button.linkbutton({
-                    text: system.lang.dialog['system-config']['test-port'],
-                    disabled: false
-                  });
+                  buttonPortTestStatus(true);
                 });
+              } else {
+                buttonPortTestStatus(true);
               }
             });
           } else {
@@ -733,16 +743,9 @@
               method: 'port-test'
             }, function (data) {
               if (data.result == 'success') {
-                if (data.arguments['port-is-open']) {
-                  thisDialog.find('#system-config-port-is-open-true').fadeInAndOut();
-                } else {
-                  thisDialog.find('#system-config-port-is-open-false').fadeInAndOut();
-                }
-                button.linkbutton({
-                  text: system.lang.dialog['system-config']['test-port'],
-                  disabled: false
-                });
+                labelPortOpenStatus(data.arguments['port-is-open']==true);
               }
+              buttonPortTestStatus(true);
             });
           }
         });
