@@ -56,7 +56,7 @@
 			"start-all": "全部開始",
 			"pause-all": "全部暫停",
 			"remove": "刪除已選取的任務",
-			"delete-all": "刪除全部任務(不刪除檔案)",
+			"delete-all": "刪除全部任務（不刪除檔案）",
 			"delete-data": "刪除已選取的任務和檔案",
 			"add-torrent": "新增種子",
 			"attribute": "屬性",
@@ -68,6 +68,7 @@
 			"autoreload-enabled": "啟用自動重整",
 			"tracker-replace": "取代 Tracker",
 			"change-download-dir": "變更下載資料夾",
+			"change-speedlimit": "變更上傳和下載速度",
 			"ui-mobile": "切換至行動介面",
 			"ui-original": "切換至原版介面",
 			"more-peers": "取得更多 Peer",
@@ -166,21 +167,21 @@
 			"download-queue-enabled": "啟用下載佇列，最大同時下載數：",
 			"seed-queue-enabled": "啟用上傳佇列，最大同時上傳數：",
 			"peer-port-random-on-start": "隨機選擇連接埠，或使用固定連接埠：",
-			"port-forwarding-enabled": "啟用連接埠轉送(UPnP)",
+			"port-forwarding-enabled": "啟用連接埠轉送（UPnP）",
 			"test-port": "測試連接埠",
 			"port-is-open-true": "連接埠可連接",
 			"port-is-open-false": "連接埠不可連接",
 			"testing": "正在測試...",
 			"encryption": "資料傳輸加密方式：",
 			"encryption-type": {
-				"required": "強制(required)",
-				"preferred": "優先(preferred)",
-				"tolerated": "允許(tolerated)"
+				"required": "強制（required）",
+				"preferred": "優先（preferred）",
+				"tolerated": "允許（tolerated）"
 			},
 			"utp-enabled": "啟用 µTP",
-			"dht-enabled": "啟用分散式雜湊表(DHT)",
-			"lpd-enabled": "啟用本機點探索(LPD)",
-			"pex-enabled": "啟用用戶交換(PEX)",
+			"dht-enabled": "啟用分散式雜湊表（DHT）",
+			"lpd-enabled": "啟用本機點探索（LPD）",
+			"pex-enabled": "啟用用戶交換（PEX）",
 			"peer-limit-global": "全域連線數限制為：",
 			"peer-limit-per-torrent": "每個任務最大連線數：",
 			"speed-limit-down-enabled": "啟用最大下載速度限制：",
@@ -208,7 +209,7 @@
 			"nochange": "未更改",
 			"saving": "正在儲存...",
 			"show-bt-servers": "在「伺服器」中顯示「BT 伺服器」列表",
-			"restore-default-settings": "恢復介面預設設定(含主題)",
+			"restore-default-settings": "恢復介面預設設定（含主題）",
 			"language": "介面語言：",
 			"loading": "正在載入...",
 			"hide-subfolders": "點選資料夾時，在列表中不顯示子資料夾下的任務",
@@ -221,6 +222,15 @@
 				"actions": "動作",
 				"import-confirm": "是否確認匯入標籤資訊？ 這將覆蓋目前的設定。"
 			}
+			"import-config": "從備份檔匯入配置",
+			"export-config": "匯出現用配置到配置檔（內容包括：Transmission 參數、WebUI 配置）",
+			"import-config-confirm": "確定要匯入這些配置嗎？這將覆蓋現用配置。",
+			"script-torrent-done-enabled": "種子下載完成後運行以下腳本：",
+			"ipinfo": "IPinfo.io 訪問令牌：",
+			"ipInfoCustom": "額外的 IP 查詢服務設定，可使用自定義 URL，適合使用本地架設的查詢福福",
+			"ipInfoCustomTips": "可用變量：<b>%ip</b>: 查詢用戶 IP（必須），<b>%lang</b>: tr-web-control 使用的語言代碼<br/>&nbsp;&nbsp;<b>%host</b>: 域名，包含連接埠，<b>%hostname</b>: 域名，<b>%protocol</b>: 協議，<b>%navlang</b>: 瀏覽器首選的語言代碼",
+			"ipInfoCountryCodeUrl": "自定義 IP 國家代碼 URL：",
+			"ipInfoDetailUrl": "自定義 IP 詳情 URL："
 		},
 		"public": {
 			"button-ok": "確定",
@@ -254,9 +264,19 @@
 			"title": "設定新資料夾",
 			"old-download-dir": "原資料夾：",
 			"new-download-dir": "新資料夾：",
-			"move-data": "同時移動資料(如不勾選，則從新資料夾下搜尋資料)",
+			"move-data": "同時移動資料（如不勾選，則從新資料夾下搜尋資料）",
 			"set-error": "設定資料夾失敗！",
 			"recheck-data": "設定完成後重新檢查。"
+		},
+		"torrent-changeSpeedLimit": {
+			"title": "設定上傳和下載",
+			"downloadLimited": "啟用最大下載速度限制：",
+			"uploadLimited": "啟用最大上傳速度限制：",
+			"peer-limit": "最大連接數：",
+			"seedRatioMode": "當種子的分享率達到這個數時，自動停止做種：",
+			"seedIdleMode": "當未完成的種子超過這個時間沒有收到資料時，自動停止下載：",
+			"doneDate": "完成時間：",
+			"seedTime": "做種時間："
 		},
 		"system-replaceTracker": {
 			"title": "取代 Tracker 地址",
@@ -275,7 +295,7 @@
 			"status": "狀態：",
 			"ignore": "忽略",
 			"working-close-confirm": "系統正在進行資料夾配對，確定要終止並關閉嗎？",
-			"time-interval": "時間間隔(秒)：",
+			"time-interval": "時間間隔（秒）：",
 			"work-mode-title": "處理方式：",
 			"work-mode": {
 				"1": "按種子逐一配對資料夾",
@@ -288,8 +308,8 @@
 			"newname": "新名稱"
 		},
 		"torrent-attribute-add-tracker": {
-			"button-search-best-ip": "精選(IP)",
-			"button-search-all-ip": "全部(IP)",
+			"button-search-best-ip": "精選（IP）",
+			"button-search-all-ip": "全部（IP）",
 			"title": "新增 Tracker",
 			"tip": "每行一個 Tracker"
 		},
@@ -297,6 +317,17 @@
 			"title": "設定使用者標籤",
 			"available": "可用標籤：",
 			"selected": "已選擇："
+		}
+		"export-config": {
+			"title": "請選取要匯出當配置",
+			"option-all": "全部配置",
+			"option-system": "Web Control 參數配置（包含用戶標籤）",
+			"option-dictionary": "用戶定義的目錄字典",
+			"option-server": "Transmission 伺服端配置（如下載目錄、快取、限速等全部配置）"
+		},
+		"import-config": {
+			"title": "請選取要匯入等配置",
+			"invalid-file": "無效等配置檔"
 		}
 	},
 	"torrent": {
@@ -401,8 +432,8 @@
 				"status": "狀態：",
 				"rateDownload": "下載速度：",
 				"rateUpload": "上傳速度：",
-				"leecherCount": "下載(活躍)：",
-				"seederCount": "種子(活躍)：",
+				"leecherCount": "下載（活躍）：",
+				"seederCount": "種子（活躍）：",
 				"uploadedEver": "已上傳：",
 				"uploadRatio": "分享率：",
 				"creator": "建立者：",
@@ -450,5 +481,6 @@
 		"text-off": "關",
 		"text-how-to-update": "如何更新？",
 		"text-ignore-this-version": "忽略這個版本"
+		"text-json-file-parsing-failed": "JSON 檔解析失敗！"
 	}
 }
