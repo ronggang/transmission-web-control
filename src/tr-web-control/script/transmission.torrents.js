@@ -249,7 +249,7 @@ transmission.torrents = {
 				var lastResult = trackerInfo.lastAnnounceResult.toLowerCase();
 				var hostName = trackerInfo.host.getHostName();
 				var trackerUrl = hostName.split(".");
-				if ($.inArray(trackerUrl[0], "www,tracker".split(",")) != -1) {
+				if ($.inArray(trackerUrl[0], "www,tracker,announce".split(",")) != -1) {
 					trackerUrl.shift();
 				}
 
