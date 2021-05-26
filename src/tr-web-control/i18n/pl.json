@@ -167,7 +167,7 @@
 			"download-queue-enabled": "Włącz kolejkę pobierania, maksymalna ilość kolejek:",
 			"seed-queue-enabled": "Włącz kolejkę wysyłania, maksymalna ilość kolejek:",
 			"peer-port-random-on-start": "Użyj losowego portu podczas uruchamiania",
-			"port-forwarding-enabled": "Włącz przekierowywanie portów(UPnP)",
+			"port-forwarding-enabled": "Włącz przekierowywanie portów (UPnP)",
 			"test-port": "Testuj port",
 			"port-is-open-true": "Port jest otwarty",
 			"port-is-open-false": "Port jest zamknięty",
@@ -226,7 +226,11 @@
 			"export-config": "Eksport aktualnej konfiguracji",
 			"import-config-confirm": "Czy na pewno chcesz importować nowe ustawienia? Spowoduje to nieodwracalne nadpisanie aktualnej konfiguracji.",
 			"script-torrent-done-enabled": "Gdy pobieranie torrenta zostanie ukończone uruchamiaj następujący skrypt:",
-			"ipinfo": "Token ipinfo.io"
+			"ipinfo": "Token IPinfo.io",
+			"ipInfoCustom": "Dodatkowe ustawienia usługi zapytań IP, można użyć niestandardowego adresu URL, odpowiedniego dla lokalnych usług zapytań",
+			"ipInfoCustomTips": "Dostępne zmienne: <b>%ip</b>: peer ip (wymagane), <b>%lang</b>: kod języka używanego przez tr-web-control<br/>&nbsp;&nbsp;<b>%host</b>: host, <b>%hostname</b>: nazwa hosta, <b>%protocol</b>: protokół, <b>%navlang</b>: kod języka nawigacji",
+			"ipInfoCountryCodeUrl": "URL pomocny w uzyskaniu kodu kraju:",
+			"ipInfoDetailUrl": "URL pomocny w uzyskaniu szczegółowych informacji:"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -263,6 +267,16 @@
 			"move-data": "Przenieś pobrane pliki do nowej lokalizacji",
 			"set-error": "Błąd!",
 			"recheck-data": "Ponownie sprawdź pobrane dane"
+		},
+		"torrent-changeSpeedLimit": {
+			"title": "Ustaw maksymalną i minimalną prędkośc pobierania oraz wysyłania torrentów",
+			"downloadLimited": "Maksymalna globalna prędkość pobierania:",
+			"uploadLimited": "Maksymalna globalna prędkość wysyłania:",
+			"peer-limit": "Maksymalna ilość peerów dla tego torrenta:",
+			"seedRatioMode": "Proporcje dla torrentów:",
+			"seedIdleMode": "Wysyłanie torrentów zostanie zatrzymane, jeżeli nikt nie będzie ich pobierał przez:",
+			"doneDate": "Czas ukończenia:",
+			"seedTime": "Czas wysyłania:"
 		},
 		"system-replaceTracker": {
 			"title": "Zmiana trackerów",
