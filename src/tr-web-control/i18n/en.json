@@ -228,7 +228,7 @@
 			"script-torrent-done-enabled": "Execute the following script when the torrent download is complete:",
 			"ipinfo": "IPinfo.io access token:",
 			"ipInfoCustom": "Additional IP query service settings, custom URL can be used, suitable for local query services",
-			"ipInfoCustomTips": "Available variables: <b>%ip</b>: peer ip(required), <b>%lang</b>: language code use by tr-web-control<br/>&nbsp;&nbsp;<b>%host</b>: host, <b>%hostname</b>: hostname, <b>%protocol</b>: protocol, <b>%navlang</b>: navigation language code",
+			"ipInfoCustomTips": "Available variables: <b>%ip</b>: peer IP (required), <b>%lang</b>: language code use by tr-web-control<br/>&nbsp;&nbsp;<b>%host</b>: host, <b>%hostname</b>: hostname, <b>%protocol</b>: protocol, <b>%navlang</b>: navigation language code",
 			"ipInfoCountryCodeUrl": "URL to get country code:",
 			"ipInfoDetailUrl": "URL to get details:"
 		},
