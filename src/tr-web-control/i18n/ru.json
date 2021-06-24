@@ -113,11 +113,11 @@
 			"title": "Статистика",
 			"cumulative": "Общая",
 			"current": "Текущая",
-			"uploadedBytes": "Всего отдано: ",
-			"downloadedBytes": "Всего загружено: ",
-			"filesAdded": "Файлов: ",
-			"sessionCount": "Сессий: ",
-			"secondsActive": "Время работы: "
+			"uploadedBytes": "Всего отдано:",
+			"downloadedBytes": "Всего загружено:",
+			"filesAdded": "Файлов:",
+			"sessionCount": "Сессий:",
+			"secondsActive": "Время работы:"
 		},
 		"servers": "Трекеры",
 		"folders": "Папки",
@@ -159,7 +159,7 @@
 			},
 			"config-dir": "Папка конфигурации Transmission (settings.json):",
 			"download-dir": "Папка для загрузки по умолчанию:",
-			"download-dir-free-space": "Свободно места: ",
+			"download-dir-free-space": "Свободно места:",
 			"incomplete-dir-enabled": "Папка для не полностью загруженных файлов:",
 			"cache-size-mb": "Размер дискового кеша:",
 			"rename-partial-files": "Добавлять расширение .part к не полностью загруженным файлам",
@@ -226,7 +226,11 @@
 			"export-config": "Экспорт текущих настроек ",
 			"import-config-confirm": "Вы действительно хотите импортировать настройки? Данное действие перезапишет текущие настройки.",
 			"script-torrent-done-enabled": "Выполнить скрипт после завершения загрузки торрента:",
-			"ipinfo": "Маркер доступа IPinfo.io (IPinfo.io access token):"
+			"ipinfo": "Маркер доступа IPinfo.io (IPinfo.io access token):",
+			"ipInfoCustom": "Дополнительные настройки службы IP-запросов. Можно использовать пользовательский URL-адрес, подходящий для запросов местных служб",
+			"ipInfoCustomTips": "Доступные переменные: <b>%ip</b>: peer IP (Обязательно), <b>%lang</b>: код языка используемый Transmission WEB control<br/>&nbsp;&nbsp;<b>%host</b>: хост (host), <b>%hostname</b>: имя хост-системы (hostname), <b>%protocol</b>: протокол, <b>%navlang</b>: код языка навигации",
+			"ipInfoCountryCodeUrl": "URL для получения сода страны:",
+			"ipInfoDetailUrl": "URL для получения подробной информации:"
 		},
 		"public": {
 			"button-ok": "OK",
@@ -263,6 +267,16 @@
 			"move-data": "Перенести данные из старой папки в новую.",
 			"set-error": "ошибка!",
 			"recheck-data": "Перепроверить данные."
+		},
+		"torrent-changeSpeedLimit": {
+			"title": "Установить торрентам максимальную скорость приема и отдачи",
+			"downloadLimited": "Максимальная скорость приема:",
+			"uploadLimited": "Максимальная скорость отдачи:",
+			"peer-limit": "Максимум пиров на торрент:",
+			"seedRatioMode": "Раздача будет остановлена на рейтинге:",
+			"seedIdleMode": "Раздача будет остановлена если нет активности:",
+			"doneDate": "Время окончания:",
+			"seedTime": "Время сидирования:"
 		},
 		"system-replaceTracker": {
 			"title": "Заменить трекеры",
@@ -424,11 +438,11 @@
 				"dateCreated": "Дата создания:",
 				"comment": "Комментарий:",
 				"errorString": "Ошибка:",
-				"downloadLimited": "Максимальная скорость приема: ",
-				"uploadLimited": "Максимальная скорость отдачи: ",
-				"peer-limit": "Максимум пиров на торрент: ",
-				"seedRatioMode": "Раздача будет остановлена на рейтинге: ",
-				"seedIdleMode": "Раздача будет остановлена если нет активности: ",
+				"downloadLimited": "Максимальная скорость приема:",
+				"uploadLimited": "Максимальная скорость отдачи:",
+				"peer-limit": "Максимум пиров на торрент:",
+				"seedRatioMode": "Раздача будет остановлена на рейтинге:",
+				"seedIdleMode": "Раздача будет остановлена если нет активности:",
 				"doneDate": "Время окончания:",
 				"seedTime": "Время сидирования:"
 			},
