@@ -400,17 +400,19 @@ getTransmissionPath() {
 	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
 	# ROOT_FOLDER="/usr/local/transmission/share/transmission"
 	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
-	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ] || [ -f "/etc/openwrt_release" ]; then
-		ROOT_FOLDER="/usr/share/transmission"
-	fi
+	if [ ! -d "$ROOT_FOLDER" ]; then
+		if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ] || [ -f "/etc/openwrt_release" ]; then
+			ROOT_FOLDER="/usr/share/transmission"
+		fi
 
-	if [ -f "/bin/freebsd-version" ]; then
-		ROOT_FOLDER="/usr/local/share/transmission"
-	fi
+		if [ -f "/bin/freebsd-version" ]; then
+			ROOT_FOLDER="/usr/local/share/transmission"
+		fi
 
-	# 群晖
-	if [ -f "/etc/synoinfo.conf" ]; then
-		ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
+		# 群晖
+		if [ -f "/etc/synoinfo.conf" ]; then
+			ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
+		fi
 	fi
 
 	if [ ! -d "$ROOT_FOLDER" ]; then
