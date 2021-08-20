@@ -114,7 +114,8 @@ initValues() {
 		# 是否指定了 v
 		elif [ ${VERSION:0:1} = "v" ]; then
 			PACK_NAME="$VERSION.tar.gz"
-			VERSION=${VERSION:1}
+			# 因为解压出来的路径，版本号带有 'v' ，所以这里不能将 'v' 去掉
+			# VERSION=${VERSION:1}
 		else
 			PACK_NAME="v$VERSION.tar.gz"
 		fi
@@ -182,7 +183,7 @@ install() {
 
 		showLog "$MSG_PACK_COPYING"
 		# 复制文件到
-		cp -r "$TMP_FOLDER/transmission-web-control/src/." "$WEB_FOLDER/"
+		cp -r "$TMP_FOLDER/transmission-web-control-$VERSION/src/." "$WEB_FOLDER/"
 		# 设置权限
 		setPermissions "$WEB_FOLDER"
 		# 安装完成
