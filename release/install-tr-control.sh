@@ -85,6 +85,7 @@ MSG_NON_ROOT_USER="Unable to confirm if it is currently root, the installation m
 # 是否自动安装
 if [ "$ARG1" = "auto" ]; then
 	AUTOINSTALL=1
+	ROOT_FOLDER=$2
 else
 	ROOT_FOLDER=$ARG1
 fi
