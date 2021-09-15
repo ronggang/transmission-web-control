@@ -221,7 +221,7 @@
 				"color": "顏色",
 				"actions": "動作",
 				"import-confirm": "是否確認匯入標籤資訊？ 這將覆蓋目前的設定。"
-			}
+			},
 			"import-config": "從備份檔匯入配置",
 			"export-config": "匯出現用配置到配置檔（內容包括：Transmission 參數、WebUI 配置）",
 			"import-config-confirm": "確定要匯入這些配置嗎？這將覆蓋現用配置。",
@@ -317,7 +317,7 @@
 			"title": "設定使用者標籤",
 			"available": "可用標籤：",
 			"selected": "已選擇："
-		}
+		},
 		"export-config": {
 			"title": "請選取要匯出當配置",
 			"option-all": "全部配置",
@@ -480,7 +480,7 @@
 		"text-on": "開",
 		"text-off": "關",
 		"text-how-to-update": "如何更新？",
-		"text-ignore-this-version": "忽略這個版本"
+		"text-ignore-this-version": "忽略這個版本",
 		"text-json-file-parsing-failed": "JSON 檔解析失敗！"
 	}
 }
