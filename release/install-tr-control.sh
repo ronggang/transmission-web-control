@@ -95,10 +95,13 @@ initValues() {
 	if [ ! -d "$TMP_FOLDER" ]; then
 		mkdir -p "$TMP_FOLDER"
 	fi
-
-	# 获取 Transmission 目录
-	getTransmissionPath
-
+    
+    # 判断是否指定了ROOT_FOLDER
+    if [ "$ROOT_FOLDER" == "" ]; then
+        # 获取 Transmission 目录
+        getTransmissionPath
+    fi
+    
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
 	if [ -d "$ROOT_FOLDER" ]; then
 		showLog "$MSG_TR_WORK_FOLDER $ROOT_FOLDER/web"
