@@ -68,6 +68,9 @@
 		{
 			$.merge(downloadDirs,system.dictionary.folders.split("\n"));
 		}
+		downloadDirs = downloadDirs.map(item => {
+			return item[item.length - 1] == '/' ? item.slice(0, -1) : item;
+		});
 		downloadDirs = uniq(downloadDirs);
 		
 		if (system.config.hideSubfolders == false && system.currentListDir != null && system.currentListDir != "") {
