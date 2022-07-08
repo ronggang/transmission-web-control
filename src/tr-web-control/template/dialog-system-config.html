@@ -601,6 +601,9 @@
         thisDialog.find('#download-dir').val(system.downloadDir);
         $('<option/>').text(system.downloadDir).val(system.downloadDir).attr('selected', true).appendTo(thisDialog.find('#download-dir'));
         $.each(transmission.downloadDirs, function (i, item) {
+          if (item === system.downloadDir){
+            return
+          }
           $('<option/>').text(item).val(item).appendTo(thisDialog.find('#download-dir'));
         });
         thisDialog.find('#download-dir').combobox();
