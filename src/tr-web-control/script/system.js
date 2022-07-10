@@ -2108,10 +2108,6 @@ var system = {
 		jQuery.extend(def, config);
 		if (!config.node) return;
 
-		var torrents = null;
-		var parent = this.panel.left.tree("getParent", config.node.target) || {
-			id: ""
-		};
 		var currentNodeId = this.panel.left.data("currentNodeId");
 
 		if (currentNodeId != config.node.id) {
@@ -2123,6 +2119,56 @@ var system = {
 			currentNodeId = config.node.id;
 		}
 		this.panel.left.data("currentNodeId", currentNodeId);
+
+		if (this.config.defaultSelectNode != config.node.id) {
+			this.control.torrentlist.datagrid("loadData", []);
+			this.config.defaultSelectNode = config.node.id;
+			this.saveConfig();
+		};
+
+		var datas = new Array();
+		var torrents = system.getCurrentPageTorrents(config);
+		for (var index in torrents) {
+			var torrent = torrents[index];
+			if (!torrent) {
+				continue;
+			}
+
+			datas.push(system.createTorrentPageData(torrent));
+		}
+		/*
+		this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
+		this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
+		*/
+
+		this.updateTorrentCurrentPageDatas(datas);
+		this.initShiftCheck();
+	},
+
+	/** 获取当前页种子列表
+	 * @returns torrents
+	 */
+	getCurrentPageTorrents(config){
+		var torrents = null;
+
+		//无指定配置时，采用默认配置
+		if(!config){
+			var node = system.panel.left.tree("getSelected");
+			var p = system.control.torrentlist.datagrid("options").pageNumber;
+			config = {
+				node,
+				p,
+			};
+		}
+
+		var parent = this.panel.left.tree("getParent", config.node.target) || {
+			id: ""
+		};
 
 		switch (parent.id) {
 			case "servers":
@@ -2216,78 +2262,62 @@ var system = {
 				}
 				break;
 		}
-
-		if (this.config.defaultSelectNode != config.node.id) {
-			this.control.torrentlist.datagrid("loadData", []);
-			this.config.defaultSelectNode = config.node.id;
-			this.saveConfig();
-		};
-
-		var datas = new Array();
-		for (var index in torrents) {
-			if (!torrents[index]) {
-				return;
-			}
-			var status = this.lang.torrent["status-text"][torrents[index].status];
-			// var percentDone = parseFloat(torrents[index].percentDone * 100).toFixed(2);
-			// // Checksum, the use of verification progress
-			// if (status == transmission._status.check) {
-			// 	percentDone = parseFloat(torrents[index].recheckProgress * 100).toFixed(2);
-			// }
-
-			if (torrents[index].error != 0) {
-				status = "<span class='text-status-error'>" + status + "</span>";
-			} else if (torrents[index].warning) {
-				status = "<span class='text-status-warning' title='" + torrents[index].warning + "'>" + status + "</span>";
-			}
-			var data = {};
-			data = $.extend(data, torrents[index]);
-			data.status = status;
-			data.statusCode = torrents[index].status;
-			data.completeSize = Math.max(0, torrents[index].totalSize - torrents[index].leftUntilDone);
-			data.leecherCount = torrents[index].leecher;
-			data.seederCount = torrents[index].seeder;
-			var labels = this.config.labelMaps[data.hashString];
-			if (labels) {
-				data.labels = labels;
-			}
-			
-			//data.leecherCount = torrents[index].leecher;
-			/*
-			datas.push({
-				id:torrents[index].id
-				,name:torrents[index].name
-				,totalSize:torrents[index].totalSize
-				,percentDone:torrents[index].percentDone
-				,remainingTime:torrents[index].remainingTime
-				,status:status
-				,statusCode:torrents[index].status
-				,addedDate:torrents[index].addedDate
-				,completeSize:(torrents[index].totalSize-torrents[index].leftUntilDone)
-				,rateDownload:torrents[index].rateDownload
-				,rateUpload:torrents[index].rateUpload
-				,leecherCount:torrents[index].leecher
-				,seederCount:torrents[index].seeder
-				,uploadRatio:torrents[index].uploadRatio
-				,uploadedEver:torrents[index].uploadedEver
-			});
-			*/
-
-			datas.push(data);
-		}
-		/*
-		this.panel.toolbar.find("#toolbar_start").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_pause").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_remove").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_recheck").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_changeDownloadDir").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_morepeers").linkbutton({disabled:true});
-		this.panel.toolbar.find("#toolbar_queue").menubutton("disable");
-		*/
-
-		this.updateTorrentCurrentPageDatas(datas);
-		this.initShiftCheck();
+		return torrents;
 	},
+
+	/** 创建种子的页面数据
+	 * @param {*} torrent 
+	 * @returns 
+	 */
+	createTorrentPageData(torrent){
+		var status = this.lang.torrent["status-text"][torrent.status];
+		// var percentDone = parseFloat(torrent.percentDone * 100).toFixed(2);
+		// // Checksum, the use of verification progress
+		// if (status == transmission._status.check) {
+		// 	percentDone = parseFloat(torrent.recheckProgress * 100).toFixed(2);
+		// }
+
+		if (torrent.error != 0) {
+			status = "<span class='text-status-error'>" + status + "</span>";
+		} else if (torrent.warning) {
+			status = "<span class='text-status-warning' title='" + torrent.warning + "'>" + status + "</span>";
+		}
+		var data = {};
+		data = $.extend(data, torrent);
+		data.status = status;
+		data.statusCode = torrent.status;
+		data.completeSize = Math.max(0, torrent.totalSize - torrent.leftUntilDone);
+		data.leecherCount = torrent.leecher;
+		data.seederCount = torrent.seeder;
+		var labels = this.config.labelMaps[data.hashString];
+		if (labels) {
+			data.labels = labels;
+		}
+		
+		//data.leecherCount = torrent.leecher;
+		/*
+		datas.push({
+			id:torrent.id
+			,name:torrent.name
+			,totalSize:torrent.totalSize
+			,percentDone:torrent.percentDone
+			,remainingTime:torrent.remainingTime
+			,status:status
+			,statusCode:torrent.status
+			,addedDate:torrent.addedDate
+			,completeSize:(torrent.totalSize-torrent.leftUntilDone)
+			,rateDownload:torrent.rateDownload
+			,rateUpload:torrent.rateUpload
+			,leecherCount:torrent.leecher
+			,seederCount:torrent.seeder
+			,uploadRatio:torrent.uploadRatio
+			,uploadedEver:torrent.uploadedEver
+		});
+		*/
+		return data;
+	},
+
+
 	/**
 	 * shift 键选择
 	 */
