@@ -854,6 +854,34 @@ var system = {
 			});
 		}, "json");
 
+		/** 更新当前页种子列表 - 根据 hash 列表
+		 * @param {string[]} hashs 种子的 hash 列表
+		 */
+		this.control.torrentlist.updateCurrentPageTorrentsByHashList = function(hashs){
+			//执行环境
+			var rows = system.control.torrentlist.datagrid("getRows");
+			var torrents = system.getCurrentPageTorrents();
+			
+			if(rows && torrents){//确认环境有效性
+				for(let index = 0; index < rows.length; index++){
+					var item = rows[index];
+					if(hashs.indexOf(item.hashString) > -1){//如果是要更新的目标
+						var torrent = transmission.torrents.findTorrentByInfo(torrents, item);
+						if(torrent){//如果在当前页面中确实找到了要更新的目标
+							//创建这个种子的页面数据
+							var data = system.createTorrentPageData(torrent);
+							
+							//更新页面数据
+							system.control.torrentlist.datagrid("updateRow", {
+								index: index,
+								row: data
+							});
+						}
+					}
+				}
+			}
+		};
+
 		// 刷新当前页数据
 		this.control.torrentlist.refresh = function() {
 			system.control.torrentlist.datagrid("getPager").find(".pagination-load").click();
@@ -2289,10 +2317,7 @@ var system = {
 		data.completeSize = Math.max(0, torrent.totalSize - torrent.leftUntilDone);
 		data.leecherCount = torrent.leecher;
 		data.seederCount = torrent.seeder;
-		var labels = this.config.labelMaps[data.hashString];
-		if (labels) {
-			data.labels = labels;
-		}
+		data.labels = this.config.labelMaps[data.hashString] || [];//确保有值，哪怕是数组的元素个数为0
 		
 		//data.leecherCount = torrent.leecher;
 		/*

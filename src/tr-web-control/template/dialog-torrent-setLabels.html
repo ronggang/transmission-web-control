@@ -86,6 +86,8 @@
 			save: function() {
 				var items = $(".user-label-big", this.divSelectedList);
 				var labels = [];
+				//隔离出局部作用域的数据，后续使用
+				var hashs = Array.from(this.hashs);
 
 				for (var index = 0; index < items.length; index++) {
 					var item = $(items[index]);
@@ -93,8 +95,8 @@
 					labels.push(label.index);
 				}
 
-				for (var index = 0; index < this.hashs.length; index++) {
-					var item = this.hashs[index];
+				for (var index = 0; index < hashs.length; index++) {
+					var item = hashs[index];
 					if (labels.length==0) {
 						delete system.config.labelMaps[item];
 					} else {
@@ -104,8 +106,9 @@
 
 				system.saveConfig();
 
+				//更新界面 - 只更新选中的这些种子，其他的不动
 				setTimeout(function(){
-					system.control.torrentlist.refresh();
+					system.control.torrentlist.updateCurrentPageTorrentsByHashList(hashs);
 				}, 200);
 			},
 			close: function() {
