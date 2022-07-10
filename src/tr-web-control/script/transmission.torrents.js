@@ -536,5 +536,15 @@ transmission.torrents = {
 				if(callback) callback(result.trim());
 			}
 		});
-	}
+	},
+
+	/** 根据种子信息
+	 * @param {*} torrents 要被查找的种子列表
+	 * @param {*} info 种子信息
+	 * @returns 
+	 */
+	findTorrentByInfo(torrents, info){
+		//优先 field 查找，找不到时可能是数组，则用 hash 查找
+		return torrents[info.id] || (Array.isArray(torrents) && torrents.find((x)=> x.hashString == info.hashString));
+	},
 };
