@@ -427,11 +427,11 @@
                             <label system-lang="dialog['system-config']['ipInfoCustom']"></label><br>
 
                             <label system-lang="dialog['system-config']['ipInfoCountryCodeUrl']"></label>
-                            <input id="ipInfoFlagUrl" value="" class="easyui-textbox" 
+                            <input id="ipInfoFlagUrl" value="" class="easyui-textbox"
                                 data-options="prompt:'%protocol//%hostname:5000/code/%ip',buttonText:'Test'" type="text" style="width: 100%"/><br>
 
                             <label system-lang="dialog['system-config']['ipInfoDetailUrl']"></label>
-                            <input id="ipInfoDetailUrl" value="" class="easyui-textbox" 
+                            <input id="ipInfoDetailUrl" value="" class="easyui-textbox"
                                 data-options="prompt:'%protocol//%hostname:5000/detail/%ip/%navlang',buttonText:'Test'" type="text" style="width: 100%"/><br>
 
                             <label system-lang="dialog['system-config']['ipInfoCustomTips']"></label>
@@ -599,12 +599,13 @@
 
         // Set content
         thisDialog.find('#download-dir').val(system.downloadDir);
+        $('<option/>').text(system.downloadDir).val(system.downloadDir).attr('selected', true).appendTo(thisDialog.find('#download-dir'));
         $.each(transmission.downloadDirs, function (i, item) {
-          $('<option/>').text(item).val(item).attr('selected', (item == system.downloadDir ? true : false)).appendTo(thisDialog.find('#download-dir'));
+          if (item === system.downloadDir){
+            return
+          }
+          $('<option/>').text(item).val(item).appendTo(thisDialog.find('#download-dir'));
         });
-        if (transmission.downloadDirs.length == 0) {
-          $('<option/>').text(system.downloadDir).val(system.downloadDir).attr('selected', true).appendTo(thisDialog.find('#download-dir'));
-        }
         thisDialog.find('#download-dir').combobox();
 
         thisDialog.find('#config-dir').val(system.serverConfig['config-dir']);
@@ -935,7 +936,7 @@
                 alert(system.expandIpInfoUrl(this.value, '8.8.8.8'));
             }
         }});
-        
+
 
         // 恢复界面默认设置
         $('#restore-default-settings', thisDialog).click(function () {
