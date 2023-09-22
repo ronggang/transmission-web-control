@@ -251,13 +251,12 @@ download() {
 	fi
 	showLog "$MSG_DOWNLOADING"
 	echo ""
-	wget -O "$PACK_NAME" "$DOWNLOAD_URL" --no-check-certificate
-
-	# 判断是否下载成功
-	if [ $? -eq 0 ]; then
+	if wget -O "$PACK_NAME" "$DOWNLOAD_URL" --no-check-certificate; then
+		# 下载成功
 		showLog "$MSG_DOWNLOAD_COMPLETE"
 		return 0
 	else 
+		# 下载失败
 		showLog "$MSG_DOWNLOAD_FAILED"
 		end
 		exit 1
@@ -441,11 +440,20 @@ getLatestReleases() {
 	VERSION=`wget -O - https://gitee.com/api/v5/repos/culturist/transmission-web-control/releases/latest --no-check-certificate | sed -r "s/.*tag_name(.*)target_commitish.*/\1/" | cut -d '"' -f 3`
 }
 
+if ps --version 2> /dev/null | grep -Fq procps; then
+	checkProcess() {
+		ps -C "$1"
+	}
+else
+	checkProcess() {
+		ps -A -o comm= | grep --fixed-strings --line-regexp --quiet -- "$1"
+	}
+fi
+
 # 检测 Transmission 进程是否存在
 checkTransmissionDaemon() {
 	showLog "$MSG_CHECK_TR_DAEMON"
-	ps -C transmission-daemon
-	if [ $? -ne 0 ]; then
+	if checkProcess transmission-daemon; then
 		showLog "$MSG_CHECK_TR_DAEMON_FAILED"
 		echo -n "$MSG_TRY_START_TR"
 		read input
@@ -491,11 +499,11 @@ downloadInstallScript() {
 		rm "$SCRIPT_NAME"
 	fi
 	showLog "$MSG_DOWNLOADING_INSTALL_SCRIPT"
-	wget "https://gitee.com/culturist/transmission-web-control/raw/master/release/$SCRIPT_NAME" --no-check-certificate
-	# 判断是否下载成功
-	if [ $? -eq 0 ]; then
+	if wget "https://gitee.com/culturist/transmission-web-control/raw/master/release/$SCRIPT_NAME" --no-check-certificate; then
+		# 下载成功
 		showLog "$MSG_INSTALL_SCRIPT_DOWNLOAD_COMPLETE"
 	else 
+		# 下载失败
 		showLog "$MSG_INSTALL_SCRIPT_DOWNLOAD_FAILED"
 		sleep 2
 		showMainMenu
