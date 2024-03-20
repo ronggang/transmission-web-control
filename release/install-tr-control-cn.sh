@@ -3,8 +3,9 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.3"
+SCRIPT_VERSION="1.2.4"
 VERSION=""
+HTML_FOLDER_NAME="web"
 WEB_FOLDER=""
 ORG_INDEX_FILE="index.original.html"
 INDEX_FILE="index.html"
@@ -102,9 +103,9 @@ initValues() {
     fi
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
 	if [ -d "$ROOT_FOLDER" ]; then
-		showLog "$MSG_TR_WORK_FOLDER $ROOT_FOLDER/web"
+		showLog "$MSG_TR_WORK_FOLDER $ROOT_FOLDER/$HTML_FOLDER_NAME"
 		INSTALL_TYPE=3
-		WEB_FOLDER="$ROOT_FOLDER/web"
+		WEB_FOLDER="$ROOT_FOLDER/$HTML_FOLDER_NAME"
 		SKIP_SEARCH=1
 	fi
 
@@ -156,16 +157,16 @@ findWebFolder() {
       fi
 		INSTALL_TYPE=2
 	else
-		if [ -d "$ROOT_FOLDER" -a -d "$ROOT_FOLDER/web" ]; then
-			WEB_FOLDER="$ROOT_FOLDER/web"
+		if [ -d "$ROOT_FOLDER" -a -d "$ROOT_FOLDER/$HTML_FOLDER_NAME" ]; then
+			WEB_FOLDER="$ROOT_FOLDER/$HTML_FOLDER_NAME"
 			INSTALL_TYPE=1
-			showLog "$ROOT_FOLDER/web $MSG_AVAILABLE."
+			showLog "$ROOT_FOLDER/$HTML_FOLDER_NAME $MSG_AVAILABLE."
 		else
 			showLog "$MSG_THE_SPECIFIED_DIRECTORY_DOES_NOT_EXIST"
 			ROOT_FOLDER=`find / -name 'web' -type d 2>/dev/null| grep 'transmission/web' | sed 's/\/web$//g'`
 
-			if [ -d "$ROOT_FOLDER/web" ]; then
-				WEB_FOLDER="$ROOT_FOLDER/web"
+			if [ -d "$ROOT_FOLDER/$HTML_FOLDER_NAME" ]; then
+				WEB_FOLDER="$ROOT_FOLDER/$HTML_FOLDER_NAME"
 				INSTALL_TYPE=1
 			fi
 		fi
@@ -195,14 +196,14 @@ install() {
 		# 下载安装包
 		download
 		# 创建web文件夹，从 20171014 之后，打包文件不包含web目录，直接打包为src下所有文件
-		mkdir web
+		mkdir $HTML_FOLDER_NAME
 		
 		# 解压缩包
-		unpack "web"
+		unpack "$HTML_FOLDER_NAME"
 		
 		showLog "$MSG_PACK_COPYING"
 		# 复制文件到
-		cp -r web "$ROOT_FOLDER"
+		cp -r $HTML_FOLDER_NAME "$ROOT_FOLDER"
 		# 设置权限
 		setPermissions "$ROOT_FOLDER"
 		# 安装完成
@@ -369,9 +370,9 @@ showMainMenu() {
 		6)
 			echo -n "$MSG_INPUT_TR_FOLDER"
 			read input
-			if [ -d "$input/web" ]; then
+			if [ -d "$input/$HTML_FOLDER_NAME" ]; then
 				ROOT_FOLDER="$input"
-				showLog "$MSG_SPECIFIED_FOLDER $input/web"
+				showLog "$MSG_SPECIFIED_FOLDER $input/$HTML_FOLDER_NAME"
 			else
 				showLog "$MSG_INVALID_PATH"
 			fi
@@ -412,6 +413,20 @@ getTransmissionPath() {
 
 	# 群晖
 	if [ -f "/etc/synoinfo.conf" ]; then
+		# 开始检测TR版本，用于判断ui存放目录
+		TRANSMISSION_REMOTE="/var/packages/transmission/target/bin/transmission-remote"
+
+		if [[ -x "$TRANSMISSION_REMOTE" ]]; then
+			tr_version=$("$TRANSMISSION_REMOTE" -V 2>&1 | cut -d " " -f 2)
+			showLog "transmission version: $tr_version"
+			# 判断 TR 主版本号
+			if [ ${tr_version:0:1} = 2 ]; then
+				HTML_FOLDER_NAME="web"
+			else
+				HTML_FOLDER_NAME="public_html"
+			fi
+		fi
+
 		ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
 	fi
 
