@@ -3,7 +3,7 @@
 ARG1="$1"
 ROOT_FOLDER=""
 SCRIPT_NAME="$0"
-SCRIPT_VERSION="1.2.4"
+SCRIPT_VERSION="1.2.5"
 VERSION=""
 HTML_FOLDER_NAME="web"
 WEB_FOLDER=""
@@ -12,6 +12,7 @@ INDEX_FILE="index.html"
 TMP_FOLDER="/tmp/tr-web-control"
 PACK_NAME="master.tar.gz"
 WEB_HOST="https://github.com/ronggang/transmission-web-control/archive/"
+LAST_RELEASES="https://api.github.com/repos/ronggang/transmission-web-control/releases/latest"
 DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 # 安装类型
 # 1 安装至当前 Transmission Web 所在目录
@@ -47,6 +48,7 @@ MSG_DONE="安装脚本执行完成。如遇到问题请查看：https://github.c
 MSG_SETTING_PERMISSIONS="正在设置权限，大约需要一分钟 ..."
 MSG_BEGIN="开始"
 MSG_END="结束"
+MSG_WGET_NOT_FIND="系统中没有找到 wget 或 curl，无法进行下载操作，请安装后再试！"
 MSG_MAIN_MENU="
 	欢迎使用 Transmission Web Control 中文安装脚本。
 	官方帮助文档：https://github.com/ronggang/transmission-web-control/wiki 
@@ -86,6 +88,7 @@ MSG_NON_ROOT_USER="无法确认当前是否为 root 用户，可能无法进行�
 # 是否自动安装
 if [ "$ARG1" = "auto" ]; then
 	AUTOINSTALL=1
+	ROOT_FOLDER=$2
 else
 	ROOT_FOLDER=$ARG1
 fi
@@ -96,11 +99,12 @@ initValues() {
 		mkdir -p "$TMP_FOLDER"
 	fi
 
-    # 判断是否指定了ROOT_FOLDER
-    if [ "$ROOT_FOLDER" == "" ]; then
-        # 获取 Transmission 目录
-        getTransmissionPath
-    fi
+	# 判断是否指定了ROOT_FOLDER
+	if [ "$ROOT_FOLDER" == "" ]; then
+		# 获取 Transmission 目录
+		getTransmissionPath
+	fi
+
 	# 判断 ROOT_FOLDER 是否为一个有效的目录，如果是则表明传递了一个有效路径
 	if [ -d "$ROOT_FOLDER" ]; then
 		showLog "$MSG_TR_WORK_FOLDER $ROOT_FOLDER/$HTML_FOLDER_NAME"
@@ -123,7 +127,7 @@ initValues() {
 		fi
 		showLog "$MSG_SPECIFIED_VERSION $VERSION"
 		
-		DOWNLOAD_URL="https://github.com/ronggang/transmission-web-control/archive/$PACK_NAME"
+		DOWNLOAD_URL="$WEB_HOST$PACK_NAME"
 	fi	
 
 	if [ $SKIP_SEARCH = 0 ]; then
@@ -163,7 +167,7 @@ findWebFolder() {
 			showLog "$ROOT_FOLDER/$HTML_FOLDER_NAME $MSG_AVAILABLE."
 		else
 			showLog "$MSG_THE_SPECIFIED_DIRECTORY_DOES_NOT_EXIST"
-			ROOT_FOLDER=`find / -name 'web' -type d 2>/dev/null| grep 'transmission/web' | sed 's/\/web$//g'`
+			ROOT_FOLDER=`find /usr /etc /home /root ./ -name "$HTML_FOLDER_NAME" -type d 2>/dev/null| grep "transmission/$HTML_FOLDER_NAME" | sed "s/\/$HTML_FOLDER_NAME$//g"`
 
 			if [ -d "$ROOT_FOLDER/$HTML_FOLDER_NAME" ]; then
 				WEB_FOLDER="$ROOT_FOLDER/$HTML_FOLDER_NAME"
@@ -250,7 +254,8 @@ download() {
 	fi
 	showLog "$MSG_DOWNLOADING"
 	echo ""
-	wget "$DOWNLOAD_URL" --no-check-certificate
+	# 下载的时候强制命名文件，以免被重定向后文件名发生改变
+	wget "$DOWNLOAD_URL" -O "$PACK_NAME" --no-check-certificate
 	# 判断是否下载成功
 	if [ $? -eq 0 ]; then
 		showLog "$MSG_DOWNLOAD_COMPLETE"
@@ -403,31 +408,34 @@ getTransmissionPath() {
 	# 用户如知道自己的 Transmission Web 所在的目录，直接修改这个值，以避免搜索所有目录
 	# ROOT_FOLDER="/usr/local/transmission/share/transmission"
 	# Fedora 或 Debian 发行版的默认 ROOT_FOLDER 目录
-	if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ] || [ -f "/etc/openwrt_release" ]; then
-		ROOT_FOLDER="/usr/share/transmission"
-	fi
-	
-	if [ -f "/bin/freebsd-version" ]; then
-		ROOT_FOLDER="/usr/local/share/transmission"
-	fi
-
-	# 群晖
-	if [ -f "/etc/synoinfo.conf" ]; then
-		# 开始检测TR版本，用于判断ui存放目录
-		TRANSMISSION_REMOTE="/var/packages/transmission/target/bin/transmission-remote"
-
-		if [[ -x "$TRANSMISSION_REMOTE" ]]; then
-			tr_version=$("$TRANSMISSION_REMOTE" -V 2>&1 | cut -d " " -f 2)
-			showLog "transmission version: $tr_version"
-			# 判断 TR 主版本号
-			if [ ${tr_version:0:1} = 2 ]; then
-				HTML_FOLDER_NAME="web"
-			else
-				HTML_FOLDER_NAME="public_html"
-			fi
+	# 如果已经指定了安装路径，则跳过
+	if [ ! -d "$ROOT_FOLDER" ]; then
+		if [ -f "/etc/fedora-release" ] || [ -f "/etc/debian_version" ] || [ -f "/etc/openwrt_release" ]; then
+			ROOT_FOLDER="/usr/share/transmission"
+		fi
+		
+		if [ -f "/bin/freebsd-version" ]; then
+			ROOT_FOLDER="/usr/local/share/transmission"
 		fi
 
-		ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
+		# 群晖
+		if [ -f "/etc/synoinfo.conf" ]; then
+			# 开始检测TR版本，用于判断ui存放目录
+			TRANSMISSION_REMOTE="/var/packages/transmission/target/bin/transmission-remote"
+
+			if [[ -x "$TRANSMISSION_REMOTE" ]]; then
+				tr_version=$("$TRANSMISSION_REMOTE" -V 2>&1 | cut -d " " -f 2)
+				showLog "transmission version: $tr_version"
+				# 判断 TR 主版本号
+				if [ ${tr_version:0:1} = 2 ]; then
+					HTML_FOLDER_NAME="web"
+				else
+					HTML_FOLDER_NAME="public_html"
+				fi
+			fi
+
+			ROOT_FOLDER="/var/packages/transmission/target/share/transmission"
+		fi
 	fi
 
 	if [ ! -d "$ROOT_FOLDER" ]; then
@@ -450,7 +458,15 @@ getTransmissionPath() {
 # 获取最后的发布版本号
 # 因在源码库里提交二进制文件不便于管理，以后将使用这种方式获取最新发布的版本
 getLatestReleases() {
-	VERSION=`wget -O - https://api.github.com/repos/ronggang/transmission-web-control/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4`
+	# 优先使用curl，避免OpenWRT下wget得到的内容没有分行，导致grep输出结果失效
+	if [ -x "$(which curl)" ] ; then
+		VERSION=`curl -s $LAST_RELEASES | grep tag_name | head -n 1 | cut -d '"' -f 4`
+	elif [ -x "$(which wget)" ]; then
+		VERSION=`wget -O - $LAST_RELEASES | grep tag_name | head -n 1 | cut -d '"' -f 4`
+	else
+		showLog "$MSG_WGET_NOT_FIND"
+		exit -1
+	fi
 }
 
 # 检测 Transmission 进程是否存在
